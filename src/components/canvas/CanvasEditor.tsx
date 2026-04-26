@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useCallback } from 'react'
+import { useEffect, useRef, useCallback, useState } from 'react'
 import type { Template } from '@/lib/templates'
 import { CANVAS_DISPLAY_WIDTH, getDisplayHeight, type Platform } from '@/lib/platforms'
 
@@ -26,8 +26,20 @@ export default function CanvasEditor({
   const canvasRef = useRef<HTMLCanvasElement>(null)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const fabricRef = useRef<any>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const [cssScale, setCssScale] = useState(1)
   const scale = CANVAS_DISPLAY_WIDTH / platform.width
   const displayH = getDisplayHeight(platform)
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current
+    if (!wrapper) return
+    const observer = new ResizeObserver(([entry]) => {
+      setCssScale(Math.min(1, entry.contentRect.width / CANVAS_DISPLAY_WIDTH))
+    })
+    observer.observe(wrapper)
+    return () => observer.disconnect()
+  }, [])
 
   const applyTemplate = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -155,11 +167,20 @@ export default function CanvasEditor({
   }, [texts])
 
   return (
-    <div
-      className="w-full rounded-xl overflow-hidden border border-border shadow-sm"
-      style={{ maxWidth: CANVAS_DISPLAY_WIDTH }}
-    >
-      <canvas ref={canvasRef} />
+    <div ref={wrapperRef} className="w-full">
+      <div style={{ aspectRatio: `${CANVAS_DISPLAY_WIDTH}/${displayH}`, position: 'relative' }}>
+        <div
+          className="absolute top-0 left-0 rounded-xl overflow-hidden border border-border shadow-sm"
+          style={{
+            width: CANVAS_DISPLAY_WIDTH,
+            height: displayH,
+            transformOrigin: 'top left',
+            transform: `scale(${cssScale})`,
+          }}
+        >
+          <canvas ref={canvasRef} />
+        </div>
+      </div>
     </div>
   )
 }
