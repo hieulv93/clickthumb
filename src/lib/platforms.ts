@@ -17,6 +17,7 @@ export const PLATFORMS: Record<string, Platform> = {
   gaming: { id: 'gaming', name: 'Gaming Thumbnail', width: 1280, height: 720, route: '/gaming-thumbnail-maker' },
   minecraft: { id: 'minecraft', name: 'Minecraft Thumbnail', width: 1280, height: 720, route: '/minecraft-thumbnail-maker' },
   fortnite: { id: 'fortnite', name: 'Fortnite Thumbnail', width: 1280, height: 720, route: '/fortnite-thumbnail-maker' },
+  roblox: { id: 'roblox', name: 'Roblox Thumbnail', width: 1280, height: 720, route: '/roblox-thumbnail-maker' },
   youtube_banner: { id: 'youtube_banner', name: 'YouTube Banner', width: 2560, height: 1440, route: '/youtube-banner-maker' },
 }
 

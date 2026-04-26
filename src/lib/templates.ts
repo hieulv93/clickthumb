@@ -334,6 +334,40 @@ export const MINECRAFT_TEMPLATES: Template[] = [
   },
 ]
 
+// ─── Roblox Thumbnail (1280×720) ─────────────────────────────────────────────
+export const ROBLOX_TEMPLATES: Template[] = [
+  {
+    id: 'rb-red',
+    name: 'Roblox Red',
+    platform: 'roblox',
+    bgColor: '#1a0000',
+    texts: [
+      { text: 'ROBLOX VIDEO', fontSize: 110, fontFamily: 'Impact', fill: '#ff3333', stroke: '#ffffff', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'obby • adopt me • blox fruits', fontSize: 50, fontFamily: 'Arial', fill: '#ffffff', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'rb-neon',
+    name: 'Neon Obby',
+    platform: 'roblox',
+    bgColor: '#050d1a',
+    texts: [
+      { text: 'I BEAT THE OBBY!', fontSize: 96, fontFamily: 'Impact', fill: '#00ff99', stroke: '#004433', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'hardest obby • level 100 • tips', fontSize: 50, fontFamily: 'Arial', fill: '#7fffd4', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'rb-gold',
+    name: 'Rare Item',
+    platform: 'roblox',
+    bgColor: '#0f0a00',
+    texts: [
+      { text: 'GOT A RARE ITEM!', fontSize: 96, fontFamily: 'Impact', fill: '#ffd700', stroke: '#7a5c00', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'limited • pet sim • trade', fontSize: 50, fontFamily: 'Arial', fill: '#ffe066', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+]
+
 // ─── Fortnite Thumbnail (1280×720) ───────────────────────────────────────────
 export const FORTNITE_TEMPLATES: Template[] = [
   {

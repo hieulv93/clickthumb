@@ -14,6 +14,12 @@ const tools = [
     badge: '300K searches/mo',
   },
   {
+    href: '/roblox-thumbnail-maker',
+    title: 'Roblox Thumbnail Maker',
+    desc: 'Roblox Red, Neon Obby, and Rare Item templates for Roblox YouTube creators.',
+    badge: '200K searches/mo',
+  },
+  {
     href: '/minecraft-thumbnail-maker',
     title: 'Minecraft Thumbnail Maker',
     desc: 'Grass Block, Diamond Mine, and Nether Portal templates for Minecraft creators.',
