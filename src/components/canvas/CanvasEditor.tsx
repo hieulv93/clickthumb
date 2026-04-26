@@ -10,6 +10,7 @@ interface CanvasEditorProps {
   bgColor: string
   bgImageUrl: string | null
   fontFamily: string
+  texts: string[]
   onReady: (exportFn: () => Promise<Blob>) => void
 }
 
@@ -19,6 +20,7 @@ export default function CanvasEditor({
   bgColor,
   bgImageUrl,
   fontFamily,
+  texts,
   onReady,
 }: CanvasEditorProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -140,6 +142,17 @@ export default function CanvasEditor({
     })
     canvas.renderAll()
   }, [fontFamily])
+
+  useEffect(() => {
+    const canvas = fabricRef.current
+    if (!canvas || !texts.length) return
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const textObjs = canvas.getObjects().filter((obj: any) => obj.type === 'i-text' || obj.type === 'text')
+    texts.forEach((text, i) => {
+      if (textObjs[i]) textObjs[i].set('text', text)
+    })
+    canvas.renderAll()
+  }, [texts])
 
   return (
     <div

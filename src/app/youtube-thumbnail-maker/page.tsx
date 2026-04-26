@@ -3,6 +3,7 @@
 import { useState, useCallback, useRef, Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import TemplateSelector from '@/components/canvas/TemplateSelector'
+import TextEditor from '@/components/canvas/TextEditor'
 import BgSection from '@/components/canvas/BgSection'
 import BgImageUpload from '@/components/canvas/BgImageUpload'
 import FontSelector from '@/components/canvas/FontSelector'
@@ -56,6 +57,7 @@ export default function YouTubeThumbnailPage() {
   const [bgColor, setBgColor] = useState(YOUTUBE_TEMPLATES[0].bgColor)
   const [bgImageUrl, setBgImageUrl] = useState<string | null>(null)
   const [fontFamily, setFontFamily] = useState(YOUTUBE_TEMPLATES[0].texts[0]?.fontFamily ?? 'Impact')
+  const [texts, setTexts] = useState<string[]>(YOUTUBE_TEMPLATES[0].texts.map((t) => t.text))
   const [exporting, setExporting] = useState(false)
   const [done, setDone] = useState(false)
   const exportFnRef = useRef<(() => Promise<Blob>) | null>(null)
@@ -69,6 +71,11 @@ export default function YouTubeThumbnailPage() {
     setTemplate(t)
     setBgColor(t.bgColor)
     setFontFamily(t.texts[0]?.fontFamily ?? 'Impact')
+    setTexts(t.texts.map((txt) => txt.text))
+  }, [])
+
+  const handleTextChange = useCallback((index: number, value: string) => {
+    setTexts((prev) => prev.map((t, i) => (i === index ? value : t)))
   }, [])
 
   const handleBgUpload = useCallback((url: string) => {
@@ -129,6 +136,7 @@ export default function YouTubeThumbnailPage() {
                   bgColor={bgColor}
                   bgImageUrl={bgImageUrl}
                   fontFamily={fontFamily}
+                  texts={texts}
                   onReady={handleReady}
                 />
               </Suspense>
@@ -148,6 +156,7 @@ export default function YouTubeThumbnailPage() {
                 selected={template}
                 onSelect={handleTemplateSelect}
               />
+              <TextEditor values={texts} onChange={handleTextChange} />
               <BgSection color={bgColor} onChange={setBgColor} />
               <FontSelector value={fontFamily} onChange={setFontFamily} />
             </div>
