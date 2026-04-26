@@ -8,9 +8,21 @@ const tools = [
     badge: '500K searches/mo',
   },
   {
+    href: '/gaming-thumbnail-maker',
+    title: 'Gaming Thumbnail Maker',
+    desc: 'Neon, fire, and cyberpunk templates built for gaming content. 1280×720px.',
+    badge: '300K searches/mo',
+  },
+  {
     href: '/instagram-post-maker',
     title: 'Instagram Post Maker',
     desc: 'Square 1080×1080 or Story 1080×1920. Perfect for Reels covers and feed posts.',
+    badge: '200K searches/mo',
+  },
+  {
+    href: '/youtube-banner-maker',
+    title: 'YouTube Banner Maker',
+    desc: 'Design a channel art banner at 2560×1440px. Looks great on TV, desktop, and mobile.',
     badge: '200K searches/mo',
   },
   {
