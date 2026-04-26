@@ -20,6 +20,12 @@ const tools = [
     badge: '150K searches/mo',
   },
   {
+    href: '/fortnite-thumbnail-maker',
+    title: 'Fortnite Thumbnail Maker',
+    desc: 'Storm Eye, Zero Point, and Legendary Loot templates for Fortnite content creators.',
+    badge: '100K searches/mo',
+  },
+  {
     href: '/instagram-post-maker',
     title: 'Instagram Post Maker',
     desc: 'Square 1080×1080 or Story 1080×1920. Perfect for Reels covers and feed posts.',

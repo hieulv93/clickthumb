@@ -334,6 +334,40 @@ export const MINECRAFT_TEMPLATES: Template[] = [
   },
 ]
 
+// ─── Fortnite Thumbnail (1280×720) ───────────────────────────────────────────
+export const FORTNITE_TEMPLATES: Template[] = [
+  {
+    id: 'fn-storm',
+    name: 'Storm Eye',
+    platform: 'fortnite',
+    bgColor: '#0a0520',
+    texts: [
+      { text: 'VICTORY ROYALE', fontSize: 100, fontFamily: 'Impact', fill: '#f5e642', stroke: '#7700ff', strokeWidth: 4, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'solo • no builds • chapter 5', fontSize: 50, fontFamily: 'Arial', fill: '#c084fc', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'fn-zero',
+    name: 'Zero Point',
+    platform: 'fortnite',
+    bgColor: '#000d1a',
+    texts: [
+      { text: 'INSANE WIN', fontSize: 110, fontFamily: 'Impact', fill: '#00d4ff', stroke: '#004466', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: '20 kill game • ranked • tips', fontSize: 50, fontFamily: 'Arial', fill: '#7dd3fc', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'fn-gold',
+    name: 'Legendary Loot',
+    platform: 'fortnite',
+    bgColor: '#1a0d00',
+    texts: [
+      { text: 'LEGENDARY LOADOUT', fontSize: 88, fontFamily: 'Impact', fill: '#fbbf24', stroke: '#92400e', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 265, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'best weapons • chapter 5 meta', fontSize: 50, fontFamily: 'Arial', fill: '#fde68a', fontWeight: 'normal', left: 640, top: 425, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+]
+
 // ─── YouTube Banner / Channel Art (2560×1440) ─────────────────────────────────
 export const YOUTUBE_BANNER_TEMPLATES: Template[] = [
   {
