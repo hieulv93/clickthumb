@@ -32,6 +32,12 @@ const tools = [
     badge: '100K searches/mo',
   },
   {
+    href: '/valorant-thumbnail-maker',
+    title: 'Valorant Thumbnail Maker',
+    desc: 'Agent Impact, ACE Gold, and Clutch Navy templates for Valorant YouTube creators.',
+    badge: '80K searches/mo',
+  },
+  {
     href: '/instagram-post-maker',
     title: 'Instagram Post Maker',
     desc: 'Square 1080×1080 or Story 1080×1920. Perfect for Reels covers and feed posts.',

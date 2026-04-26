@@ -19,6 +19,7 @@ export const PLATFORMS: Record<string, Platform> = {
   fortnite: { id: 'fortnite', name: 'Fortnite Thumbnail', width: 1280, height: 720, route: '/fortnite-thumbnail-maker' },
   roblox: { id: 'roblox', name: 'Roblox Thumbnail', width: 1280, height: 720, route: '/roblox-thumbnail-maker' },
   youtube_banner: { id: 'youtube_banner', name: 'YouTube Banner', width: 2560, height: 1440, route: '/youtube-banner-maker' },
+  valorant: { id: 'valorant', name: 'Valorant Thumbnail', width: 1280, height: 720, route: '/valorant-thumbnail-maker' },
 }
 
 export const CANVAS_DISPLAY_WIDTH = 640

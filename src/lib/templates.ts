@@ -128,6 +128,26 @@ export const YOUTUBE_TEMPLATES: Template[] = [
       },
     ],
   },
+  {
+    id: 'yt-reaction',
+    name: 'Reaction Energy',
+    platform: 'youtube',
+    bgColor: '#7c1a00',
+    texts: [
+      { text: 'MY REACTION TO...', fontSize: 96, fontFamily: 'Impact', fill: '#ff6600', stroke: '#ffffff', strokeWidth: 2, fontWeight: 'bold', left: 640, top: 260, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'this changed everything', fontSize: 52, fontFamily: 'Arial', fill: '#ffcc99', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1000 },
+    ],
+  },
+  {
+    id: 'yt-tutorial',
+    name: 'Tutorial Blue',
+    platform: 'youtube',
+    bgColor: '#0d1b2a',
+    texts: [
+      { text: 'HOW TO...', fontSize: 110, fontFamily: 'Impact', fill: '#3b82f6', stroke: '#1e3a5f', strokeWidth: 2, fontWeight: 'bold', left: 640, top: 260, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'step by step guide for beginners', fontSize: 50, fontFamily: 'Arial', fill: '#93c5fd', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1000 },
+    ],
+  },
 ]
 
 // ─── Instagram (1080×1080) ───────────────────────────────────────────────────
@@ -160,6 +180,26 @@ export const INSTAGRAM_TEMPLATES: Template[] = [
     texts: [
       { text: 'TITLE', fontSize: 140, fontFamily: 'Impact', fill: '#FFD700', stroke: '#000000', strokeWidth: 2, fontWeight: 'bold', left: 540, top: 400, originX: 'center', originY: 'center', textAlign: 'center', width: 960 },
       { text: 'your subtitle', fontSize: 52, fontFamily: 'Arial', fill: '#cccccc', fontWeight: 'normal', left: 540, top: 580, originX: 'center', originY: 'center', textAlign: 'center', width: 860 },
+    ],
+  },
+  {
+    id: 'ig-orange',
+    name: 'Warm Orange',
+    platform: 'instagram',
+    bgColor: '#7c2d12',
+    texts: [
+      { text: 'YOUR STORY', fontSize: 120, fontFamily: 'Impact', fill: '#fed7aa', stroke: '#7c2d12', strokeWidth: 2, fontWeight: 'bold', left: 540, top: 420, originX: 'center', originY: 'center', textAlign: 'center', width: 960 },
+      { text: 'tap to edit subtitle text', fontSize: 50, fontFamily: 'Arial', fill: '#fef3c7', fontWeight: 'normal', left: 540, top: 590, originX: 'center', originY: 'center', textAlign: 'center', width: 900 },
+    ],
+  },
+  {
+    id: 'ig-navy',
+    name: 'Navy Bold',
+    platform: 'instagram',
+    bgColor: '#0f172a',
+    texts: [
+      { text: 'YOUR MESSAGE', fontSize: 116, fontFamily: 'Arial', fill: '#38bdf8', fontWeight: 'bold', left: 540, top: 420, originX: 'center', originY: 'center', textAlign: 'center', width: 960 },
+      { text: 'subtitle goes here', fontSize: 50, fontFamily: 'Arial', fill: '#e2e8f0', fontWeight: 'normal', left: 540, top: 590, originX: 'center', originY: 'center', textAlign: 'center', width: 900 },
     ],
   },
 ]
@@ -196,6 +236,26 @@ export const FACEBOOK_TEMPLATES: Template[] = [
       { text: 'tagline • website.com', fontSize: 36, fontFamily: 'Arial', fill: '#6B7280', fontWeight: 'normal', left: 425, top: 215, originX: 'center', originY: 'center', textAlign: 'center', width: 720 },
     ],
   },
+  {
+    id: 'fb-dark',
+    name: 'Dark Pro',
+    platform: 'facebook',
+    bgColor: '#111827',
+    texts: [
+      { text: 'YOUR PAGE NAME', fontSize: 76, fontFamily: 'Impact', fill: '#f9fafb', stroke: '#374151', strokeWidth: 2, fontWeight: 'bold', left: 425, top: 125, originX: 'center', originY: 'center', textAlign: 'center', width: 780 },
+      { text: 'your tagline here', fontSize: 36, fontFamily: 'Arial', fill: '#9ca3af', fontWeight: 'normal', left: 425, top: 215, originX: 'center', originY: 'center', textAlign: 'center', width: 720 },
+    ],
+  },
+  {
+    id: 'fb-teal',
+    name: 'Teal Fresh',
+    platform: 'facebook',
+    bgColor: '#0f3f3f',
+    texts: [
+      { text: 'YOUR PAGE NAME', fontSize: 76, fontFamily: 'Arial', fill: '#99f6e4', fontWeight: 'bold', left: 425, top: 125, originX: 'center', originY: 'center', textAlign: 'center', width: 780 },
+      { text: 'tagline • your niche', fontSize: 36, fontFamily: 'Arial', fill: '#ccfbf1', fontWeight: 'normal', left: 425, top: 215, originX: 'center', originY: 'center', textAlign: 'center', width: 720 },
+    ],
+  },
 ]
 
 // ─── Twitter/X Header (1500×500) ─────────────────────────────────────────────
@@ -228,6 +288,26 @@ export const TWITTER_TEMPLATES: Template[] = [
     texts: [
       { text: 'Your Name', fontSize: 110, fontFamily: 'Arial', fill: '#0f172a', fontWeight: 'bold', left: 750, top: 185, originX: 'center', originY: 'center', textAlign: 'center', width: 1360 },
       { text: 'what you do • your niche • website.com', fontSize: 48, fontFamily: 'Arial', fill: '#64748b', fontWeight: 'normal', left: 750, top: 310, originX: 'center', originY: 'center', textAlign: 'center', width: 1200 },
+    ],
+  },
+  {
+    id: 'tw-teal',
+    name: 'Teal Creator',
+    platform: 'twitter',
+    bgColor: '#0f3f3f',
+    texts: [
+      { text: 'YOUR NAME / BRAND', fontSize: 100, fontFamily: 'Arial', fill: '#99f6e4', fontWeight: 'bold', left: 750, top: 185, originX: 'center', originY: 'center', textAlign: 'center', width: 1360 },
+      { text: 'creator • builder • your niche', fontSize: 50, fontFamily: 'Arial', fill: '#ccfbf1', fontWeight: 'normal', left: 750, top: 310, originX: 'center', originY: 'center', textAlign: 'center', width: 1200 },
+    ],
+  },
+  {
+    id: 'tw-orange',
+    name: 'Burnt Orange',
+    platform: 'twitter',
+    bgColor: '#431407',
+    texts: [
+      { text: 'YOUR BRAND NAME', fontSize: 100, fontFamily: 'Impact', fill: '#fed7aa', stroke: '#7c2d12', strokeWidth: 2, fontWeight: 'bold', left: 750, top: 185, originX: 'center', originY: 'center', textAlign: 'center', width: 1360 },
+      { text: 'your tagline • what you do', fontSize: 50, fontFamily: 'Arial', fill: '#fef3c7', fontWeight: 'normal', left: 750, top: 310, originX: 'center', originY: 'center', textAlign: 'center', width: 1200 },
     ],
   },
 ]
@@ -264,6 +344,26 @@ export const LINKEDIN_TEMPLATES: Template[] = [
       { text: 'Role • Company • website.com', fontSize: 46, fontFamily: 'Arial', fill: '#475569', fontWeight: 'normal', left: 792, top: 255, originX: 'center', originY: 'center', textAlign: 'center', width: 1360 },
     ],
   },
+  {
+    id: 'li-green',
+    name: 'Emerald',
+    platform: 'linkedin',
+    bgColor: '#064e3b',
+    texts: [
+      { text: 'YOUR NAME / ROLE', fontSize: 92, fontFamily: 'Arial', fill: '#6ee7b7', fontWeight: 'bold', left: 792, top: 148, originX: 'center', originY: 'center', textAlign: 'center', width: 1440 },
+      { text: 'Company • Specialization • Open to Work', fontSize: 46, fontFamily: 'Arial', fill: '#d1fae5', fontWeight: 'normal', left: 792, top: 255, originX: 'center', originY: 'center', textAlign: 'center', width: 1360 },
+    ],
+  },
+  {
+    id: 'li-dark',
+    name: 'Dark Professional',
+    platform: 'linkedin',
+    bgColor: '#111827',
+    texts: [
+      { text: 'YOUR NAME', fontSize: 100, fontFamily: 'Arial', fill: '#f9fafb', fontWeight: 'bold', left: 792, top: 148, originX: 'center', originY: 'center', textAlign: 'center', width: 1440 },
+      { text: 'Job Title • Company • Location', fontSize: 46, fontFamily: 'Arial', fill: '#9ca3af', fontWeight: 'normal', left: 792, top: 255, originX: 'center', originY: 'center', textAlign: 'center', width: 1360 },
+    ],
+  },
 ]
 
 // ─── Gaming Thumbnail (1280×720) ─────────────────────────────────────────────
@@ -296,6 +396,26 @@ export const GAMING_TEMPLATES: Template[] = [
     texts: [
       { text: 'THUMBNAIL TITLE', fontSize: 96, fontFamily: 'Arial', fill: '#f0e040', stroke: '#ff00ff', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 265, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
       { text: 'level up • season 5 • insane plays', fontSize: 50, fontFamily: 'Arial', fill: '#cc88ff', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'gm-purple',
+    name: 'Purple Throne',
+    platform: 'gaming',
+    bgColor: '#1a0030',
+    texts: [
+      { text: 'EPIC GAMEPLAY', fontSize: 100, fontFamily: 'Impact', fill: '#c084fc', stroke: '#6b21a8', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'new season • ranked • highlights', fontSize: 50, fontFamily: 'Arial', fill: '#e9d5ff', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'gm-ice',
+    name: 'Arctic Ice',
+    platform: 'gaming',
+    bgColor: '#001428',
+    texts: [
+      { text: 'FROZEN WIN', fontSize: 108, fontFamily: 'Impact', fill: '#bae6fd', stroke: '#0369a1', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'chill • clutch • cold blooded', fontSize: 50, fontFamily: 'Arial', fill: '#e0f2fe', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
     ],
   },
 ]
@@ -332,6 +452,26 @@ export const MINECRAFT_TEMPLATES: Template[] = [
       { text: 'survival challenge • hardcore mode', fontSize: 50, fontFamily: 'Arial', fill: '#ff9966', fontWeight: 'bold', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
     ],
   },
+  {
+    id: 'mc-sky',
+    name: 'Sky Limit',
+    platform: 'minecraft',
+    bgColor: '#1a6ebd',
+    texts: [
+      { text: 'SKY BLOCK', fontSize: 110, fontFamily: 'Impact', fill: '#ffffff', stroke: '#1e40af', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'floating islands • custom world', fontSize: 50, fontFamily: 'Arial', fill: '#dbeafe', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'mc-end',
+    name: 'End Dimension',
+    platform: 'minecraft',
+    bgColor: '#0d0d1a',
+    texts: [
+      { text: 'THE END', fontSize: 120, fontFamily: 'Impact', fill: '#a855f7', stroke: '#3b0764', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'ender dragon • end cities • elytra', fontSize: 50, fontFamily: 'Arial', fill: '#e9d5ff', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
 ]
 
 // ─── Roblox Thumbnail (1280×720) ─────────────────────────────────────────────
@@ -364,6 +504,26 @@ export const ROBLOX_TEMPLATES: Template[] = [
     texts: [
       { text: 'GOT A RARE ITEM!', fontSize: 96, fontFamily: 'Impact', fill: '#ffd700', stroke: '#7a5c00', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
       { text: 'limited • pet sim • trade', fontSize: 50, fontFamily: 'Arial', fill: '#ffe066', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'rb-blue',
+    name: 'Blox Fruits',
+    platform: 'roblox',
+    bgColor: '#001040',
+    texts: [
+      { text: 'BLOX FRUITS', fontSize: 108, fontFamily: 'Impact', fill: '#fbbf24', stroke: '#7c4500', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'legendary fruit • max level • pvp', fontSize: 50, fontFamily: 'Arial', fill: '#93c5fd', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'rb-pink',
+    name: 'Adopt Me',
+    platform: 'roblox',
+    bgColor: '#1a0028',
+    texts: [
+      { text: 'ADOPT ME PETS!', fontSize: 96, fontFamily: 'Impact', fill: '#f9a8d4', stroke: '#831843', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'new pets • ultra rare • trading', fontSize: 50, fontFamily: 'Arial', fill: '#fce7f3', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
     ],
   },
 ]
@@ -400,6 +560,26 @@ export const FORTNITE_TEMPLATES: Template[] = [
       { text: 'best weapons • chapter 5 meta', fontSize: 50, fontFamily: 'Arial', fill: '#fde68a', fontWeight: 'normal', left: 640, top: 425, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
     ],
   },
+  {
+    id: 'fn-pink',
+    name: 'Battle Royale Pink',
+    platform: 'fortnite',
+    bgColor: '#2d0020',
+    texts: [
+      { text: 'BATTLE ROYALE', fontSize: 100, fontFamily: 'Impact', fill: '#f472b6', stroke: '#831843', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'squad wipe • no builds • season 5', fontSize: 50, fontFamily: 'Arial', fill: '#fce7f3', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'fn-green',
+    name: 'Jungle Assault',
+    platform: 'fortnite',
+    bgColor: '#001a08',
+    texts: [
+      { text: 'JUNGLE VICTORY', fontSize: 96, fontFamily: 'Impact', fill: '#4ade80', stroke: '#14532d', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'stealth • assault • chapter 5', fontSize: 50, fontFamily: 'Arial', fill: '#bbf7d0', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
 ]
 
 // ─── YouTube Banner / Channel Art (2560×1440) ─────────────────────────────────
@@ -434,6 +614,26 @@ export const YOUTUBE_BANNER_TEMPLATES: Template[] = [
       { text: 'Gaming • Tutorials • Highlights', fontSize: 92, fontFamily: 'Arial', fill: '#00ccff', fontWeight: 'bold', left: 1280, top: 820, originX: 'center', originY: 'center', textAlign: 'center', width: 2100 },
     ],
   },
+  {
+    id: 'yb-purple',
+    name: 'Neon Purple',
+    platform: 'youtube_banner',
+    bgColor: '#1a0030',
+    texts: [
+      { text: 'CHANNEL NAME', fontSize: 200, fontFamily: 'Impact', fill: '#c084fc', stroke: '#6b21a8', strokeWidth: 4, fontWeight: 'bold', left: 1280, top: 565, originX: 'center', originY: 'center', textAlign: 'center', width: 2300 },
+      { text: 'Videos every week • Subscribe now', fontSize: 92, fontFamily: 'Arial', fill: '#e9d5ff', fontWeight: 'normal', left: 1280, top: 820, originX: 'center', originY: 'center', textAlign: 'center', width: 2100 },
+    ],
+  },
+  {
+    id: 'yb-red',
+    name: 'Crimson Impact',
+    platform: 'youtube_banner',
+    bgColor: '#1a0000',
+    texts: [
+      { text: 'CHANNEL NAME', fontSize: 200, fontFamily: 'Impact', fill: '#ff3333', stroke: '#7f0000', strokeWidth: 4, fontWeight: 'bold', left: 1280, top: 565, originX: 'center', originY: 'center', textAlign: 'center', width: 2300 },
+      { text: 'New videos every week • Subscribe', fontSize: 92, fontFamily: 'Arial', fill: '#fecaca', fontWeight: 'normal', left: 1280, top: 820, originX: 'center', originY: 'center', textAlign: 'center', width: 2100 },
+    ],
+  },
 ]
 
 // ─── OG Image (1200×630) ─────────────────────────────────────────────────────
@@ -466,6 +666,60 @@ export const OG_TEMPLATES: Template[] = [
     texts: [
       { text: 'Your Page Title', fontSize: 90, fontFamily: 'Arial', fill: '#ffffff', fontWeight: 'bold', left: 600, top: 230, originX: 'center', originY: 'center', textAlign: 'center', width: 1080 },
       { text: 'yoursite.com', fontSize: 48, fontFamily: 'Arial', fill: '#ddd6fe', fontWeight: 'normal', left: 600, top: 385, originX: 'center', originY: 'center', textAlign: 'center', width: 1000 },
+    ],
+  },
+  {
+    id: 'og-green',
+    name: 'Dark Green',
+    platform: 'og',
+    bgColor: '#052e16',
+    texts: [
+      { text: 'Your Page Title Here', fontSize: 84, fontFamily: 'Arial', fill: '#4ade80', fontWeight: 'bold', left: 600, top: 235, originX: 'center', originY: 'center', textAlign: 'center', width: 1080 },
+      { text: 'yoursite.com • category', fontSize: 44, fontFamily: 'Arial', fill: '#bbf7d0', fontWeight: 'normal', left: 600, top: 385, originX: 'center', originY: 'center', textAlign: 'center', width: 1000 },
+    ],
+  },
+  {
+    id: 'og-orange',
+    name: 'Warm Rust',
+    platform: 'og',
+    bgColor: '#431407',
+    texts: [
+      { text: 'Your Page Title Here', fontSize: 84, fontFamily: 'Arial', fill: '#fed7aa', fontWeight: 'bold', left: 600, top: 235, originX: 'center', originY: 'center', textAlign: 'center', width: 1080 },
+      { text: 'yoursite.com • category', fontSize: 44, fontFamily: 'Arial', fill: '#fef3c7', fontWeight: 'normal', left: 600, top: 385, originX: 'center', originY: 'center', textAlign: 'center', width: 1000 },
+    ],
+  },
+]
+
+// ─── Valorant Thumbnail (1280×720) ───────────────────────────────────────────
+export const VALORANT_TEMPLATES: Template[] = [
+  {
+    id: 'vl-impact',
+    name: 'Agent Impact',
+    platform: 'valorant',
+    bgColor: '#0d0000',
+    texts: [
+      { text: 'VALORANT CLIP', fontSize: 108, fontFamily: 'Impact', fill: '#ff4655', stroke: '#7f0000', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'ace • clutch • highlights', fontSize: 50, fontFamily: 'Arial', fill: '#ffffff', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'vl-ace',
+    name: 'ACE Gold',
+    platform: 'valorant',
+    bgColor: '#0a0800',
+    texts: [
+      { text: 'ACE ROUND!', fontSize: 120, fontFamily: 'Impact', fill: '#fbbf24', stroke: '#78350f', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: '5k • radiant • ranked game', fontSize: 50, fontFamily: 'Arial', fill: '#fde68a', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'vl-clutch',
+    name: 'Clutch Navy',
+    platform: 'valorant',
+    bgColor: '#000d1a',
+    texts: [
+      { text: '1 vs 5 CLUTCH', fontSize: 100, fontFamily: 'Impact', fill: '#38bdf8', stroke: '#0369a1', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'unrated • ranked • best plays', fontSize: 50, fontFamily: 'Arial', fill: '#bae6fd', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
     ],
   },
 ]
