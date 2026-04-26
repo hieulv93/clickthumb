@@ -300,6 +300,40 @@ export const GAMING_TEMPLATES: Template[] = [
   },
 ]
 
+// ─── Minecraft Thumbnail (1280×720) ──────────────────────────────────────────
+export const MINECRAFT_TEMPLATES: Template[] = [
+  {
+    id: 'mc-grass',
+    name: 'Grass Block',
+    platform: 'minecraft',
+    bgColor: '#1a3d00',
+    texts: [
+      { text: 'VIDEO TITLE', fontSize: 110, fontFamily: 'Impact', fill: '#ffffff', stroke: '#2d7d00', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'Minecraft Survival • Episode 1', fontSize: 50, fontFamily: 'Arial', fill: '#7fff00', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'mc-diamond',
+    name: 'Diamond Mine',
+    platform: 'minecraft',
+    bgColor: '#050f1a',
+    texts: [
+      { text: 'FOUND DIAMONDS!', fontSize: 96, fontFamily: 'Impact', fill: '#5bc8f5', stroke: '#1a3a5c', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'Mining • Survival • Season 1', fontSize: 50, fontFamily: 'Arial', fill: '#a0d8ef', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'mc-nether',
+    name: 'Nether Portal',
+    platform: 'minecraft',
+    bgColor: '#1a0010',
+    texts: [
+      { text: 'THE NETHER', fontSize: 110, fontFamily: 'Impact', fill: '#ff6600', stroke: '#cc0000', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'survival challenge • hardcore mode', fontSize: 50, fontFamily: 'Arial', fill: '#ff9966', fontWeight: 'bold', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+]
+
 // ─── YouTube Banner / Channel Art (2560×1440) ─────────────────────────────────
 export const YOUTUBE_BANNER_TEMPLATES: Template[] = [
   {

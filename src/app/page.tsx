@@ -14,6 +14,12 @@ const tools = [
     badge: '300K searches/mo',
   },
   {
+    href: '/minecraft-thumbnail-maker',
+    title: 'Minecraft Thumbnail Maker',
+    desc: 'Grass Block, Diamond Mine, and Nether Portal templates for Minecraft creators.',
+    badge: '150K searches/mo',
+  },
+  {
     href: '/instagram-post-maker',
     title: 'Instagram Post Maker',
     desc: 'Square 1080×1080 or Story 1080×1920. Perfect for Reels covers and feed posts.',

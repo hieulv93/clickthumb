@@ -15,6 +15,7 @@ export const PLATFORMS: Record<string, Platform> = {
   facebook: { id: 'facebook', name: 'Facebook Cover', width: 851, height: 315, route: '/facebook-cover-maker' },
   og: { id: 'og', name: 'OG Image', width: 1200, height: 630, route: '/og-image-generator' },
   gaming: { id: 'gaming', name: 'Gaming Thumbnail', width: 1280, height: 720, route: '/gaming-thumbnail-maker' },
+  minecraft: { id: 'minecraft', name: 'Minecraft Thumbnail', width: 1280, height: 720, route: '/minecraft-thumbnail-maker' },
   youtube_banner: { id: 'youtube_banner', name: 'YouTube Banner', width: 2560, height: 1440, route: '/youtube-banner-maker' },
 }
 
