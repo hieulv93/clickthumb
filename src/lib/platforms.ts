@@ -14,6 +14,8 @@ export const PLATFORMS: Record<string, Platform> = {
   linkedin: { id: 'linkedin', name: 'LinkedIn Banner', width: 1584, height: 396, route: '/linkedin-banner-maker' },
   facebook: { id: 'facebook', name: 'Facebook Cover', width: 851, height: 315, route: '/facebook-cover-maker' },
   og: { id: 'og', name: 'OG Image', width: 1200, height: 630, route: '/og-image-generator' },
+  gaming: { id: 'gaming', name: 'Gaming Thumbnail', width: 1280, height: 720, route: '/gaming-thumbnail-maker' },
+  youtube_banner: { id: 'youtube_banner', name: 'YouTube Banner', width: 2560, height: 1440, route: '/youtube-banner-maker' },
 }
 
 export const CANVAS_DISPLAY_WIDTH = 640

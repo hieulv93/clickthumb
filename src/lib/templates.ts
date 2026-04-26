@@ -266,6 +266,74 @@ export const LINKEDIN_TEMPLATES: Template[] = [
   },
 ]
 
+// ─── Gaming Thumbnail (1280×720) ─────────────────────────────────────────────
+export const GAMING_TEMPLATES: Template[] = [
+  {
+    id: 'gm-neon',
+    name: 'Neon Gaming',
+    platform: 'gaming',
+    bgColor: '#0a0a0a',
+    texts: [
+      { text: 'GAME TITLE', fontSize: 110, fontFamily: 'Impact', fill: '#00ff88', stroke: '#00aa55', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'epic gameplay • world record', fontSize: 50, fontFamily: 'Arial', fill: '#00ccff', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'gm-fire',
+    name: 'Fire Red',
+    platform: 'gaming',
+    bgColor: '#0d0000',
+    texts: [
+      { text: 'YOUR TITLE HERE', fontSize: 100, fontFamily: 'Impact', fill: '#ff4400', stroke: '#ff0000', strokeWidth: 4, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'click to edit subtitle', fontSize: 52, fontFamily: 'Arial', fill: '#ffaa00', fontWeight: 'bold', left: 640, top: 425, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'gm-cyber',
+    name: 'Cyberpunk',
+    platform: 'gaming',
+    bgColor: '#0d001a',
+    texts: [
+      { text: 'THUMBNAIL TITLE', fontSize: 96, fontFamily: 'Arial', fill: '#f0e040', stroke: '#ff00ff', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 265, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'level up • season 5 • insane plays', fontSize: 50, fontFamily: 'Arial', fill: '#cc88ff', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+]
+
+// ─── YouTube Banner / Channel Art (2560×1440) ─────────────────────────────────
+export const YOUTUBE_BANNER_TEMPLATES: Template[] = [
+  {
+    id: 'yb-dark',
+    name: 'Dark Channel',
+    platform: 'youtube_banner',
+    bgColor: '#0a0a0a',
+    texts: [
+      { text: 'CHANNEL NAME', fontSize: 200, fontFamily: 'Impact', fill: '#ffffff', stroke: '#ff0000', strokeWidth: 4, fontWeight: 'bold', left: 1280, top: 580, originX: 'center', originY: 'center', textAlign: 'center', width: 2300 },
+      { text: 'New videos every week • Subscribe now', fontSize: 88, fontFamily: 'Arial', fill: '#cccccc', fontWeight: 'normal', left: 1280, top: 820, originX: 'center', originY: 'center', textAlign: 'center', width: 2100 },
+    ],
+  },
+  {
+    id: 'yb-minimal',
+    name: 'Clean Minimal',
+    platform: 'youtube_banner',
+    bgColor: '#ffffff',
+    texts: [
+      { text: 'Your Channel Name', fontSize: 210, fontFamily: 'Arial', fill: '#111111', fontWeight: 'bold', left: 1280, top: 570, originX: 'center', originY: 'center', textAlign: 'center', width: 2300 },
+      { text: 'your niche • upload schedule • tagline', fontSize: 88, fontFamily: 'Arial', fill: '#555555', fontWeight: 'normal', left: 1280, top: 820, originX: 'center', originY: 'center', textAlign: 'center', width: 2100 },
+    ],
+  },
+  {
+    id: 'yb-gaming',
+    name: 'Gaming Channel',
+    platform: 'youtube_banner',
+    bgColor: '#050510',
+    texts: [
+      { text: 'CHANNEL NAME', fontSize: 200, fontFamily: 'Impact', fill: '#00ff88', stroke: '#006633', strokeWidth: 4, fontWeight: 'bold', left: 1280, top: 565, originX: 'center', originY: 'center', textAlign: 'center', width: 2300 },
+      { text: 'Gaming • Tutorials • Highlights', fontSize: 92, fontFamily: 'Arial', fill: '#00ccff', fontWeight: 'bold', left: 1280, top: 820, originX: 'center', originY: 'center', textAlign: 'center', width: 2100 },
+    ],
+  },
+]
+
 // ─── OG Image (1200×630) ─────────────────────────────────────────────────────
 export const OG_TEMPLATES: Template[] = [
   {
