@@ -9,6 +9,7 @@ interface CanvasEditorProps {
   template: Template | null
   bgColor: string
   bgImageUrl: string | null
+  fontFamily: string
   onReady: (exportFn: () => Promise<Blob>) => void
 }
 
@@ -17,6 +18,7 @@ export default function CanvasEditor({
   template,
   bgColor,
   bgImageUrl,
+  fontFamily,
   onReady,
 }: CanvasEditorProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -126,6 +128,18 @@ export default function CanvasEditor({
       await applyTemplate(canvas, fabric, template)
     })()
   }, [template, applyTemplate])
+
+  useEffect(() => {
+    const canvas = fabricRef.current
+    if (!canvas || !fontFamily) return
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    canvas.getObjects().forEach((obj: any) => {
+      if (obj.type === 'i-text' || obj.type === 'text') {
+        obj.set('fontFamily', fontFamily)
+      }
+    })
+    canvas.renderAll()
+  }, [fontFamily])
 
   return (
     <div

@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import TemplateSelector from '@/components/canvas/TemplateSelector'
 import BgColorPicker from '@/components/canvas/BgColorPicker'
 import BgImageUpload from '@/components/canvas/BgImageUpload'
+import FontSelector from '@/components/canvas/FontSelector'
 import ProgressBar from '@/components/tool/ProgressBar'
 import FAQItem from '@/components/tool/FAQItem'
 import AdSlot from '@/components/ads/AdSlot'
@@ -54,6 +55,7 @@ export default function YouTubeThumbnailPage() {
   const [template, setTemplate] = useState<Template | null>(YOUTUBE_TEMPLATES[0])
   const [bgColor, setBgColor] = useState(YOUTUBE_TEMPLATES[0].bgColor)
   const [bgImageUrl, setBgImageUrl] = useState<string | null>(null)
+  const [fontFamily, setFontFamily] = useState(YOUTUBE_TEMPLATES[0].texts[0]?.fontFamily ?? 'Impact')
   const [exporting, setExporting] = useState(false)
   const [done, setDone] = useState(false)
   const exportFnRef = useRef<(() => Promise<Blob>) | null>(null)
@@ -66,6 +68,7 @@ export default function YouTubeThumbnailPage() {
   const handleTemplateSelect = useCallback((t: Template) => {
     setTemplate(t)
     setBgColor(t.bgColor)
+    setFontFamily(t.texts[0]?.fontFamily ?? 'Impact')
   }, [])
 
   const handleBgUpload = useCallback((url: string) => {
@@ -125,6 +128,7 @@ export default function YouTubeThumbnailPage() {
                   template={template}
                   bgColor={bgColor}
                   bgImageUrl={bgImageUrl}
+                  fontFamily={fontFamily}
                   onReady={handleReady}
                 />
               </Suspense>
@@ -141,6 +145,7 @@ export default function YouTubeThumbnailPage() {
                 selected={template}
                 onSelect={handleTemplateSelect}
               />
+              <FontSelector value={fontFamily} onChange={setFontFamily} />
               <BgColorPicker value={bgColor} onChange={setBgColor} />
               <BgImageUpload
                 imageUrl={bgImageUrl}

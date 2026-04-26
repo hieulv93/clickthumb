@@ -31,7 +31,7 @@ export const YOUTUBE_TEMPLATES: Template[] = [
     bgColor: '#0a0a0a',
     texts: [
       {
-        text: 'YOUR TITLE HERE',
+        text: 'VIDEO TITLE',
         fontSize: 96,
         fontFamily: 'Impact',
         fill: '#ffffff',
@@ -46,7 +46,7 @@ export const YOUTUBE_TEMPLATES: Template[] = [
         width: 1100,
       },
       {
-        text: 'Subtitle text here',
+        text: 'double-click to edit',
         fontSize: 52,
         fontFamily: 'Arial',
         fill: '#cccccc',
@@ -67,7 +67,7 @@ export const YOUTUBE_TEMPLATES: Template[] = [
     bgColor: '#FFD700',
     texts: [
       {
-        text: 'YOUR TITLE',
+        text: 'Your Title Here',
         fontSize: 110,
         fontFamily: 'Arial',
         fill: '#111111',
@@ -80,7 +80,7 @@ export const YOUTUBE_TEMPLATES: Template[] = [
         width: 1100,
       },
       {
-        text: 'click to edit subtitle',
+        text: 'Channel name • Topic',
         fontSize: 48,
         fontFamily: 'Arial',
         fill: '#333333',
@@ -101,7 +101,7 @@ export const YOUTUBE_TEMPLATES: Template[] = [
     bgColor: '#1a1a2e',
     texts: [
       {
-        text: 'TITLE',
+        text: 'VIDEO TITLE',
         fontSize: 130,
         fontFamily: 'Arial',
         fill: '#e94560',
@@ -114,7 +114,7 @@ export const YOUTUBE_TEMPLATES: Template[] = [
         width: 1100,
       },
       {
-        text: 'your subtitle goes here',
+        text: 'your channel • topic',
         fontSize: 50,
         fontFamily: 'Arial',
         fill: '#ffffff',

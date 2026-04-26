@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import TemplateSelector from './TemplateSelector'
 import BgColorPicker from './BgColorPicker'
 import BgImageUpload from './BgImageUpload'
+import FontSelector from './FontSelector'
 import ProgressBar from '@/components/tool/ProgressBar'
 import AdSlot from '@/components/ads/AdSlot'
 import type { Platform } from '@/lib/platforms'
@@ -35,6 +36,7 @@ export default function CanvasToolClient({
   const [template, setTemplate] = useState<Template | null>(templates[0] ?? null)
   const [bgColor, setBgColor] = useState(templates[0]?.bgColor ?? '#ffffff')
   const [bgImageUrl, setBgImageUrl] = useState<string | null>(null)
+  const [fontFamily, setFontFamily] = useState(templates[0]?.texts[0]?.fontFamily ?? 'Impact')
   const [exporting, setExporting] = useState(false)
   const [done, setDone] = useState(false)
   const exportFnRef = useRef<(() => Promise<Blob>) | null>(null)
@@ -47,6 +49,7 @@ export default function CanvasToolClient({
   const handleTemplateSelect = useCallback((t: Template) => {
     setTemplate(t)
     setBgColor(t.bgColor)
+    setFontFamily(t.texts[0]?.fontFamily ?? 'Impact')
   }, [])
 
   const handleBgUpload = useCallback((url: string) => {
@@ -87,6 +90,7 @@ export default function CanvasToolClient({
             template={template}
             bgColor={bgColor}
             bgImageUrl={bgImageUrl}
+            fontFamily={fontFamily}
             onReady={handleReady}
           />
         </Suspense>
@@ -98,6 +102,7 @@ export default function CanvasToolClient({
 
       <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
         <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
+        <FontSelector value={fontFamily} onChange={setFontFamily} />
         <BgColorPicker value={bgColor} onChange={setBgColor} />
         <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
       </div>
