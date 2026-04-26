@@ -3,8 +3,7 @@
 import { useState, useCallback, useRef, Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import TemplateSelector from '@/components/canvas/TemplateSelector'
-import BgColorPicker from '@/components/canvas/BgColorPicker'
-import BgImageUpload from '@/components/canvas/BgImageUpload'
+import BgSection from '@/components/canvas/BgSection'
 import FontSelector from '@/components/canvas/FontSelector'
 import ProgressBar from '@/components/tool/ProgressBar'
 import FAQItem from '@/components/tool/FAQItem'
@@ -134,9 +133,10 @@ export default function YouTubeThumbnailPage() {
               </Suspense>
             </div>
 
-            <p className="text-center text-xs text-text-muted">
-              Double-click any text to edit it directly on the canvas
-            </p>
+            <div className="flex items-center justify-between px-1">
+              <p className="text-xs text-text-muted">Double-click text to edit</p>
+              <p className="text-xs font-medium text-text-muted tabular-nums">1280 × 720 px</p>
+            </div>
 
             {/* Controls */}
             <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
@@ -145,13 +145,14 @@ export default function YouTubeThumbnailPage() {
                 selected={template}
                 onSelect={handleTemplateSelect}
               />
-              <FontSelector value={fontFamily} onChange={setFontFamily} />
-              <BgColorPicker value={bgColor} onChange={setBgColor} />
-              <BgImageUpload
+              <BgSection
+                color={bgColor}
                 imageUrl={bgImageUrl}
-                onUpload={handleBgUpload}
-                onClear={handleBgClear}
+                onColorChange={setBgColor}
+                onImageUpload={handleBgUpload}
+                onImageClear={handleBgClear}
               />
+              <FontSelector value={fontFamily} onChange={setFontFamily} />
             </div>
 
             {/* Export */}

@@ -3,8 +3,7 @@
 import { useState, useCallback, useRef, Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import TemplateSelector from './TemplateSelector'
-import BgColorPicker from './BgColorPicker'
-import BgImageUpload from './BgImageUpload'
+import BgSection from './BgSection'
 import FontSelector from './FontSelector'
 import ProgressBar from '@/components/tool/ProgressBar'
 import AdSlot from '@/components/ads/AdSlot'
@@ -96,15 +95,25 @@ export default function CanvasToolClient({
         </Suspense>
       </div>
 
-      <p className="text-center text-xs text-text-muted">
-        Double-click any text to edit it directly on the canvas
-      </p>
+      <div className="flex items-center justify-between px-1">
+        <p className="text-xs text-text-muted">
+          Double-click text to edit
+        </p>
+        <p className="text-xs font-medium text-text-muted tabular-nums">
+          {platform.width} × {platform.height} px
+        </p>
+      </div>
 
       <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
         <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
+        <BgSection
+          color={bgColor}
+          imageUrl={bgImageUrl}
+          onColorChange={setBgColor}
+          onImageUpload={handleBgUpload}
+          onImageClear={handleBgClear}
+        />
         <FontSelector value={fontFamily} onChange={setFontFamily} />
-        <BgColorPicker value={bgColor} onChange={setBgColor} />
-        <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
       </div>
 
       <div className="space-y-2">
