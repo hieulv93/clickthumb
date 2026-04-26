@@ -167,7 +167,7 @@ export default function CanvasEditor({
   }, [texts])
 
   return (
-    <div ref={wrapperRef} className="w-full">
+    <div ref={wrapperRef} className="w-full" style={{ maxWidth: CANVAS_DISPLAY_WIDTH }}>
       <div style={{ aspectRatio: `${CANVAS_DISPLAY_WIDTH}/${displayH}`, position: 'relative' }}>
         <div
           className="absolute top-0 left-0 rounded-xl overflow-hidden border border-border shadow-sm"
