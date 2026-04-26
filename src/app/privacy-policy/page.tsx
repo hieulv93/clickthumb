@@ -1,6 +1,6 @@
 export const metadata = {
   title: 'Privacy Policy',
-  description: 'Privacy Policy for ClickThumb.pro',
+  description: 'Privacy Policy for ClickThumb.com',
 }
 
 export default function PrivacyPolicyPage() {
@@ -10,7 +10,7 @@ export default function PrivacyPolicyPage() {
         <h1 className="text-2xl font-bold text-text-main">Privacy Policy</h1>
         <p>Last updated: {new Date().getFullYear()}</p>
         <p>
-          ClickThumb.pro processes all images entirely in your browser. No image data is ever
+          ClickThumb.com processes all images entirely in your browser. No image data is ever
           uploaded to our servers. We use Google Analytics to collect anonymized usage statistics
           and Google AdSense to display advertisements.
         </p>
@@ -26,7 +26,7 @@ export default function PrivacyPolicyPage() {
           never sent to any server and are not stored anywhere outside your device.
         </p>
         <h2 className="text-base font-semibold text-text-main pt-2">Contact</h2>
-        <p>For privacy questions, contact us at privacy@clickthumb.pro</p>
+        <p>For privacy questions, contact us at privacy@click-thumb.com</p>
       </div>
     </main>
   )

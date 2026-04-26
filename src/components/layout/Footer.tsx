@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="w-full border-t border-border bg-white mt-auto">
       <div className="max-w-3xl mx-auto px-4 py-8">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-text-muted">
-          <p>© {new Date().getFullYear()} ClickThumb.pro — Free online image creator tools.</p>
+          <p>© {new Date().getFullYear()} ClickThumb.com — Free online image creator tools.</p>
           <nav aria-label="Footer navigation">
             <ul className="flex items-center gap-4">
               <li>

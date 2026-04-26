@@ -1,6 +1,6 @@
 export const metadata = {
   title: 'Terms of Service',
-  description: 'Terms of Service for ClickThumb.pro',
+  description: 'Terms of Service for ClickThumb.com',
 }
 
 export default function TermsPage() {
@@ -10,7 +10,7 @@ export default function TermsPage() {
         <h1 className="text-2xl font-bold text-text-main">Terms of Service</h1>
         <p>Last updated: {new Date().getFullYear()}</p>
         <p>
-          By using ClickThumb.pro, you agree to these terms. The service is provided free of
+          By using ClickThumb.com, you agree to these terms. The service is provided free of
           charge for personal and commercial use.
         </p>
         <h2 className="text-base font-semibold text-text-main pt-2">Acceptable Use</h2>
@@ -24,7 +24,7 @@ export default function TermsPage() {
           data or damages resulting from use of this service.
         </p>
         <h2 className="text-base font-semibold text-text-main pt-2">Contact</h2>
-        <p>For questions, contact us at hello@clickthumb.pro</p>
+        <p>For questions, contact us at hello@click-thumb.com</p>
       </div>
     </main>
   )

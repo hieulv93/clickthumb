@@ -28,7 +28,7 @@ const jsonLd = {
     {
       '@type': 'WebApplication',
       name: 'YouTube Thumbnail Maker',
-      url: 'https://clickthumb.pro/youtube-thumbnail-maker/',
+      url: 'https://click-thumb.com/youtube-thumbnail-maker/',
       applicationCategory: 'DesignApplication',
       operatingSystem: 'Any',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -87,7 +87,7 @@ export default function YouTubeThumbnailPage() {
     setExporting(true)
     try {
       const blob = await exportFnRef.current()
-      triggerDownload(blob, 'clickthumb-youtube-thumbnail.jpg')
+      triggerDownload(blob, 'click-thumb-youtube-thumbnail.jpg')
       setDone(true)
       analytics.thumbnailExported('youtube', template?.id ?? 'custom', blob.size / 1024)
     } catch {
@@ -307,7 +307,7 @@ export default function YouTubeThumbnailPage() {
                   { q: 'What font should I use for YouTube thumbnails?', a: 'Bold, high-weight fonts like Impact, Arial Black, or Bebas Neue are standard for thumbnails because they are readable at small sizes. This tool uses Impact and Arial Bold by default, which are the most reliable cross-browser options.' },
                   { q: 'How do I upload my thumbnail to YouTube?', a: 'After downloading, go to YouTube Studio → select your video → Edit → Thumbnail → Upload custom thumbnail → select the downloaded file. The thumbnail goes live within a few minutes.' },
                   { q: 'Why does YouTube say my thumbnail was rejected?', a: 'YouTube rejects thumbnails for three reasons: file over 2MB, resolution under 640px wide, or community guidelines violations (misleading or adult content). This tool exports well within the size and resolution requirements.' },
-                  { q: 'Can I make thumbnails for other platforms too?', a: 'Yes — this tool focuses on YouTube (1280×720), but ClickThumb also has dedicated makers for Instagram posts, Twitter headers, LinkedIn banners, and Facebook covers, each pre-sized for the correct platform dimensions.' },
+                  { q: 'Can I make thumbnails for other platforms too?', a: 'Yes — this tool focuses on YouTube (1280×720), but ClickThumb.com also has dedicated makers for Instagram posts, Twitter headers, LinkedIn banners, and Facebook covers, each pre-sized for the correct platform dimensions.' },
                 ].map((item) => (
                   <FAQItem key={item.q} question={item.q} answer={item.a} />
                 ))}

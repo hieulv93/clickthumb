@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       'google-adsense-account': process.env.NEXT_PUBLIC_ADSENSE_ID ?? '',
     },
   },
-  metadataBase: new URL(process.env.SITE_URL || 'https://clickthumb.pro'),
+  metadataBase: new URL(process.env.SITE_URL || 'https://click-thumb.com'),
   title: {
     default: 'Free Thumbnail & Social Media Image Maker | ClickThumb',
     template: '%s | ClickThumb',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     siteName: 'ClickThumb',
-    url: 'https://clickthumb.pro',
+    url: 'https://click-thumb.com',
   },
   twitter: { card: 'summary_large_image', site: '@clickthumb' },
 }
@@ -50,14 +50,14 @@ const siteJsonLd = {
   '@graph': [
     {
       '@type': 'WebSite',
-      url: 'https://clickthumb.pro',
+      url: 'https://click-thumb.com',
       name: 'ClickThumb',
       description:
         'Free browser-based image creator. Make YouTube thumbnails, Instagram posts, Twitter headers, and LinkedIn banners instantly. No upload, no login — 100% private.',
     },
     {
       '@type': 'Organization',
-      url: 'https://clickthumb.pro',
+      url: 'https://click-thumb.com',
       name: 'ClickThumb',
     },
   ],

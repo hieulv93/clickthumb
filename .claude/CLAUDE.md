@@ -7,7 +7,7 @@ Free online thumbnail & social media image creator targeting global creators.
 - Monetize via AdSense + SaaS subscription ($8/month)
 
 ## 🌐 SITES IN ECOSYSTEM
-- **This site:** clickthumb.pro — Thumbnail & Social Image Maker
+- **This site:** click-thumb.com — Thumbnail & Social Image Maker
 - **Sister site:** compressimg.pro — Image Compressor
 - Cross-link between both sites where relevant
 

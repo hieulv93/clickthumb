@@ -11,11 +11,11 @@ export const metadata: Metadata = {
     'free thumbnail maker',
     'make youtube thumbnail',
   ],
-  alternates: { canonical: 'https://clickthumb.pro/youtube-thumbnail-maker/' },
+  alternates: { canonical: 'https://click-thumb.com/youtube-thumbnail-maker/' },
   openGraph: {
     title: 'YouTube Thumbnail Maker — Free Online, No Signup',
     description: 'Create pro YouTube thumbnails at 1280×720px. Templates, custom text, instant download.',
-    url: 'https://clickthumb.pro/youtube-thumbnail-maker/',
+    url: 'https://click-thumb.com/youtube-thumbnail-maker/',
   },
 }
 

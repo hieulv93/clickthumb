@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://clickthumb.pro',
+  siteUrl: process.env.SITE_URL || 'https://click-thumb.com',
   generateRobotsTxt: false,
   changefreq: 'weekly',
   priority: 0.7,
