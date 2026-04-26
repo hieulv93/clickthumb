@@ -14,8 +14,7 @@ export default function BgImageUpload({ imageUrl, onUpload, onClear }: BgImageUp
 
   function handleFile(file: File) {
     if (file.size > MAX_FILE_SIZE_BYTES) return
-    const url = URL.createObjectURL(file)
-    onUpload(url)
+    onUpload(URL.createObjectURL(file))
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -24,35 +23,48 @@ export default function BgImageUpload({ imageUrl, onUpload, onClear }: BgImageUp
   }
 
   return (
-    <div className="space-y-2">
-      <p className="text-xs font-semibold text-text-main uppercase tracking-wide">Background Image</p>
-      <div className="flex items-center gap-2">
+    <div>
+      {imageUrl ? (
+        <div className="flex items-center gap-3 px-3 py-2 rounded-xl border border-border bg-white">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={imageUrl} alt="Background" className="h-10 w-16 rounded object-cover border border-border shrink-0" />
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-medium text-text-main">Background image set</p>
+            <p className="text-xs text-text-muted">Covers background color</p>
+          </div>
+          <div className="flex items-center gap-3 shrink-0">
+            <button
+              onClick={() => inputRef.current?.click()}
+              className="text-xs font-medium text-primary hover:underline"
+            >
+              Change
+            </button>
+            <button
+              onClick={onClear}
+              className="text-xs text-text-muted hover:text-error transition-colors"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+      ) : (
         <button
           onClick={() => inputRef.current?.click()}
-          className="touch-target px-3 py-1.5 text-xs font-medium rounded-lg border border-border bg-white hover:border-primary hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="touch-target w-full flex items-center gap-2.5 px-4 py-2.5 rounded-xl border border-dashed border-border bg-white hover:border-primary hover:bg-primary/5 text-sm text-text-muted hover:text-primary transition-all"
         >
-          {imageUrl ? 'Change image' : 'Upload image'}
+          <svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+          </svg>
+          Upload your own background image
         </button>
-        {imageUrl && (
-          <button
-            onClick={onClear}
-            className="text-xs text-text-muted hover:text-error transition-colors"
-          >
-            Remove
-          </button>
-        )}
-        <input
-          ref={inputRef}
-          type="file"
-          accept="image/jpeg,image/png,image/webp"
-          className="hidden"
-          onChange={handleChange}
-        />
-      </div>
-      {imageUrl && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={imageUrl} alt="Background preview" className="h-14 w-auto rounded object-cover border border-border" />
       )}
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/jpeg,image/png,image/webp"
+        className="hidden"
+        onChange={handleChange}
+      />
     </div>
   )
 }

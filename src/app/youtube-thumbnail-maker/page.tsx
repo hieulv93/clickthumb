@@ -4,6 +4,7 @@ import { useState, useCallback, useRef, Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import TemplateSelector from '@/components/canvas/TemplateSelector'
 import BgSection from '@/components/canvas/BgSection'
+import BgImageUpload from '@/components/canvas/BgImageUpload'
 import FontSelector from '@/components/canvas/FontSelector'
 import ProgressBar from '@/components/tool/ProgressBar'
 import FAQItem from '@/components/tool/FAQItem'
@@ -138,6 +139,8 @@ export default function YouTubeThumbnailPage() {
               <p className="text-xs font-medium text-text-muted tabular-nums">1280 × 720 px</p>
             </div>
 
+            <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
+
             {/* Controls */}
             <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
               <TemplateSelector
@@ -145,13 +148,7 @@ export default function YouTubeThumbnailPage() {
                 selected={template}
                 onSelect={handleTemplateSelect}
               />
-              <BgSection
-                color={bgColor}
-                imageUrl={bgImageUrl}
-                onColorChange={setBgColor}
-                onImageUpload={handleBgUpload}
-                onImageClear={handleBgClear}
-              />
+              <BgSection color={bgColor} onChange={setBgColor} />
               <FontSelector value={fontFamily} onChange={setFontFamily} />
             </div>
 
