@@ -127,12 +127,14 @@ export default function CanvasEditor({
       canvas.on('object:moving', (e: any) => {
         const obj = e.target
         if (obj.type !== 'i-text' && obj.type !== 'text') return
+        const cw = canvas.width as number
+        const ch = canvas.height as number
         obj.setCoords()
         const br = obj.getBoundingRect()
         if (br.left < 0) obj.left -= br.left
         if (br.top < 0) obj.top -= br.top
-        if (br.left + br.width > canvas.width) obj.left -= (br.left + br.width - canvas.width)
-        if (br.top + br.height > canvas.height) obj.top -= (br.top + br.height - canvas.height)
+        if (br.left + br.width > cw) obj.left -= (br.left + br.width - cw)
+        if (br.top + br.height > ch) obj.top -= (br.top + br.height - ch)
       })
 
       if (template) {
