@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     title: 'OG Image Generator — Free Open Graph Image Maker',
     description: 'Create Open Graph preview images at 1200×630px. Templates, custom text, instant download.',
     url: 'https://click-thumb.com/og-image-generator/',
+    images: [{ url: 'https://click-thumb.com/og-image.png', width: 1200, height: 630 }],
   },
 }
 

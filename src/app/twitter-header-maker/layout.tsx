@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     title: 'Twitter Header Maker — Free Online, No Signup',
     description: 'Create a Twitter/X header at 1500×500px. Templates, custom text, instant download.',
     url: 'https://click-thumb.com/twitter-header-maker/',
+    images: [{ url: 'https://click-thumb.com/og-image.png', width: 1200, height: 630 }],
   },
 }
 

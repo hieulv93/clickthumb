@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     title: 'Valorant Thumbnail Maker — Free Online, No Signup',
     description: 'Create 1280×720px Valorant thumbnails. Agent Impact, ACE Gold, Clutch Navy templates. Download instantly.',
     url: 'https://click-thumb.com/valorant-thumbnail-maker/',
+    images: [{ url: 'https://click-thumb.com/og-image.png', width: 1200, height: 630 }],
   },
 }
 

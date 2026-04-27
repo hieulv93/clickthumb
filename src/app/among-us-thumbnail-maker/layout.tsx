@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     title: 'Among Us Thumbnail Maker — Free Online, No Signup',
     description: 'Create 1280×720px Among Us thumbnails. Impostor Red, Crewmate Blue, Emergency Meeting templates. Download instantly.',
     url: 'https://click-thumb.com/among-us-thumbnail-maker/',
+    images: [{ url: 'https://click-thumb.com/og-image.png', width: 1200, height: 630 }],
   },
 }
 

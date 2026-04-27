@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     title: 'LinkedIn Banner Maker — Free Online, No Signup',
     description: 'Design a LinkedIn banner at 1584×396px. Professional templates, instant download.',
     url: 'https://click-thumb.com/linkedin-banner-maker/',
+    images: [{ url: 'https://click-thumb.com/og-image.png', width: 1200, height: 630 }],
   },
 }
 

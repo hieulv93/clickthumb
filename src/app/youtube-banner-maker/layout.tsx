@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     title: 'YouTube Banner Maker — Free Channel Art, 2560×1440px',
     description: 'Create YouTube channel art at 2560×1440px. Templates, custom text, instant download.',
     url: 'https://click-thumb.com/youtube-banner-maker/',
+    images: [{ url: 'https://click-thumb.com/og-image.png', width: 1200, height: 630 }],
   },
 }
 

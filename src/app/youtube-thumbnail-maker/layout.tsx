@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     title: 'YouTube Thumbnail Maker — Free Online, No Signup',
     description: 'Create pro YouTube thumbnails at 1280×720px. Templates, custom text, instant download.',
     url: 'https://click-thumb.com/youtube-thumbnail-maker/',
+    images: [{ url: 'https://click-thumb.com/og-image.png', width: 1200, height: 630 }],
   },
 }
 

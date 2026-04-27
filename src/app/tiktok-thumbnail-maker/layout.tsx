@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     title: 'TikTok Thumbnail Maker — Free Online Cover Image, No Signup',
     description: 'Create 1080×1920px TikTok cover images. Viral templates. Download instantly.',
     url: 'https://click-thumb.com/tiktok-thumbnail-maker/',
+    images: [{ url: 'https://click-thumb.com/og-image.png', width: 1200, height: 630 }],
   },
 }
 

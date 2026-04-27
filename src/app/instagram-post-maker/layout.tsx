@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     title: 'Instagram Post Maker — Free Online, No Signup',
     description: 'Create Instagram posts at 1080×1080px. Templates, custom text, instant download.',
     url: 'https://click-thumb.com/instagram-post-maker/',
+    images: [{ url: 'https://click-thumb.com/og-image.png', width: 1200, height: 630 }],
   },
 }
 

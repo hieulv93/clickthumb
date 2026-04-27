@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     title: 'Facebook Cover Maker — Free Online, No Signup',
     description: 'Design a Facebook cover photo at 851×315px. Templates, custom text, instant download.',
     url: 'https://click-thumb.com/facebook-cover-maker/',
+    images: [{ url: 'https://click-thumb.com/og-image.png', width: 1200, height: 630 }],
   },
 }
 
