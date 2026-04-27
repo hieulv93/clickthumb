@@ -53,8 +53,26 @@ export default function CanvasEditor({
       if (bgImageUrl) {
         await new Promise<void>((resolve) => {
           fabric.Image.fromURL(bgImageUrl, (img: any) => {
-            img.scaleToWidth(canvas.width)
-            img.set({ left: 0, top: 0, selectable: true, evented: true })
+            // CSS cover: scale so image fills entire canvas with no black bars
+            const coverScale = Math.max(canvas.width / img.width, canvas.height / img.height)
+            img.scale(coverScale)
+            img.set({
+              left: (canvas.width - img.getScaledWidth()) / 2,
+              top: (canvas.height - img.getScaledHeight()) / 2,
+              selectable: true,
+              evented: true,
+              hasControls: false,
+              hasBorders: false,
+            })
+            // Constrain drag so image always covers canvas (no black edges)
+            img.on('moving', () => {
+              const minLeft = canvas.width - img.getScaledWidth()
+              const minTop = canvas.height - img.getScaledHeight()
+              if (img.left > 0) img.left = 0
+              if (img.left < minLeft) img.left = minLeft
+              if (img.top > 0) img.top = 0
+              if (img.top < minTop) img.top = minTop
+            })
             canvas.add(img)
             canvas.sendToBack(img)
             resolve()
