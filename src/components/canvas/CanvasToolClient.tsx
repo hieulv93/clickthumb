@@ -123,45 +123,39 @@ export default function CanvasToolClient({
   )
 
   return (
-    // 2-column grid on lg+ (1024px+)
-    // Left outer + right outer both stretch to row height (= right col total height)
-    // Both have sticky inner divs → canvas AND controls stay fixed while SEO scrolls
-    <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-6">
+    <div className="space-y-6">
+      {/* 2-column tool area: canvas left (sticky) + controls right */}
+      <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-6">
 
-      {/* Left outer: stretches to row height, bg-white hides scrolling content behind */}
-      <div className="lg:bg-white">
-        {/* Left sticky inner: canvas + upload + download */}
-        <div className="space-y-3 lg:sticky lg:top-14">
-          <div className="flex justify-center">
-            <Suspense fallback={<div className="w-full h-64 bg-surface rounded-xl border border-border" />}>
-              <CanvasEditor
-                platform={platform}
-                template={template}
-                bgColor={bgColor}
-                bgImageUrl={bgImageUrl}
-                fontFamily={fontFamily}
-                texts={texts}
-                onReady={handleReady}
-              />
-            </Suspense>
+        {/* Left: outer stretches to match right col height → canvas sticky within that range */}
+        <div>
+          <div className="space-y-3 lg:sticky lg:top-14">
+            <div className="flex justify-center">
+              <Suspense fallback={<div className="w-full h-64 bg-surface rounded-xl border border-border" />}>
+                <CanvasEditor
+                  platform={platform}
+                  template={template}
+                  bgColor={bgColor}
+                  bgImageUrl={bgImageUrl}
+                  fontFamily={fontFamily}
+                  texts={texts}
+                  onReady={handleReady}
+                />
+              </Suspense>
+            </div>
+            <div className="flex justify-end px-1">
+              <p className="text-xs font-medium text-text-muted tabular-nums">
+                {platform.width} × {platform.height} px
+              </p>
+            </div>
+            <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
+            {/* Download — desktop only */}
+            <div className="hidden lg:block">{downloadBtn}</div>
           </div>
-          <div className="flex justify-end px-1">
-            <p className="text-xs font-medium text-text-muted tabular-nums">
-              {platform.width} × {platform.height} px
-            </p>
-          </div>
-          <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
-          {/* Download — desktop only, in sticky left col */}
-          <div className="hidden lg:block">{downloadBtn}</div>
         </div>
-      </div>
 
-      {/* Right outer: controls (sticky) + AdSlot + SEO (scroll normally) */}
-      {/* SEO here makes right col very tall so both stickies have room to work */}
-      <div className="mt-4 lg:mt-0 space-y-6">
-
-        {/* Right sticky inner: controls panel stays fixed while SEO scrolls below */}
-        <div className="lg:sticky lg:top-14 lg:bg-white lg:pb-1">
+        {/* Right: controls panel (in flow, no sticky needed) */}
+        <div className="mt-4 lg:mt-0">
           <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
             <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
             <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
@@ -171,11 +165,11 @@ export default function CanvasToolClient({
           {/* Download — mobile/tablet only */}
           <div className="lg:hidden mt-4">{downloadBtn}</div>
         </div>
-
-        {/* AdSlot + SEO: scroll in normal flow, appear below sticky controls */}
-        <AdSlot actionDone={done} slot="placeholder-slot-id" />
-        {children}
       </div>
+
+      {/* Full-width below both columns: ad + SEO content */}
+      <AdSlot actionDone={done} slot="placeholder-slot-id" />
+      {children}
     </div>
   )
 }
