@@ -161,7 +161,7 @@ export default function CanvasEditor({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const textObjs = canvas.getObjects().filter((obj: any) => obj.type === 'i-text' || obj.type === 'text')
     texts.forEach((text, i) => {
-      if (textObjs[i] && text !== '') textObjs[i].set('text', text)
+      if (textObjs[i]) textObjs[i].set('text', text !== '' ? text : (template?.texts[i]?.text ?? ''))
     })
     canvas.renderAll()
   }, [texts])
