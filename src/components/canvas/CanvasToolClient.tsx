@@ -123,12 +123,14 @@ export default function CanvasToolClient({
   )
 
   return (
-    <div className="space-y-6">
-      {/* 2-column on desktop: canvas left (sticky) | controls right */}
-      <div className="md:grid md:grid-cols-[1fr_288px] md:gap-6 md:items-start">
+    // lg:grid (1024px+) — at this width canvas gets ~520px, controls col 320px
+    // Right col contains controls + SEO content → very tall → canvas sticky works throughout
+    <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-6">
 
-        {/* Left column: canvas + upload + download (sticky on desktop) */}
-        <div className="space-y-3 md:sticky md:top-14">
+      {/* Left column wrapper — stretches to row height (= right col height) */}
+      <div>
+        {/* Sticky inner: constrained to left col height, sticks while right col is taller */}
+        <div className="space-y-3 lg:sticky lg:top-14">
           <div className="flex justify-center">
             <Suspense fallback={<div className="w-full h-64 bg-surface rounded-xl border border-border" />}>
               <CanvasEditor
@@ -148,27 +150,25 @@ export default function CanvasToolClient({
             </p>
           </div>
           <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
-          {/* Download button — desktop only */}
-          <div className="hidden md:block">{downloadBtn}</div>
-        </div>
-
-        {/* Right column: controls panel */}
-        <div className="mt-4 md:mt-0">
-          <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
-            <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
-            <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
-            <BgSection color={bgColor} onChange={setBgColor} />
-            <FontSelector value={fontFamily} onChange={setFontFamily} />
-          </div>
+          {/* Download — desktop only */}
+          <div className="hidden lg:block">{downloadBtn}</div>
         </div>
       </div>
 
-      {/* Download button — mobile only */}
-      <div className="md:hidden">{downloadBtn}</div>
-
-      <AdSlot actionDone={done} slot="placeholder-slot-id" />
-
-      {children}
+      {/* Right column: controls + download (mobile) + AdSlot + SEO content */}
+      {/* SEO content here makes right col very tall → enables sticky on left */}
+      <div className="mt-4 lg:mt-0 space-y-6">
+        <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
+          <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
+          <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
+          <BgSection color={bgColor} onChange={setBgColor} />
+          <FontSelector value={fontFamily} onChange={setFontFamily} />
+        </div>
+        {/* Download — mobile/tablet only */}
+        <div className="lg:hidden">{downloadBtn}</div>
+        <AdSlot actionDone={done} slot="placeholder-slot-id" />
+        {children}
+      </div>
     </div>
   )
 }

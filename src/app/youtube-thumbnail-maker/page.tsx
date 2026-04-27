@@ -128,12 +128,12 @@ export default function YouTubeThumbnailPage() {
             </p>
           </div>
 
-          {/* Editor layout: 2-column on desktop */}
-          <div className="space-y-6">
-            <div className="md:grid md:grid-cols-[1fr_288px] md:gap-6 md:items-start">
+          {/* 2-column on lg+ — left sticky canvas, right controls + SEO */}
+          <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-6">
 
-              {/* Left: canvas + upload + download (sticky on desktop) */}
-              <div className="space-y-3 md:sticky md:top-14">
+            {/* Left column wrapper (stretches to row height = right col height) */}
+            <div>
+              <div className="space-y-3 lg:sticky lg:top-14">
                 <div className="flex justify-center">
                   <Suspense fallback={<div className="w-full h-64 bg-surface rounded-xl border border-border" />}>
                     <CanvasEditor
@@ -152,54 +152,35 @@ export default function YouTubeThumbnailPage() {
                 </div>
                 <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
                 {/* Download — desktop */}
-                <div className="hidden md:block space-y-2">
+                <div className="hidden lg:block space-y-2">
                   {exporting && <ProgressBar visible label="Exporting thumbnail..." />}
-                  <button
-                    onClick={handleExport}
-                    disabled={exporting}
-                    className={`w-full touch-target flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${downloaded ? 'bg-green-600 hover:bg-green-700 text-white active:scale-95' : 'bg-primary hover:bg-primary-hover active:scale-95 disabled:opacity-60 text-white'}`}
-                  >
-                    {downloaded ? (
-                      <><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>Downloaded!</>
-                    ) : (
-                      <><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" /></svg>{exporting ? 'Exporting...' : 'Download Thumbnail (1280×720)'}</>
-                    )}
+                  <button onClick={handleExport} disabled={exporting} className={`w-full touch-target flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${downloaded ? 'bg-green-600 hover:bg-green-700 text-white active:scale-95' : 'bg-primary hover:bg-primary-hover active:scale-95 disabled:opacity-60 text-white'}`}>
+                    {downloaded ? (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>Downloaded!</>) : (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" /></svg>{exporting ? 'Exporting...' : 'Download Thumbnail (1280×720)'}</>)}
                   </button>
                 </div>
               </div>
+            </div>
 
-              {/* Right: controls */}
-              <div className="mt-4 md:mt-0">
-                <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
-                  <TemplateSelector templates={YOUTUBE_TEMPLATES} selected={template} onSelect={handleTemplateSelect} />
-                  <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
-                  <BgSection color={bgColor} onChange={setBgColor} />
-                  <FontSelector value={fontFamily} onChange={setFontFamily} />
-                </div>
+            {/* Right column: controls + mobile download + AdSlot + SEO */}
+            {/* SEO here makes right col very tall → canvas sticky works throughout */}
+            <div className="mt-4 lg:mt-0 space-y-6">
+              <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
+                <TemplateSelector templates={YOUTUBE_TEMPLATES} selected={template} onSelect={handleTemplateSelect} />
+                <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
+                <BgSection color={bgColor} onChange={setBgColor} />
+                <FontSelector value={fontFamily} onChange={setFontFamily} />
               </div>
-            </div>
+              {/* Download — mobile/tablet only */}
+              <div className="lg:hidden space-y-2">
+                {exporting && <ProgressBar visible label="Exporting thumbnail..." />}
+                <button onClick={handleExport} disabled={exporting} className={`w-full touch-target flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${downloaded ? 'bg-green-600 hover:bg-green-700 text-white active:scale-95' : 'bg-primary hover:bg-primary-hover active:scale-95 disabled:opacity-60 text-white'}`}>
+                  {downloaded ? (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>Downloaded!</>) : (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" /></svg>{exporting ? 'Exporting...' : 'Download Thumbnail (1280×720)'}</>)}
+                </button>
+              </div>
+              <AdSlot actionDone={done} slot="placeholder-slot-id" />
 
-            {/* Download — mobile only */}
-            <div className="md:hidden space-y-2">
-              {exporting && <ProgressBar visible label="Exporting thumbnail..." />}
-              <button
-                onClick={handleExport}
-                disabled={exporting}
-                className={`w-full touch-target flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${downloaded ? 'bg-green-600 hover:bg-green-700 text-white active:scale-95' : 'bg-primary hover:bg-primary-hover active:scale-95 disabled:opacity-60 text-white'}`}
-              >
-                {downloaded ? (
-                  <><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>Downloaded!</>
-                ) : (
-                  <><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" /></svg>{exporting ? 'Exporting...' : 'Download Thumbnail (1280×720)'}</>
-                )}
-              </button>
-            </div>
-
-            <AdSlot actionDone={done} slot="placeholder-slot-id" />
-          </div>
-
-          {/* SEO Content */}
-          <section className="space-y-8 text-sm text-text-muted leading-relaxed">
+              {/* SEO Content */}
+              <section className="space-y-8 text-sm text-text-muted leading-relaxed">
             <div className="space-y-3">
               <h2 className="text-base font-bold text-text-main">
                 What Makes a Good YouTube Thumbnail?
@@ -365,7 +346,9 @@ export default function YouTubeThumbnailPage() {
                 ))}
               </div>
             </div>
-          </section>
+              </section>
+            </div>
+          </div>
         </div>
       </main>
     </>
