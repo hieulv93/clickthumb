@@ -57,7 +57,7 @@ export default function YouTubeThumbnailPage() {
   const [bgColor, setBgColor] = useState(YOUTUBE_TEMPLATES[0].bgColor)
   const [bgImageUrl, setBgImageUrl] = useState<string | null>(null)
   const [fontFamily, setFontFamily] = useState(YOUTUBE_TEMPLATES[0].texts[0]?.fontFamily ?? 'Impact')
-  const [texts, setTexts] = useState<string[]>(YOUTUBE_TEMPLATES[0].texts.map((t) => t.text))
+  const [texts, setTexts] = useState<string[]>(YOUTUBE_TEMPLATES[0].texts.map(() => ''))
   const [exporting, setExporting] = useState(false)
   const [done, setDone] = useState(false)
   const exportFnRef = useRef<(() => Promise<Blob>) | null>(null)
@@ -71,7 +71,7 @@ export default function YouTubeThumbnailPage() {
     setTemplate(t)
     setBgColor(t.bgColor)
     setFontFamily(t.texts[0]?.fontFamily ?? 'Impact')
-    setTexts(t.texts.map((txt) => txt.text))
+    setTexts(t.texts.map(() => ''))
   }, [])
 
   const handleTextChange = useCallback((index: number, value: string) => {
@@ -156,7 +156,7 @@ export default function YouTubeThumbnailPage() {
                 selected={template}
                 onSelect={handleTemplateSelect}
               />
-              <TextEditor values={texts} onChange={handleTextChange} />
+              <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
               <BgSection color={bgColor} onChange={setBgColor} />
               <FontSelector value={fontFamily} onChange={setFontFamily} />
             </div>

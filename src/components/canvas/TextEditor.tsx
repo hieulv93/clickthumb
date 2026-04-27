@@ -3,11 +3,12 @@
 interface TextEditorProps {
   values: string[]
   onChange: (index: number, value: string) => void
+  placeholders?: string[]
 }
 
 const LABELS = ['Title', 'Subtitle', 'Text 3', 'Text 4']
 
-export default function TextEditor({ values, onChange }: TextEditorProps) {
+export default function TextEditor({ values, onChange, placeholders }: TextEditorProps) {
   if (values.length === 0) return null
   return (
     <div className="space-y-2">
@@ -20,7 +21,7 @@ export default function TextEditor({ values, onChange }: TextEditorProps) {
               type="text"
               value={val}
               onChange={(e) => onChange(i, e.target.value)}
-              placeholder="Enter text..."
+              placeholder={placeholders?.[i] ?? `Enter ${LABELS[i] ?? 'text'}...`}
               className="w-full px-3 py-2 text-sm rounded-lg border border-border bg-white text-text-main placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow"
             />
           </div>

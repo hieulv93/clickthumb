@@ -54,7 +54,7 @@ export default function CanvasEditor({
         await new Promise<void>((resolve) => {
           fabric.Image.fromURL(bgImageUrl, (img: any) => {
             img.scaleToWidth(canvas.width)
-            img.set({ left: 0, top: 0, selectable: false, evented: false })
+            img.set({ left: 0, top: 0, selectable: true, evented: true })
             canvas.add(img)
             canvas.sendToBack(img)
             resolve()
@@ -161,7 +161,7 @@ export default function CanvasEditor({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const textObjs = canvas.getObjects().filter((obj: any) => obj.type === 'i-text' || obj.type === 'text')
     texts.forEach((text, i) => {
-      if (textObjs[i]) textObjs[i].set('text', text)
+      if (textObjs[i] && text !== '') textObjs[i].set('text', text)
     })
     canvas.renderAll()
   }, [texts])
