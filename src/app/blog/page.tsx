@@ -2,6 +2,15 @@ import Link from 'next/link'
 
 const posts = [
   {
+    slug: 'social-media-image-sizes',
+    title: 'Social Media Image Sizes 2026: The Complete Guide',
+    description:
+      'Exact image dimensions for every social media platform in 2026. Instagram, YouTube, Twitter, LinkedIn, Facebook, TikTok — posts, covers, stories, banners.',
+    date: '2026-04-28',
+    readTime: '9 min read',
+    category: 'Guide',
+  },
+  {
     slug: 'youtube-thumbnail-size-guide',
     title: 'YouTube Thumbnail Size: The Complete 2026 Guide',
     description:
