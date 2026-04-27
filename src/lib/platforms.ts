@@ -20,6 +20,8 @@ export const PLATFORMS: Record<string, Platform> = {
   roblox: { id: 'roblox', name: 'Roblox Thumbnail', width: 1280, height: 720, route: '/roblox-thumbnail-maker' },
   youtube_banner: { id: 'youtube_banner', name: 'YouTube Banner', width: 2560, height: 1440, route: '/youtube-banner-maker' },
   valorant: { id: 'valorant', name: 'Valorant Thumbnail', width: 1280, height: 720, route: '/valorant-thumbnail-maker' },
+  among_us: { id: 'among_us', name: 'Among Us Thumbnail', width: 1280, height: 720, route: '/among-us-thumbnail-maker' },
+  apex_legends: { id: 'apex_legends', name: 'Apex Legends Thumbnail', width: 1280, height: 720, route: '/apex-legends-thumbnail-maker' },
 }
 
 export const CANVAS_DISPLAY_WIDTH = 640

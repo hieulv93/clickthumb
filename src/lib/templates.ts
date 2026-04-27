@@ -690,6 +690,74 @@ export const OG_TEMPLATES: Template[] = [
   },
 ]
 
+// ─── Among Us Thumbnail (1280×720) ───────────────────────────────────────────
+export const AMONG_US_TEMPLATES: Template[] = [
+  {
+    id: 'au-impostor',
+    name: 'Impostor Red',
+    platform: 'among_us',
+    bgColor: '#0d0005',
+    texts: [
+      { text: 'IMPOSTOR DETECTED', fontSize: 100, fontFamily: 'Impact', fill: '#ff2727', stroke: '#000000', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'sus • vent • kill • crew', fontSize: 48, fontFamily: 'Arial', fill: '#ffb3b3', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'au-crewmate',
+    name: 'Crewmate Blue',
+    platform: 'among_us',
+    bgColor: '#001430',
+    texts: [
+      { text: 'CREWMATE WIN!', fontSize: 108, fontFamily: 'Impact', fill: '#4fffde', stroke: '#003333', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'task complete • all vents clear', fontSize: 48, fontFamily: 'Arial', fill: '#b3ffee', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'au-emergency',
+    name: 'Emergency Meeting',
+    platform: 'among_us',
+    bgColor: '#1a0a00',
+    texts: [
+      { text: 'EMERGENCY MEETING!', fontSize: 86, fontFamily: 'Impact', fill: '#ffe600', stroke: '#7a3f00', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'who is the impostor?', fontSize: 52, fontFamily: 'Arial', fill: '#fff0b3', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+]
+
+// ─── Apex Legends Thumbnail (1280×720) ───────────────────────────────────────
+export const APEX_LEGENDS_TEMPLATES: Template[] = [
+  {
+    id: 'ap-champion',
+    name: 'Champion Orange',
+    platform: 'apex_legends',
+    bgColor: '#0a0300',
+    texts: [
+      { text: 'CHAMPION!', fontSize: 120, fontFamily: 'Impact', fill: '#ff8c00', stroke: '#4a1800', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'apex legends • squad wipe', fontSize: 50, fontFamily: 'Arial', fill: '#ffd6a0', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'ap-legend',
+    name: 'Legend Gold',
+    platform: 'apex_legends',
+    bgColor: '#080600',
+    texts: [
+      { text: 'APEX PREDATOR', fontSize: 100, fontFamily: 'Impact', fill: '#ffd700', stroke: '#5a3500', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'ranked • kill leader • 20 bomb', fontSize: 50, fontFamily: 'Arial', fill: '#fff0a0', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'ap-dark',
+    name: 'Dark Red',
+    platform: 'apex_legends',
+    bgColor: '#050000',
+    texts: [
+      { text: '20 BOMB GAME!', fontSize: 108, fontFamily: 'Impact', fill: '#ff3333', stroke: '#6b0000', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'bloodhound • wraith • octane', fontSize: 50, fontFamily: 'Arial', fill: '#ffb3b3', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+]
+
 // ─── Valorant Thumbnail (1280×720) ───────────────────────────────────────────
 export const VALORANT_TEMPLATES: Template[] = [
   {

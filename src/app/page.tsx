@@ -38,6 +38,18 @@ const tools = [
     badge: '80K searches/mo',
   },
   {
+    href: '/apex-legends-thumbnail-maker',
+    title: 'Apex Legends Thumbnail Maker',
+    desc: 'Champion Orange, Legend Gold, and Dark Red templates for Apex Legends creators.',
+    badge: '120K searches/mo',
+  },
+  {
+    href: '/among-us-thumbnail-maker',
+    title: 'Among Us Thumbnail Maker',
+    desc: 'Impostor Red, Crewmate Blue, and Emergency Meeting templates for Among Us content.',
+    badge: '100K searches/mo',
+  },
+  {
     href: '/instagram-post-maker',
     title: 'Instagram Post Maker',
     desc: 'Square 1080×1080 or Story 1080×1920. Perfect for Reels covers and feed posts.',
