@@ -107,9 +107,16 @@ export default function GamingThumbnailMakerPage() {
                 </div>
               </div>
               <div className="space-y-3 pt-2 border-t border-border">
-                <h2 className="text-sm font-semibold text-text-main">More Free Image Tools</h2>
+                <h2 className="text-sm font-semibold text-text-main">More Gaming Thumbnail Makers</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                  {[{href:'/youtube-thumbnail-maker',title:'YouTube Thumbnail Maker',desc:'1280×720px thumbnails for all niches.'},{href:'/youtube-banner-maker',title:'YouTube Banner Maker',desc:'2560×1440px YouTube channel art.'},{href:'/instagram-post-maker',title:'Instagram Post Maker',desc:'1080×1080px Instagram posts, free.'}].map(item=>(
+                  {[
+                    {href:'/call-of-duty-thumbnail-maker',title:'COD Thumbnail Maker',desc:'Military Dark, Combat Orange, Camo Green for COD.'},
+                    {href:'/gta-thumbnail-maker',title:'GTA Thumbnail Maker',desc:'GTA Gold, Night Purple, Wanted Red for GTA 5.'},
+                    {href:'/cs2-thumbnail-maker',title:'CS2 Thumbnail Maker',desc:'CT Blue, T-Side Orange, Pro Minimal for CS2.'},
+                    {href:'/pubg-thumbnail-maker',title:'PUBG Thumbnail Maker',desc:'Chicken Dinner, Military Tan, Night Drop for PUBG.'},
+                    {href:'/valorant-thumbnail-maker',title:'Valorant Thumbnail Maker',desc:'Agent Impact, ACE Gold, Clutch Navy for Valorant.'},
+                    {href:'/apex-legends-thumbnail-maker',title:'Apex Legends Thumbnail Maker',desc:'Champion Orange, Dark Red for Apex Legends.'},
+                  ].map(item=>(
                     <Link key={item.href} href={item.href} className="block rounded-xl border border-border p-3 hover:border-primary transition-colors group">
                       <p className="font-semibold text-text-main text-xs group-hover:text-primary">{item.title}</p>
                       <p className="text-xs text-text-muted mt-0.5 leading-relaxed">{item.desc}</p>

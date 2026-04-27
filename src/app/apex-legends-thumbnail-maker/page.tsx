@@ -181,8 +181,11 @@ export default function ApexLegendsThumbnailMakerPage() {
                 <h2 className="text-sm font-semibold text-text-main">More Free Gaming Thumbnail Tools</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                   {[
+                    { href: '/call-of-duty-thumbnail-maker', title: 'COD Thumbnail Maker', desc: 'Military Dark, Combat Orange, Camo Green for COD.' },
+                    { href: '/cs2-thumbnail-maker', title: 'CS2 Thumbnail Maker', desc: 'CT Blue, T-Side Orange, Pro Minimal for CS2.' },
+                    { href: '/pubg-thumbnail-maker', title: 'PUBG Thumbnail Maker', desc: 'Chicken Dinner, Military Tan, Night Drop for PUBG.' },
                     { href: '/gaming-thumbnail-maker', title: 'Gaming Thumbnail Maker', desc: 'Neon, fire, cyberpunk — for all gaming niches.' },
-                    { href: '/valorant-thumbnail-maker', title: 'Valorant Thumbnail Maker', desc: 'Agent Impact, ACE Gold, Clutch Navy templates.' },
+                    { href: '/valorant-thumbnail-maker', title: 'Valorant Thumbnail Maker', desc: 'Agent Impact, ACE Gold, Clutch Navy for Valorant.' },
                     { href: '/fortnite-thumbnail-maker', title: 'Fortnite Thumbnail Maker', desc: 'Storm Eye, Zero Point, Legendary Loot templates.' },
                   ].map((item) => (
                     <Link key={item.href} href={item.href} className="block rounded-xl border border-border p-3 hover:border-primary transition-colors group">

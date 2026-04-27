@@ -38,10 +38,34 @@ const tools = [
     badge: '80K searches/mo',
   },
   {
+    href: '/call-of-duty-thumbnail-maker',
+    title: 'Call of Duty Thumbnail Maker',
+    desc: 'Military Dark, Combat Orange, and Camo Green templates for COD Warzone & MW3 creators.',
+    badge: '200K searches/mo',
+  },
+  {
     href: '/apex-legends-thumbnail-maker',
     title: 'Apex Legends Thumbnail Maker',
     desc: 'Champion Orange, Legend Gold, and Dark Red templates for Apex Legends creators.',
     badge: '120K searches/mo',
+  },
+  {
+    href: '/gta-thumbnail-maker',
+    title: 'GTA Thumbnail Maker',
+    desc: 'GTA Gold, Night Purple, and Wanted Red templates for GTA 5 and GTA Online creators.',
+    badge: '150K searches/mo',
+  },
+  {
+    href: '/cs2-thumbnail-maker',
+    title: 'CS2 Thumbnail Maker',
+    desc: 'CT Blue, T-Side Orange, and Pro Minimal templates for Counter-Strike 2 creators.',
+    badge: '100K searches/mo',
+  },
+  {
+    href: '/pubg-thumbnail-maker',
+    title: 'PUBG Thumbnail Maker',
+    desc: 'Chicken Dinner, Military Tan, and Night Drop templates for PUBG Mobile and PC creators.',
+    badge: '80K searches/mo',
   },
   {
     href: '/among-us-thumbnail-maker',

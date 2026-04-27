@@ -22,6 +22,10 @@ export const PLATFORMS: Record<string, Platform> = {
   valorant: { id: 'valorant', name: 'Valorant Thumbnail', width: 1280, height: 720, route: '/valorant-thumbnail-maker' },
   among_us: { id: 'among_us', name: 'Among Us Thumbnail', width: 1280, height: 720, route: '/among-us-thumbnail-maker' },
   apex_legends: { id: 'apex_legends', name: 'Apex Legends Thumbnail', width: 1280, height: 720, route: '/apex-legends-thumbnail-maker' },
+  cod: { id: 'cod', name: 'Call of Duty Thumbnail', width: 1280, height: 720, route: '/call-of-duty-thumbnail-maker' },
+  gta: { id: 'gta', name: 'GTA Thumbnail', width: 1280, height: 720, route: '/gta-thumbnail-maker' },
+  cs2: { id: 'cs2', name: 'CS2 Thumbnail', width: 1280, height: 720, route: '/cs2-thumbnail-maker' },
+  pubg: { id: 'pubg', name: 'PUBG Thumbnail', width: 1280, height: 720, route: '/pubg-thumbnail-maker' },
 }
 
 export const CANVAS_DISPLAY_WIDTH = 640

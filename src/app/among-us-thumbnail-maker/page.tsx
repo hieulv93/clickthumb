@@ -182,8 +182,11 @@ export default function AmongUsThumbnailMakerPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                   {[
                     { href: '/gaming-thumbnail-maker', title: 'Gaming Thumbnail Maker', desc: 'Neon, fire, cyberpunk — for all gaming niches.' },
+                    { href: '/gta-thumbnail-maker', title: 'GTA Thumbnail Maker', desc: 'GTA Gold, Night Purple, Wanted Red for GTA 5.' },
+                    { href: '/call-of-duty-thumbnail-maker', title: 'COD Thumbnail Maker', desc: 'Military Dark, Combat Orange, Camo Green for COD.' },
                     { href: '/roblox-thumbnail-maker', title: 'Roblox Thumbnail Maker', desc: 'Roblox Red, Neon Obby, Rare Item templates.' },
                     { href: '/fortnite-thumbnail-maker', title: 'Fortnite Thumbnail Maker', desc: 'Storm Eye, Zero Point, Legendary Loot templates.' },
+                    { href: '/cs2-thumbnail-maker', title: 'CS2 Thumbnail Maker', desc: 'CT Blue, T-Side Orange, Pro Minimal for CS2.' },
                   ].map((item) => (
                     <Link key={item.href} href={item.href} className="block rounded-xl border border-border p-3 hover:border-primary transition-colors group">
                       <p className="font-semibold text-text-main text-xs group-hover:text-primary">{item.title}</p>

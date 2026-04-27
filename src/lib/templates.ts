@@ -758,6 +758,142 @@ export const APEX_LEGENDS_TEMPLATES: Template[] = [
   },
 ]
 
+// ─── Call of Duty Thumbnail (1280×720) ───────────────────────────────────────
+export const COD_TEMPLATES: Template[] = [
+  {
+    id: 'cod-military',
+    name: 'Military Dark',
+    platform: 'cod',
+    bgColor: '#0d1117',
+    texts: [
+      { text: 'NUKE GAME!', fontSize: 108, fontFamily: 'Impact', fill: '#ffffff', stroke: '#00ff41', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'call of duty • warzone • mw3', fontSize: 50, fontFamily: 'Arial', fill: '#a0a0a0', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'cod-orange',
+    name: 'Combat Orange',
+    platform: 'cod',
+    bgColor: '#0a0600',
+    texts: [
+      { text: '30 KILL GAME', fontSize: 108, fontFamily: 'Impact', fill: '#ff6600', stroke: '#7f2000', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'warzone • ranked • highlights', fontSize: 50, fontFamily: 'Arial', fill: '#ffb380', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'cod-camo',
+    name: 'Camo Green',
+    platform: 'cod',
+    bgColor: '#1a2410',
+    texts: [
+      { text: 'BEST LOADOUT', fontSize: 100, fontFamily: 'Impact', fill: '#d4e84a', stroke: '#3d5a00', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'class setup • tips • season', fontSize: 50, fontFamily: 'Arial', fill: '#c5d9a0', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+]
+
+// ─── GTA Thumbnail (1280×720) ─────────────────────────────────────────────────
+export const GTA_TEMPLATES: Template[] = [
+  {
+    id: 'gta-gold',
+    name: 'GTA Gold',
+    platform: 'gta',
+    bgColor: '#0a0800',
+    texts: [
+      { text: 'GTA ONLINE', fontSize: 110, fontFamily: 'Impact', fill: '#ffd700', stroke: '#7a5c00', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'heist • money • new update', fontSize: 50, fontFamily: 'Arial', fill: '#ffe566', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'gta-purple',
+    name: 'Night Purple',
+    platform: 'gta',
+    bgColor: '#08001a',
+    texts: [
+      { text: '$10M HEIST!', fontSize: 108, fontFamily: 'Impact', fill: '#c084fc', stroke: '#4c1d95', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'gta 5 • gta online • money grind', fontSize: 50, fontFamily: 'Arial', fill: '#e9d5ff', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'gta-red',
+    name: 'Wanted Red',
+    platform: 'gta',
+    bgColor: '#0d0000',
+    texts: [
+      { text: '5 STAR WANTED', fontSize: 96, fontFamily: 'Impact', fill: '#ff2222', stroke: '#7f0000', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'gta 5 • chaos • funny moments', fontSize: 50, fontFamily: 'Arial', fill: '#ffaaaa', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+]
+
+// ─── CS2 Thumbnail (1280×720) ─────────────────────────────────────────────────
+export const CS2_TEMPLATES: Template[] = [
+  {
+    id: 'cs2-blue',
+    name: 'CT Blue',
+    platform: 'cs2',
+    bgColor: '#000d1f',
+    texts: [
+      { text: '1 vs 5 CLUTCH', fontSize: 100, fontFamily: 'Impact', fill: '#4da6ff', stroke: '#003d80', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'cs2 • global elite • ranked', fontSize: 50, fontFamily: 'Arial', fill: '#99ccff', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'cs2-orange',
+    name: 'T-Side Orange',
+    platform: 'cs2',
+    bgColor: '#120800',
+    texts: [
+      { text: 'ACE ROUND!', fontSize: 110, fontFamily: 'Impact', fill: '#ff8c00', stroke: '#7f3800', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'cs2 • faceit • premier mode', fontSize: 50, fontFamily: 'Arial', fill: '#ffcc80', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'cs2-minimal',
+    name: 'Pro Minimal',
+    platform: 'cs2',
+    bgColor: '#0a0a0a',
+    texts: [
+      { text: 'CS2 HIGHLIGHTS', fontSize: 100, fontFamily: 'Impact', fill: '#ffffff', stroke: '#555555', strokeWidth: 2, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'tips • tricks • best plays', fontSize: 50, fontFamily: 'Arial', fill: '#aaaaaa', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+]
+
+// ─── PUBG Thumbnail (1280×720) ────────────────────────────────────────────────
+export const PUBG_TEMPLATES: Template[] = [
+  {
+    id: 'pubg-orange',
+    name: 'Chicken Dinner',
+    platform: 'pubg',
+    bgColor: '#0d0800',
+    texts: [
+      { text: '#1 WINNER!', fontSize: 110, fontFamily: 'Impact', fill: '#f59e0b', stroke: '#78350f', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'pubg • chicken dinner • solo', fontSize: 50, fontFamily: 'Arial', fill: '#fde68a', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'pubg-military',
+    name: 'Military Tan',
+    platform: 'pubg',
+    bgColor: '#1a1208',
+    texts: [
+      { text: '20 KILLS GAME', fontSize: 100, fontFamily: 'Impact', fill: '#d4b483', stroke: '#5a3e0a', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'pubg mobile • squad • ranked', fontSize: 50, fontFamily: 'Arial', fill: '#e8d5b0', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'pubg-dark',
+    name: 'Night Drop',
+    platform: 'pubg',
+    bgColor: '#050a12',
+    texts: [
+      { text: 'SOLO SQUAD WIN', fontSize: 96, fontFamily: 'Impact', fill: '#22d3ee', stroke: '#0e4f5c', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'pubg • erangel • miramar', fontSize: 50, fontFamily: 'Arial', fill: '#a5f3fc', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+]
+
 // ─── Valorant Thumbnail (1280×720) ───────────────────────────────────────────
 export const VALORANT_TEMPLATES: Template[] = [
   {
