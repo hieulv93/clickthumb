@@ -30,7 +30,7 @@ export default function OgImageGeneratorPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <main className="flex-1">
-        <div className="max-w-3xl mx-auto px-4 py-8 sm:py-12 space-y-6">
+        <div className="max-w-4xl mx-auto px-4 py-8 sm:py-12 space-y-6">
           <div className="text-center space-y-2">
             <h1 className="text-2xl sm:text-3xl font-bold text-text-main">OG Image Generator</h1>
             <p className="text-text-muted text-sm sm:text-base">Free online — 1200×630px Open Graph image — no signup, no watermark</p>

@@ -30,7 +30,7 @@ export default function FacebookCoverMakerPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <main className="flex-1">
-        <div className="max-w-3xl mx-auto px-4 py-8 sm:py-12 space-y-6">
+        <div className="max-w-4xl mx-auto px-4 py-8 sm:py-12 space-y-6">
           <div className="text-center space-y-2">
             <h1 className="text-2xl sm:text-3xl font-bold text-text-main">Facebook Cover Maker</h1>
             <p className="text-text-muted text-sm sm:text-base">Free online — 851×315px — no signup, no watermark</p>

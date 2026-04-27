@@ -91,65 +91,80 @@ export default function CanvasToolClient({
     }
   }, [downloadFilename, platform.id, template?.id])
 
+  const downloadBtn = (
+    <div className="space-y-2">
+      {exporting && <ProgressBar visible label="Exporting..." />}
+      <button
+        onClick={handleExport}
+        disabled={exporting}
+        className={`w-full touch-target flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+          downloaded
+            ? 'bg-green-600 hover:bg-green-700 text-white active:scale-95'
+            : 'bg-primary hover:bg-primary-hover active:scale-95 disabled:opacity-60 text-white'
+        }`}
+      >
+        {downloaded ? (
+          <>
+            <svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+            Downloaded!
+          </>
+        ) : (
+          <>
+            <svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+            {exporting ? 'Exporting...' : exportLabel}
+          </>
+        )}
+      </button>
+    </div>
+  )
+
   return (
-    <div className="space-y-4">
-      <div className="flex justify-center">
-        <Suspense fallback={<div className="w-full h-64 bg-surface rounded-xl border border-border" />}>
-          <CanvasEditor
-            platform={platform}
-            template={template}
-            bgColor={bgColor}
-            bgImageUrl={bgImageUrl}
-            fontFamily={fontFamily}
-            texts={texts}
-            onReady={handleReady}
-          />
-        </Suspense>
+    <div className="space-y-6">
+      {/* 2-column on desktop: canvas left (sticky) | controls right */}
+      <div className="md:grid md:grid-cols-[1fr_288px] md:gap-6 md:items-start">
+
+        {/* Left column: canvas + upload + download (sticky on desktop) */}
+        <div className="space-y-3 md:sticky md:top-14">
+          <div className="flex justify-center">
+            <Suspense fallback={<div className="w-full h-64 bg-surface rounded-xl border border-border" />}>
+              <CanvasEditor
+                platform={platform}
+                template={template}
+                bgColor={bgColor}
+                bgImageUrl={bgImageUrl}
+                fontFamily={fontFamily}
+                texts={texts}
+                onReady={handleReady}
+              />
+            </Suspense>
+          </div>
+          <div className="flex justify-end px-1">
+            <p className="text-xs font-medium text-text-muted tabular-nums">
+              {platform.width} × {platform.height} px
+            </p>
+          </div>
+          <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
+          {/* Download button — desktop only */}
+          <div className="hidden md:block">{downloadBtn}</div>
+        </div>
+
+        {/* Right column: controls panel */}
+        <div className="mt-4 md:mt-0">
+          <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
+            <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
+            <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
+            <BgSection color={bgColor} onChange={setBgColor} />
+            <FontSelector value={fontFamily} onChange={setFontFamily} />
+          </div>
+        </div>
       </div>
 
-      <div className="flex justify-end px-1">
-        <p className="text-xs font-medium text-text-muted tabular-nums">
-          {platform.width} × {platform.height} px
-        </p>
-      </div>
-
-      <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
-
-      <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
-        <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
-        <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
-        <BgSection color={bgColor} onChange={setBgColor} />
-        <FontSelector value={fontFamily} onChange={setFontFamily} />
-      </div>
-
-      <div className="space-y-2">
-        {exporting && <ProgressBar visible label="Exporting..." />}
-        <button
-          onClick={handleExport}
-          disabled={exporting}
-          className={`w-full touch-target flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
-            downloaded
-              ? 'bg-green-600 hover:bg-green-700 text-white active:scale-95'
-              : 'bg-primary hover:bg-primary-hover active:scale-95 disabled:opacity-60 text-white'
-          }`}
-        >
-          {downloaded ? (
-            <>
-              <svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-              </svg>
-              Downloaded!
-            </>
-          ) : (
-            <>
-              <svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-              {exporting ? 'Exporting...' : exportLabel}
-            </>
-          )}
-        </button>
-      </div>
+      {/* Download button — mobile only */}
+      <div className="md:hidden">{downloadBtn}</div>
 
       <AdSlot actionDone={done} slot="placeholder-slot-id" />
 
