@@ -95,6 +95,8 @@ export default function CanvasEditor({
           originY: preset.originY,
           textAlign: preset.textAlign,
           width: preset.width * scale,
+          hasBorders: false,
+          hasControls: false,
         })
         canvas.add(textObj)
       }
