@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function Header() {
   return (
     <header className="w-full border-b border-border bg-white sticky top-0 z-10">
-      <div className="max-w-3xl mx-auto px-4 h-14 flex items-center justify-between">
+      <div className="max-w-3xl mx-auto px-4 py-2 sm:h-14 sm:py-0 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 sm:gap-0">
         <Link
           href="/"
           className="flex items-center gap-2 font-bold text-text-main hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
@@ -30,55 +30,24 @@ export default function Header() {
         </Link>
 
         <nav aria-label="Main navigation">
-          <ul className="flex items-center gap-1 sm:gap-3 text-sm">
-            <li>
-              <Link
-                href="/youtube-thumbnail-maker"
-                className="text-text-muted hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1"
-              >
-                YouTube
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/tiktok-thumbnail-maker"
-                className="text-text-muted hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1"
-              >
-                TikTok
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/gaming-thumbnail-maker"
-                className="text-text-muted hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1"
-              >
-                Gaming
-              </Link>
-            </li>
-            <li className="hidden sm:block">
-              <Link
-                href="/instagram-post-maker"
-                className="text-text-muted hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1"
-              >
-                Instagram
-              </Link>
-            </li>
-            <li className="hidden md:block">
-              <Link
-                href="/twitter-header-maker"
-                className="text-text-muted hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1"
-              >
-                Twitter
-              </Link>
-            </li>
-            <li className="hidden md:block">
-              <Link
-                href="/linkedin-banner-maker"
-                className="text-text-muted hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1"
-              >
-                LinkedIn
-              </Link>
-            </li>
+          <ul className="flex flex-wrap gap-x-3 gap-y-1 text-xs sm:text-sm sm:flex-nowrap sm:gap-3">
+            {[
+              { href: '/youtube-thumbnail-maker', label: 'YouTube' },
+              { href: '/tiktok-thumbnail-maker', label: 'TikTok' },
+              { href: '/gaming-thumbnail-maker', label: 'Gaming' },
+              { href: '/instagram-post-maker', label: 'Instagram' },
+              { href: '/twitter-header-maker', label: 'Twitter' },
+              { href: '/linkedin-banner-maker', label: 'LinkedIn' },
+            ].map(({ href, label }) => (
+              <li key={href}>
+                <Link
+                  href={href}
+                  className="text-text-muted hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-0.5"
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>
