@@ -21,7 +21,7 @@ export default function BgSection({ color, onChange }: BgSectionProps) {
             key={c}
             onClick={() => onChange(c)}
             className={`w-7 h-7 rounded-lg border-2 transition-transform ${
-              color === c ? 'border-primary scale-110' : 'border-border hover:scale-105'
+              color === c ? 'border-primary scale-110' : c === '#ffffff' || c === '#f3f4f6' ? 'border-gray-300 hover:scale-105' : 'border-border hover:scale-105'
             }`}
             style={{ backgroundColor: c }}
             aria-label={`Background color ${c}`}

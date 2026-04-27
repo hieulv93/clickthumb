@@ -6,12 +6,12 @@ interface FontSelectorProps {
 }
 
 const FONTS = [
-  { name: 'Impact', label: 'Impact', preview: 'BOLD' },
-  { name: 'Arial Black', label: 'Arial Black', preview: 'Heavy' },
-  { name: 'Arial', label: 'Arial', preview: 'Clean' },
-  { name: 'Georgia', label: 'Georgia', preview: 'Serif' },
-  { name: 'Verdana', label: 'Verdana', preview: 'Round' },
-  { name: 'Trebuchet MS', label: 'Trebuchet', preview: 'Modern' },
+  { name: 'Impact', label: 'Impact' },
+  { name: 'Arial Black', label: 'Arial Black' },
+  { name: 'Arial', label: 'Arial' },
+  { name: 'Georgia', label: 'Georgia' },
+  { name: 'Verdana', label: 'Verdana' },
+  { name: 'Trebuchet MS', label: 'Trebuchet MS' },
 ]
 
 export default function FontSelector({ value, onChange }: FontSelectorProps) {
@@ -31,7 +31,7 @@ export default function FontSelector({ value, onChange }: FontSelectorProps) {
             }`}
             style={{ fontFamily: f.name }}
           >
-            {f.preview}
+            {f.label}
           </button>
         ))}
       </div>
