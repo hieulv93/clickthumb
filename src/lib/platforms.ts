@@ -30,6 +30,19 @@ export const PLATFORMS: Record<string, Platform> = {
 }
 
 export const CANVAS_DISPLAY_WIDTH = 640
+export const CANVAS_DISPLAY_HEIGHT_MAX = 500
+
+export function getDisplayDimensions(platform: Platform): { w: number; h: number } {
+  const scaleByWidth = CANVAS_DISPLAY_WIDTH / platform.width
+  const hByWidth = Math.round(platform.height * scaleByWidth)
+  if (hByWidth <= CANVAS_DISPLAY_HEIGHT_MAX) {
+    return { w: CANVAS_DISPLAY_WIDTH, h: hByWidth }
+  }
+  // Portrait/tall: cap by height, derive width
+  const scaleByHeight = CANVAS_DISPLAY_HEIGHT_MAX / platform.height
+  return { w: Math.round(platform.width * scaleByHeight), h: CANVAS_DISPLAY_HEIGHT_MAX }
+}
+
 export function getDisplayHeight(platform: Platform): number {
-  return Math.round((CANVAS_DISPLAY_WIDTH / platform.width) * platform.height)
+  return getDisplayDimensions(platform).h
 }

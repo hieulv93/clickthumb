@@ -41,6 +41,14 @@ export default function Header() {
             </li>
             <li>
               <Link
+                href="/tiktok-thumbnail-maker"
+                className="text-text-muted hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1"
+              >
+                TikTok
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/gaming-thumbnail-maker"
                 className="text-text-muted hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1"
               >
@@ -53,14 +61,6 @@ export default function Header() {
                 className="text-text-muted hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1"
               >
                 Instagram
-              </Link>
-            </li>
-            <li className="hidden sm:block">
-              <Link
-                href="/tiktok-thumbnail-maker"
-                className="text-text-muted hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1"
-              >
-                TikTok
               </Link>
             </li>
             <li className="hidden md:block">

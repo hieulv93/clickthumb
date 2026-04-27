@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useCallback, useState } from 'react'
 import type { Template } from '@/lib/templates'
-import { CANVAS_DISPLAY_WIDTH, getDisplayHeight, type Platform } from '@/lib/platforms'
+import { getDisplayDimensions, type Platform } from '@/lib/platforms'
 
 interface CanvasEditorProps {
   platform: Platform
@@ -28,14 +28,14 @@ export default function CanvasEditor({
   const fabricRef = useRef<any>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [cssScale, setCssScale] = useState(1)
-  const scale = CANVAS_DISPLAY_WIDTH / platform.width
-  const displayH = getDisplayHeight(platform)
+  const { w: displayW, h: displayH } = getDisplayDimensions(platform)
+  const scale = displayW / platform.width
 
   useEffect(() => {
     const wrapper = wrapperRef.current
     if (!wrapper) return
     const observer = new ResizeObserver(([entry]) => {
-      setCssScale(Math.min(1, entry.contentRect.width / CANVAS_DISPLAY_WIDTH))
+      setCssScale(Math.min(1, entry.contentRect.width / displayW))
     })
     observer.observe(wrapper)
     return () => observer.disconnect()
@@ -115,7 +115,7 @@ export default function CanvasEditor({
       if (!mounted || !canvasRef.current) return
 
       const canvas = new fabric.Canvas(canvasRef.current, {
-        width: CANVAS_DISPLAY_WIDTH,
+        width: displayW,
         height: displayH,
         backgroundColor: bgColor,
         selection: true,
@@ -141,7 +141,7 @@ export default function CanvasEditor({
       }
 
       onReady(async () => {
-        const multiplier = platform.width / CANVAS_DISPLAY_WIDTH
+        const multiplier = platform.width / displayW
         const dataUrl = canvas.toDataURL({
           format: 'jpeg',
           quality: 0.92,
@@ -201,12 +201,12 @@ export default function CanvasEditor({
   }, [texts])
 
   return (
-    <div ref={wrapperRef} className="w-full" style={{ maxWidth: CANVAS_DISPLAY_WIDTH }}>
-      <div style={{ aspectRatio: `${CANVAS_DISPLAY_WIDTH}/${displayH}`, position: 'relative' }}>
+    <div ref={wrapperRef} className="w-full" style={{ maxWidth: displayW }}>
+      <div style={{ aspectRatio: `${displayW}/${displayH}`, position: 'relative' }}>
         <div
           className="absolute top-0 left-0 rounded-xl overflow-hidden border border-border shadow-sm"
           style={{
-            width: CANVAS_DISPLAY_WIDTH,
+            width: displayW,
             height: displayH,
             transformOrigin: 'top left',
             transform: `scale(${cssScale})`,
