@@ -32,7 +32,8 @@ export const metadata: Metadata = {
     'thumbnail studio',
   ],
   authors: [{ name: 'ClickThumb' }],
-  robots: { index: true, follow: true },
+  alternates: { canonical: 'https://click-thumb.com/' },
+  robots: { index: true, follow: true, 'max-snippet': -1, 'max-image-preview': 'large' },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -59,6 +60,12 @@ const siteJsonLd = {
       '@type': 'Organization',
       url: 'https://click-thumb.com',
       name: 'ClickThumb',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://click-thumb.com/logo.png',
+        width: 512,
+        height: 512,
+      },
     },
   ],
 }
