@@ -1,13 +1,5 @@
 {
   "outputDirectory": "out",
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.click-thumb.com" }],
-      "destination": "https://click-thumb.com/:path*",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
