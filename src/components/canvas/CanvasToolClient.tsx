@@ -123,13 +123,14 @@ export default function CanvasToolClient({
   )
 
   return (
-    // lg:grid (1024px+) — at this width canvas gets ~520px, controls col 320px
-    // Right col contains controls + SEO content → very tall → canvas sticky works throughout
+    // 2-column grid on lg+ (1024px+)
+    // Left outer + right outer both stretch to row height (= right col total height)
+    // Both have sticky inner divs → canvas AND controls stay fixed while SEO scrolls
     <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-6">
 
-      {/* Left column wrapper — stretches to row height (= right col height) */}
-      <div>
-        {/* Sticky inner: constrained to left col height, sticks while right col is taller */}
+      {/* Left outer: stretches to row height, bg-white hides scrolling content behind */}
+      <div className="lg:bg-white">
+        {/* Left sticky inner: canvas + upload + download */}
         <div className="space-y-3 lg:sticky lg:top-14">
           <div className="flex justify-center">
             <Suspense fallback={<div className="w-full h-64 bg-surface rounded-xl border border-border" />}>
@@ -150,22 +151,28 @@ export default function CanvasToolClient({
             </p>
           </div>
           <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
-          {/* Download — desktop only */}
+          {/* Download — desktop only, in sticky left col */}
           <div className="hidden lg:block">{downloadBtn}</div>
         </div>
       </div>
 
-      {/* Right column: controls + download (mobile) + AdSlot + SEO content */}
-      {/* SEO content here makes right col very tall → enables sticky on left */}
+      {/* Right outer: controls (sticky) + AdSlot + SEO (scroll normally) */}
+      {/* SEO here makes right col very tall so both stickies have room to work */}
       <div className="mt-4 lg:mt-0 space-y-6">
-        <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
-          <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
-          <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
-          <BgSection color={bgColor} onChange={setBgColor} />
-          <FontSelector value={fontFamily} onChange={setFontFamily} />
+
+        {/* Right sticky inner: controls panel stays fixed while SEO scrolls below */}
+        <div className="lg:sticky lg:top-14 lg:bg-white lg:pb-1">
+          <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
+            <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
+            <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
+            <BgSection color={bgColor} onChange={setBgColor} />
+            <FontSelector value={fontFamily} onChange={setFontFamily} />
+          </div>
+          {/* Download — mobile/tablet only */}
+          <div className="lg:hidden mt-4">{downloadBtn}</div>
         </div>
-        {/* Download — mobile/tablet only */}
-        <div className="lg:hidden">{downloadBtn}</div>
+
+        {/* AdSlot + SEO: scroll in normal flow, appear below sticky controls */}
         <AdSlot actionDone={done} slot="placeholder-slot-id" />
         {children}
       </div>
