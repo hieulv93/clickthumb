@@ -124,17 +124,16 @@ export default function CanvasEditor({
       fabricRef.current = canvas
 
       // Constrain text objects within canvas bounds while dragging
+      // All text presets use originX/Y: 'center', so left/top = center point
       canvas.on('object:moving', (e: any) => {
         const obj = e.target
         if (obj.type !== 'i-text' && obj.type !== 'text') return
         const cw = canvas.width as number
         const ch = canvas.height as number
-        obj.setCoords()
-        const br = obj.getBoundingRect()
-        if (br.left < 0) obj.left -= br.left
-        if (br.top < 0) obj.top -= br.top
-        if (br.left + br.width > cw) obj.left -= (br.left + br.width - cw)
-        if (br.top + br.height > ch) obj.top -= (br.top + br.height - ch)
+        const hw = obj.getScaledWidth() / 2
+        const hh = obj.getScaledHeight() / 2
+        obj.left = Math.max(hw, Math.min(cw - hw, obj.left))
+        obj.top = Math.max(hh, Math.min(ch - hh, obj.top))
       })
 
       if (template) {
