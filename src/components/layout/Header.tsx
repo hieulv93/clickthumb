@@ -41,13 +41,29 @@ export default function Header() {
             </li>
             <li>
               <Link
+                href="/gaming-thumbnail-maker"
+                className="text-text-muted hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1"
+              >
+                Gaming
+              </Link>
+            </li>
+            <li className="hidden sm:block">
+              <Link
                 href="/instagram-post-maker"
                 className="text-text-muted hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1"
               >
                 Instagram
               </Link>
             </li>
-            <li>
+            <li className="hidden sm:block">
+              <Link
+                href="/tiktok-thumbnail-maker"
+                className="text-text-muted hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1"
+              >
+                TikTok
+              </Link>
+            </li>
+            <li className="hidden md:block">
               <Link
                 href="/twitter-header-maker"
                 className="text-text-muted hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1"
@@ -55,7 +71,7 @@ export default function Header() {
                 Twitter
               </Link>
             </li>
-            <li>
+            <li className="hidden md:block">
               <Link
                 href="/linkedin-banner-maker"
                 className="text-text-muted hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1"

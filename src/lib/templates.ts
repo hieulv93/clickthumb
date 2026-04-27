@@ -927,3 +927,37 @@ export const VALORANT_TEMPLATES: Template[] = [
     ],
   },
 ]
+
+// ─── TikTok Cover (1080×1920 portrait) ──────────────────────────────────────
+export const TIKTOK_TEMPLATES: Template[] = [
+  {
+    id: 'tt-viral',
+    name: 'Viral Pink',
+    platform: 'tiktok',
+    bgColor: '#000000',
+    texts: [
+      { text: 'WATCH THIS!', fontSize: 140, fontFamily: 'Impact', fill: '#FF0050', stroke: '#7f0028', strokeWidth: 3, fontWeight: 'bold', left: 540, top: 600, originX: 'center', originY: 'center', textAlign: 'center', width: 950 },
+      { text: 'double-click to edit', fontSize: 72, fontFamily: 'Arial', fill: '#ffffff', fontWeight: 'normal', left: 540, top: 800, originX: 'center', originY: 'center', textAlign: 'center', width: 900 },
+    ],
+  },
+  {
+    id: 'tt-cyan',
+    name: 'Dark Glow',
+    platform: 'tiktok',
+    bgColor: '#0a0a0a',
+    texts: [
+      { text: 'TRENDING NOW', fontSize: 130, fontFamily: 'Impact', fill: '#00f2ea', stroke: '#005f5c', strokeWidth: 3, fontWeight: 'bold', left: 540, top: 600, originX: 'center', originY: 'center', textAlign: 'center', width: 950 },
+      { text: 'double-click to edit', fontSize: 72, fontFamily: 'Arial', fill: '#ccfffe', fontWeight: 'normal', left: 540, top: 800, originX: 'center', originY: 'center', textAlign: 'center', width: 900 },
+    ],
+  },
+  {
+    id: 'tt-yellow',
+    name: 'Trending Yellow',
+    platform: 'tiktok',
+    bgColor: '#1a0028',
+    texts: [
+      { text: 'MUST SEE!', fontSize: 150, fontFamily: 'Impact', fill: '#ffe600', stroke: '#7a5c00', strokeWidth: 3, fontWeight: 'bold', left: 540, top: 600, originX: 'center', originY: 'center', textAlign: 'center', width: 950 },
+      { text: 'double-click to edit', fontSize: 72, fontFamily: 'Arial', fill: '#FF0050', fontWeight: 'normal', left: 540, top: 800, originX: 'center', originY: 'center', textAlign: 'center', width: 900 },
+    ],
+  },
+]

@@ -90,9 +90,16 @@ export default function InstagramPostMakerPage() {
                 </div>
               </div>
               <div className="space-y-3 pt-2 border-t border-border">
-                <h2 className="text-sm font-semibold text-text-main">More Free Image Tools</h2>
+                <h2 className="text-sm font-semibold text-text-main">More Social Media Image Makers</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                  {[{href:'/youtube-thumbnail-maker',title:'YouTube Thumbnail Maker',desc:'1280×720px thumbnails with bold text and templates.'},{href:'/twitter-header-maker',title:'Twitter Header Maker',desc:'1500×500px Twitter/X profile header, free.'},{href:'/linkedin-banner-maker',title:'LinkedIn Banner Maker',desc:'1584×396px professional LinkedIn banner.'}].map(item=>(
+                  {[
+                    {href:'/tiktok-thumbnail-maker',title:'TikTok Thumbnail Maker',desc:'Create 1080×1920px TikTok covers with viral templates.'},
+                    {href:'/youtube-thumbnail-maker',title:'YouTube Thumbnail Maker',desc:'1280×720px thumbnails with bold text and templates.'},
+                    {href:'/twitter-header-maker',title:'Twitter Header Maker',desc:'1500×500px Twitter/X profile header, free.'},
+                    {href:'/linkedin-banner-maker',title:'LinkedIn Banner Maker',desc:'1584×396px professional LinkedIn banner.'},
+                    {href:'/facebook-cover-maker',title:'Facebook Cover Maker',desc:'851×315px Facebook cover photo, free.'},
+                    {href:'/youtube-banner-maker',title:'YouTube Banner Maker',desc:'2560×1440px YouTube channel art, instant download.'},
+                  ].map(item=>(
                     <Link key={item.href} href={item.href} className="block rounded-xl border border-border p-3 hover:border-primary transition-colors group">
                       <p className="font-semibold text-text-main text-xs group-hover:text-primary transition-colors">{item.title}</p>
                       <p className="text-xs text-text-muted mt-0.5 leading-relaxed">{item.desc}</p>

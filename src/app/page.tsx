@@ -80,6 +80,12 @@ const tools = [
     badge: '200K searches/mo',
   },
   {
+    href: '/tiktok-thumbnail-maker',
+    title: 'TikTok Thumbnail Maker',
+    desc: 'Create TikTok cover images at 1080×1920px. Viral Pink, Dark Glow, Trending Yellow templates.',
+    badge: '150K searches/mo',
+  },
+  {
     href: '/youtube-banner-maker',
     title: 'YouTube Banner Maker',
     desc: 'Design a channel art banner at 2560×1440px. Looks great on TV, desktop, and mobile.',
