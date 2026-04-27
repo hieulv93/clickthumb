@@ -123,6 +123,18 @@ export default function CanvasEditor({
       })
       fabricRef.current = canvas
 
+      // Constrain text objects within canvas bounds while dragging
+      canvas.on('object:moving', (e: any) => {
+        const obj = e.target
+        if (obj.type !== 'i-text' && obj.type !== 'text') return
+        obj.setCoords()
+        const br = obj.getBoundingRect()
+        if (br.left < 0) obj.left -= br.left
+        if (br.top < 0) obj.top -= br.top
+        if (br.left + br.width > canvas.width) obj.left -= (br.left + br.width - canvas.width)
+        if (br.top + br.height > canvas.height) obj.top -= (br.top + br.height - canvas.height)
+      })
+
       if (template) {
         await applyTemplate(canvas, fabric, template)
       }
