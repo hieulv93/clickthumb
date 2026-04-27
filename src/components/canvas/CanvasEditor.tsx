@@ -117,6 +117,7 @@ export default function CanvasEditor({
         height: displayH,
         backgroundColor: bgColor,
         selection: true,
+        preserveObjectStacking: true,
       })
       fabricRef.current = canvas
 
