@@ -35,6 +35,14 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link
+                  href="/blog"
+                  className="hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+                >
+                  Blog
+                </Link>
+              </li>
+              <li>
                 <a
                   href="/sitemap.xml"
                   className="hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"

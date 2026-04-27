@@ -8,6 +8,8 @@ module.exports = {
   transform: async (config, path) => {
     const priorities = {
       '/': 0.9,
+      '/blog': 0.8,
+      '/blog/youtube-thumbnail-size-guide': 0.8,
       '/youtube-thumbnail-maker': 1.0,
       '/gaming-thumbnail-maker': 0.85,
       '/instagram-post-maker': 0.85,
