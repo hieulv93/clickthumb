@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     siteName: 'ClickThumb',
-    url: 'https://click-thumb.com',
+    url: 'https://click-thumb.com/',
   },
   twitter: { card: 'summary_large_image', site: '@clickthumb' },
 }
