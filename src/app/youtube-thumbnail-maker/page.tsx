@@ -128,10 +128,10 @@ export default function YouTubeThumbnailPage() {
             </p>
           </div>
 
-          {/* 2-column on lg+ — left sticky canvas, right controls + SEO */}
+          {/* 2-column on lg+: canvas left (sticky) + controls right */}
           <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-6">
 
-            {/* Left column wrapper (stretches to row height = right col height) */}
+            {/* Left: outer stretches to right col height → canvas sticky within that range */}
             <div>
               <div className="space-y-3 lg:sticky lg:top-14">
                 <div className="flex justify-center">
@@ -161,9 +161,8 @@ export default function YouTubeThumbnailPage() {
               </div>
             </div>
 
-            {/* Right column: controls + mobile download + AdSlot + SEO */}
-            {/* SEO here makes right col very tall → canvas sticky works throughout */}
-            <div className="mt-4 lg:mt-0 space-y-6">
+            {/* Right: controls panel only (in flow) */}
+            <div className="mt-4 lg:mt-0 space-y-4">
               <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
                 <TemplateSelector templates={YOUTUBE_TEMPLATES} selected={template} onSelect={handleTemplateSelect} />
                 <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
@@ -177,7 +176,11 @@ export default function YouTubeThumbnailPage() {
                   {downloaded ? (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>Downloaded!</>) : (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" /></svg>{exporting ? 'Exporting...' : 'Download Thumbnail (1280×720)'}</>)}
                 </button>
               </div>
-              <AdSlot actionDone={done} slot="placeholder-slot-id" />
+            </div>
+          </div>
+
+          {/* Full-width below both columns: ad + SEO content */}
+          <AdSlot actionDone={done} slot="placeholder-slot-id" />
 
               {/* SEO Content */}
               <section className="space-y-8 text-sm text-text-muted leading-relaxed">
@@ -346,9 +349,7 @@ export default function YouTubeThumbnailPage() {
                 ))}
               </div>
             </div>
-              </section>
-            </div>
-          </div>
+          </section>
         </div>
       </main>
     </>
