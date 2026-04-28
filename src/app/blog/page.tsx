@@ -2,6 +2,15 @@ import Link from 'next/link'
 
 const posts = [
   {
+    slug: 'how-to-make-gaming-thumbnail',
+    title: 'How to Make a Gaming Thumbnail That Gets More Clicks',
+    description:
+      'Step-by-step guide to creating gaming thumbnails that increase CTR — correct size, layout, face reactions, bold text rules, color strategy, and the most common mistakes.',
+    date: '2026-04-28',
+    readTime: '9 min read',
+    category: 'Guide',
+  },
+  {
     slug: 'social-media-image-sizes',
     title: 'Social Media Image Sizes 2026: The Complete Guide',
     description:
