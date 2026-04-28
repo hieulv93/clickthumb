@@ -9,6 +9,7 @@ module.exports = {
     const priorities = {
       '/': 0.9,
       '/blog': 0.8,
+      '/blog/how-to-make-gaming-thumbnail': 0.8,
       '/blog/social-media-image-sizes': 0.8,
       '/blog/youtube-thumbnail-size-guide': 0.8,
       '/youtube-thumbnail-maker': 1.0,

@@ -94,6 +94,19 @@ export default function CanvasToolClient({
   const downloadBtn = (
     <div className="space-y-2">
       {exporting && <ProgressBar visible label="Exporting..." />}
+      {downloaded && (
+        <p className="text-xs text-center text-text-muted">
+          Need a smaller file?{' '}
+          <a
+            href="https://compressimg.pro/compress-image"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:underline font-medium"
+          >
+            Compress it free →
+          </a>
+        </p>
+      )}
       <button
         onClick={handleExport}
         disabled={exporting}

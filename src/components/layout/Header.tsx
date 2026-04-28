@@ -10,6 +10,7 @@ const navLinks = [
   { href: '/instagram-post-maker', label: 'Instagram' },
   { href: '/twitter-header-maker', label: 'Twitter' },
   { href: '/linkedin-banner-maker', label: 'LinkedIn' },
+  { href: '/blog', label: 'Blog' },
 ]
 
 export default function Header() {
