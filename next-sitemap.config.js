@@ -25,7 +25,7 @@ module.exports = {
       '/fortnite-thumbnail-maker': 0.75,
       '/among-us-thumbnail-maker': 0.75,
       '/cs2-thumbnail-maker': 0.75,
-      '/youtube-banner-maker': 0.75,
+      '/youtube-banner-maker': 0.8,
       '/twitter-header-maker': 0.7,
       '/valorant-thumbnail-maker': 0.7,
       '/pubg-thumbnail-maker': 0.7,
