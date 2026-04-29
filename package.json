@@ -20,6 +20,12 @@
   "lint-staged": {
     "*.{ts,tsx,js,mjs,json,css}": "prettier --write"
   },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Safari versions",
+    "last 2 Edge versions"
+  ],
   "devDependencies": {
     "@types/fabric": "^5.3.10",
     "@types/node": "^20",

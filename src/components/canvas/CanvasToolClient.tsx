@@ -215,16 +215,21 @@ export default function CanvasToolClient({
           </div>
         </div>
 
-        {/* Right: controls panel (in flow, no sticky needed) */}
+        {/* Right: controls panel — only render after editor is activated */}
         <div className="mt-4 lg:mt-0">
-          <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
-            <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
-            <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
-            <BgSection color={bgColor} onChange={setBgColor} />
-            <FontSelector value={fontFamily} onChange={setFontFamily} />
-          </div>
-          {/* Download — mobile/tablet only */}
-          <div className="lg:hidden mt-4">{downloadBtn}</div>
+          {editorActivated ? (
+            <>
+              <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
+                <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
+                <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
+                <BgSection color={bgColor} onChange={setBgColor} />
+                <FontSelector value={fontFamily} onChange={setFontFamily} />
+              </div>
+              <div className="lg:hidden mt-4">{downloadBtn}</div>
+            </>
+          ) : (
+            <div className="rounded-2xl border border-border bg-surface h-64 animate-pulse" />
+          )}
         </div>
       </div>
 
