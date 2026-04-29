@@ -85,7 +85,10 @@ export default function CanvasEditor({
         // hasBorders/hasControls are not serialized by Fabric.js — re-apply to all objects
         canvas.getObjects().forEach((obj: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
           obj.set({ hasBorders: false, hasControls: false })
-          if (obj.type === 'image') canvas.sendToBack(obj)
+          if (obj.type === 'image') {
+            canvas.sendToBack(obj)
+            obj.setCoords()
+          }
         })
         canvas.renderAll()
         resolve()
@@ -200,12 +203,12 @@ export default function CanvasEditor({
           obj.top = Math.max(hh, Math.min(ch - hh, obj.top))
         } else if (obj.type === 'image') {
           // Keep background image covering canvas (no black edges)
-          const minLeft = cw - obj.getScaledWidth()
-          const minTop = ch - obj.getScaledHeight()
-          if (obj.left > 0) obj.left = 0
-          if (obj.left < minLeft) obj.left = minLeft
-          if (obj.top > 0) obj.top = 0
-          if (obj.top < minTop) obj.top = minTop
+          const sw = obj.getScaledWidth()
+          const sh = obj.getScaledHeight()
+          const newLeft = Math.max(cw - sw, Math.min(0, obj.left))
+          const newTop = Math.max(ch - sh, Math.min(0, obj.top))
+          obj.set({ left: newLeft, top: newTop })
+          obj.setCoords()
         }
       })
 
