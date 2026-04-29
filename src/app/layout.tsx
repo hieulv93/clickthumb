@@ -18,7 +18,10 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [{ url: '/logo.png', sizes: '512x512', type: 'image/png' }],
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml', sizes: 'any' },
+      { url: '/logo.png', sizes: '512x512', type: 'image/png' },
+    ],
     shortcut: '/logo.png',
   },
   metadataBase: new URL(process.env.SITE_URL || 'https://click-thumb.com'),
