@@ -19,6 +19,8 @@ const CanvasEditor = dynamic(() => import('./CanvasEditor'), {
   loading: () => <div className="w-full h-64 bg-surface rounded-xl border border-border animate-pulse" />,
 })
 
+type ExportFormat = 'jpeg' | 'png'
+
 interface CanvasToolClientProps {
   platform: Platform
   templates: Template[]
@@ -42,6 +44,8 @@ export default function CanvasToolClient({
   const [exporting, setExporting] = useState(false)
   const [done, setDone] = useState(false)
   const [downloaded, setDownloaded] = useState(false)
+  const [exportError, setExportError] = useState(false)
+  const [format, setFormat] = useState<ExportFormat>('jpeg')
   const exportFnRef = useRef<(() => Promise<Blob>) | null>(null)
   const bgUrlRef = useRef<string | null>(null)
 
@@ -77,23 +81,49 @@ export default function CanvasToolClient({
   const handleExport = useCallback(async () => {
     if (!exportFnRef.current) return
     setExporting(true)
+    setExportError(false)
     try {
       const blob = await exportFnRef.current()
-      triggerDownload(blob, downloadFilename)
+      const ext = format === 'png' ? '.png' : '.jpg'
+      const filename = downloadFilename.replace(/\.(jpg|jpeg|png)$/i, ext)
+      triggerDownload(blob, filename)
       setDone(true)
       setDownloaded(true)
       setTimeout(() => setDownloaded(false), 3000)
       analytics.thumbnailExported(platform.id, template?.id ?? 'custom', blob.size / 1024)
     } catch {
-      // silent
+      setExportError(true)
+      setTimeout(() => setExportError(false), 4000)
     } finally {
       setExporting(false)
     }
-  }, [downloadFilename, platform.id, template?.id])
+  }, [downloadFilename, format, platform.id, template?.id])
+
+  const formatToggle = (
+    <div className="flex rounded-lg border border-border overflow-hidden text-xs font-medium">
+      {(['jpeg', 'png'] as ExportFormat[]).map((fmt) => (
+        <button
+          key={fmt}
+          onClick={() => setFormat(fmt)}
+          className={`flex-1 py-1.5 transition-colors ${
+            format === fmt
+              ? 'bg-primary text-white'
+              : 'text-text-muted hover:text-text-main hover:bg-surface'
+          }`}
+        >
+          {fmt.toUpperCase()}
+        </button>
+      ))}
+    </div>
+  )
 
   const downloadBtn = (
     <div className="space-y-2">
+      {formatToggle}
       {exporting && <ProgressBar visible label="Exporting..." />}
+      {exportError && (
+        <p className="text-xs text-center text-red-500">Export failed. Please try again.</p>
+      )}
       {downloaded && (
         <p className="text-xs text-center text-text-muted">
           Need a smaller file?{' '}
@@ -128,7 +158,7 @@ export default function CanvasToolClient({
             <svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
             </svg>
-            {exporting ? 'Exporting...' : exportLabel}
+            {exporting ? 'Exporting...' : `${exportLabel} (${format.toUpperCase()})`}
           </>
         )}
       </button>
@@ -152,6 +182,7 @@ export default function CanvasToolClient({
                   bgImageUrl={bgImageUrl}
                   fontFamily={fontFamily}
                   texts={texts}
+                  format={format}
                   onReady={handleReady}
                 />
               </Suspense>

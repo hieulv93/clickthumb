@@ -143,6 +143,7 @@ export default function YouTubeThumbnailPage() {
                       bgImageUrl={bgImageUrl}
                       fontFamily={fontFamily}
                       texts={texts}
+                      format="jpeg"
                       onReady={handleReady}
                     />
                   </Suspense>
