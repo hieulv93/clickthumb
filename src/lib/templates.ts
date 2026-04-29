@@ -961,3 +961,57 @@ export const TIKTOK_TEMPLATES: Template[] = [
     ],
   },
 ]
+
+// ─── Twitch Banner / Offline Screen (1920×1080) ───────────────────────────────
+export const TWITCH_TEMPLATES: Template[] = [
+  {
+    id: 'tw-purple',
+    name: 'Twitch Purple',
+    platform: 'twitch',
+    bgColor: '#1a0533',
+    texts: [
+      { text: 'CHANNEL NAME', fontSize: 140, fontFamily: 'Impact', fill: '#bf94ff', stroke: '#6441a5', strokeWidth: 3, fontWeight: 'bold', left: 960, top: 420, originX: 'center', originY: 'center', textAlign: 'center', width: 1700 },
+      { text: 'OFFLINE — Back soon!', fontSize: 72, fontFamily: 'Arial', fill: '#e9d5ff', fontWeight: 'normal', left: 960, top: 590, originX: 'center', originY: 'center', textAlign: 'center', width: 1500 },
+    ],
+  },
+  {
+    id: 'tw-neon',
+    name: 'Neon Gaming',
+    platform: 'twitch',
+    bgColor: '#0a0a0a',
+    texts: [
+      { text: 'CHANNEL NAME', fontSize: 150, fontFamily: 'Impact', fill: '#00ff88', stroke: '#006633', strokeWidth: 3, fontWeight: 'bold', left: 960, top: 400, originX: 'center', originY: 'center', textAlign: 'center', width: 1700 },
+      { text: 'OFFLINE • Stream starts soon', fontSize: 72, fontFamily: 'Arial', fill: '#00ccff', fontWeight: 'normal', left: 960, top: 580, originX: 'center', originY: 'center', textAlign: 'center', width: 1500 },
+    ],
+  },
+  {
+    id: 'tw-dark',
+    name: 'Minimal Dark',
+    platform: 'twitch',
+    bgColor: '#0f172a',
+    texts: [
+      { text: 'Channel Name', fontSize: 130, fontFamily: 'Arial', fill: '#ffffff', fontWeight: 'bold', left: 960, top: 420, originX: 'center', originY: 'center', textAlign: 'center', width: 1700 },
+      { text: 'Offline — see you next stream', fontSize: 68, fontFamily: 'Arial', fill: '#94a3b8', fontWeight: 'normal', left: 960, top: 585, originX: 'center', originY: 'center', textAlign: 'center', width: 1500 },
+    ],
+  },
+  {
+    id: 'tw-fire',
+    name: 'Fire Red',
+    platform: 'twitch',
+    bgColor: '#1c0506',
+    texts: [
+      { text: 'CHANNEL NAME', fontSize: 150, fontFamily: 'Impact', fill: '#ff4500', stroke: '#7f1d1d', strokeWidth: 3, fontWeight: 'bold', left: 960, top: 400, originX: 'center', originY: 'center', textAlign: 'center', width: 1700 },
+      { text: 'OFFLINE • Coming back soon', fontSize: 72, fontFamily: 'Arial', fill: '#fed7aa', fontWeight: 'normal', left: 960, top: 580, originX: 'center', originY: 'center', textAlign: 'center', width: 1500 },
+    ],
+  },
+  {
+    id: 'tw-blue',
+    name: 'Ice Blue',
+    platform: 'twitch',
+    bgColor: '#0c1a2e',
+    texts: [
+      { text: 'CHANNEL NAME', fontSize: 140, fontFamily: 'Impact', fill: '#38bdf8', stroke: '#0c4a6e', strokeWidth: 2, fontWeight: 'bold', left: 960, top: 420, originX: 'center', originY: 'center', textAlign: 'center', width: 1700 },
+      { text: 'BRB • Stream returns soon', fontSize: 72, fontFamily: 'Arial', fill: '#bae6fd', fontWeight: 'normal', left: 960, top: 590, originX: 'center', originY: 'center', textAlign: 'center', width: 1500 },
+    ],
+  },
+]

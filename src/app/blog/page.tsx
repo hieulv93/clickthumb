@@ -2,6 +2,15 @@ import Link from 'next/link'
 
 const posts = [
   {
+    slug: 'how-to-increase-youtube-ctr',
+    title: 'How to Increase YouTube CTR: 8 Thumbnail Tips That Work',
+    description:
+      'Improve your YouTube click-through rate with proven thumbnail design strategies. Contrast, faces, bold text, A/B testing — practical tips backed by creator data.',
+    date: '2026-04-29',
+    readTime: '8 min read',
+    category: 'Guide',
+  },
+  {
     slug: 'how-to-make-gaming-thumbnail',
     title: 'How to Make a Gaming Thumbnail That Gets More Clicks',
     description:

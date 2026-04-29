@@ -115,6 +115,12 @@ const tools = [
     desc: 'Generate Open Graph preview images at 1200×630px for websites and blogs.',
     badge: '50K searches/mo',
   },
+  {
+    href: '/twitch-banner-maker',
+    title: 'Twitch Banner Maker',
+    desc: 'Create a Twitch offline screen at 1920×1080px. Gaming templates, instant download.',
+    badge: '100K searches/mo',
+  },
 ]
 
 export default function HomePage() {

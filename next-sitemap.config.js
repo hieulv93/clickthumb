@@ -9,6 +9,7 @@ module.exports = {
     const priorities = {
       '/': 0.9,
       '/blog': 0.8,
+      '/blog/how-to-increase-youtube-ctr': 0.8,
       '/blog/how-to-make-gaming-thumbnail': 0.8,
       '/blog/social-media-image-sizes': 0.8,
       '/blog/youtube-thumbnail-size-guide': 0.8,
@@ -31,6 +32,7 @@ module.exports = {
       '/linkedin-banner-maker': 0.7,
       '/facebook-cover-maker': 0.7,
       '/og-image-generator': 0.6,
+      '/twitch-banner-maker': 0.85,
     }
     return {
       loc: path,
