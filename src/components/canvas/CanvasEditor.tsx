@@ -82,6 +82,12 @@ export default function CanvasEditor({
     isRestoringRef.current = true
     await new Promise<void>((resolve) => {
       canvas.loadFromJSON(JSON.parse(snapshot), () => {
+        // hasBorders/hasControls are not serialized by Fabric.js — re-apply after restore
+        canvas.getObjects().forEach((obj: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+          if (obj.type === 'image') {
+            obj.set({ hasBorders: false, hasControls: false })
+          }
+        })
         canvas.renderAll()
         resolve()
       })
@@ -129,15 +135,6 @@ export default function CanvasEditor({
               evented: true,
               hasControls: false,
               hasBorders: false,
-            })
-            // Constrain drag so image always covers canvas (no black edges)
-            img.on('moving', () => {
-              const minLeft = canvas.width - img.getScaledWidth()
-              const minTop = canvas.height - img.getScaledHeight()
-              if (img.left > 0) img.left = 0
-              if (img.left < minLeft) img.left = minLeft
-              if (img.top > 0) img.top = 0
-              if (img.top < minTop) img.top = minTop
             })
             canvas.add(img)
             canvas.sendToBack(img)
@@ -192,16 +189,25 @@ export default function CanvasEditor({
       })
       fabricRef.current = canvas
 
-      // Constrain text objects within canvas bounds while dragging
+      // Constrain objects within canvas bounds while dragging
       canvas.on('object:moving', (e: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
         const obj = e.target
-        if (obj.type !== 'i-text' && obj.type !== 'text') return
         const cw = canvas.width as number
         const ch = canvas.height as number
-        const hw = obj.getScaledWidth() / 2
-        const hh = obj.getScaledHeight() / 2
-        obj.left = Math.max(hw, Math.min(cw - hw, obj.left))
-        obj.top = Math.max(hh, Math.min(ch - hh, obj.top))
+        if (obj.type === 'i-text' || obj.type === 'text') {
+          const hw = obj.getScaledWidth() / 2
+          const hh = obj.getScaledHeight() / 2
+          obj.left = Math.max(hw, Math.min(cw - hw, obj.left))
+          obj.top = Math.max(hh, Math.min(ch - hh, obj.top))
+        } else if (obj.type === 'image') {
+          // Keep background image covering canvas (no black edges)
+          const minLeft = cw - obj.getScaledWidth()
+          const minTop = ch - obj.getScaledHeight()
+          if (obj.left > 0) obj.left = 0
+          if (obj.left < minLeft) obj.left = minLeft
+          if (obj.top > 0) obj.top = 0
+          if (obj.top < minTop) obj.top = minTop
+        }
       })
 
       // History: push snapshot after user modifies objects
