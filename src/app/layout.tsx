@@ -17,6 +17,10 @@ export const metadata: Metadata = {
       'google-adsense-account': process.env.NEXT_PUBLIC_ADSENSE_ID ?? '',
     },
   },
+  icons: {
+    icon: [{ url: '/logo.png', sizes: '512x512', type: 'image/png' }],
+    shortcut: '/logo.png',
+  },
   metadataBase: new URL(process.env.SITE_URL || 'https://click-thumb.com'),
   title: {
     default: 'Free Thumbnail & Social Media Image Maker | ClickThumb',
