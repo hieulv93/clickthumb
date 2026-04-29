@@ -205,6 +205,7 @@ export default function CanvasEditor({
           // Keep background image covering canvas (no black edges)
           const sw = obj.getScaledWidth()
           const sh = obj.getScaledHeight()
+          console.log('[img-moving] sw:', sw, 'cw:', cw, 'left:', obj.left, 'scaleX:', obj.scaleX, 'w:', obj.width)
           const newLeft = Math.max(cw - sw, Math.min(0, obj.left))
           const newTop = Math.max(ch - sh, Math.min(0, obj.top))
           obj.set({ left: newLeft, top: newTop })
