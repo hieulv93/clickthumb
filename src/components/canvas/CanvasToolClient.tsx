@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback, useRef, Suspense } from 'react'
+import { useState, useCallback, useRef, Suspense, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import TemplateSelector from './TemplateSelector'
 import TextEditor from './TextEditor'
@@ -46,8 +46,19 @@ export default function CanvasToolClient({
   const [downloaded, setDownloaded] = useState(false)
   const [exportError, setExportError] = useState(false)
   const [format, setFormat] = useState<ExportFormat>('jpeg')
+  const [editorReady, setEditorReady] = useState(false)
   const exportFnRef = useRef<(() => Promise<Blob>) | null>(null)
   const bgUrlRef = useRef<string | null>(null)
+
+  useEffect(() => {
+    if ('requestIdleCallback' in window) {
+      const id = requestIdleCallback(() => setEditorReady(true))
+      return () => cancelIdleCallback(id)
+    } else {
+      const t = setTimeout(() => setEditorReady(true), 200)
+      return () => clearTimeout(t)
+    }
+  }, [])
 
   const handleReady = useCallback((fn: () => Promise<Blob>) => {
     exportFnRef.current = fn
@@ -174,18 +185,22 @@ export default function CanvasToolClient({
         <div>
           <div className="space-y-3 lg:sticky lg:top-14">
             <div className="flex justify-center">
-              <Suspense fallback={<div className="w-full h-64 bg-surface rounded-xl border border-border" />}>
-                <CanvasEditor
-                  platform={platform}
-                  template={template}
-                  bgColor={bgColor}
-                  bgImageUrl={bgImageUrl}
-                  fontFamily={fontFamily}
-                  texts={texts}
-                  format={format}
-                  onReady={handleReady}
-                />
-              </Suspense>
+              {editorReady ? (
+                <Suspense fallback={<div className="w-full h-64 bg-surface rounded-xl border border-border animate-pulse" />}>
+                  <CanvasEditor
+                    platform={platform}
+                    template={template}
+                    bgColor={bgColor}
+                    bgImageUrl={bgImageUrl}
+                    fontFamily={fontFamily}
+                    texts={texts}
+                    format={format}
+                    onReady={handleReady}
+                  />
+                </Suspense>
+              ) : (
+                <div className="w-full h-64 bg-surface rounded-xl border border-border animate-pulse" />
+              )}
             </div>
             <div className="flex justify-end px-1">
               <p className="text-xs font-medium text-text-muted tabular-nums">

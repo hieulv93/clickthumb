@@ -6,11 +6,11 @@ export default function FAQItem({ question, answer }: { question: string; answer
   const [open, setOpen] = useState(false)
   return (
     <div className="rounded-xl border border-border overflow-hidden">
-      <dt>
+      <div>
         <button
           onClick={() => setOpen(!open)}
           aria-expanded={open}
-          className="w-full flex items-center justify-between gap-3 p-4 text-left hover:bg-surface transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
+          className="w-full flex items-center justify-between gap-3 px-4 py-4 text-left hover:bg-surface transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset min-h-[44px]"
         >
           <span className="text-sm font-semibold text-text-main">{question}</span>
           <span className={`flex-shrink-0 text-text-muted transition-transform duration-200 ${open ? 'rotate-180' : ''}`} aria-hidden="true">
@@ -19,10 +19,12 @@ export default function FAQItem({ question, answer }: { question: string; answer
             </svg>
           </span>
         </button>
-      </dt>
-      <dd className={`text-sm text-text-muted leading-relaxed border-t border-border px-4 pt-3 pb-4 ${open ? '' : 'hidden'}`}>
-        {answer}
-      </dd>
+      </div>
+      {open && (
+        <div className="text-sm text-text-muted leading-relaxed border-t border-border px-4 pt-3 pb-4">
+          {answer}
+        </div>
+      )}
     </div>
   )
 }
