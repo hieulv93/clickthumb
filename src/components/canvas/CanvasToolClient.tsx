@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback, useRef, Suspense, useEffect } from 'react'
+import { useState, useCallback, useRef, Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import TemplateSelector from './TemplateSelector'
 import TextEditor from './TextEditor'
@@ -46,19 +46,9 @@ export default function CanvasToolClient({
   const [downloaded, setDownloaded] = useState(false)
   const [exportError, setExportError] = useState(false)
   const [format, setFormat] = useState<ExportFormat>('jpeg')
-  const [editorReady, setEditorReady] = useState(false)
+  const [editorActivated, setEditorActivated] = useState(false)
   const exportFnRef = useRef<(() => Promise<Blob>) | null>(null)
   const bgUrlRef = useRef<string | null>(null)
-
-  useEffect(() => {
-    if ('requestIdleCallback' in window) {
-      const id = requestIdleCallback(() => setEditorReady(true))
-      return () => cancelIdleCallback(id)
-    } else {
-      const t = setTimeout(() => setEditorReady(true), 200)
-      return () => clearTimeout(t)
-    }
-  }, [])
 
   const handleReady = useCallback((fn: () => Promise<Blob>) => {
     exportFnRef.current = fn
@@ -184,9 +174,9 @@ export default function CanvasToolClient({
         {/* Left: outer stretches to match right col height → canvas sticky within that range */}
         <div>
           <div className="space-y-3 lg:sticky lg:top-14">
-            <div className="flex justify-center">
-              {editorReady ? (
-                <Suspense fallback={<div className="w-full h-64 bg-surface rounded-xl border border-border animate-pulse" />}>
+            <div className="flex justify-center w-full">
+              {editorActivated ? (
+                <Suspense fallback={<div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: `${platform.width} / ${platform.height}` }} />}>
                   <CanvasEditor
                     platform={platform}
                     template={template}
@@ -199,7 +189,19 @@ export default function CanvasToolClient({
                   />
                 </Suspense>
               ) : (
-                <div className="w-full h-64 bg-surface rounded-xl border border-border animate-pulse" />
+                <button
+                  onClick={() => setEditorActivated(true)}
+                  className="w-full rounded-xl border border-border overflow-hidden relative group"
+                  style={{ backgroundColor: bgColor, aspectRatio: `${platform.width} / ${platform.height}` }}
+                  aria-label={`Open ${platform.name} editor`}
+                >
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/40 group-hover:bg-black/50 transition-colors">
+                    <span className="bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-xl">
+                      Open Editor →
+                    </span>
+                    <span className="text-xs text-white/80">{template?.name ?? platform.name}</span>
+                  </div>
+                </button>
               )}
             </div>
             <div className="flex justify-end px-1">

@@ -62,6 +62,7 @@ export default function YouTubeThumbnailPage() {
   const [done, setDone] = useState(false)
   const [downloaded, setDownloaded] = useState(false)
   const [exportError, setExportError] = useState(false)
+  const [editorActivated, setEditorActivated] = useState(false)
   const exportFnRef = useRef<(() => Promise<Blob>) | null>(null)
   const bgUrlRef = useRef<string | null>(null)
 
@@ -136,19 +137,35 @@ export default function YouTubeThumbnailPage() {
             {/* Left: outer stretches to right col height → canvas sticky within that range */}
             <div>
               <div className="space-y-3 lg:sticky lg:top-14">
-                <div className="flex justify-center">
-                  <Suspense fallback={<div className="w-full h-64 bg-surface rounded-xl border border-border" />}>
-                    <CanvasEditor
-                      platform={platform}
-                      template={template}
-                      bgColor={bgColor}
-                      bgImageUrl={bgImageUrl}
-                      fontFamily={fontFamily}
-                      texts={texts}
-                      format="jpeg"
-                      onReady={handleReady}
-                    />
-                  </Suspense>
+                <div className="flex justify-center w-full">
+                  {editorActivated ? (
+                    <Suspense fallback={<div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: '16 / 9' }} />}>
+                      <CanvasEditor
+                        platform={platform}
+                        template={template}
+                        bgColor={bgColor}
+                        bgImageUrl={bgImageUrl}
+                        fontFamily={fontFamily}
+                        texts={texts}
+                        format="jpeg"
+                        onReady={handleReady}
+                      />
+                    </Suspense>
+                  ) : (
+                    <button
+                      onClick={() => setEditorActivated(true)}
+                      className="w-full rounded-xl border border-border overflow-hidden relative group"
+                      style={{ backgroundColor: bgColor, aspectRatio: '16 / 9' }}
+                      aria-label="Open YouTube Thumbnail editor"
+                    >
+                      <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/40 group-hover:bg-black/50 transition-colors">
+                        <span className="bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-xl">
+                          Open Editor →
+                        </span>
+                        <span className="text-xs text-white/80">{template?.name ?? 'YouTube Thumbnail'}</span>
+                      </div>
+                    </button>
+                  )}
                 </div>
                 <div className="flex justify-end px-1">
                   <p className="text-xs font-medium text-text-muted tabular-nums">1280 × 720 px</p>
