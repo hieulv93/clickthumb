@@ -202,14 +202,17 @@ export default function CanvasEditor({
           obj.left = Math.max(hw, Math.min(cw - hw, obj.left))
           obj.top = Math.max(hh, Math.min(ch - hh, obj.top))
         } else if (obj.type === 'image') {
-          // Keep background image covering canvas (no black edges)
+          // Keep background image covering canvas (no black edges).
+          // After clamping, sync _currentTransform so Fabric.js uses the
+          // constrained position as origin for the next delta — prevents drift.
           const sw = obj.getScaledWidth()
           const sh = obj.getScaledHeight()
-          console.log('[img-moving] sw:', sw, 'cw:', cw, 'left:', obj.left, 'scaleX:', obj.scaleX, 'w:', obj.width)
           const newLeft = Math.max(cw - sw, Math.min(0, obj.left))
           const newTop = Math.max(ch - sh, Math.min(0, obj.top))
           obj.set({ left: newLeft, top: newTop })
           obj.setCoords()
+          const t = (canvas as any)._currentTransform // eslint-disable-line @typescript-eslint/no-explicit-any
+          if (t) { t.left = newLeft; t.top = newTop }
         }
       })
 
