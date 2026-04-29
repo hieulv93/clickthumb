@@ -82,18 +82,10 @@ export default function CanvasEditor({
     isRestoringRef.current = true
     await new Promise<void>((resolve) => {
       canvas.loadFromJSON(JSON.parse(snapshot), () => {
-        const cw = canvas.width as number
-        const ch = canvas.height as number
+        // hasBorders/hasControls are not serialized by Fabric.js — re-apply to all objects
         canvas.getObjects().forEach((obj: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
-          if (obj.type === 'image') {
-            obj.set({ hasBorders: false, hasControls: false })
-            // Re-clamp position: JSON float drift can make left/top slightly positive → black edge
-            const minLeft = cw - obj.getScaledWidth()
-            const minTop = ch - obj.getScaledHeight()
-            obj.left = Math.min(0, Math.max(minLeft, obj.left))
-            obj.top = Math.min(0, Math.max(minTop, obj.top))
-            canvas.sendToBack(obj)
-          }
+          obj.set({ hasBorders: false, hasControls: false })
+          if (obj.type === 'image') canvas.sendToBack(obj)
         })
         canvas.renderAll()
         resolve()
