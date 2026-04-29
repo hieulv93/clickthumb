@@ -82,7 +82,6 @@ export default function CanvasEditor({
     isRestoringRef.current = true
     await new Promise<void>((resolve) => {
       canvas.loadFromJSON(JSON.parse(snapshot), () => {
-        // hasBorders/hasControls are not serialized by Fabric.js — re-apply to all objects
         canvas.getObjects().forEach((obj: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
           obj.set({ hasBorders: false, hasControls: false })
           if (obj.type === 'image') {
@@ -91,7 +90,26 @@ export default function CanvasEditor({
           }
         })
         canvas.renderAll()
-        resolve()
+        // RAF: image pixels fully decoded by next frame — clamp position
+        // to ensure image always covers canvas (snapshot may have stored
+        // an unconstrained position from before constraint fixes).
+        requestAnimationFrame(() => {
+          const cw = canvas.width as number
+          const ch = canvas.height as number
+          canvas.getObjects().forEach((obj: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+            if (obj.type === 'image') {
+              const sw = obj.getScaledWidth()
+              const sh = obj.getScaledHeight()
+              obj.set({
+                left: Math.max(cw - sw, Math.min(0, obj.left)),
+                top: Math.max(ch - sh, Math.min(0, obj.top)),
+              })
+              obj.setCoords()
+            }
+          })
+          canvas.renderAll()
+          resolve()
+        })
       })
     })
     isRestoringRef.current = false
