@@ -59,7 +59,7 @@ export default function TwitterHeaderMakerPage() {
               </div>
               <div className="space-y-3">
                 <h2 className="text-base font-bold text-text-main">Compress Your Twitter Header Before Uploading</h2>
-                <p>Twitter accepts headers up to 5MB. A 1500×500px JPG at 92% quality is typically 200–500KB — well within the limit. If you need to reduce the file size further, use <Link href="https://compressimg.pro" className="text-primary hover:underline" target="_blank" rel="noopener">CompressImg.pro</Link> to compress without visible quality loss.</p>
+                <p>Twitter accepts headers up to 5MB. A 1500×500px JPG at 92% quality is typically 200–500KB — well within the limit. If you need to reduce the file size further, use <Link href="https://compressimg.pro/compress-image-for-twitter" className="text-primary hover:underline" target="_blank" rel="noopener">CompressImg — Compress for Twitter</Link> to compress without visible quality loss.</p>
               </div>
               <div className="space-y-4">
                 <h2 className="text-base font-bold text-text-main">Frequently Asked Questions</h2>

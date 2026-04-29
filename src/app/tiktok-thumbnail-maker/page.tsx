@@ -128,7 +128,7 @@ export default function TikTokThumbnailMakerPage() {
 
               <div className="space-y-3">
                 <h2 className="text-base font-bold text-text-main">Compress Your TikTok Cover Before Uploading</h2>
-                <p>TikTok&apos;s cover image limit is 1MB. A 1080×1920px JPG at high quality is typically 200–500KB — within the limit. If you need to reduce file size, use <Link href="https://compressimg.pro/compress-image" className="text-primary hover:underline" target="_blank" rel="noopener">CompressImg.pro</Link> to compress without visible quality loss.</p>
+                <p>TikTok&apos;s cover image limit is 1MB. A 1080×1920px JPG at high quality is typically 200–500KB — within the limit. If you need to reduce file size, use <Link href="https://compressimg.pro/compress-image-for-tiktok" className="text-primary hover:underline" target="_blank" rel="noopener">CompressImg — Compress for TikTok</Link> to compress without visible quality loss.</p>
               </div>
 
               <div className="space-y-4">
