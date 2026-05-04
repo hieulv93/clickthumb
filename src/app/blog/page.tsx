@@ -2,6 +2,15 @@ import Link from 'next/link'
 
 const posts = [
   {
+    slug: 'how-to-make-youtube-thumbnail-without-photoshop',
+    title: 'How to Make a YouTube Thumbnail Without Photoshop (Free, 2026)',
+    description:
+      'Make professional YouTube thumbnails for free without Photoshop — step-by-step guide covering the right size, templates, design tips, and common mistakes to avoid.',
+    date: '2026-05-04',
+    readTime: '9 min read',
+    category: 'Guide',
+  },
+  {
     slug: 'how-to-increase-youtube-ctr',
     title: 'How to Increase YouTube CTR: 8 Thumbnail Tips That Work',
     description:
