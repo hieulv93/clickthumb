@@ -267,7 +267,8 @@ export default function CanvasEditor({
 
   return (
     <div ref={wrapperRef} className="w-full" style={{ maxWidth: displayW }}>
-      <div style={{ aspectRatio: `${displayW}/${displayH}`, position: 'relative' }}>
+      {/* overflow:hidden clips the absolute canvas (fixed layout width) so it never causes page horizontal scroll */}
+      <div style={{ aspectRatio: `${displayW}/${displayH}`, position: 'relative', overflow: 'hidden' }}>
         <div
           className="absolute top-0 left-0 rounded-xl overflow-hidden border border-border shadow-sm"
           style={{

@@ -175,9 +175,9 @@ export default function CanvasToolClient({
         {/* Left: outer stretches to match right col height → canvas sticky within that range */}
         <div>
           <div className="space-y-3 lg:sticky lg:top-14">
-            <div className="flex justify-center w-full">
+            <div className="w-full">
               {editorActivated ? (
-                <Suspense fallback={<div className="bg-surface rounded-xl border border-border animate-pulse" style={{ width: displayW, aspectRatio: `${displayW} / ${displayH}`, maxWidth: '100%' }} />}>
+                <Suspense fallback={<div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: `${displayW} / ${displayH}` }} />}>
                   <CanvasEditor
                     platform={platform}
                     template={template}
@@ -192,8 +192,8 @@ export default function CanvasToolClient({
               ) : (
                 <button
                   onClick={() => setEditorActivated(true)}
-                  className="rounded-xl border border-border bg-surface flex flex-col items-center justify-center gap-4 group hover:border-primary transition-colors duration-150"
-                  style={{ width: displayW, aspectRatio: `${displayW} / ${displayH}`, maxWidth: '100%' }}
+                  className="w-full rounded-xl border border-border bg-surface flex flex-col items-center justify-center gap-4 group hover:border-primary transition-colors duration-150"
+                  style={{ aspectRatio: `${displayW} / ${displayH}` }}
                   aria-label={`Open ${platform.name} editor`}
                 >
                   <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
