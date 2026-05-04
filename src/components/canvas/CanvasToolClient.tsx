@@ -219,9 +219,7 @@ export default function CanvasToolClient({
                     Open Editor →
                   </span>
                 </button>
-                <div className="flex items-center justify-end px-1 mt-1 min-h-[26px]">
-                  <p className="text-xs font-medium text-text-muted tabular-nums">{platform.width} × {platform.height} px</p>
-                </div>
+                <div className="min-h-[26px]" />
               </div>
             )}
             {/* dim text + reset are rendered inside each state above */}
