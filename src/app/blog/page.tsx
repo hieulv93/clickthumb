@@ -2,6 +2,51 @@ import Link from 'next/link'
 
 const posts = [
   {
+    slug: 'linkedin-banner-size-guide',
+    title: 'LinkedIn Banner Size Guide 2026 — Dimensions, Design Tips & Examples',
+    description:
+      'The exact LinkedIn banner size for 2026 — 1584×396px, safe zones, what gets cropped on mobile, and how to design a banner that converts profile visitors.',
+    date: '2026-05-07',
+    readTime: '7 min read',
+    category: 'Guide',
+  },
+  {
+    slug: 'twitter-header-size-guide',
+    title: 'Twitter / X Header Size Guide 2026 — Exact Dimensions & Safe Zones',
+    description:
+      'The exact Twitter (X) header size for 2026 — 1500×500px, what gets hidden by the profile picture, and how to design a header that looks great on all devices.',
+    date: '2026-05-06',
+    readTime: '7 min read',
+    category: 'Guide',
+  },
+  {
+    slug: 'instagram-post-size-guide',
+    title: 'Instagram Post Size Guide 2026 — All Formats & Dimensions',
+    description:
+      'Exact Instagram post sizes for 2026 — square, portrait, landscape, Stories, Reels, and carousel. The right dimensions for every format so your images never get cropped.',
+    date: '2026-05-06',
+    readTime: '8 min read',
+    category: 'Guide',
+  },
+  {
+    slug: 'how-to-make-fortnite-thumbnail',
+    title: 'How to Make a Fortnite Thumbnail (Free, 2026 Guide)',
+    description:
+      'Step-by-step guide to making a Fortnite thumbnail that gets more clicks — correct size, color strategy, text rules, character placement, and common mistakes to avoid.',
+    date: '2026-05-05',
+    readTime: '8 min read',
+    category: 'Guide',
+  },
+  {
+    slug: 'tiktok-cover-size-guide',
+    title: 'TikTok Cover Size Guide 2026 — Exact Dimensions & Design Tips',
+    description:
+      'The exact TikTok cover size for 2026 — 1080×1920px explained, what gets cropped in the grid view, and how to design a cover that looks great everywhere.',
+    date: '2026-05-05',
+    readTime: '7 min read',
+    category: 'Guide',
+  },
+  {
     slug: 'how-to-make-youtube-thumbnail-without-photoshop',
     title: 'How to Make a YouTube Thumbnail Without Photoshop (Free, 2026)',
     description:
