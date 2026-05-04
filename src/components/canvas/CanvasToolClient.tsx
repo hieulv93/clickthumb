@@ -196,8 +196,9 @@ export default function CanvasToolClient({
                     onReady={handleReady}
                   />
                 </Suspense>
-                <div className="mt-2">
+                <div className="mt-2 space-y-2">
                   <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
+                  {downloadBtn}
                 </div>
               </>
             ) : (
@@ -241,7 +242,6 @@ export default function CanvasToolClient({
                 <BgSection color={bgColor} onChange={setBgColor} />
                 <FontSelector value={fontFamily} onChange={setFontFamily} />
               </div>
-              <div className="mt-3">{downloadBtn}</div>
             </>
           ) : (
             <div className="hidden lg:block rounded-2xl border border-border bg-surface h-64 animate-pulse" />
