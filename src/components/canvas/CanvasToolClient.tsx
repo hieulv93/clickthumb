@@ -177,7 +177,7 @@ export default function CanvasToolClient({
           <div className="space-y-3 lg:sticky lg:top-14">
             <div className="flex justify-center w-full">
               {editorActivated ? (
-                <Suspense fallback={<div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: `${displayW} / ${displayH}` }} />}>
+                <Suspense fallback={<div className="bg-surface rounded-xl border border-border animate-pulse" style={{ width: displayW, aspectRatio: `${displayW} / ${displayH}`, maxWidth: '100%' }} />}>
                   <CanvasEditor
                     platform={platform}
                     template={template}
@@ -192,8 +192,8 @@ export default function CanvasToolClient({
               ) : (
                 <button
                   onClick={() => setEditorActivated(true)}
-                  className="w-full rounded-xl border border-border bg-surface flex flex-col items-center justify-center gap-4 group hover:border-primary transition-colors duration-150"
-                  style={{ aspectRatio: `${displayW} / ${displayH}` }}
+                  className="rounded-xl border border-border bg-surface flex flex-col items-center justify-center gap-4 group hover:border-primary transition-colors duration-150"
+                  style={{ width: displayW, aspectRatio: `${displayW} / ${displayH}`, maxWidth: '100%' }}
                   aria-label={`Open ${platform.name} editor`}
                 >
                   <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
