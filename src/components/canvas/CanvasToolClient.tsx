@@ -192,16 +192,24 @@ export default function CanvasToolClient({
               ) : (
                 <button
                   onClick={() => setEditorActivated(true)}
-                  className="w-full rounded-xl border border-border overflow-hidden relative group"
-                  style={{ backgroundColor: bgColor, aspectRatio: `${displayW} / ${displayH}` }}
+                  className="w-full rounded-xl border border-border bg-surface flex flex-col items-center justify-center gap-4 group hover:border-primary transition-colors duration-150"
+                  style={{ aspectRatio: `${displayW} / ${displayH}` }}
                   aria-label={`Open ${platform.name} editor`}
                 >
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/40 group-hover:bg-black/50 transition-colors">
-                    <span className="bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-xl">
-                      Open Editor →
-                    </span>
-                    <span className="text-xs text-white/80">{template?.name ?? platform.name}</span>
+                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
+                    <svg className="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <rect x="2" y="3" width="20" height="14" rx="2" />
+                      <line x1="8" y1="21" x2="16" y2="21" />
+                      <line x1="12" y1="17" x2="12" y2="21" />
+                    </svg>
                   </div>
+                  <div className="text-center space-y-1 px-4">
+                    <p className="text-sm font-semibold text-text-main">{platform.name}</p>
+                    <p className="text-xs text-text-muted">{platform.width} × {platform.height} px</p>
+                  </div>
+                  <span className="bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-xl group-hover:opacity-90 transition-opacity">
+                    Open Editor →
+                  </span>
                 </button>
               )}
             </div>
