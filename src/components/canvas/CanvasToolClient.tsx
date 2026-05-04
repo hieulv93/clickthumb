@@ -172,8 +172,9 @@ export default function CanvasToolClient({
       {/* 2-column tool area: canvas left (sticky) + controls right */}
       <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-6">
 
-        {/* Left: outer stretches to match right col height → canvas sticky within that range */}
+        {/* Left: canvas + dim text sticky; BgImageUpload + download btn scroll below */}
         <div>
+          {/* Only canvas + dimension label are sticky — keeps sticky range large enough */}
           <div className="space-y-3 lg:sticky lg:top-14">
             <div className="w-full">
               {editorActivated ? (
@@ -218,8 +219,10 @@ export default function CanvasToolClient({
                 {platform.width} × {platform.height} px
               </p>
             </div>
+          </div>
+          {/* BgImageUpload + desktop download btn — outside sticky so they scroll naturally */}
+          <div className="space-y-3 mt-3">
             <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
-            {/* Download — desktop only */}
             <div className="hidden lg:block">{downloadBtn}</div>
           </div>
         </div>
@@ -237,7 +240,8 @@ export default function CanvasToolClient({
               <div className="lg:hidden mt-4">{downloadBtn}</div>
             </>
           ) : (
-            <div className="rounded-2xl border border-border bg-surface h-64 animate-pulse" />
+            /* Hide placeholder on mobile — no need to reserve space in vertical-stack layout */
+            <div className="hidden lg:block rounded-2xl border border-border bg-surface h-64 animate-pulse" />
           )}
         </div>
       </div>
