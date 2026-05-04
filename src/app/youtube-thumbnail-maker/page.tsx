@@ -134,28 +134,33 @@ export default function YouTubeThumbnailPage() {
           {/* 2-column on lg+: canvas left (sticky) + controls right */}
           <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-6">
 
-            {/* Left: outer stretches to right col height → canvas sticky within that range */}
+            {/* Left: only canvas sticky; BgImageUpload + download scroll below */}
             <div>
-              <div className="space-y-3 lg:sticky lg:top-14">
-                <div className="flex justify-center w-full">
-                  {editorActivated ? (
-                    <Suspense fallback={<div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: '16 / 9' }} />}>
-                      <CanvasEditor
-                        platform={platform}
-                        template={template}
-                        bgColor={bgColor}
-                        bgImageUrl={bgImageUrl}
-                        fontFamily={fontFamily}
-                        texts={texts}
-                        format="jpeg"
-                        onReady={handleReady}
-                      />
-                    </Suspense>
-                  ) : (
+              <div className="lg:sticky lg:top-14">
+                {editorActivated ? (
+                  <Suspense fallback={
+                    <div>
+                      <div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: '16 / 9', maxWidth: 640, margin: '0 auto' }} />
+                      <div className="min-h-[26px]" />
+                    </div>
+                  }>
+                    <CanvasEditor
+                      platform={platform}
+                      template={template}
+                      bgColor={bgColor}
+                      bgImageUrl={bgImageUrl}
+                      fontFamily={fontFamily}
+                      texts={texts}
+                      format="jpeg"
+                      onReady={handleReady}
+                    />
+                  </Suspense>
+                ) : (
+                  <div>
                     <button
                       onClick={() => setEditorActivated(true)}
-                      className="w-full rounded-xl border border-border bg-surface flex flex-col items-center justify-center gap-4 group hover:border-primary transition-colors duration-150"
-                      style={{ aspectRatio: '16 / 9' }}
+                      className="mx-auto rounded-xl border border-border bg-surface flex flex-col items-center justify-center gap-4 group hover:border-primary transition-colors duration-150"
+                      style={{ width: '100%', maxWidth: 640, aspectRatio: '16 / 9' }}
                       aria-label="Open YouTube Thumbnail editor"
                     >
                       <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
@@ -173,13 +178,13 @@ export default function YouTubeThumbnailPage() {
                         Open Editor →
                       </span>
                     </button>
-                  )}
-                </div>
-                <div className="flex justify-end px-1">
-                  <p className="text-xs font-medium text-text-muted tabular-nums">1280 × 720 px</p>
-                </div>
+                    <div className="min-h-[26px]" />
+                  </div>
+                )}
+              </div>
+              {/* BgImageUpload + desktop download — outside sticky, scroll naturally */}
+              <div className="space-y-3 mt-3">
                 <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
-                {/* Download — desktop */}
                 <div className="hidden lg:block space-y-2">
                   {exporting && <ProgressBar visible label="Exporting thumbnail..." />}
                   {exportError && <p className="text-xs text-red-500 text-center">Export failed. Please try again.</p>}
@@ -209,7 +214,7 @@ export default function YouTubeThumbnailPage() {
                   </div>
                 </>
               ) : (
-                <div className="rounded-2xl border border-border bg-surface h-64 animate-pulse" />
+                <div className="hidden lg:block rounded-2xl border border-border bg-surface h-64 animate-pulse" />
               )}
             </div>
           </div>
