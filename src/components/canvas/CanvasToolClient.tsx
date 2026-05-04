@@ -9,7 +9,7 @@ import BgImageUpload from './BgImageUpload'
 import FontSelector from './FontSelector'
 import ProgressBar from '@/components/tool/ProgressBar'
 import AdSlot from '@/components/ads/AdSlot'
-import type { Platform } from '@/lib/platforms'
+import { getDisplayDimensions, type Platform } from '@/lib/platforms'
 import type { Template } from '@/lib/templates'
 import { triggerDownload } from '@/lib/utils'
 import { analytics } from '@/lib/analytics'
@@ -47,6 +47,7 @@ export default function CanvasToolClient({
   const [exportError, setExportError] = useState(false)
   const [format, setFormat] = useState<ExportFormat>('jpeg')
   const [editorActivated, setEditorActivated] = useState(false)
+  const { w: displayW, h: displayH } = getDisplayDimensions(platform)
   const exportFnRef = useRef<(() => Promise<Blob>) | null>(null)
   const bgUrlRef = useRef<string | null>(null)
 
@@ -176,7 +177,7 @@ export default function CanvasToolClient({
           <div className="space-y-3 lg:sticky lg:top-14">
             <div className="flex justify-center w-full">
               {editorActivated ? (
-                <Suspense fallback={<div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: `${platform.width} / ${platform.height}` }} />}>
+                <Suspense fallback={<div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: `${displayW} / ${displayH}` }} />}>
                   <CanvasEditor
                     platform={platform}
                     template={template}
@@ -192,7 +193,7 @@ export default function CanvasToolClient({
                 <button
                   onClick={() => setEditorActivated(true)}
                   className="w-full rounded-xl border border-border overflow-hidden relative group"
-                  style={{ backgroundColor: bgColor, aspectRatio: `${platform.width} / ${platform.height}` }}
+                  style={{ backgroundColor: bgColor, aspectRatio: `${displayW} / ${displayH}` }}
                   aria-label={`Open ${platform.name} editor`}
                 >
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/40 group-hover:bg-black/50 transition-colors">
