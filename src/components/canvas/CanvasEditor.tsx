@@ -4,9 +4,6 @@ import { useEffect, useRef, useCallback, useState } from 'react'
 import type { Template } from '@/lib/templates'
 import { getDisplayDimensions, type Platform } from '@/lib/platforms'
 
-const MAX_HISTORY = 50
-const TEXT_DEBOUNCE_MS = 500
-
 interface CanvasEditorProps {
   platform: Platform
   template: Template | null
@@ -36,14 +33,8 @@ export default function CanvasEditor({
   const { w: displayW, h: displayH } = getDisplayDimensions(platform)
   const scale = displayW / platform.width
 
-  // History for Undo
-  const historyRef = useRef<string[]>([])
-  const historyIndexRef = useRef(-1)
-  const isRestoringRef = useRef(false)
-  const textDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const [canUndo, setCanUndo] = useState(false)
+  const [hasChanges, setHasChanges] = useState(false)
 
-  // Keep format accessible in the export closure without re-registering onReady
   const formatRef = useRef(format)
   useEffect(() => {
     formatRef.current = format
@@ -59,93 +50,17 @@ export default function CanvasEditor({
     return () => observer.disconnect()
   }, [])
 
-  const pushHistory = useCallback((canvas: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
-    if (isRestoringRef.current) return
-    const json = JSON.stringify(canvas.toJSON())
-    // Trim redo future
-    historyRef.current = historyRef.current.slice(0, historyIndexRef.current + 1)
-    historyRef.current.push(json)
-    if (historyRef.current.length > MAX_HISTORY) {
-      historyRef.current.shift()
-    } else {
-      historyIndexRef.current++
-    }
-    setCanUndo(historyIndexRef.current > 0)
-  }, [])
-
-  const handleUndo = useCallback(async () => {
-    if (historyIndexRef.current <= 0) return
-    const canvas = fabricRef.current
-    if (!canvas) return
-    historyIndexRef.current--
-    const snapshot = historyRef.current[historyIndexRef.current]
-    isRestoringRef.current = true
-    await new Promise<void>((resolve) => {
-      canvas.loadFromJSON(JSON.parse(snapshot), () => {
-        canvas.getObjects().forEach((obj: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
-          obj.set({ hasBorders: false, hasControls: false })
-          if (obj.type === 'image') {
-            canvas.sendToBack(obj)
-            obj.setCoords()
-          }
-        })
-        canvas.renderAll()
-        // RAF: image pixels fully decoded by next frame — clamp position
-        // to ensure image always covers canvas (snapshot may have stored
-        // an unconstrained position from before constraint fixes).
-        requestAnimationFrame(() => {
-          const cw = canvas.width as number
-          const ch = canvas.height as number
-          canvas.getObjects().forEach((obj: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
-            if (obj.type === 'image') {
-              const sw = obj.getScaledWidth()
-              const sh = obj.getScaledHeight()
-              obj.set({
-                left: Math.max(cw - sw, Math.min(0, obj.left)),
-                top: Math.max(ch - sh, Math.min(0, obj.top)),
-              })
-              obj.setCoords()
-            }
-          })
-          canvas.renderAll()
-          resolve()
-        })
-      })
-    })
-    isRestoringRef.current = false
-    setCanUndo(historyIndexRef.current > 0)
-  }, [])
-
-  // Keyboard Ctrl+Z / Cmd+Z
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
-        e.preventDefault()
-        handleUndo()
-      }
-    }
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  }, [handleUndo])
-
   const applyTemplate = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async (canvas: any, fabric: any, tmpl: Template) => {
-      // Reset history before rebuilding canvas
-      historyRef.current = []
-      historyIndexRef.current = -1
-      setCanUndo(false)
-
+      setHasChanges(false)
       canvas.clear()
-
-      // Background
       canvas.backgroundColor = tmpl.bgColor
 
-      // Background image if provided
       if (bgImageUrl) {
         await new Promise<void>((resolve) => {
-          fabric.Image.fromURL(bgImageUrl, (img: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
-            // CSS cover: scale so image fills entire canvas with no black bars
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          fabric.Image.fromURL(bgImageUrl, (img: any) => {
             const coverScale = Math.max(canvas.width / img.width, canvas.height / img.height)
             img.scale(coverScale)
             img.set({
@@ -163,7 +78,6 @@ export default function CanvasEditor({
         })
       }
 
-      // Text layers
       for (const preset of tmpl.texts) {
         const textObj = new fabric.IText(preset.text, {
           fontSize: preset.fontSize * scale,
@@ -185,12 +99,60 @@ export default function CanvasEditor({
       }
 
       canvas.renderAll()
-
-      // Push initial state as first history entry
-      pushHistory(canvas)
     },
-    [bgImageUrl, scale, pushHistory]
+    [bgImageUrl, scale]
   )
+
+  // Reset: restore each object's position to template defaults without rebuilding canvas.
+  // Avoids canvas.loadFromJSON (which caused the black border bug) by setting coordinates directly.
+  const handleReset = useCallback(() => {
+    const canvas = fabricRef.current
+    if (!canvas || !template) return
+
+    const textObjs = canvas
+      .getObjects()
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .filter((obj: any) => obj.type === 'i-text' || obj.type === 'text')
+
+    template.texts.forEach((preset, i) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const obj = textObjs[i] as any
+      if (!obj) return
+      obj.set({
+        left: preset.left * scale,
+        top: preset.top * scale,
+        originX: preset.originX,
+        originY: preset.originY,
+      })
+      obj.setCoords()
+    })
+
+    // Re-center background image so no black edges after drag
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    canvas.getObjects().forEach((obj: any) => {
+      if (obj.type !== 'image') return
+      obj.set({
+        left: (canvas.width - obj.getScaledWidth()) / 2,
+        top: (canvas.height - obj.getScaledHeight()) / 2,
+      })
+      obj.setCoords()
+    })
+
+    canvas.renderAll()
+    setHasChanges(false)
+  }, [template, scale])
+
+  // Ctrl+Z / Cmd+Z
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
+        e.preventDefault()
+        handleReset()
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [handleReset])
 
   useEffect(() => {
     if (!canvasRef.current) return
@@ -209,8 +171,8 @@ export default function CanvasEditor({
       })
       fabricRef.current = canvas
 
-      // Constrain objects within canvas bounds while dragging
-      canvas.on('object:moving', (e: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      canvas.on('object:moving', (e: any) => {
         const obj = e.target
         const cw = canvas.width as number
         const ch = canvas.height as number
@@ -220,26 +182,20 @@ export default function CanvasEditor({
           obj.left = Math.max(hw, Math.min(cw - hw, obj.left))
           obj.top = Math.max(hh, Math.min(ch - hh, obj.top))
         } else if (obj.type === 'image') {
-          // Keep background image covering canvas (no black edges).
-          // After clamping, sync _currentTransform so Fabric.js uses the
-          // constrained position as origin for the next delta — prevents drift.
           const sw = obj.getScaledWidth()
           const sh = obj.getScaledHeight()
           const newLeft = Math.max(cw - sw, Math.min(0, obj.left))
           const newTop = Math.max(ch - sh, Math.min(0, obj.top))
           obj.set({ left: newLeft, top: newTop })
           obj.setCoords()
-          const t = (canvas as any)._currentTransform // eslint-disable-line @typescript-eslint/no-explicit-any
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const t = (canvas as any)._currentTransform
           if (t) { t.left = newLeft; t.top = newTop }
         }
       })
 
-      // History: push snapshot after user modifies objects
-      canvas.on('object:modified', () => pushHistory(canvas))
-      canvas.on('text:changed', () => {
-        if (textDebounceRef.current) clearTimeout(textDebounceRef.current)
-        textDebounceRef.current = setTimeout(() => pushHistory(canvas), TEXT_DEBOUNCE_MS)
-      })
+      canvas.on('object:modified', () => setHasChanges(true))
+      canvas.on('text:changed', () => setHasChanges(true))
 
       if (template) {
         await applyTemplate(canvas, fabric, template)
@@ -259,7 +215,6 @@ export default function CanvasEditor({
 
     return () => {
       mounted = false
-      if (textDebounceRef.current) clearTimeout(textDebounceRef.current)
       if (fabricRef.current) {
         fabricRef.current.dispose()
         fabricRef.current = null
@@ -299,10 +254,13 @@ export default function CanvasEditor({
   useEffect(() => {
     const canvas = fabricRef.current
     if (!canvas || !texts.length) return
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const textObjs = canvas.getObjects().filter((obj: any) => obj.type === 'i-text' || obj.type === 'text')
+    const textObjs = canvas
+      .getObjects()
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .filter((obj: any) => obj.type === 'i-text' || obj.type === 'text')
     texts.forEach((text, i) => {
-      if (textObjs[i]) textObjs[i].set('text', text !== '' ? text : (template?.texts[i]?.text ?? ''))
+      if (textObjs[i])
+        textObjs[i].set('text', text !== '' ? text : (template?.texts[i]?.text ?? ''))
     })
     canvas.renderAll()
   }, [texts])
@@ -322,18 +280,27 @@ export default function CanvasEditor({
           <canvas ref={canvasRef} />
         </div>
       </div>
-      {canUndo && (
+      {hasChanges && (
         <div className="flex justify-start mt-1">
           <button
-            onClick={handleUndo}
-            title="Undo (Ctrl+Z)"
+            onClick={handleReset}
+            title="Reset positions (Ctrl+Z)"
             className="flex items-center gap-1 text-xs text-text-muted hover:text-text-main px-2 py-1 rounded-lg hover:bg-surface transition-colors"
           >
-            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <svg
+              className="w-3.5 h-3.5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
               <path d="M3 7v6h6" />
               <path d="M3 13C5.5 6.5 11 4 16 6s7 8 5 13" />
             </svg>
-            Undo
+            Reset
           </button>
         </div>
       )}
