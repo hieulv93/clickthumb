@@ -31,7 +31,7 @@ export const PLATFORMS: Record<string, Platform> = {
 }
 
 export const CANVAS_DISPLAY_WIDTH = 640
-export const CANVAS_DISPLAY_HEIGHT_MAX = 500
+export const CANVAS_DISPLAY_HEIGHT_MAX = 640
 
 export function getDisplayDimensions(platform: Platform): { w: number; h: number } {
   const scaleByWidth = CANVAS_DISPLAY_WIDTH / platform.width
