@@ -172,13 +172,12 @@ export default function CanvasToolClient({
       {/* 2-column tool area: canvas left (sticky) + controls right */}
       <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-6">
 
-        {/* Left: canvas + dim text sticky; BgImageUpload + download btn scroll below */}
+        {/* Left: only canvas (sticky) — nothing below so nothing gets overlapped */}
         <div>
-          {/* Only canvas (with built-in dim label) is sticky — keeps sticky range large enough */}
           <div className="lg:sticky lg:top-14">
             {editorActivated ? (
               <Suspense fallback={
-                <div>
+                <div className="mx-auto" style={{ width: '100%', maxWidth: displayW }}>
                   <div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: `${displayW} / ${displayH}` }} />
                   <div className="flex items-center justify-end px-1 mt-1 min-h-[26px]">
                     <p className="text-xs font-medium text-text-muted tabular-nums">{platform.width} × {platform.height} px</p>
@@ -198,40 +197,36 @@ export default function CanvasToolClient({
               </Suspense>
             ) : (
               <div>
-                <button
-                  onClick={() => setEditorActivated(true)}
-                  className="w-full rounded-xl border border-border bg-surface flex flex-col items-center justify-center gap-4 group hover:border-primary transition-colors duration-150"
-                  style={{ aspectRatio: `${displayW} / ${displayH}` }}
-                  aria-label={`Open ${platform.name} editor`}
-                >
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
-                    <svg className="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <rect x="2" y="3" width="20" height="14" rx="2" />
-                      <line x1="8" y1="21" x2="16" y2="21" />
-                      <line x1="12" y1="17" x2="12" y2="21" />
-                    </svg>
-                  </div>
-                  <div className="text-center space-y-1 px-4">
-                    <p className="text-sm font-semibold text-text-main">{platform.name}</p>
-                    <p className="text-xs text-text-muted">{platform.width} × {platform.height} px</p>
-                  </div>
-                  <span className="bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-xl group-hover:opacity-90 transition-opacity">
-                    Open Editor →
-                  </span>
-                </button>
+                <div className="mx-auto" style={{ width: '100%', maxWidth: displayW }}>
+                  <button
+                    onClick={() => setEditorActivated(true)}
+                    className="w-full rounded-xl border border-border bg-surface flex flex-col items-center justify-center gap-4 group hover:border-primary transition-colors duration-150"
+                    style={{ aspectRatio: `${displayW} / ${displayH}` }}
+                    aria-label={`Open ${platform.name} editor`}
+                  >
+                    <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
+                      <svg className="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <rect x="2" y="3" width="20" height="14" rx="2" />
+                        <line x1="8" y1="21" x2="16" y2="21" />
+                        <line x1="12" y1="17" x2="12" y2="21" />
+                      </svg>
+                    </div>
+                    <div className="text-center space-y-1 px-4">
+                      <p className="text-sm font-semibold text-text-main">{platform.name}</p>
+                      <p className="text-xs text-text-muted">{platform.width} × {platform.height} px</p>
+                    </div>
+                    <span className="bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-xl group-hover:opacity-90 transition-opacity">
+                      Open Editor →
+                    </span>
+                  </button>
+                </div>
                 <div className="min-h-[26px]" />
               </div>
             )}
-            {/* dim text + reset are rendered inside each state above */}
-          </div>
-          {/* BgImageUpload + desktop download btn — outside sticky so they scroll naturally */}
-          <div className="space-y-3 mt-3">
-            <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
-            <div className="hidden lg:block">{downloadBtn}</div>
           </div>
         </div>
 
-        {/* Right: controls panel — only render after editor is activated */}
+        {/* Right: controls panel + BgImageUpload + download */}
         <div className="mt-4 lg:mt-0">
           {editorActivated ? (
             <>
@@ -240,11 +235,11 @@ export default function CanvasToolClient({
                 <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
                 <BgSection color={bgColor} onChange={setBgColor} />
                 <FontSelector value={fontFamily} onChange={setFontFamily} />
+                <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
               </div>
-              <div className="lg:hidden mt-4">{downloadBtn}</div>
+              <div className="mt-3">{downloadBtn}</div>
             </>
           ) : (
-            /* Hide placeholder on mobile — no need to reserve space in vertical-stack layout */
             <div className="hidden lg:block rounded-2xl border border-border bg-surface h-64 animate-pulse" />
           )}
         </div>
