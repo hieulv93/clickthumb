@@ -174,23 +174,30 @@ export default function CanvasToolClient({
 
         {/* Left: canvas + dim text sticky; BgImageUpload + download btn scroll below */}
         <div>
-          {/* Only canvas + dimension label are sticky — keeps sticky range large enough */}
-          <div className="space-y-3 lg:sticky lg:top-14">
-            <div className="w-full">
-              {editorActivated ? (
-                <Suspense fallback={<div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: `${displayW} / ${displayH}` }} />}>
-                  <CanvasEditor
-                    platform={platform}
-                    template={template}
-                    bgColor={bgColor}
-                    bgImageUrl={bgImageUrl}
-                    fontFamily={fontFamily}
-                    texts={texts}
-                    format={format}
-                    onReady={handleReady}
-                  />
-                </Suspense>
-              ) : (
+          {/* Only canvas (with built-in dim label) is sticky — keeps sticky range large enough */}
+          <div className="lg:sticky lg:top-14">
+            {editorActivated ? (
+              <Suspense fallback={
+                <div>
+                  <div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: `${displayW} / ${displayH}` }} />
+                  <div className="flex items-center justify-end px-1 mt-1 min-h-[26px]">
+                    <p className="text-xs font-medium text-text-muted tabular-nums">{platform.width} × {platform.height} px</p>
+                  </div>
+                </div>
+              }>
+                <CanvasEditor
+                  platform={platform}
+                  template={template}
+                  bgColor={bgColor}
+                  bgImageUrl={bgImageUrl}
+                  fontFamily={fontFamily}
+                  texts={texts}
+                  format={format}
+                  onReady={handleReady}
+                />
+              </Suspense>
+            ) : (
+              <div>
                 <button
                   onClick={() => setEditorActivated(true)}
                   className="w-full rounded-xl border border-border bg-surface flex flex-col items-center justify-center gap-4 group hover:border-primary transition-colors duration-150"
@@ -212,13 +219,12 @@ export default function CanvasToolClient({
                     Open Editor →
                   </span>
                 </button>
-              )}
-            </div>
-            <div className="flex justify-end px-1">
-              <p className="text-xs font-medium text-text-muted tabular-nums">
-                {platform.width} × {platform.height} px
-              </p>
-            </div>
+                <div className="flex items-center justify-end px-1 mt-1 min-h-[26px]">
+                  <p className="text-xs font-medium text-text-muted tabular-nums">{platform.width} × {platform.height} px</p>
+                </div>
+              </div>
+            )}
+            {/* dim text + reset are rendered inside each state above */}
           </div>
           {/* BgImageUpload + desktop download btn — outside sticky so they scroll naturally */}
           <div className="space-y-3 mt-3">

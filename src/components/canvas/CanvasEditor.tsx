@@ -266,7 +266,7 @@ export default function CanvasEditor({
   }, [texts])
 
   return (
-    <div ref={wrapperRef} className="w-full" style={{ maxWidth: displayW }}>
+    <div ref={wrapperRef} className="mx-auto" style={{ width: '100%', maxWidth: displayW }}>
       {/* overflow:hidden clips the absolute canvas (fixed layout width) so it never causes page horizontal scroll */}
       <div style={{ aspectRatio: `${displayW}/${displayH}`, position: 'relative', overflow: 'hidden' }}>
         <div
@@ -281,30 +281,36 @@ export default function CanvasEditor({
           <canvas ref={canvasRef} />
         </div>
       </div>
-      {hasChanges && (
-        <div className="flex justify-start mt-1">
-          <button
-            onClick={handleReset}
-            title="Reset positions (Ctrl+Z)"
-            className="flex items-center gap-1 text-xs text-text-muted hover:text-text-main px-2 py-1 rounded-lg hover:bg-surface transition-colors"
-          >
-            <svg
-              className="w-3.5 h-3.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
+      {/* Dimension + reset share one fixed-height row — no UI jump when reset appears */}
+      <div className="flex items-center justify-between px-1 mt-1 min-h-[26px]">
+        <div>
+          {hasChanges && (
+            <button
+              onClick={handleReset}
+              title="Reset positions (Ctrl+Z)"
+              className="flex items-center gap-1 text-xs text-text-muted hover:text-text-main px-2 py-1 rounded-lg hover:bg-surface transition-colors"
             >
-              <path d="M3 7v6h6" />
-              <path d="M3 13C5.5 6.5 11 4 16 6s7 8 5 13" />
-            </svg>
-            Reset
-          </button>
+              <svg
+                className="w-3.5 h-3.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M3 7v6h6" />
+                <path d="M3 13C5.5 6.5 11 4 16 6s7 8 5 13" />
+              </svg>
+              Reset
+            </button>
+          )}
         </div>
-      )}
+        <p className="text-xs font-medium text-text-muted tabular-nums">
+          {platform.width} × {platform.height} px
+        </p>
+      </div>
     </div>
   )
 }
