@@ -176,25 +176,30 @@ export default function CanvasToolClient({
         <div>
           <div className="lg:sticky lg:top-14">
             {editorActivated ? (
-              <Suspense fallback={
-                <div className="mx-auto" style={{ width: '100%', maxWidth: displayW }}>
-                  <div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: `${displayW} / ${displayH}` }} />
-                  <div className="flex items-center justify-end px-1 mt-1 min-h-[26px]">
-                    <p className="text-xs font-medium text-text-muted tabular-nums">{platform.width} × {platform.height} px</p>
+              <>
+                <Suspense fallback={
+                  <div className="mx-auto" style={{ width: '100%', maxWidth: displayW }}>
+                    <div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: `${displayW} / ${displayH}` }} />
+                    <div className="flex items-center justify-end px-1 mt-1 min-h-[26px]">
+                      <p className="text-xs font-medium text-text-muted tabular-nums">{platform.width} × {platform.height} px</p>
+                    </div>
                   </div>
+                }>
+                  <CanvasEditor
+                    platform={platform}
+                    template={template}
+                    bgColor={bgColor}
+                    bgImageUrl={bgImageUrl}
+                    fontFamily={fontFamily}
+                    texts={texts}
+                    format={format}
+                    onReady={handleReady}
+                  />
+                </Suspense>
+                <div className="mt-2">
+                  <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
                 </div>
-              }>
-                <CanvasEditor
-                  platform={platform}
-                  template={template}
-                  bgColor={bgColor}
-                  bgImageUrl={bgImageUrl}
-                  fontFamily={fontFamily}
-                  texts={texts}
-                  format={format}
-                  onReady={handleReady}
-                />
-              </Suspense>
+              </>
             ) : (
               <div>
                 <div className="mx-auto" style={{ width: '100%', maxWidth: displayW }}>
@@ -235,7 +240,6 @@ export default function CanvasToolClient({
                 <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
                 <BgSection color={bgColor} onChange={setBgColor} />
                 <FontSelector value={fontFamily} onChange={setFontFamily} />
-                <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
               </div>
               <div className="mt-3">{downloadBtn}</div>
             </>

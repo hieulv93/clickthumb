@@ -138,23 +138,28 @@ export default function YouTubeThumbnailPage() {
             <div>
               <div className="lg:sticky lg:top-14">
                 {editorActivated ? (
-                  <Suspense fallback={
-                    <div style={{ width: '100%', maxWidth: 640, margin: '0 auto' }}>
-                      <div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: '16 / 9' }} />
-                      <div className="min-h-[26px]" />
+                  <>
+                    <Suspense fallback={
+                      <div style={{ width: '100%', maxWidth: 640, margin: '0 auto' }}>
+                        <div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: '16 / 9' }} />
+                        <div className="min-h-[26px]" />
+                      </div>
+                    }>
+                      <CanvasEditor
+                        platform={platform}
+                        template={template}
+                        bgColor={bgColor}
+                        bgImageUrl={bgImageUrl}
+                        fontFamily={fontFamily}
+                        texts={texts}
+                        format="jpeg"
+                        onReady={handleReady}
+                      />
+                    </Suspense>
+                    <div className="mt-2">
+                      <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
                     </div>
-                  }>
-                    <CanvasEditor
-                      platform={platform}
-                      template={template}
-                      bgColor={bgColor}
-                      bgImageUrl={bgImageUrl}
-                      fontFamily={fontFamily}
-                      texts={texts}
-                      format="jpeg"
-                      onReady={handleReady}
-                    />
-                  </Suspense>
+                  </>
                 ) : (
                   <div>
                     <div style={{ width: '100%', maxWidth: 640, margin: '0 auto' }}>
@@ -195,7 +200,6 @@ export default function YouTubeThumbnailPage() {
                     <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
                     <BgSection color={bgColor} onChange={setBgColor} />
                     <FontSelector value={fontFamily} onChange={setFontFamily} />
-                    <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
                   </div>
                   <div className="space-y-2">
                     {exporting && <ProgressBar visible label="Exporting thumbnail..." />}
