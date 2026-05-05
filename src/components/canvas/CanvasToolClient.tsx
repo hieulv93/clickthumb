@@ -207,7 +207,7 @@ export default function CanvasToolClient({
                   <button
                     onClick={() => setEditorActivated(true)}
                     className="w-full rounded-xl border border-border bg-surface flex flex-col items-center justify-center gap-4 group hover:border-primary transition-colors duration-150"
-                    style={{ aspectRatio: `${displayW} / ${displayH}` }}
+                    style={{ aspectRatio: `${displayW} / ${displayH}`, minHeight: '240px' }}
                     aria-label={`Open ${platform.name} editor`}
                   >
                     <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
