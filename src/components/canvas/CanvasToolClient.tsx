@@ -239,8 +239,8 @@ export default function CanvasToolClient({
               <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
                 <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
                 <FontSelector value={fontFamily} onChange={setFontFamily} />
-                <BgSection color={bgColor} onChange={setBgColor} />
                 <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
+                <BgSection color={bgColor} onChange={setBgColor} />
               </div>
               <div className="lg:hidden mt-4">{downloadBtn}</div>
             </>
