@@ -158,11 +158,13 @@ export default function YouTubeThumbnailPage() {
                     </Suspense>
                     <div className="mt-2 space-y-2">
                       <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
-                      {exporting && <ProgressBar visible label="Exporting thumbnail..." />}
-                      {exportError && <p className="text-xs text-red-500 text-center">Export failed. Please try again.</p>}
-                      <button onClick={handleExport} disabled={exporting} className={`w-full touch-target flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${downloaded ? 'bg-green-600 hover:bg-green-700 text-white active:scale-95' : 'bg-primary hover:bg-primary-hover active:scale-95 disabled:opacity-60 text-white'}`}>
-                        {downloaded ? (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>Downloaded!</>) : (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" /></svg>{exporting ? 'Exporting...' : 'Download Thumbnail (1280×720)'}</>)}
-                      </button>
+                      <div className="hidden lg:block">
+                        {exporting && <ProgressBar visible label="Exporting thumbnail..." />}
+                        {exportError && <p className="text-xs text-red-500 text-center">Export failed. Please try again.</p>}
+                        <button onClick={handleExport} disabled={exporting} className={`w-full touch-target flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${downloaded ? 'bg-green-600 hover:bg-green-700 text-white active:scale-95' : 'bg-primary hover:bg-primary-hover active:scale-95 disabled:opacity-60 text-white'}`}>
+                          {downloaded ? (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>Downloaded!</>) : (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" /></svg>{exporting ? 'Exporting...' : 'Download Thumbnail (1280×720)'}</>)}
+                        </button>
+                      </div>
                     </div>
                   </>
                 ) : (
@@ -196,7 +198,7 @@ export default function YouTubeThumbnailPage() {
               </div>
             </div>
 
-            {/* Right: controls panel + BgImageUpload + download */}
+            {/* Right: controls panel */}
             <div className="mt-4 lg:mt-0 space-y-4">
               {editorActivated ? (
                 <>
@@ -205,6 +207,13 @@ export default function YouTubeThumbnailPage() {
                     <FontSelector value={fontFamily} onChange={setFontFamily} />
                     <BgSection color={bgColor} onChange={setBgColor} />
                     <TemplateSelector templates={YOUTUBE_TEMPLATES} selected={template} onSelect={handleTemplateSelect} />
+                  </div>
+                  <div className="lg:hidden">
+                    {exporting && <ProgressBar visible label="Exporting thumbnail..." />}
+                    {exportError && <p className="text-xs text-red-500 text-center">Export failed. Please try again.</p>}
+                    <button onClick={handleExport} disabled={exporting} className={`w-full touch-target flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${downloaded ? 'bg-green-600 hover:bg-green-700 text-white active:scale-95' : 'bg-primary hover:bg-primary-hover active:scale-95 disabled:opacity-60 text-white'}`}>
+                      {downloaded ? (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>Downloaded!</>) : (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" /></svg>{exporting ? 'Exporting...' : 'Download Thumbnail (1280×720)'}</>)}
+                    </button>
                   </div>
                 </>
               ) : (
