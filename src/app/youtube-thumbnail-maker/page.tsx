@@ -229,6 +229,24 @@ export default function YouTubeThumbnailPage() {
               <section className="space-y-8 text-sm text-text-muted leading-relaxed">
             <div className="space-y-3">
               <h2 className="text-base font-bold text-text-main">
+                What Is a YouTube Thumbnail Maker?
+              </h2>
+              <p>
+                A YouTube thumbnail maker is an online design tool that lets you create custom
+                1280×720px thumbnail images for your YouTube videos — without Photoshop or any
+                design software. You pick a template, edit the text and colors, and download a
+                ready-to-upload JPG in seconds.
+              </p>
+              <p>
+                This free YouTube thumbnail maker runs entirely in your browser. No account, no
+                watermark, no app to install. It exports at exactly 1280×720px — the recommended
+                YouTube thumbnail size — so your file is always ready to upload directly to YouTube
+                Studio.
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <h2 className="text-base font-bold text-text-main">
                 What Makes a Good YouTube Thumbnail?
               </h2>
               <p>
@@ -287,7 +305,7 @@ export default function YouTubeThumbnailPage() {
 
             <div className="space-y-3">
               <h2 className="text-base font-bold text-text-main">
-                How to Use This Thumbnail Maker
+                How to Create a YouTube Thumbnail — Step by Step
               </h2>
               <ol className="list-decimal list-inside space-y-2 pl-1">
                 <li><strong className="text-text-main">Choose a template</strong> — pick Dark Impact, Bright &amp; Bold, or Clean Minimal as your starting point.</li>
@@ -366,6 +384,9 @@ export default function YouTubeThumbnailPage() {
                   { q: 'How do I upload my thumbnail to YouTube?', a: 'After downloading, go to YouTube Studio → select your video → Edit → Thumbnail → Upload custom thumbnail → select the downloaded file. The thumbnail goes live within a few minutes.' },
                   { q: 'Why does YouTube say my thumbnail was rejected?', a: 'YouTube rejects thumbnails for three reasons: file over 2MB, resolution under 640px wide, or community guidelines violations (misleading or adult content). This tool exports well within the size and resolution requirements.' },
                   { q: 'Can I make thumbnails for other platforms too?', a: 'Yes — this tool focuses on YouTube (1280×720), but ClickThumb.com also has dedicated makers for Instagram posts, Twitter headers, LinkedIn banners, and Facebook covers, each pre-sized for the correct platform dimensions.' },
+                  { q: 'How do I make a YouTube thumbnail without Photoshop?', a: 'Use this free browser-based thumbnail maker — no Photoshop or design software needed. Choose a template, edit the text directly on the canvas, set your background color or upload a photo, and download the finished thumbnail at 1280×720px. The entire process takes under 2 minutes.' },
+                  { q: 'How do I make a YouTube thumbnail on my phone?', a: 'Open this page in Safari or Chrome on your phone. The canvas editor works on mobile — you can tap to select elements, edit text, and upload your own background photo from your camera roll. Tap Download to save the 1280×720px JPG directly to your phone.' },
+                  { q: 'What is the best free YouTube thumbnail maker?', a: 'The best free YouTube thumbnail maker depends on your needs. If you want full template customization with no watermark, no sign-up, and instant download — this tool is built for exactly that. It runs 100% in your browser, exports at the correct 1280×720px size, and has zero limits on how many thumbnails you create.' },
                 ].map((item) => (
                   <FAQItem key={item.q} question={item.q} answer={item.a} />
                 ))}
