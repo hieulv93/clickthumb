@@ -205,8 +205,8 @@ export default function YouTubeThumbnailPage() {
                   <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
                     <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
                     <FontSelector value={fontFamily} onChange={setFontFamily} />
-                    <TemplateSelector templates={YOUTUBE_TEMPLATES} selected={template} onSelect={handleTemplateSelect} />
                     <BgSection color={bgColor} onChange={setBgColor} />
+                    <TemplateSelector templates={YOUTUBE_TEMPLATES} selected={template} onSelect={handleTemplateSelect} />
                   </div>
                   <div className="lg:hidden">
                     {exporting && <ProgressBar visible label="Exporting thumbnail..." />}
