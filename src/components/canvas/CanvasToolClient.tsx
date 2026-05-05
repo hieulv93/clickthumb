@@ -237,10 +237,10 @@ export default function CanvasToolClient({
           {editorActivated ? (
             <>
               <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
-                <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
                 <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
-                <BgSection color={bgColor} onChange={setBgColor} />
                 <FontSelector value={fontFamily} onChange={setFontFamily} />
+                <BgSection color={bgColor} onChange={setBgColor} />
+                <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
               </div>
             </>
           ) : (
