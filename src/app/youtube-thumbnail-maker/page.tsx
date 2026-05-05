@@ -24,34 +24,6 @@ const CanvasEditor = dynamic(() => import('@/components/canvas/CanvasEditor'), {
 
 const platform = PLATFORMS.youtube
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebApplication',
-      name: 'YouTube Thumbnail Maker',
-      url: 'https://click-thumb.com/youtube-thumbnail-maker/',
-      applicationCategory: 'DesignApplication',
-      operatingSystem: 'Any',
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-      description: 'Free online YouTube thumbnail maker. Create 1280×720 thumbnails with templates, custom text, and background images. No signup required.',
-    },
-    {
-      '@type': 'FAQPage',
-      mainEntity: [
-        { '@type': 'Question', name: 'What size is a YouTube thumbnail?', acceptedAnswer: { '@type': 'Answer', text: 'The recommended YouTube thumbnail size is 1280×720 pixels (16:9 aspect ratio). This tool exports thumbnails at exactly this size.' } },
-        { '@type': 'Question', name: 'Is this YouTube thumbnail maker really free?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, completely free. No account required, no watermark, no file size limits. Download as many thumbnails as you need.' } },
-        { '@type': 'Question', name: 'What file format are thumbnails downloaded in?', acceptedAnswer: { '@type': 'Answer', text: 'Thumbnails are downloaded as JPG files at 92% quality, which is the standard for YouTube uploads. The file size is typically 150–400KB.' } },
-        { '@type': 'Question', name: 'Can I use my own photo as the background?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Click "Upload image" to add your own photo as the background. The image is processed locally in your browser — nothing is uploaded to any server.' } },
-        { '@type': 'Question', name: 'How do I make a good YouTube thumbnail?', acceptedAnswer: { '@type': 'Answer', text: 'Use high contrast colors, large bold text (readable at small sizes), and a clear focal point. Face expressions and bright colors improve click-through rates. Avoid cluttered designs — keep it simple and readable at 120px wide.' } },
-        { '@type': 'Question', name: 'Can I edit the text on the canvas?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. After selecting a template, double-click any text on the canvas to edit it directly. You can change the content, move, and resize text freely.' } },
-        { '@type': 'Question', name: 'What is the maximum YouTube thumbnail file size?', acceptedAnswer: { '@type': 'Answer', text: 'YouTube accepts thumbnails up to 2MB. This tool exports thumbnails well within that limit (typically 150–400KB at 1280×720 JPG quality 92).' } },
-        { '@type': 'Question', name: 'Do I need to compress my thumbnail before uploading?', acceptedAnswer: { '@type': 'Answer', text: 'Usually not — JPG at quality 92 is already well-optimized. If you need a smaller file size, use CompressImg.pro to reduce it further without visible quality loss.' } },
-      ],
-    },
-  ],
-}
-
 export default function YouTubeThumbnailPage() {
   const [template, setTemplate] = useState<Template | null>(YOUTUBE_TEMPLATES[0])
   const [bgColor, setBgColor] = useState(YOUTUBE_TEMPLATES[0].bgColor)
@@ -114,12 +86,7 @@ export default function YouTubeThumbnailPage() {
   }, [template])
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <main className="flex-1">
+    <main className="flex-1">
         <div className="max-w-4xl mx-auto px-4 py-8 sm:py-12 space-y-6">
           {/* Header */}
           <div className="text-center space-y-2">
@@ -416,6 +383,5 @@ export default function YouTubeThumbnailPage() {
           </section>
         </div>
       </main>
-    </>
   )
 }
