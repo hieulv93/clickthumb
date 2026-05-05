@@ -1,12 +1,4 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
-
-export const metadata: Metadata = {
-  title: 'TikTok Cover Size Guide 2026 — Exact Dimensions & Design Tips',
-  description:
-    'The exact TikTok cover size for 2026 — 1080×1920px explained, what gets cropped in the grid view, and how to design a cover that looks great everywhere.',
-  alternates: { canonical: 'https://click-thumb.com/blog/tiktok-cover-size-guide/' },
-}
 
 export default function TikTokCoverSizeGuide() {
   return (

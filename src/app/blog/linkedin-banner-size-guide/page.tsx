@@ -1,12 +1,4 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
-
-export const metadata: Metadata = {
-  title: 'LinkedIn Banner Size Guide 2026 — Dimensions, Design Tips & Examples',
-  description:
-    'The exact LinkedIn banner size for 2026 — 1584×396px, safe zones, what gets cropped on mobile, and how to design a banner that converts profile visitors.',
-  alternates: { canonical: 'https://click-thumb.com/blog/linkedin-banner-size-guide/' },
-}
 
 export default function LinkedInBannerSizeGuide() {
   return (

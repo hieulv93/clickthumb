@@ -1,12 +1,4 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
-
-export const metadata: Metadata = {
-  title: 'Twitter / X Header Size Guide 2026 — Exact Dimensions & Safe Zones',
-  description:
-    'The exact Twitter (X) header size for 2026 — 1500×500px, what gets hidden by the profile picture, and how to design a header that looks great on all devices.',
-  alternates: { canonical: 'https://click-thumb.com/blog/twitter-header-size-guide/' },
-}
 
 export default function TwitterHeaderSizeGuide() {
   return (
