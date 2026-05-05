@@ -136,7 +136,7 @@ export default function YouTubeThumbnailPage() {
 
             {/* Left: only sticky canvas — nothing below so nothing gets overlapped */}
             <div>
-              <div className="lg:sticky lg:top-14">
+              <div className="lg:sticky lg:top-14 lg:min-h-full">
                 {editorActivated ? (
                   <>
                     <Suspense fallback={
