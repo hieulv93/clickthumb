@@ -130,7 +130,7 @@ export default function HomePage() {
         {/* Hero */}
         <div className="text-center space-y-4">
           <h1 className="text-3xl sm:text-4xl font-bold text-text-main leading-tight">
-            Free Thumbnail &amp; Social Image Maker
+            Free YouTube Thumbnail Maker &amp; Social Image Creator
           </h1>
           <p className="text-text-muted text-base sm:text-lg max-w-xl mx-auto">
             Create platform-perfect images in seconds — YouTube thumbnails, Instagram posts, Twitter
