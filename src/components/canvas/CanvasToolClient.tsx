@@ -170,7 +170,7 @@ export default function CanvasToolClient({
   return (
     <div className="space-y-6">
       {/* 2-column tool area: canvas left (sticky) + controls right */}
-      <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-6">
+      <div className={editorActivated ? 'lg:grid lg:grid-cols-[1fr_320px] lg:gap-6' : ''}>
 
         {/* Left: only canvas (sticky) — nothing below so nothing gets overlapped */}
         <div>
@@ -245,7 +245,7 @@ export default function CanvasToolClient({
               <div className="lg:hidden mt-4">{downloadBtn}</div>
             </>
           ) : (
-            <div className="hidden lg:block rounded-2xl border border-border bg-surface h-64 animate-pulse" />
+            null
           )}
         </div>
       </div>
