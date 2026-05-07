@@ -99,7 +99,7 @@ export default function YouTubeThumbnailPage() {
           </div>
 
           {/* 2-column on lg+: canvas left (sticky) + controls right */}
-          <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-6">
+          <div className={editorActivated ? 'lg:grid lg:grid-cols-[1fr_320px] lg:gap-6' : ''}>
 
             {/* Left: only sticky canvas — nothing below so nothing gets overlapped */}
             <div>
@@ -184,7 +184,7 @@ export default function YouTubeThumbnailPage() {
                   </div>
                 </>
               ) : (
-                <div className="hidden lg:block rounded-2xl border border-border bg-surface h-64 animate-pulse" />
+                null
               )}
             </div>
           </div>
