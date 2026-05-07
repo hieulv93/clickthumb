@@ -83,7 +83,6 @@ export default function CanvasToolClient({
     if (bgUrlRef.current) URL.revokeObjectURL(bgUrlRef.current)
     bgUrlRef.current = url
     setBgImageUrl(url)
-    setHasChanges(true)
   }, [])
 
   const handleBgClear = useCallback(() => {
@@ -92,16 +91,10 @@ export default function CanvasToolClient({
       bgUrlRef.current = null
     }
     setBgImageUrl(null)
-    setHasChanges(true)
   }, [])
 
   const handleReset = useCallback(() => {
     setBgColor(template?.bgColor ?? '#ffffff')
-    if (bgUrlRef.current) {
-      URL.revokeObjectURL(bgUrlRef.current)
-      bgUrlRef.current = null
-    }
-    setBgImageUrl(null)
     setFontFamily(template?.texts[0]?.fontFamily ?? 'Impact')
     setTexts(template?.texts.map(() => '') ?? [])
     setHasChanges(false)

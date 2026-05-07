@@ -70,7 +70,6 @@ export default function YouTubeThumbnailPage() {
     if (bgUrlRef.current) URL.revokeObjectURL(bgUrlRef.current)
     bgUrlRef.current = url
     setBgImageUrl(url)
-    setHasChanges(true)
   }, [])
 
   const handleBgClear = useCallback(() => {
@@ -79,16 +78,10 @@ export default function YouTubeThumbnailPage() {
       bgUrlRef.current = null
     }
     setBgImageUrl(null)
-    setHasChanges(true)
   }, [])
 
   const handleReset = useCallback(() => {
     setBgColor(YOUTUBE_TEMPLATES[0].bgColor)
-    if (bgUrlRef.current) {
-      URL.revokeObjectURL(bgUrlRef.current)
-      bgUrlRef.current = null
-    }
-    setBgImageUrl(null)
     setFontFamily(YOUTUBE_TEMPLATES[0].texts[0]?.fontFamily ?? 'Impact')
     setTexts(YOUTUBE_TEMPLATES[0].texts.map(() => ''))
     setHasChanges(false)
