@@ -203,7 +203,7 @@ export default function CanvasToolClient({
               </>
             ) : (
               <div>
-                <div>
+                <div className="mx-auto" style={{ maxWidth: 640 }}>
                   <button
                     onClick={() => setEditorActivated(true)}
                     className="w-full rounded-xl border border-border bg-surface flex flex-col items-center justify-center gap-4 group hover:border-primary transition-colors duration-150"
