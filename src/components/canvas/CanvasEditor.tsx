@@ -109,6 +109,12 @@ export default function CanvasEditor({
     const canvas = fabricRef.current
     if (!canvas || !template) return
 
+    // Exit any active IText editing mode first
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const active = canvas.getActiveObject() as any
+    if (active && active.isEditing) active.exitEditing()
+    canvas.discardActiveObject()
+
     const textObjs = canvas
       .getObjects()
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -119,6 +125,7 @@ export default function CanvasEditor({
       const obj = textObjs[i] as any
       if (!obj) return
       obj.set({
+        text: preset.text,
         left: preset.left * scale,
         top: preset.top * scale,
         originX: preset.originX,
