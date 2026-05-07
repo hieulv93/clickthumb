@@ -41,6 +41,7 @@ export default function CanvasToolClient({
   const [bgImageUrl, setBgImageUrl] = useState<string | null>(null)
   const [fontFamily, setFontFamily] = useState(templates[0]?.texts[0]?.fontFamily ?? 'Impact')
   const [texts, setTexts] = useState<string[]>(templates[0]?.texts.map(() => '') ?? [])
+  const [hasChanges, setHasChanges] = useState(false)
   const [exporting, setExporting] = useState(false)
   const [done, setDone] = useState(false)
   const [downloaded, setDownloaded] = useState(false)
@@ -60,16 +61,29 @@ export default function CanvasToolClient({
     setBgColor(t.bgColor)
     setFontFamily(t.texts[0]?.fontFamily ?? 'Impact')
     setTexts(t.texts.map(() => ''))
+    setHasChanges(false)
   }, [])
 
   const handleTextChange = useCallback((index: number, value: string) => {
     setTexts((prev) => prev.map((t, i) => (i === index ? value : t)))
+    setHasChanges(true)
+  }, [])
+
+  const handleFontChange = useCallback((font: string) => {
+    setFontFamily(font)
+    setHasChanges(true)
+  }, [])
+
+  const handleBgColorChange = useCallback((color: string) => {
+    setBgColor(color)
+    setHasChanges(true)
   }, [])
 
   const handleBgUpload = useCallback((url: string) => {
     if (bgUrlRef.current) URL.revokeObjectURL(bgUrlRef.current)
     bgUrlRef.current = url
     setBgImageUrl(url)
+    setHasChanges(true)
   }, [])
 
   const handleBgClear = useCallback(() => {
@@ -78,7 +92,20 @@ export default function CanvasToolClient({
       bgUrlRef.current = null
     }
     setBgImageUrl(null)
+    setHasChanges(true)
   }, [])
+
+  const handleReset = useCallback(() => {
+    setBgColor(template?.bgColor ?? '#ffffff')
+    if (bgUrlRef.current) {
+      URL.revokeObjectURL(bgUrlRef.current)
+      bgUrlRef.current = null
+    }
+    setBgImageUrl(null)
+    setFontFamily(template?.texts[0]?.fontFamily ?? 'Impact')
+    setTexts(template?.texts.map(() => '') ?? [])
+    setHasChanges(false)
+  }, [template])
 
   const handleExport = useCallback(async () => {
     if (!exportFnRef.current) return
@@ -193,7 +220,10 @@ export default function CanvasToolClient({
                     fontFamily={fontFamily}
                     texts={texts}
                     format={format}
+                    hasChanges={hasChanges}
                     onReady={handleReady}
+                    onReset={handleReset}
+                    onCanvasChange={() => setHasChanges(true)}
                   />
                 </Suspense>
                 <div className="mt-2 space-y-2">
@@ -237,9 +267,9 @@ export default function CanvasToolClient({
           <div className="mt-4 lg:mt-0">
             <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
               <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
-              <FontSelector value={fontFamily} onChange={setFontFamily} />
+              <FontSelector value={fontFamily} onChange={handleFontChange} />
               <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
-              <BgSection color={bgColor} onChange={setBgColor} />
+              <BgSection color={bgColor} onChange={handleBgColorChange} />
             </div>
             <div className="lg:hidden mt-4">{downloadBtn}</div>
           </div>

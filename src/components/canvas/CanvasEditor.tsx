@@ -12,7 +12,10 @@ interface CanvasEditorProps {
   fontFamily: string
   texts: string[]
   format: 'jpeg' | 'png'
+  hasChanges: boolean
   onReady: (exportFn: () => Promise<Blob>) => void
+  onReset: () => void
+  onCanvasChange: () => void
 }
 
 export default function CanvasEditor({
@@ -23,7 +26,10 @@ export default function CanvasEditor({
   fontFamily,
   texts,
   format,
+  hasChanges,
   onReady,
+  onReset,
+  onCanvasChange,
 }: CanvasEditorProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -32,8 +38,6 @@ export default function CanvasEditor({
   const [cssScale, setCssScale] = useState(1)
   const { w: displayW, h: displayH } = getDisplayDimensions(platform)
   const scale = displayW / platform.width
-
-  const [hasChanges, setHasChanges] = useState(false)
 
   const formatRef = useRef(format)
   useEffect(() => {
@@ -53,7 +57,6 @@ export default function CanvasEditor({
   const applyTemplate = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async (canvas: any, fabric: any, tmpl: Template) => {
-      setHasChanges(false)
       canvas.clear()
       canvas.backgroundColor = tmpl.bgColor
 
@@ -146,8 +149,8 @@ export default function CanvasEditor({
     })
 
     canvas.renderAll()
-    setHasChanges(false)
-  }, [template, scale])
+    onReset()
+  }, [template, scale, onReset])
 
   // Ctrl+Z / Cmd+Z
   useEffect(() => {
@@ -201,8 +204,8 @@ export default function CanvasEditor({
         }
       })
 
-      canvas.on('object:modified', () => setHasChanges(true))
-      canvas.on('text:changed', () => setHasChanges(true))
+      canvas.on('object:modified', () => onCanvasChange())
+      canvas.on('text:changed', () => onCanvasChange())
 
       if (template) {
         await applyTemplate(canvas, fabric, template)

@@ -34,6 +34,7 @@ export default function YouTubeThumbnailPage() {
   const [done, setDone] = useState(false)
   const [downloaded, setDownloaded] = useState(false)
   const [exportError, setExportError] = useState(false)
+  const [hasChanges, setHasChanges] = useState(false)
   const [editorActivated, setEditorActivated] = useState(false)
   const exportFnRef = useRef<(() => Promise<Blob>) | null>(null)
   const bgUrlRef = useRef<string | null>(null)
@@ -47,16 +48,29 @@ export default function YouTubeThumbnailPage() {
     setBgColor(t.bgColor)
     setFontFamily(t.texts[0]?.fontFamily ?? 'Impact')
     setTexts(t.texts.map(() => ''))
+    setHasChanges(false)
   }, [])
 
   const handleTextChange = useCallback((index: number, value: string) => {
     setTexts((prev) => prev.map((t, i) => (i === index ? value : t)))
+    setHasChanges(true)
+  }, [])
+
+  const handleFontChange = useCallback((font: string) => {
+    setFontFamily(font)
+    setHasChanges(true)
+  }, [])
+
+  const handleBgColorChange = useCallback((color: string) => {
+    setBgColor(color)
+    setHasChanges(true)
   }, [])
 
   const handleBgUpload = useCallback((url: string) => {
     if (bgUrlRef.current) URL.revokeObjectURL(bgUrlRef.current)
     bgUrlRef.current = url
     setBgImageUrl(url)
+    setHasChanges(true)
   }, [])
 
   const handleBgClear = useCallback(() => {
@@ -65,6 +79,19 @@ export default function YouTubeThumbnailPage() {
       bgUrlRef.current = null
     }
     setBgImageUrl(null)
+    setHasChanges(true)
+  }, [])
+
+  const handleReset = useCallback(() => {
+    setBgColor(YOUTUBE_TEMPLATES[0].bgColor)
+    if (bgUrlRef.current) {
+      URL.revokeObjectURL(bgUrlRef.current)
+      bgUrlRef.current = null
+    }
+    setBgImageUrl(null)
+    setFontFamily(YOUTUBE_TEMPLATES[0].texts[0]?.fontFamily ?? 'Impact')
+    setTexts(YOUTUBE_TEMPLATES[0].texts.map(() => ''))
+    setHasChanges(false)
   }, [])
 
   const handleExport = useCallback(async () => {
@@ -120,7 +147,10 @@ export default function YouTubeThumbnailPage() {
                         fontFamily={fontFamily}
                         texts={texts}
                         format="jpeg"
+                        hasChanges={hasChanges}
                         onReady={handleReady}
+                        onReset={handleReset}
+                        onCanvasChange={() => setHasChanges(true)}
                       />
                     </Suspense>
                     <div className="mt-2 space-y-2">
@@ -170,9 +200,9 @@ export default function YouTubeThumbnailPage() {
               <div className="mt-4 lg:mt-0 space-y-4">
                 <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
                   <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
-                  <FontSelector value={fontFamily} onChange={setFontFamily} />
+                  <FontSelector value={fontFamily} onChange={handleFontChange} />
                   <TemplateSelector templates={YOUTUBE_TEMPLATES} selected={template} onSelect={handleTemplateSelect} />
-                  <BgSection color={bgColor} onChange={setBgColor} />
+                  <BgSection color={bgColor} onChange={handleBgColorChange} />
                 </div>
                 <div className="lg:hidden mt-4">
                   {exporting && <ProgressBar visible label="Exporting thumbnail..." />}
