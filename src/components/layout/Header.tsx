@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <header className="w-full border-b border-border bg-white sticky top-0 z-10">
-      <div className="max-w-3xl mx-auto px-4 py-2 sm:h-14 sm:py-0 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 sm:gap-0">
+      <div className="max-w-3xl mx-auto px-4 py-3 sm:h-14 sm:py-0 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
         <Link
           href="/"
           className="flex items-center gap-2 font-bold text-text-main hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
@@ -45,7 +45,7 @@ export default function Header() {
         </Link>
 
         <nav aria-label="Main navigation">
-          <ul className="flex flex-wrap gap-x-3 gap-y-1 text-xs sm:text-sm sm:flex-nowrap sm:gap-3">
+          <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm sm:flex-nowrap sm:gap-3">
             {navLinks.map(({ href, label }) => {
               const isActive = pathname === href || pathname === href + '/'
               return (
@@ -53,7 +53,7 @@ export default function Header() {
                   <Link
                     href={href}
                     aria-current={isActive ? 'page' : undefined}
-                    className={`transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-0.5 ${
+                    className={`transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1 py-1 ${
                       isActive
                         ? 'text-primary font-semibold'
                         : 'text-text-muted hover:text-primary'
