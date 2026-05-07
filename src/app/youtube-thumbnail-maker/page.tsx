@@ -165,28 +165,24 @@ export default function YouTubeThumbnailPage() {
               </div>
             </div>
 
-            {/* Right: controls panel */}
-            <div className="mt-4 lg:mt-0 space-y-4">
-              {editorActivated ? (
-                <>
-                  <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
-                    <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
-                    <FontSelector value={fontFamily} onChange={setFontFamily} />
-                    <TemplateSelector templates={YOUTUBE_TEMPLATES} selected={template} onSelect={handleTemplateSelect} />
-                    <BgSection color={bgColor} onChange={setBgColor} />
-                  </div>
-                  <div className="lg:hidden mt-4">
-                    {exporting && <ProgressBar visible label="Exporting thumbnail..." />}
-                    {exportError && <p className="text-xs text-red-500 text-center">Export failed. Please try again.</p>}
-                    <button onClick={handleExport} disabled={exporting} className={`w-full touch-target flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${downloaded ? 'bg-green-600 hover:bg-green-700 text-white active:scale-95' : 'bg-primary hover:bg-primary-hover active:scale-95 disabled:opacity-60 text-white'}`}>
-                      {downloaded ? (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>Downloaded!</>) : (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" /></svg>{exporting ? 'Exporting...' : 'Download Thumbnail (1280×720)'}</>)}
-                    </button>
-                  </div>
-                </>
-              ) : (
-                null
-              )}
-            </div>
+            {/* Right: controls panel — only render when editor is active */}
+            {editorActivated && (
+              <div className="mt-4 lg:mt-0 space-y-4">
+                <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
+                  <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
+                  <FontSelector value={fontFamily} onChange={setFontFamily} />
+                  <TemplateSelector templates={YOUTUBE_TEMPLATES} selected={template} onSelect={handleTemplateSelect} />
+                  <BgSection color={bgColor} onChange={setBgColor} />
+                </div>
+                <div className="lg:hidden mt-4">
+                  {exporting && <ProgressBar visible label="Exporting thumbnail..." />}
+                  {exportError && <p className="text-xs text-red-500 text-center">Export failed. Please try again.</p>}
+                  <button onClick={handleExport} disabled={exporting} className={`w-full touch-target flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${downloaded ? 'bg-green-600 hover:bg-green-700 text-white active:scale-95' : 'bg-primary hover:bg-primary-hover active:scale-95 disabled:opacity-60 text-white'}`}>
+                    {downloaded ? (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>Downloaded!</>) : (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" /></svg>{exporting ? 'Exporting...' : 'Download Thumbnail (1280×720)'}</>)}
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Full-width below both columns: ad + SEO content */}

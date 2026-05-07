@@ -232,22 +232,18 @@ export default function CanvasToolClient({
           </div>
         </div>
 
-        {/* Right: controls panel */}
-        <div className="mt-4 lg:mt-0">
-          {editorActivated ? (
-            <>
-              <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
-                <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
-                <FontSelector value={fontFamily} onChange={setFontFamily} />
-                <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
-                <BgSection color={bgColor} onChange={setBgColor} />
-              </div>
-              <div className="lg:hidden mt-4">{downloadBtn}</div>
-            </>
-          ) : (
-            null
-          )}
-        </div>
+        {/* Right: controls panel — only render when editor is active */}
+        {editorActivated && (
+          <div className="mt-4 lg:mt-0">
+            <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
+              <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
+              <FontSelector value={fontFamily} onChange={setFontFamily} />
+              <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
+              <BgSection color={bgColor} onChange={setBgColor} />
+            </div>
+            <div className="lg:hidden mt-4">{downloadBtn}</div>
+          </div>
+        )}
       </div>
 
       {/* Full-width below both columns: ad + SEO content */}
