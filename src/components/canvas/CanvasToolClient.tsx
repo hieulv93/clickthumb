@@ -234,10 +234,11 @@ export default function CanvasToolClient({
                     aria-label={`Open ${platform.name} editor`}
                   >
                     <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
-                      <svg className="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <rect x="2" y="3" width="20" height="14" rx="2" />
-                        <line x1="8" y1="21" x2="16" y2="21" />
-                        <line x1="12" y1="17" x2="12" y2="21" />
+                      <svg className="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <rect x="2" y="5" width="20" height="14" rx="2" />
+                        <line x1="4" y1="8.5" x2="15" y2="8.5" strokeWidth="1.5" />
+                        <line x1="4" y1="11.5" x2="11" y2="11.5" strokeWidth="1" />
+                        <path d="M15 12 L15 18 L21 15 Z" fill="currentColor" stroke="none" />
                       </svg>
                     </div>
                     <div className="text-center space-y-1 px-4">

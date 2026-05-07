@@ -25,16 +25,23 @@ export default function Header() {
           aria-label="ClickThumb - Home"
         >
           <svg
-            className="w-6 h-6 text-primary"
+            className="w-8 h-8 text-primary"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             aria-hidden="true"
           >
-            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-            <line x1="8" y1="21" x2="16" y2="21" />
-            <line x1="12" y1="17" x2="12" y2="21" />
+            {/* Thumbnail frame — landscape, fills icon */}
+            <rect x="2" y="5" width="20" height="14" rx="2" />
+            {/* Title text line */}
+            <line x1="4" y1="8.5" x2="15" y2="8.5" strokeWidth="1.5" />
+            {/* Subtitle text line */}
+            <line x1="4" y1="11.5" x2="11" y2="11.5" strokeWidth="1" />
+            {/* Play button — bottom right inside frame */}
+            <path d="M15 12 L15 18 L21 15 Z" fill="currentColor" stroke="none" />
           </svg>
           <span className="flex flex-col leading-tight">
             <span className="text-sm sm:text-base font-bold">ClickThumb</span>
