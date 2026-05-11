@@ -104,6 +104,44 @@ export default function InstagramPostSizeGuide() {
           </section>
 
           <section className="space-y-4">
+            <h2 className="text-2xl font-bold">Instagram Grid Strategy — Planning Your Profile Aesthetic</h2>
+            <p className="text-text-muted">
+              Your Instagram profile grid displays 9–12 posts visible without scrolling — this is
+              the first impression for new visitors. Creators who grow fastest on Instagram treat
+              the grid as a designed layout, not a random collection. A cohesive grid converts
+              profile visitors into followers at a significantly higher rate.
+            </p>
+            <div className="space-y-3">
+              {[
+                {
+                  strategy: 'Pick a dominant color palette',
+                  desc: '2–3 colors that appear across most posts. Instagram audiences respond to visual consistency — a feed with random colors feels chaotic, a feed with a clear palette looks curated. Choose colors that reflect your brand identity and are recognizable when someone quickly scrolls your grid.',
+                },
+                {
+                  strategy: 'Choose one dominant format and stick with it',
+                  desc: 'Mixing portrait and landscape posts creates inconsistent row heights that disrupt the grid layout. Pick one format — portrait (4:5) for maximum feed presence, or square (1:1) for a clean consistent grid — and stay consistent for at least 9 posts before experimenting.',
+                },
+                {
+                  strategy: 'Design for the thumbnail size',
+                  desc: 'In the grid, each post displays at roughly 120×120px on mobile. Text must be large, backgrounds must be high contrast, and the subject must be immediately clear at that size. Always zoom out to check before posting — what looks good at full size often fails at grid size.',
+                },
+                {
+                  strategy: 'Use consistent text placement',
+                  desc: 'If you add text overlays — quotes, captions, titles — always position them the same way: top-center, center, or bottom. This creates visual rhythm in the grid that signals intentional design to new visitors scanning your profile for the first time.',
+                },
+              ].map(({ strategy, desc }) => (
+                <div key={strategy} className="flex gap-3">
+                  <span className="text-primary font-bold shrink-0 mt-0.5">→</span>
+                  <div>
+                    <p className="font-semibold text-text-main text-sm">{strategy}</p>
+                    <p className="text-text-muted text-sm leading-relaxed">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="space-y-4">
             <h2 className="text-2xl font-bold">How Instagram Compresses Images</h2>
             <p className="text-text-muted">
               Instagram re-compresses every uploaded image. Even if you upload a perfectly sharp
@@ -184,6 +222,9 @@ export default function InstagramPostSizeGuide() {
                 { q: 'Does image size affect Instagram reach?', a: "Image dimensions don't directly affect reach. But image quality does — blurry or heavily compressed images get less engagement, which signals lower quality to the algorithm. Upload sharp, correctly-sized images." },
                 { q: 'What is the Instagram carousel size?', a: '1080×1080px (square) per slide is the standard. All slides must use the same aspect ratio — Instagram will force them to match the first slide\'s ratio. Design all carousel slides at 1080×1080 for consistency.' },
                 { q: 'Should I post portrait or square on Instagram?', a: "Portrait (1080×1350) generally outperforms square because it occupies more screen space in the feed. Use portrait for photos of people, food, and text graphics. Use square when you need a consistent grid layout or when the image composition doesn't work in portrait." },
+                { q: 'What resolution should Instagram posts be?', a: 'Upload at 1080px wide for all Instagram formats: 1080×1080 (square), 1080×1350 (portrait), or 1080×1920 (Stories/Reels). Instagram does not improve quality above 1080px — anything wider gets downscaled. Uploading at exactly 1080px avoids the double-compression penalty of resize + encode.' },
+                { q: 'How do I stop Instagram from compressing my photos?', a: "You cannot fully prevent Instagram compression, but you can minimize the impact: upload at exactly 1080px width, use sRGB color space (not Adobe RGB — Instagram converts non-sRGB incorrectly), post from WiFi rather than mobile data, and export JPEG at 75–80% quality before uploading. Counterintuitively, a slightly pre-compressed file gives Instagram less to work with." },
+                { q: 'Does posting time affect how my Instagram post looks?', a: "Posting time affects reach, not image quality. Instagram's compression is applied equally regardless of when you post. For reach, posting when your audience is most active (check Insights for your account's peak hours) typically results in more initial engagement, which signals to the algorithm to distribute the post further." },
               ].map(({ q, a }) => (
                 <div key={q} className="border border-border rounded-xl p-5 space-y-2">
                   <p className="font-semibold text-text-main text-sm">{q}</p>

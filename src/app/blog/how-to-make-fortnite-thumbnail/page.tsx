@@ -161,6 +161,44 @@ export default function HowToMakeFortniteThumbnail() {
           </section>
 
           <section className="space-y-4">
+            <h2 className="text-2xl font-bold">Fortnite Content Types — Matching Thumbnails to the Video</h2>
+            <p className="text-text-muted">
+              Fortnite content covers more than battle royale. Each content type has a different
+              audience expectation — matching your thumbnail style to the content type increases
+              click-through rate because viewers immediately understand what they are getting.
+            </p>
+            <div className="space-y-3">
+              {[
+                {
+                  type: 'Battle Royale highlights',
+                  thumb: 'Victory Royale screen or elimination streak as background. Neon colors (electric pink, blue), Impact text with kill count or placement: "20 KILLS SOLO", "VICTORY ROYALE". Bold and energetic — the thumbnail should communicate a peak moment.',
+                },
+                {
+                  type: 'Zero Build mode',
+                  thumb: 'Cleaner layouts than traditional BR. Zero Build audiences skew toward tactical thinkers who respond to precision over chaos. Less visual noise, cleaner text, still with the Fortnite color palette.',
+                },
+                {
+                  type: 'Skin reviews and battle pass',
+                  thumb: "Character skin in the center, using the skin's own color palette as the thumbnail accent. Fans click based on recognizing their favorite skins — a new legendary skin thumbnail drives clicks purely from recognition, before reading the title.",
+                },
+                {
+                  type: 'Challenges and quest guides',
+                  thumb: 'Text-heavy thumbnails work best for challenge guides. "HOW TO COMPLETE [QUEST]" or "FASTEST WAY TO LEVEL UP" — the viewer must read the text to decide if the video is relevant to their current progression. Keep the background uncluttered.',
+                },
+                {
+                  type: 'Chapter and season reactions',
+                  thumb: "Emphasize the new content as the visual hook — new map, new POI, new mechanic, or notable weapon. Include the chapter or season name for searchability. Season reaction videos spike in search volume the first 2–3 days after a new chapter drops.",
+                },
+              ].map(({ type, thumb }) => (
+                <div key={type} className="border border-border rounded-xl p-4 space-y-1">
+                  <p className="font-semibold text-text-main text-sm">{type}</p>
+                  <p className="text-text-muted text-sm leading-relaxed">{thumb}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="space-y-4">
             <h2 className="text-2xl font-bold">Common Fortnite Thumbnail Mistakes</h2>
             <div className="space-y-3">
               {[
@@ -186,6 +224,9 @@ export default function HowToMakeFortniteThumbnail() {
                 { q: 'Should I use my face or a Fortnite character in the thumbnail?', a: 'Both work. Face + character thumbnails tend to outperform character-only thumbnails because faces trigger emotional recognition. If you play face-cam, overlay your reaction next to the character.' },
                 { q: 'What font works best for Fortnite thumbnails?', a: 'Heavy, condensed fonts with high weight — Impact, Anton, Bebas Neue, or Black Han Sans. Always add a dark outline or shadow so text reads over any background.' },
                 { q: 'How do I get more clicks on my Fortnite thumbnails?', a: 'Test one variable at a time: try a different background color, change the text hook, or swap character pose. Check YouTube Studio CTR data after 48 hours. The thumbnail with higher CTR wins — replace the other.' },
+                { q: 'How long should I spend making a Fortnite thumbnail?', a: 'With a template tool, a high-quality Fortnite thumbnail takes 5–10 minutes. Spend most of that time on the text (what is the hook?) and the background (what screenshot makes the claim believable?). Avoid spending more than 15 minutes — consistent publishing with good thumbnails beats perfecting one thumbnail at the expense of output.' },
+                { q: 'Should every Fortnite video have a unique thumbnail?', a: 'Yes. Channels using auto-generated YouTube thumbnails (random screenshots from the video) consistently underperform compared to channels with custom thumbnails. With a template tool, custom Fortnite thumbnails take 5–10 minutes per video — there is no reason not to use one.' },
+                { q: 'What makes Fortnite thumbnails different from other gaming thumbnails?', a: "Fortnite thumbnails are brighter and more saturated than most gaming thumbnails. The game's visual identity is neon and colorful — thumbnails that match this palette feel native to Fortnite. COD uses dark tactical colors, CS2 uses blue or orange on black, Minecraft uses green and brown. Fortnite thumbnails stand out in YouTube feeds because they are designed to be louder and more colorful than almost any other gaming genre." },
               ].map(({ q, a }) => (
                 <div key={q} className="border border-border rounded-xl p-5 space-y-2">
                   <p className="font-semibold text-text-main text-sm">{q}</p>

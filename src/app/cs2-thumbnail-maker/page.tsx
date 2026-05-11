@@ -86,6 +86,28 @@ export default function CS2ThumbnailMakerPage() {
                 </ul>
               </div>
               <div className="space-y-3">
+                <h2 className="text-base font-bold text-text-main">Step-by-Step: Make a CS2 Thumbnail Free</h2>
+                <div className="space-y-2">
+                  {[
+                    { step: '1. Choose your template', desc: 'Select CT Blue for clutch and tactical content, T-Side Orange for aggressive highlight reels and ranked grind videos, or Pro Minimal for guides, tier lists, and crosshair/settings content.' },
+                    { step: '2. Upload your CS2 screenshot', desc: 'Click "Upload image" to add your kill feed, scoreboard, or clutch moment screenshot. The more specific the screenshot — showing a 1v5 clutch scoreboard or an ACE round kill feed — the more authentic the thumbnail feels.' },
+                    { step: '3. Edit the main text', desc: 'State the exact scenario: "1 VS 5 CLUTCH", "ACE ROUND!", "FACEIT LEVEL 10". CS2 viewers understand exactly what each scenario means — specificity is what drives clicks in this niche.' },
+                    { step: '4. Verify text is readable at thumbnail size', desc: 'Counter-Strike thumbnails often appear alongside other CS2 content. Zoom out to 120px wide to simulate the YouTube mobile grid. Your claim must be legible — if it is not, the viewer scrolls past.' },
+                    { step: '5. Download', desc: 'Click "Download Thumbnail (1280×720)". Upload to YouTube Studio. For HLTV clips or Twitter posts, the same 1280×720 file works — no additional resizing required.' },
+                  ].map(({ step, desc }) => (
+                    <div key={step} className="flex gap-3">
+                      <span className="font-semibold text-text-main text-xs shrink-0 pt-0.5">{step}</span>
+                      <p className="text-xs text-text-muted leading-relaxed">{desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="space-y-3">
+                <h2 className="text-base font-bold text-text-main">CS2 Thumbnail Strategy by Content Type</h2>
+                <p>Counter-Strike 2 content divides into distinct categories, each with different thumbnail conventions. Clutch compilation channels dominate with "1 vs X" format thumbnails — the fraction communicates difficulty immediately. Ranked progression channels use rank names as the primary hook: "I HIT FACEIT LEVEL 10" or "PREMIER 20,000 RATING" — these are powerful credibility signals for the CS2 audience who understands what each rank means.</p>
+                <p>Guide and educational content performs differently — clean, minimal thumbnails with white text on black outperform cluttered designs for settings guides, crosshair tutorials, and aim training videos. The Pro Minimal template is optimized for this: black background, white Impact text, no distractions. This style signals that the content is informational rather than entertainment-focused, which accurately sets viewer expectations and reduces early drop-off.</p>
+              </div>
+              <div className="space-y-3">
                 <h2 className="text-base font-bold text-text-main">Compress Your CS2 Thumbnail</h2>
                 <p>YouTube thumbnails must be under 2MB. JPG at 92% quality is typically 150–350KB for 1280×720 images. If you need to reduce file size for other platforms, use <Link href="https://compressimg.pro/compress-image" className="text-primary hover:underline" target="_blank" rel="noopener">CompressImg.pro</Link> to compress without visible quality loss.</p>
               </div>

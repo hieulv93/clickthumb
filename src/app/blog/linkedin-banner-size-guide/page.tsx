@@ -1,4 +1,11 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'LinkedIn Banner Size Guide 2026 — Dimensions, Design Tips & Examples',
+  description: 'The exact LinkedIn banner size is 1584×396 pixels. Learn the safe zones, what to include, design tips by profession, and how to upload. Free LinkedIn banner maker included.',
+  alternates: { canonical: 'https://click-thumb.com/blog/linkedin-banner-size-guide/' },
+}
 
 export default function LinkedInBannerSizeGuide() {
   return (
@@ -91,6 +98,59 @@ export default function LinkedInBannerSizeGuide() {
           </section>
 
           <section className="space-y-4">
+            <h2 className="text-2xl font-bold">Personal Profile Banner vs. LinkedIn Company Page Banner</h2>
+            <p className="text-text-muted">
+              LinkedIn banners serve different purposes on personal profiles versus company pages.
+              The dimensions are identical (1584×396), but the safe zones and content strategy
+              differ based on where the profile photo appears and how each profile type is used.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                {
+                  type: 'Personal Profile Banner',
+                  points: [
+                    'Profile photo: circular avatar overlaps bottom-left corner',
+                    'Safe zone: center-right 70% of the banner',
+                    'Primary purpose: personal branding — who you are and what you do',
+                    'Content: name, title, value proposition, website or LinkedIn URL',
+                    'Update when: role, project, or professional status changes',
+                    'Audience: recruiters, peers, potential clients, collaborators',
+                  ],
+                },
+                {
+                  type: 'Company Page Banner',
+                  points: [
+                    'Profile photo: company logo, left-centered at the bottom',
+                    'Safe zone: center-right 60% — slightly more overlap than personal',
+                    'Primary purpose: brand visibility and recruitment marketing',
+                    'Content: product tagline, current campaign, career CTA, company values',
+                    'Update when: campaigns, product launches, or major company news',
+                    'Audience: potential hires, customers, investors, media, partners',
+                  ],
+                },
+              ].map(({ type, points }) => (
+                <div key={type} className="border border-border rounded-xl p-4 space-y-2">
+                  <p className="font-semibold text-text-main text-sm">{type}</p>
+                  <ul className="space-y-1">
+                    {points.map((p) => (
+                      <li key={p} className="text-xs text-text-muted flex gap-1.5">
+                        <span className="text-primary shrink-0 mt-0.5">•</span>
+                        <span>{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <p className="text-text-muted">
+              For personal profiles, design around your professional narrative — who you are and
+              what value you bring. For company pages, align the banner with current marketing
+              initiatives and update it with each major campaign. Both benefit from any
+              customization over the default blue gradient — the bar is low.
+            </p>
+          </section>
+
+          <section className="space-y-4">
             <h2 className="text-2xl font-bold">What to Put in Your LinkedIn Banner</h2>
             <p className="text-text-muted">
               LinkedIn is a professional context — the banner should reinforce your credibility
@@ -165,6 +225,9 @@ export default function LinkedInBannerSizeGuide() {
                 { q: 'Does the LinkedIn banner affect profile visibility?', a: "The banner doesn't affect LinkedIn's search algorithm directly. However, a professional banner improves first impressions, which increases connection acceptance rates, InMail response rates, and recruiter credibility." },
                 { q: 'How often should I update my LinkedIn banner?', a: 'Update it when your role, focus, or status changes significantly — new job, new product launch, new specialization. Also update it when you have a major announcement (speaking at a conference, new book, product launch).' },
                 { q: 'What file format is best for LinkedIn banners?', a: "PNG for banners with text, logos, or sharp graphics — it preserves edges without compression artifacts. JPG for photo-based banners. Both formats are accepted up to 8MB, but aim for under 2MB for faster loading." },
+                { q: 'How do I make my LinkedIn banner stand out from the default?', a: "LinkedIn's default is a flat blue gradient. Any non-default banner immediately stands out. For maximum differentiation, use a dark background (navy, charcoal, dark green) with bold white text, or a professional brand-color design. Avoid generic stock photo backgrounds — they blend in with other attempted custom banners. The most effective banners are simple and specific." },
+                { q: 'Should I include my contact information on my LinkedIn banner?', a: "Include your website URL if you have one — it is the only place on LinkedIn where clicking a link takes someone directly off LinkedIn to your site. Avoid putting your email address directly on the banner; use the Contact section in your profile for that. A website URL in the banner is actionable and can serve as an indirect conversion tracker for profile traffic." },
+                { q: 'Can I use the same banner design across LinkedIn, Twitter, and other social profiles?', a: "The dimensions differ across platforms (LinkedIn 1584×396, Twitter 1500×500, Facebook 851×315), so you cannot reuse the same image directly. However, use the same design system — same colors, same font, same core message — and adapt it to each platform's dimensions. Brand consistency across profiles strengthens recognition and signals professional attention to detail." },
               ].map(({ q, a }) => (
                 <div key={q} className="border border-border rounded-xl p-5 space-y-2">
                   <p className="font-semibold text-text-main text-sm">{q}</p>

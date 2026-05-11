@@ -118,6 +118,48 @@ export default function TikTokCoverSizeGuide() {
           </section>
 
           <section className="space-y-4">
+            <h2 className="text-2xl font-bold">TikTok Cover Ideas by Content Niche</h2>
+            <p className="text-text-muted">
+              The best TikTok cover style depends on your content niche. Each audience has
+              visual expectations — covers that match your niche aesthetic attract the right
+              followers and set accurate expectations before anyone taps play.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {[
+                {
+                  niche: 'Gaming',
+                  idea: "Dark background matching the game's aesthetic. Game name or character centered in the safe zone. Bold white or neon text with the video hook. Consistent color palette per game — your gaming covers should look like a curated collection, not random screenshots.",
+                },
+                {
+                  niche: 'Lifestyle & Vlog',
+                  idea: "Your face, bright and well-lit, centered in the safe zone. Warm background tones (cream, soft peach, warm gray). Short caption text overlay — your expression does the work. Clean, approachable, personal.",
+                },
+                {
+                  niche: 'Fashion & Beauty',
+                  idea: 'Outfit or product close-up in the center. High saturation on the subject; neutral or complementary background. Font choice should match your brand — serif for luxury, sans-serif for modern. Color palette consistent across covers.',
+                },
+                {
+                  niche: 'Food & Recipe',
+                  idea: 'Hero dish centered, photographed from directly above or at 45°. Bright, saturated food colors. Text overlay with dish name and time: "5 MIN PASTA". Natural light consistently outperforms artificial light for food TikTok covers.',
+                },
+                {
+                  niche: 'Education & Tips',
+                  idea: 'Text-first covers perform well for educational content — the title itself drives taps. Bold text on a solid background, minimal design. The viewer decides from the text whether the content is relevant to them.',
+                },
+                {
+                  niche: 'Fitness',
+                  idea: 'Action shot or before/after in the center. High contrast — dark gym background or bright outdoor setting. Text with the specific result or benefit: "LOSE 5KG", "30 DAY RESULT". Progress-based covers consistently outperform general fitness imagery.',
+                },
+              ].map(({ niche, idea }) => (
+                <div key={niche} className="border border-border rounded-xl p-3 space-y-1.5">
+                  <p className="font-semibold text-text-main text-sm">{niche}</p>
+                  <p className="text-text-muted text-xs leading-relaxed">{idea}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="space-y-4">
             <h2 className="text-2xl font-bold">How to Design a TikTok Cover That Works</h2>
             <div className="space-y-4">
               {[
@@ -172,6 +214,9 @@ export default function TikTokCoverSizeGuide() {
                 { q: 'Does TikTok cover affect views?', a: "The cover doesn't affect the For You Page algorithm directly — TikTok distributes videos based on watch time and engagement. But it does affect your profile follow rate. A consistent, professional grid converts profile visitors into followers more effectively." },
                 { q: 'Can I use the same cover design for every video?', a: "Yes — with different text. Keeping the same template (background, layout, font) across all videos in a series makes your profile grid look intentional. Only the title text changes per video." },
                 { q: 'What aspect ratio is TikTok cover?', a: '9:16 portrait (same as TikTok videos). The exact pixel dimensions are 1080×1920. Do not use square (1:1) or landscape (16:9) covers — TikTok will stretch or crop them.' },
+                { q: 'How do I change a TikTok cover after posting?', a: "After posting, you can change the cover from TikTok's video management. Go to your profile → tap the video → tap the three-dot menu → Edit → Select cover. Note: changing the cover on a posted video may not update across all feeds immediately — the original cover may still appear in external links and embeds until TikTok re-caches it." },
+                { q: 'What text should I put on a TikTok cover?', a: 'The video hook in 3–5 words, positioned in the center safe zone. The best TikTok cover text communicates the value proposition immediately — what will the viewer learn or experience? Avoid vague titles like "Watch this" or "POV". Be specific: "How I gained 10K followers" becomes "10K FOLLOWERS STRATEGY" on the cover.' },
+                { q: 'Does a TikTok cover affect the For You Page algorithm?', a: "The cover itself is not a direct ranking signal for FYP distribution — TikTok ranks videos primarily on watch time, completion rate, and engagement. However, a strong cover improves your profile's follow rate. More followers means your future videos distribute to a larger immediate audience when posted, which compounds your reach over time." },
               ].map(({ q, a }) => (
                 <div key={q} className="border border-border rounded-xl p-5 space-y-2">
                   <p className="font-semibold text-text-main text-sm">{q}</p>

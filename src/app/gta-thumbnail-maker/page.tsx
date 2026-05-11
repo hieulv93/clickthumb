@@ -86,6 +86,28 @@ export default function GTAThumbnailMakerPage() {
                 </ul>
               </div>
               <div className="space-y-3">
+                <h2 className="text-base font-bold text-text-main">Step-by-Step: Make a GTA Thumbnail Free</h2>
+                <div className="space-y-2">
+                  {[
+                    { step: '1. Choose your template', desc: 'Select GTA Gold for money and heist content, Night Purple for nightclub and nightlife videos, or Wanted Red for chaos and 5-star wanted content. Each template is pre-configured with the correct GTA color palette and Impact font style.' },
+                    { step: '2. Upload your GTA screenshot', desc: 'Click "Upload image" to set your GTA 5 or GTA Online screenshot as the background. The heist payout screen, your car collection in the garage, or a high-action police chase moment all make strong thumbnail backgrounds.' },
+                    { step: '3. Edit the main text', desc: 'Replace the template text with your hook: "$10M HEIST", "SOLO CAYO PERICO", "5 STAR CHAOS". Keep it to 3–5 words. The text should tell the viewer exactly what the video delivers before they click.' },
+                    { step: '4. Check mobile readability', desc: 'Zoom your browser out until the canvas is about 120px wide — the size YouTube displays thumbnails on mobile. Text should be readable and the screenshot recognizable at this size. If not, increase font size or simplify the layout.' },
+                    { step: '5. Download', desc: 'Click "Download Thumbnail (1280×720)". Exports as JPG at full HD resolution. Upload directly to YouTube Studio under your video → Custom thumbnail. No resizing needed.' },
+                  ].map(({ step, desc }) => (
+                    <div key={step} className="flex gap-3">
+                      <span className="font-semibold text-text-main text-xs shrink-0 pt-0.5">{step}</span>
+                      <p className="text-xs text-text-muted leading-relaxed">{desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="space-y-3">
+                <h2 className="text-base font-bold text-text-main">GTA YouTube Content and Thumbnail Strategy</h2>
+                <p>GTA content on YouTube spans multiple sub-niches, and each has a different thumbnail formula. Money and heist content (Cayo Perico, Diamond Casino, Doomsday) performs best with gold text on dark backgrounds — the gold signals wealth, which is the core GTA Online fantasy. Chaos and challenge content (5-star wanted, destroying everything, 1 vs 100 players) performs better with red — it signals danger and spectacle. Nightclub and nightlife DLC content uses purple as the native color, matching the in-game UI of those updates.</p>
+                <p>The most successful GTA YouTube channels update thumbnails based on what is trending in GTA Online — each major Rockstar update brings new keywords and thumbnail styles. During a new heist launch, every channel uses the heist name in large text. Staying current with these content cycles and adapting your thumbnail language keeps your channel relevant to the active GTA audience.</p>
+              </div>
+              <div className="space-y-3">
                 <h2 className="text-base font-bold text-text-main">Compress Your GTA Thumbnail</h2>
                 <p>YouTube thumbnails must be under 2MB. JPG at 92% quality is typically 150–350KB for 1280×720 images. If you need to reduce file size further, use <Link href="https://compressimg.pro/compress-image" className="text-primary hover:underline" target="_blank" rel="noopener">CompressImg.pro</Link> to compress without visible quality loss.</p>
               </div>

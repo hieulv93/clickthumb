@@ -1,4 +1,11 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'Twitter / X Header Size Guide 2026 — Exact Dimensions & Safe Zones',
+  description: 'The exact Twitter/X header size is 1500×500 pixels. Learn the safe zones, design tips, what to include, and how to upload your header. Free Twitter header maker included.',
+  alternates: { canonical: 'https://click-thumb.com/blog/twitter-header-size-guide/' },
+}
 
 export default function TwitterHeaderSizeGuide() {
   return (
@@ -136,6 +143,44 @@ export default function TwitterHeaderSizeGuide() {
           </section>
 
           <section className="space-y-4">
+            <h2 className="text-2xl font-bold">Common Twitter Header Mistakes to Avoid</h2>
+            <p className="text-text-muted">
+              Most Twitter header mistakes come down to safe zone errors or design decisions that
+              look fine at full canvas size but fail at the actual displayed width. Here are the
+              five most common issues and how to correct them.
+            </p>
+            <div className="space-y-3">
+              {[
+                {
+                  mistake: 'Text or logo in the bottom-left corner',
+                  fix: 'The profile photo always overlaps the bottom-left ~250×250px. Any content placed here is permanently hidden behind the circular avatar. Move logos, handles, and key text to the center or right side of the header.',
+                },
+                {
+                  mistake: 'Using too many colors',
+                  fix: 'Twitter headers display at a 3:1 aspect ratio — wide and short. Complex color schemes become visually noisy at this shape. Stick to 2–3 colors: one background color, one primary text color, and one optional accent. More than that reads as unpolished.',
+                },
+                {
+                  mistake: 'Text that is too small to read on mobile',
+                  fix: "Twitter compresses the header to fit mobile widths (typically 375px). At this size, text smaller than 40px in the design becomes unreadable. All text in your header should be bold and large — treat it like a billboard, not a business card.",
+                },
+                {
+                  mistake: 'Designing at the wrong dimensions',
+                  fix: 'Headers must be exactly 3:1 — uploading a 1:1 or 16:9 image forces Twitter to crop or stretch it. Always design at 1500×500. If you are using a different canvas size, Twitter will center-crop to fill the 3:1 space, cutting off content from the top and bottom.',
+                },
+                {
+                  mistake: 'Never updating it',
+                  fix: 'A header showing a product you launched two years ago or a conference from 2023 signals an inactive or stale account. Update your header at major milestones: new product launches, campaign changes, or significant professional transitions.',
+                },
+              ].map(({ mistake, fix }) => (
+                <div key={mistake} className="border border-border rounded-xl p-4 space-y-1">
+                  <p className="font-semibold text-sm" style={{ color: '#dc2626' }}>❌ {mistake}</p>
+                  <p className="text-text-muted text-sm leading-relaxed">✅ {fix}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="space-y-4">
             <h2 className="text-2xl font-bold">Step-by-Step: Make a Twitter Header Free</h2>
             <p className="text-text-muted">
               <Link href="/twitter-header-maker" className="text-primary underline">
@@ -169,6 +214,9 @@ export default function TwitterHeaderSizeGuide() {
                 { q: 'What file formats does Twitter accept for headers?', a: 'JPG, PNG, and static GIF. Twitter does not support animated GIF headers (the animation will not play). Max file size is 5MB. JPG at high quality is the recommended format for photos; PNG for designs with text or transparent elements.' },
                 { q: 'How often should I update my Twitter header?', a: "Update it whenever you have a major announcement: product launch, new project, milestone, or seasonal campaign. A stale header (years old) signals an inactive account. Updating it regularly also gives followers a reason to visit your profile." },
                 { q: 'Does Twitter compress header images?', a: "Yes — Twitter re-compresses uploaded images. Upload at exactly 1500×500 and use a high-quality JPG or PNG to minimize the impact. Pre-compressing with a tool like compressimg.pro to ~500KB before uploading can also help retain sharpness." },
+                { q: 'Can I use a gradient background for my Twitter header?', a: 'Yes — horizontal gradients work well for Twitter headers. A gradient transitioning from your brand color to a darker shade creates depth without visual noise. Keep the gradient direction left-to-right or right-to-left (not diagonal) to match the wide landscape format. Avoid busy multicolor gradients that compete with your text.' },
+                { q: 'What is a good Twitter header for a brand or business?', a: 'For businesses, the best Twitter headers function like a mini billboard: your product or service hero image, a short tagline (5 words or less), and your website URL positioned in the safe center-right zone. Update it with every major campaign or product launch — a stale header signals an inactive account to potential customers and followers.' },
+                { q: 'Does the Twitter header affect follower conversion?', a: 'Yes — indirectly. Someone who discovers your content and visits your profile decides whether to follow within 5 seconds. A professional, informative header (your name, what you do, and a CTA or website) converts profile visitors into followers at a higher rate than a generic or blank header. It is the fastest way to communicate credibility before someone reads your bio.' },
               ].map(({ q, a }) => (
                 <div key={q} className="border border-border rounded-xl p-5 space-y-2">
                   <p className="font-semibold text-text-main text-sm">{q}</p>

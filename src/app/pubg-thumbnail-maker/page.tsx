@@ -86,6 +86,28 @@ export default function PUBGThumbnailMakerPage() {
                 </ul>
               </div>
               <div className="space-y-3">
+                <h2 className="text-base font-bold text-text-main">Step-by-Step: Make a PUBG Thumbnail Free</h2>
+                <div className="space-y-2">
+                  {[
+                    { step: '1. Choose your template', desc: 'Select Chicken Dinner (amber/gold) for win and high-kill content, Military Tan for tactical and squad gameplay, or Night Drop (teal) for night-map and stealth content. Each template matches a distinct PUBG playstyle and audience expectation.' },
+                    { step: '2. Upload your PUBG screenshot', desc: 'Click "Upload image" to add your PUBG winner screen, kill feed, or map overview. The "Winner Winner Chicken Dinner" victory screen is one of the most recognizable gaming images ever — it instantly communicates a win to any PUBG viewer.' },
+                    { step: '3. Edit the main text', desc: 'Lead with the achievement: "#1 WINNER!", "20 KILLS SOLO", "CHICKEN DINNER ERANGEL". Include the map name when relevant — PUBG viewers often search map-specific content for their favorite drops.' },
+                    { step: '4. Check readability', desc: 'PUBG thumbnails compete in the battle royale category alongside Warzone and Fortnite thumbnails. Zoom to 120px wide — your text claim must be legible and the color palette must immediately read as PUBG (amber/gold or military tan, not Fortnite-bright).' },
+                    { step: '5. Download', desc: 'Click "Download Thumbnail (1280×720)". Upload to YouTube Studio directly. The exported JPG is optimized for YouTube at 92% quality — well within the 2MB limit.' },
+                  ].map(({ step, desc }) => (
+                    <div key={step} className="flex gap-3">
+                      <span className="font-semibold text-text-main text-xs shrink-0 pt-0.5">{step}</span>
+                      <p className="text-xs text-text-muted leading-relaxed">{desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="space-y-3">
+                <h2 className="text-base font-bold text-text-main">PUBG Mobile vs PUBG PC — Thumbnail Differences</h2>
+                <p>PUBG Mobile and PUBG PC share the same core gameplay but have distinct audiences on YouTube. PUBG Mobile has a massive viewership across Southeast Asia, India, and the Middle East — titles in local languages often outperform English titles for those audiences. PUBG PC content skews toward Western audiences who respond to the military and tactical aesthetic. The amber/gold Chicken Dinner template works equally well for both audiences, as the victory screen color is identical in both versions of the game.</p>
+                <p>PUBG Mobile thumbnails often include device-specific context: "iPhone 16 PUBG Mobile", "90FPS PUBG Mobile" — these technical tags attract the mobile gaming audience who are actively seeking performance benchmarks and device comparisons. PUBG PC thumbnails focus more on the achievement itself (kill count, placement) without device context. If you create content for both platforms, consider separate thumbnail styles that signal which version you are covering.</p>
+              </div>
+              <div className="space-y-3">
                 <h2 className="text-base font-bold text-text-main">Compress Your PUBG Thumbnail</h2>
                 <p>YouTube thumbnails must be under 2MB. JPG at 92% quality is typically 150–350KB for 1280×720. If you need to reduce file size, use <Link href="https://compressimg.pro/compress-image" className="text-primary hover:underline" target="_blank" rel="noopener">CompressImg.pro</Link> to compress without visible quality loss.</p>
               </div>

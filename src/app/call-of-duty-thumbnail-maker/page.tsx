@@ -86,6 +86,28 @@ export default function CODThumbnailMakerPage() {
                 </ul>
               </div>
               <div className="space-y-3">
+                <h2 className="text-base font-bold text-text-main">Step-by-Step: Make a COD Thumbnail Free</h2>
+                <div className="space-y-2">
+                  {[
+                    { step: '1. Choose your template', desc: 'Military Dark suits Warzone highlights and tactical content. Combat Orange works for high-kill games and aggressive plays. Camo Green is best for loadout guides and meta analyses.' },
+                    { step: '2. Upload your COD screenshot', desc: 'Click "Upload image" to add your gameplay screenshot — kill feed, nuke screen, final killcam, or end-of-match scoreboard. Real screenshots make thumbnails feel earned rather than staged.' },
+                    { step: '3. Write your claim', desc: 'Be specific: "30 KILLS WARZONE" beats "INSANE GAME". COD viewers know exactly what 30 kills means in a Warzone lobby — the specificity of the number is what earns the click. Include the game mode if it is relevant: "RANKED", "WARZONE", "GROUND WAR".' },
+                    { step: '4. Test at mobile size', desc: 'COD content is a saturated niche — dozens of creators upload daily. Zoom to 120px wide to simulate the YouTube mobile search grid. Your thumbnail must stand out from the competition at this size.' },
+                    { step: '5. Download', desc: 'Click "Download Thumbnail (1280×720)". The exported JPG works directly for YouTube Studio, Discord previews, and social sharing. No resizing needed for any of these platforms.' },
+                  ].map(({ step, desc }) => (
+                    <div key={step} className="flex gap-3">
+                      <span className="font-semibold text-text-main text-xs shrink-0 pt-0.5">{step}</span>
+                      <p className="text-xs text-text-muted leading-relaxed">{desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="space-y-3">
+                <h2 className="text-base font-bold text-text-main">COD Warzone vs Multiplayer — Thumbnail Strategy</h2>
+                <p>Warzone and multiplayer have different thumbnail conventions because the audience expectation differs. Warzone thumbnails tend to be more cinematic — large area screenshots, squad moments, final-circle tension. Kill counts above 20 are the standard hook because Warzone lobbies are large (150 players). Multiplayer thumbnails use different benchmarks: 100 kills in a single match, a nuke, or an S/D triple. The game mode context changes what counts as impressive.</p>
+                <p>Loadout guide thumbnails perform consistently in Call of Duty regardless of which game is current — players always want the best setup. For loadout content, the thumbnail hook is the specific weapon: "BEST KILO 141 CLASS", "META SMG WARZONE". Weapon name + "BEST LOADOUT" or "META" drives search traffic from players actively looking for class advice. Use clean, minimal designs for guide content — cluttered thumbnails work for highlights but not for informational videos.</p>
+              </div>
+              <div className="space-y-3">
                 <h2 className="text-base font-bold text-text-main">Compress Your COD Thumbnail Before Uploading</h2>
                 <p>YouTube thumbnails have a 2MB limit. This tool exports JPG at 92% quality, typically 150–350KB — well within limits. If you need to reduce file size for other platforms, use <Link href="https://compressimg.pro/compress-image" className="text-primary hover:underline" target="_blank" rel="noopener">CompressImg.pro</Link> to compress without quality loss.</p>
               </div>
