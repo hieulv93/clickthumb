@@ -21,6 +21,35 @@ export default function AboutPage() {
           </p>
         </header>
 
+        {/* Founder */}
+        <section className="space-y-4">
+          <h2 className="text-2xl font-bold text-text-main">Built by Alex Kim</h2>
+          <div className="rounded-xl border border-border bg-surface p-5 flex gap-4 items-start">
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0 text-primary font-bold text-lg">
+              AK
+            </div>
+            <div className="space-y-2">
+              <p className="font-semibold text-text-main text-sm">Alex Kim — Indie Developer & Content Creator</p>
+              <p className="text-text-muted text-sm leading-relaxed">
+                Alex built ClickThumb after spending too much time fighting design tools to make
+                thumbnails. As a creator himself, Alex knew the weekly thumbnail grind — picking a
+                template, swapping text, exporting at the right size — should take two minutes, not
+                twenty. Most tools either required a subscription, uploaded your images to a server,
+                or slapped a watermark on the result. ClickThumb launched in April 2026 with
+                platform-correct canvas sizes baked into every tool, so creators never have to look
+                up dimensions or resize after exporting.
+              </p>
+              <p className="text-xs text-text-muted">
+                Questions?{' '}
+                <Link href="/contact" className="text-primary underline">
+                  Get in touch
+                </Link>
+                {' '}— Alex reads every message.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Why We Built This */}
         <section className="space-y-4">
           <h2 className="text-2xl font-bold text-text-main">Why We Built This</h2>
