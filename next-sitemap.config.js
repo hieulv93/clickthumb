@@ -19,6 +19,7 @@ module.exports = {
       '/blog/how-to-make-fortnite-thumbnail': 0.8,
       '/blog/tiktok-cover-size-guide': 0.8,
       '/blog/how-to-make-youtube-thumbnail-without-photoshop': 0.7,
+      '/blog/how-to-make-thumbnail-without-canva': 0.8,
       '/youtube-thumbnail-maker': 1.0,
       '/gaming-thumbnail-maker': 0.85,
       '/instagram-post-maker': 0.85,

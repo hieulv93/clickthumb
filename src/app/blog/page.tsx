@@ -2,6 +2,15 @@ import Link from 'next/link'
 
 const posts = [
   {
+    slug: 'how-to-make-thumbnail-without-canva',
+    title: 'How to Make a Thumbnail Without Canva (Free, 2026)',
+    description:
+      'Make YouTube and social media thumbnails without Canva — no subscription, no watermark, no account. Free browser-based tool with platform-correct sizes built in.',
+    date: '2026-05-11',
+    readTime: '8 min read',
+    category: 'Guide',
+  },
+  {
     slug: 'linkedin-banner-size-guide',
     title: 'LinkedIn Banner Size Guide 2026 — Dimensions, Design Tips & Examples',
     description:
