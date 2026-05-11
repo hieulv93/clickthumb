@@ -5,9 +5,9 @@ const PAGE_URL = `${SITE_URL}/blog/social-media-image-sizes/`
 const OG_IMAGE = `${SITE_URL}/og-image.png`
 
 export const metadata: Metadata = {
-  title: 'Social Media Image Sizes 2026: The Complete Guide',
+  title: 'Social Media Image Sizes 2026 — All Platforms [Quick Reference]',
   description:
-    'Exact image dimensions for every social media platform in 2026. Instagram, YouTube, Twitter, LinkedIn, Facebook, TikTok — cover photos, posts, stories, and thumbnails.',
+    'Instagram 1080×1080, YouTube 1280×720, Twitter 1500×500, LinkedIn 1584×396 — every social media image size in one quick-reference guide. Updated for 2026.',
   keywords: [
     'social media image sizes',
     'social media image dimensions',
@@ -20,9 +20,9 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: 'Social Media Image Sizes 2026: The Complete Guide',
+    title: 'Social Media Image Sizes 2026 — All Platforms [Quick Reference]',
     description:
-      'Exact dimensions for Instagram, YouTube, Twitter, LinkedIn, Facebook, TikTok — posts, covers, stories, banners.',
+      'Instagram 1080×1080, YouTube 1280×720, Twitter 1500×500, LinkedIn 1584×396 — every social media image size in one guide.',
     url: PAGE_URL,
     siteName: 'ClickThumb',
     images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: 'Social Media Image Sizes 2026' }],
@@ -56,7 +56,7 @@ const jsonLd = {
     },
     {
       '@type': 'Article',
-      headline: 'Social Media Image Sizes 2026: The Complete Guide',
+      headline: 'Social Media Image Sizes 2026 — All Platforms [Quick Reference]',
       description:
         'Exact image dimensions for every social media platform in 2026 — Instagram, YouTube, Twitter, LinkedIn, Facebook, TikTok.',
       url: PAGE_URL,
