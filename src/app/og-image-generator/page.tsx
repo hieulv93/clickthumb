@@ -71,6 +71,61 @@ export default function OgImageGeneratorPage() {
 <meta name="twitter:image" content="https://yoursite.com/og-image.jpg" />`}</pre>
               </div>
               <div className="space-y-3">
+                <h2 className="text-base font-bold text-text-main">OG Image Design Best Practices</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    { rule: 'Keep text minimal and large', desc: 'OG images appear at small sizes in social feeds (around 400px wide on mobile). Use large bold text — your headline should be readable at thumbnail size without zooming.' },
+                    { rule: 'High contrast between text and background', desc: 'Light text on dark background (or vice versa) ensures readability across all social platforms and themes. Avoid mid-tone backgrounds where text gets lost.' },
+                    { rule: 'Include your brand identity', desc: 'Add your logo, site name, or domain name consistently. Users who see your OG image repeatedly build brand recognition — even before clicking.' },
+                    { rule: 'Avoid important content at the edges', desc: 'Some platforms crop OG images slightly. Keep all text and logos at least 40px from each edge. The center 90% of the image is always safe.' },
+                  ].map(({ rule, desc }) => (
+                    <div key={rule} className="rounded-xl border border-border p-3 space-y-1.5">
+                      <p className="font-semibold text-text-main text-xs">{rule}</p>
+                      <p className="text-xs text-text-muted leading-relaxed">{desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <h2 className="text-base font-bold text-text-main">How to Implement OG Images in Popular Frameworks</h2>
+                <div className="space-y-3">
+                  {[
+                    {
+                      fw: 'Next.js (App Router)',
+                      code: `// app/layout.tsx or page.tsx\nexport const metadata = {\n  openGraph: {\n    images: [{ url: 'https://yoursite.com/og.jpg', width: 1200, height: 630 }],\n  },\n  twitter: { card: 'summary_large_image' },\n}`,
+                    },
+                    {
+                      fw: 'WordPress',
+                      code: `// Add to functions.php or use Yoast SEO plugin\nadd_action('wp_head', function() {\n  echo '<meta property="og:image" content="' . get_template_directory_uri() . '/og.jpg">';\n});`,
+                    },
+                  ].map(({ fw, code }) => (
+                    <div key={fw} className="space-y-1.5">
+                      <p className="font-semibold text-text-main text-xs">{fw}</p>
+                      <pre className="bg-surface rounded-lg p-3 text-xs overflow-x-auto font-mono text-text-main">{code}</pre>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <h2 className="text-base font-bold text-text-main">How to Test Your OG Image</h2>
+                <p>After adding your OG meta tags, validate them using these tools before sharing your URL publicly:</p>
+                <ul className="space-y-1.5 pl-1">
+                  {[
+                    { tool: 'Facebook Sharing Debugger', url: 'developers.facebook.com/tools/debug', desc: 'Previews how your URL appears when shared on Facebook. Also clears Facebook\'s cache of old OG data.' },
+                    { tool: 'Twitter Card Validator', url: 'cards-dev.twitter.com/validator', desc: 'Shows the Twitter card preview including your og:image.' },
+                    { tool: 'LinkedIn Post Inspector', url: 'linkedin.com/post-inspector', desc: 'Validates LinkedIn\'s rendering of your OG image and clears LinkedIn\'s cache.' },
+                    { tool: 'OpenGraph.xyz', url: 'opengraph.xyz', desc: 'Multi-platform preview tool — shows your OG image across Facebook, Twitter, LinkedIn, Slack in one view.' },
+                  ].map(({ tool, url, desc }) => (
+                    <li key={tool} className="text-xs text-text-muted">
+                      <strong className="text-text-main">{tool}</strong> ({url}) — {desc}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="space-y-3">
                 <h2 className="text-base font-bold text-text-main">Optimize Your OG Image</h2>
                 <p>Keep your OG image under 300KB for fast loading. Large OG images slow down link preview rendering on Slack and iMessage. Use <Link href="https://compressimg.pro/compress-image" className="text-primary hover:underline" target="_blank" rel="noopener">CompressImg.pro</Link> to compress your JPG to under 200KB without visible quality loss.</p>
               </div>

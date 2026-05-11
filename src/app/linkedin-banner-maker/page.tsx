@@ -42,6 +42,33 @@ export default function LinkedInBannerMakerPage() {
                 <h2 className="text-base font-bold text-text-main">LinkedIn Banner Size — Exact Specifications</h2>
                 <p>The LinkedIn profile banner (also called background photo) is 1584×396 pixels at a 4:1 aspect ratio. LinkedIn displays this image behind your profile photo and name. The safe zone is roughly the center-right 70% of the image — the bottom-left corner is always covered by your circular profile photo and the bottom portion may be cut off on mobile.</p>
                 <p>This tool exports your banner at exactly 1584×396px — the correct size for LinkedIn with no re-sizing artifacts.</p>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-xs border-collapse">
+                    <thead>
+                      <tr className="bg-surface">
+                        <th className="border border-border px-3 py-2 text-left font-semibold text-text-main">Spec</th>
+                        <th className="border border-border px-3 py-2 text-left font-semibold text-text-main">Value</th>
+                        <th className="border border-border px-3 py-2 text-left font-semibold text-text-main">Notes</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        ['Recommended size', '1584×396px', 'What this tool exports'],
+                        ['Aspect ratio', '4:1', 'Wide banner format'],
+                        ['Max file size', '8MB', 'Keep under 2MB for fast loading'],
+                        ['Accepted formats', 'JPG, PNG, GIF', 'JPG recommended for photos'],
+                        ['Safe zone (desktop)', 'Center-right 70%', 'Profile photo covers bottom-left'],
+                        ['Safe zone (mobile)', 'Center 50%', 'Banner cropped more aggressively'],
+                      ].map(([spec, val, note]) => (
+                        <tr key={spec} className="even:bg-surface/50">
+                          <td className="border border-border px-3 py-2 font-medium text-text-main">{spec}</td>
+                          <td className="border border-border px-3 py-2">{val}</td>
+                          <td className="border border-border px-3 py-2">{note}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <div className="space-y-3">
                 <h2 className="text-base font-bold text-text-main">Why Your LinkedIn Banner Matters</h2>
@@ -58,6 +85,43 @@ export default function LinkedInBannerMakerPage() {
                 </ul>
                 <p>Keep text in the center-right portion of the banner. The left side is partially obscured by your profile photo on both desktop and mobile. Use high contrast colors — dark background with white text or white background with dark text — for maximum readability.</p>
               </div>
+              <div className="space-y-3">
+                <h2 className="text-base font-bold text-text-main">LinkedIn Banner Ideas by Profession</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    { role: 'Software Engineers & Developers', idea: 'Dark background with a subtle code pattern or terminal aesthetic. Text: your tech stack, role, and "Building [product]". Include GitHub or portfolio URL.' },
+                    { role: 'Marketers & Growth Professionals', idea: 'Clean, brand-forward design with your specialty (SEO, Paid Social, Email). Add a stat if you have one: "Drove 3× revenue for B2B SaaS". Numbers build instant credibility.' },
+                    { role: 'Designers & Creatives', idea: 'Your banner IS your portfolio piece. Show your design style directly — typography, color palette, layout. Avoid generic stock images. Your banner should be something only you could have made.' },
+                    { role: 'Founders & Entrepreneurs', idea: 'Company logo + tagline + what problem you solve. Add "YC S24" or "bootstrapped to $X MRR" if applicable. Transparency about your stage attracts the right investors and partners.' },
+                    { role: 'Job Seekers', idea: '"Open to Opportunities" clearly visible. Your target role, top 3 skills, and preferred location/remote. A warm, professional background photo outperforms abstract graphics for job seeking.' },
+                    { role: 'Consultants & Freelancers', idea: 'Your specialty + ideal client type + outcome you deliver. "I help fintech startups grow organic traffic from 0 to 50K/month" is more compelling than just "SEO Consultant".' },
+                  ].map(({ role, idea }) => (
+                    <div key={role} className="rounded-xl border border-border p-3 space-y-1.5">
+                      <p className="font-semibold text-text-main text-xs">{role}</p>
+                      <p className="text-xs text-text-muted leading-relaxed">{idea}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <h2 className="text-base font-bold text-text-main">How to Upload Your LinkedIn Banner</h2>
+                <ol className="space-y-2 pl-1">
+                  {[
+                    { step: '1. Download your banner', desc: 'Click "Download Banner" above to save your 1584×396px JPG file.' },
+                    { step: '2. Go to your LinkedIn profile', desc: 'Click your profile photo in the top navigation, then "View profile".' },
+                    { step: '3. Click the Edit icon', desc: 'Look for the pencil/edit icon in the top-right of your profile header area.' },
+                    { step: '4. Click "Edit background photo"', desc: 'Or look for the camera icon directly on the banner area if already on the edit screen.' },
+                    { step: '5. Upload and adjust', desc: 'Select your downloaded file. Drag to reposition if needed. Click Apply to save.' },
+                  ].map(({ step, desc }) => (
+                    <div key={step} className="flex gap-3">
+                      <span className="font-semibold text-text-main text-xs shrink-0 pt-0.5">{step}</span>
+                      <p className="text-xs text-text-muted leading-relaxed">{desc}</p>
+                    </div>
+                  ))}
+                </ol>
+              </div>
+
               <div className="space-y-3">
                 <h2 className="text-base font-bold text-text-main">Compress Your LinkedIn Banner</h2>
                 <p>LinkedIn accepts banners up to 8MB. A 1584×396px JPG at 92% quality is typically 100–300KB — well within the limit. If you need to reduce the file size, use <Link href="https://compressimg.pro/compress-image-for-linkedin" className="text-primary hover:underline" target="_blank" rel="noopener">CompressImg — Compress for LinkedIn</Link> for lossless compression.</p>

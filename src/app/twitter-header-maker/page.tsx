@@ -42,6 +42,33 @@ export default function TwitterHeaderMakerPage() {
                 <h2 className="text-base font-bold text-text-main">Twitter/X Header Size — Exact Specifications</h2>
                 <p>The recommended Twitter (now X) profile header size is 1500×500 pixels with a 3:1 aspect ratio. Twitter displays this image across the top of your profile page, but the visible area changes depending on device: desktop shows more of the banner width, mobile shows a narrower crop. The bottom-left corner is always partially covered by your circular profile photo.</p>
                 <p>This tool exports your Twitter header at exactly 1500×500px as JPG — the standard format accepted by Twitter/X with no quality loss from re-sizing.</p>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-xs border-collapse">
+                    <thead>
+                      <tr className="bg-surface">
+                        <th className="border border-border px-3 py-2 text-left font-semibold text-text-main">Spec</th>
+                        <th className="border border-border px-3 py-2 text-left font-semibold text-text-main">Value</th>
+                        <th className="border border-border px-3 py-2 text-left font-semibold text-text-main">Notes</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        ['Recommended size', '1500×500px', 'What this tool exports'],
+                        ['Aspect ratio', '3:1', 'Wide banner format'],
+                        ['Max file size', '5MB', 'Keep under 2MB for fast loading'],
+                        ['Accepted formats', 'JPG, PNG, GIF', 'JPG recommended'],
+                        ['Safe zone (desktop)', 'Center 60%', 'Pixels 300–1200 from left'],
+                        ['Profile photo overlap', 'Bottom-left ~120×120px', 'Always keep this area clear'],
+                      ].map(([spec, val, note]) => (
+                        <tr key={spec} className="even:bg-surface/50">
+                          <td className="border border-border px-3 py-2 font-medium text-text-main">{spec}</td>
+                          <td className="border border-border px-3 py-2">{val}</td>
+                          <td className="border border-border px-3 py-2">{note}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <div className="space-y-3">
                 <h2 className="text-base font-bold text-text-main">What to Include on Your Twitter Header</h2>
@@ -57,6 +84,43 @@ export default function TwitterHeaderMakerPage() {
                 <h2 className="text-base font-bold text-text-main">Safe Zone: Keep Text Away From Edges</h2>
                 <p>Twitter crops the header differently on different devices and screen sizes. The profile photo (400×400px circular) always overlaps the bottom-left corner at approximately 120px from the left and 120px from the bottom. Keep all important text and graphics in the center 60% of the image (from left: 300px to 1200px). Avoid putting your name, logo, or key information near the bottom-left corner.</p>
               </div>
+              <div className="space-y-3">
+                <h2 className="text-base font-bold text-text-main">Twitter Header Ideas by Account Type</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    { type: 'Indie Hackers & Founders', idea: 'Show what you\'re building and your current MRR or user count. "Building [product] in public — $X MRR" signals credibility to investors and potential users. Add your website URL.' },
+                    { type: 'Content Creators', idea: 'Feature your content niche and posting schedule. "Tech tutorials every Tuesday" or "Daily AI threads" sets expectations and attracts the right followers. Include your most shareable content topic.' },
+                    { type: 'Developers', idea: 'Tech stack, open source projects, or a current build. Dark terminal aesthetic with your GitHub handle. Minimalist design with a language or framework name works well for attracting developer followers.' },
+                    { type: 'Businesses & Brands', idea: 'Logo, tagline, and current campaign or product highlight. Update seasonally or with major launches. Consistent brand colors between header and profile photo build instant recognition.' },
+                    { type: 'Job Seekers', idea: '"Open to work" + target role + key skills. A clean, professional design with your specialty ("Frontend Engineer — React, TypeScript") attracts recruiter attention from profile visits.' },
+                    { type: 'Personal Brand', idea: '2–3 topics you post about, your most memorable tagline, and a short personal introduction. "I write about SEO, SaaS, and building in public" immediately tells visitors whether to follow.' },
+                  ].map(({ type, idea }) => (
+                    <div key={type} className="rounded-xl border border-border p-3 space-y-1.5">
+                      <p className="font-semibold text-text-main text-xs">{type}</p>
+                      <p className="text-xs text-text-muted leading-relaxed">{idea}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <h2 className="text-base font-bold text-text-main">How to Upload Your Twitter/X Header</h2>
+                <ol className="space-y-2 pl-1">
+                  {[
+                    { step: '1. Download your header', desc: 'Click "Download Header" above to save your 1500×500px file.' },
+                    { step: '2. Go to your Twitter/X profile', desc: 'Click your profile photo in the navigation, then "Profile".' },
+                    { step: '3. Click "Edit profile"', desc: 'The blue button on the right side of your profile page.' },
+                    { step: '4. Click the camera icon on the header', desc: 'Hover over the banner area — a camera icon and "Edit" label will appear.' },
+                    { step: '5. Select your file and save', desc: 'Choose your downloaded file. Adjust crop position if needed. Click "Save" at the top right.' },
+                  ].map(({ step, desc }) => (
+                    <div key={step} className="flex gap-3">
+                      <span className="font-semibold text-text-main text-xs shrink-0 pt-0.5">{step}</span>
+                      <p className="text-xs text-text-muted leading-relaxed">{desc}</p>
+                    </div>
+                  ))}
+                </ol>
+              </div>
+
               <div className="space-y-3">
                 <h2 className="text-base font-bold text-text-main">Compress Your Twitter Header Before Uploading</h2>
                 <p>Twitter accepts headers up to 5MB. A 1500×500px JPG at 92% quality is typically 200–500KB — well within the limit. If you need to reduce the file size further, use <Link href="https://compressimg.pro/compress-image-for-twitter" className="text-primary hover:underline" target="_blank" rel="noopener">CompressImg — Compress for Twitter</Link> to compress without visible quality loss.</p>
