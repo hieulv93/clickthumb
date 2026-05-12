@@ -40,6 +40,7 @@ export default function CanvasEditor({
   const fabricRef = useRef<any>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [cssScale, setCssScale] = useState(1)
+  const dprRef = useRef(1)
   const { w: displayW, h: displayH } = getDisplayDimensions(platform)
   const scale = displayW / platform.width
 
@@ -176,6 +177,9 @@ export default function CanvasEditor({
       const fabric = (await import('fabric')).fabric
       if (!mounted || !canvasRef.current) return
 
+      const dpr = window.devicePixelRatio || 1
+      dprRef.current = dpr
+
       const canvas = new fabric.Canvas(canvasRef.current, {
         width: displayW,
         height: displayH,
@@ -185,11 +189,21 @@ export default function CanvasEditor({
       })
       fabricRef.current = canvas
 
+      // HiDPI/Retina: scale backing store so text renders crisp on 2x screens
+      if (dpr > 1) {
+        canvas.setDimensions(
+          { width: displayW * dpr, height: displayH * dpr },
+          { backstoreOnly: true }
+        )
+        canvas.setZoom(dpr)
+      }
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       canvas.on('object:moving', (e: any) => {
         const obj = e.target
-        const cw = canvas.width as number
-        const ch = canvas.height as number
+        // Use logical dimensions (not canvas.width which is physical after DPR scaling)
+        const cw = displayW
+        const ch = displayH
         if (obj.type === 'i-text' || obj.type === 'text') {
           const hw = obj.getScaledWidth() / 2
           const hh = obj.getScaledHeight() / 2
@@ -217,7 +231,8 @@ export default function CanvasEditor({
 
       onReady(async () => {
         const fmt = formatRef.current
-        const multiplier = platform.width / displayW
+        // Canvas backing store is already displayW*dpr px wide; divide out dpr to get correct export size
+        const multiplier = platform.width / (displayW * dprRef.current)
         const dataUrl = canvas.toDataURL({
           format: fmt,
           quality: fmt === 'jpeg' ? 0.92 : 1,
