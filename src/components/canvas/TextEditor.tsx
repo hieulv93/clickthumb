@@ -35,7 +35,7 @@ export default function TextEditor({
                 value={val}
                 onChange={(e) => onChange(i, e.target.value)}
                 placeholder={placeholders?.[i] ?? `Enter ${LABELS[i] ?? 'text'}...`}
-                className="flex-1 px-3 py-2 text-sm rounded-lg border border-border bg-white text-text-main placeholder:text-text-muted placeholder:transition-opacity focus:placeholder:opacity-0 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-shadow"
+                className="flex-1 px-3 py-2 text-base sm:text-sm rounded-lg border border-border bg-white text-text-main placeholder:text-text-muted placeholder:transition-opacity focus:placeholder:opacity-0 focus:outline-none focus:ring-2 focus:ring-primary transition-shadow"
               />
               {onColorChange && colors?.[i] !== undefined && (
                 <input
