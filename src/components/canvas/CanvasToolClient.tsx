@@ -47,7 +47,6 @@ export default function CanvasToolClient({
   const [downloaded, setDownloaded] = useState(false)
   const [exportError, setExportError] = useState(false)
   const [format, setFormat] = useState<ExportFormat>('jpeg')
-  const [editorActivated, setEditorActivated] = useState(false)
   const { w: displayW, h: displayH } = getDisplayDimensions(platform)
   const exportFnRef = useRef<(() => Promise<Blob>) | null>(null)
   const bgUrlRef = useRef<string | null>(null)
@@ -190,84 +189,50 @@ export default function CanvasToolClient({
   return (
     <div className="space-y-6">
       {/* 2-column tool area: canvas left (sticky) + controls right */}
-      <div className={editorActivated ? 'lg:grid lg:grid-cols-[1fr_320px] lg:gap-6' : ''}>
+      <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-6">
 
-        {/* Left: only canvas (sticky) — nothing below so nothing gets overlapped */}
+        {/* Left: canvas (sticky) */}
         <div>
           <div className="lg:sticky lg:top-14 lg:min-h-full">
-            {editorActivated ? (
-              <>
-                <Suspense fallback={
-                  <div className="mx-auto" style={{ width: '100%', maxWidth: displayW }}>
-                    <div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: `${displayW} / ${displayH}` }} />
-                    <div className="flex items-center justify-end px-1 mt-1 min-h-[26px]">
-                      <p className="text-xs font-medium text-text-muted tabular-nums">{platform.width} × {platform.height} px</p>
-                    </div>
-                  </div>
-                }>
-                  <CanvasEditor
-                    platform={platform}
-                    template={template}
-                    bgColor={bgColor}
-                    bgImageUrl={bgImageUrl}
-                    fontFamily={fontFamily}
-                    texts={texts}
-                    format={format}
-                    hasChanges={hasChanges}
-                    onReady={handleReady}
-                    onReset={handleReset}
-                    onCanvasChange={() => setHasChanges(true)}
-                  />
-                </Suspense>
-                <div className="mt-2 space-y-2">
-                  <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
-                  <div className="hidden lg:block">{downloadBtn}</div>
+            <Suspense fallback={
+              <div className="mx-auto" style={{ width: '100%', maxWidth: displayW }}>
+                <div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: `${displayW} / ${displayH}` }} />
+                <div className="flex items-center justify-end px-1 mt-1 min-h-[26px]">
+                  <p className="text-xs font-medium text-text-muted tabular-nums">{platform.width} × {platform.height} px</p>
                 </div>
-              </>
-            ) : (
-              <div>
-                <div className="mx-auto" style={{ maxWidth: 640 }}>
-                  <button
-                    onClick={() => setEditorActivated(true)}
-                    className="w-full rounded-xl border border-border bg-surface flex flex-col items-center justify-center gap-4 group hover:border-primary transition-colors duration-150"
-                    style={{ aspectRatio: '16 / 9' }}
-                    aria-label={`Open ${platform.name} editor`}
-                  >
-                    <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
-                      <svg className="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <rect x="2" y="5" width="20" height="14" rx="2" />
-                        <line x1="4" y1="8.5" x2="15" y2="8.5" strokeWidth="1.5" />
-                        <line x1="4" y1="11.5" x2="11" y2="11.5" strokeWidth="1" />
-                        <path d="M15 12 L15 18 L21 15 Z" fill="currentColor" stroke="none" />
-                      </svg>
-                    </div>
-                    <div className="text-center space-y-1 px-4">
-                      <p className="text-sm font-semibold text-text-main">{platform.name}</p>
-                      <p className="text-xs text-text-muted">{platform.width} × {platform.height} px</p>
-                    </div>
-                    <span className="bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-xl group-hover:opacity-90 transition-opacity">
-                      Open Editor →
-                    </span>
-                  </button>
-                </div>
-                <div className="min-h-[26px]" />
               </div>
-            )}
+            }>
+              <CanvasEditor
+                platform={platform}
+                template={template}
+                bgColor={bgColor}
+                bgImageUrl={bgImageUrl}
+                fontFamily={fontFamily}
+                texts={texts}
+                format={format}
+                hasChanges={hasChanges}
+                onReady={handleReady}
+                onReset={handleReset}
+                onCanvasChange={() => setHasChanges(true)}
+              />
+            </Suspense>
+            <div className="mt-2 space-y-2">
+              <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
+              <div className="hidden lg:block">{downloadBtn}</div>
+            </div>
           </div>
         </div>
 
-        {/* Right: controls panel — only render when editor is active */}
-        {editorActivated && (
-          <div className="mt-4 lg:mt-0">
-            <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
-              <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
-              <FontSelector value={fontFamily} onChange={handleFontChange} />
-              <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
-              <BgSection color={bgColor} onChange={handleBgColorChange} />
-            </div>
-            <div className="lg:hidden mt-4">{downloadBtn}</div>
+        {/* Right: controls panel */}
+        <div className="mt-4 lg:mt-0">
+          <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
+            <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
+            <FontSelector value={fontFamily} onChange={handleFontChange} />
+            <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
+            <BgSection color={bgColor} onChange={handleBgColorChange} />
           </div>
-        )}
+          <div className="lg:hidden mt-4">{downloadBtn}</div>
+        </div>
       </div>
 
       {/* Full-width below both columns: ad + SEO content */}

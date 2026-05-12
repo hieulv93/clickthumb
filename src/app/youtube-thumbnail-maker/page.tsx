@@ -35,7 +35,6 @@ export default function YouTubeThumbnailPage() {
   const [downloaded, setDownloaded] = useState(false)
   const [exportError, setExportError] = useState(false)
   const [hasChanges, setHasChanges] = useState(false)
-  const [editorActivated, setEditorActivated] = useState(false)
   const exportFnRef = useRef<(() => Promise<Blob>) | null>(null)
   const bgUrlRef = useRef<string | null>(null)
 
@@ -119,94 +118,60 @@ export default function YouTubeThumbnailPage() {
           </div>
 
           {/* 2-column on lg+: canvas left (sticky) + controls right */}
-          <div className={editorActivated ? 'lg:grid lg:grid-cols-[1fr_320px] lg:gap-6' : ''}>
+          <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-6">
 
-            {/* Left: only sticky canvas — nothing below so nothing gets overlapped */}
+            {/* Left: canvas (sticky) */}
             <div>
               <div className="lg:sticky lg:top-14 lg:min-h-full">
-                {editorActivated ? (
-                  <>
-                    <Suspense fallback={
-                      <div style={{ width: '100%', maxWidth: 640, margin: '0 auto' }}>
-                        <div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: '16 / 9' }} />
-                        <div className="min-h-[26px]" />
-                      </div>
-                    }>
-                      <CanvasEditor
-                        platform={platform}
-                        template={template}
-                        bgColor={bgColor}
-                        bgImageUrl={bgImageUrl}
-                        fontFamily={fontFamily}
-                        texts={texts}
-                        format="jpeg"
-                        hasChanges={hasChanges}
-                        onReady={handleReady}
-                        onReset={handleReset}
-                        onCanvasChange={() => setHasChanges(true)}
-                      />
-                    </Suspense>
-                    <div className="mt-2 space-y-2">
-                      <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
-                      <div className="hidden lg:block">
-                        {exporting && <ProgressBar visible label="Exporting thumbnail..." />}
-                        {exportError && <p className="text-xs text-red-500 text-center">Export failed. Please try again.</p>}
-                        <button onClick={handleExport} disabled={exporting} className={`w-full touch-target flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${downloaded ? 'bg-green-600 hover:bg-green-700 text-white active:scale-95' : 'bg-primary hover:bg-primary-hover active:scale-95 disabled:opacity-60 text-white'}`}>
-                          {downloaded ? (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>Downloaded!</>) : (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" /></svg>{exporting ? 'Exporting...' : 'Download Thumbnail (1280×720)'}</>)}
-                        </button>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <div>
-                    <div style={{ width: '100%', maxWidth: 640, margin: '0 auto' }}>
-                      <button
-                        onClick={() => setEditorActivated(true)}
-                        className="w-full rounded-xl border border-border bg-surface flex flex-col items-center justify-center gap-4 group hover:border-primary transition-colors duration-150"
-                        style={{ aspectRatio: '16 / 9' }}
-                        aria-label="Open YouTube Thumbnail editor"
-                      >
-                        <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
-                          <svg className="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                            <rect x="2" y="5" width="20" height="14" rx="2" />
-                            <line x1="4" y1="8.5" x2="15" y2="8.5" strokeWidth="1.5" />
-                            <line x1="4" y1="11.5" x2="11" y2="11.5" strokeWidth="1" />
-                            <path d="M15 12 L15 18 L21 15 Z" fill="currentColor" stroke="none" />
-                          </svg>
-                        </div>
-                        <div className="text-center space-y-1 px-4">
-                          <p className="text-sm font-semibold text-text-main">YouTube Thumbnail Maker</p>
-                          <p className="text-xs text-text-muted">1280 × 720 px</p>
-                        </div>
-                        <span className="bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-xl group-hover:opacity-90 transition-opacity">
-                          Open Editor →
-                        </span>
-                      </button>
-                    </div>
+                <Suspense fallback={
+                  <div style={{ width: '100%', maxWidth: 640, margin: '0 auto' }}>
+                    <div className="w-full bg-surface rounded-xl border border-border animate-pulse" style={{ aspectRatio: '16 / 9' }} />
                     <div className="min-h-[26px]" />
                   </div>
-                )}
+                }>
+                  <CanvasEditor
+                    platform={platform}
+                    template={template}
+                    bgColor={bgColor}
+                    bgImageUrl={bgImageUrl}
+                    fontFamily={fontFamily}
+                    texts={texts}
+                    format="jpeg"
+                    hasChanges={hasChanges}
+                    onReady={handleReady}
+                    onReset={handleReset}
+                    onCanvasChange={() => setHasChanges(true)}
+                  />
+                </Suspense>
+                <div className="mt-2 space-y-2">
+                  <BgImageUpload imageUrl={bgImageUrl} onUpload={handleBgUpload} onClear={handleBgClear} />
+                  <div className="hidden lg:block">
+                    {exporting && <ProgressBar visible label="Exporting thumbnail..." />}
+                    {exportError && <p className="text-xs text-red-500 text-center">Export failed. Please try again.</p>}
+                    <button onClick={handleExport} disabled={exporting} className={`w-full touch-target flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${downloaded ? 'bg-green-600 hover:bg-green-700 text-white active:scale-95' : 'bg-primary hover:bg-primary-hover active:scale-95 disabled:opacity-60 text-white'}`}>
+                      {downloaded ? (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>Downloaded!</>) : (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" /></svg>{exporting ? 'Exporting...' : 'Download Thumbnail (1280×720)'}</>)}
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Right: controls panel — only render when editor is active */}
-            {editorActivated && (
-              <div className="mt-4 lg:mt-0 space-y-4">
-                <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
-                  <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
-                  <FontSelector value={fontFamily} onChange={handleFontChange} />
-                  <TemplateSelector templates={YOUTUBE_TEMPLATES} selected={template} onSelect={handleTemplateSelect} />
-                  <BgSection color={bgColor} onChange={handleBgColorChange} />
-                </div>
-                <div className="lg:hidden mt-4">
-                  {exporting && <ProgressBar visible label="Exporting thumbnail..." />}
-                  {exportError && <p className="text-xs text-red-500 text-center">Export failed. Please try again.</p>}
-                  <button onClick={handleExport} disabled={exporting} className={`w-full touch-target flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${downloaded ? 'bg-green-600 hover:bg-green-700 text-white active:scale-95' : 'bg-primary hover:bg-primary-hover active:scale-95 disabled:opacity-60 text-white'}`}>
-                    {downloaded ? (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>Downloaded!</>) : (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" /></svg>{exporting ? 'Exporting...' : 'Download Thumbnail (1280×720)'}</>)}
-                  </button>
-                </div>
+            {/* Right: controls panel */}
+            <div className="mt-4 lg:mt-0 space-y-4">
+              <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
+                <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
+                <FontSelector value={fontFamily} onChange={handleFontChange} />
+                <TemplateSelector templates={YOUTUBE_TEMPLATES} selected={template} onSelect={handleTemplateSelect} />
+                <BgSection color={bgColor} onChange={handleBgColorChange} />
               </div>
-            )}
+              <div className="lg:hidden mt-4">
+                {exporting && <ProgressBar visible label="Exporting thumbnail..." />}
+                {exportError && <p className="text-xs text-red-500 text-center">Export failed. Please try again.</p>}
+                <button onClick={handleExport} disabled={exporting} className={`w-full touch-target flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${downloaded ? 'bg-green-600 hover:bg-green-700 text-white active:scale-95' : 'bg-primary hover:bg-primary-hover active:scale-95 disabled:opacity-60 text-white'}`}>
+                  {downloaded ? (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>Downloaded!</>) : (<><svg className="w-4 h-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" /></svg>{exporting ? 'Exporting...' : 'Download Thumbnail (1280×720)'}</>)}
+                </button>
+              </div>
+            </div>
           </div>
 
           {/* Full-width below both columns: ad + SEO content */}
