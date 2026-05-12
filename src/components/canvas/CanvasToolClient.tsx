@@ -43,7 +43,6 @@ export default function CanvasToolClient({
   const [texts, setTexts] = useState<string[]>(templates[0]?.texts.map(() => '') ?? [])
   const [textColors, setTextColors] = useState<string[]>(templates[0]?.texts.map((t) => t.fill) ?? [])
   const [textSizeMultiplier, setTextSizeMultiplier] = useState(100)
-  const [focusedTextIndex, setFocusedTextIndex] = useState<number | null>(null)
   const [hasChanges, setHasChanges] = useState(false)
   const [exporting, setExporting] = useState(false)
   const [done, setDone] = useState(false)
@@ -223,7 +222,6 @@ export default function CanvasToolClient({
                 onCanvasChange={() => setHasChanges(true)}
                 textColors={textColors}
                 textSizeMultiplier={textSizeMultiplier}
-                focusedTextIndex={focusedTextIndex}
               />
             </Suspense>
             <div className="mt-2 space-y-2">
@@ -244,7 +242,6 @@ export default function CanvasToolClient({
               onColorChange={(i, color) => { setTextColors((prev) => prev.map((c, idx) => idx === i ? color : c)); setHasChanges(true) }}
               sizeMultiplier={textSizeMultiplier}
               onSizeChange={(s) => { setTextSizeMultiplier(s); setHasChanges(true) }}
-              onFocusIndex={setFocusedTextIndex}
             />
             <FontSelector value={fontFamily} onChange={handleFontChange} />
             <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />

@@ -32,7 +32,6 @@ export default function YouTubeThumbnailPage() {
   const [texts, setTexts] = useState<string[]>(YOUTUBE_TEMPLATES[0].texts.map(() => ''))
   const [textColors, setTextColors] = useState<string[]>(YOUTUBE_TEMPLATES[0].texts.map((t) => t.fill))
   const [textSizeMultiplier, setTextSizeMultiplier] = useState(100)
-  const [focusedTextIndex, setFocusedTextIndex] = useState<number | null>(null)
   const [exporting, setExporting] = useState(false)
   const [done, setDone] = useState(false)
   const [downloaded, setDownloaded] = useState(false)
@@ -150,7 +149,6 @@ export default function YouTubeThumbnailPage() {
                     onCanvasChange={() => setHasChanges(true)}
                     textColors={textColors}
                     textSizeMultiplier={textSizeMultiplier}
-                    focusedTextIndex={focusedTextIndex}
                   />
                 </Suspense>
                 <div className="mt-2 space-y-2">
@@ -177,7 +175,6 @@ export default function YouTubeThumbnailPage() {
                   onColorChange={(i, color) => { setTextColors((prev) => prev.map((c, idx) => idx === i ? color : c)); setHasChanges(true) }}
                   sizeMultiplier={textSizeMultiplier}
                   onSizeChange={(s) => { setTextSizeMultiplier(s); setHasChanges(true) }}
-                  onFocusIndex={setFocusedTextIndex}
                 />
                 <FontSelector value={fontFamily} onChange={handleFontChange} />
                 <TemplateSelector templates={YOUTUBE_TEMPLATES} selected={template} onSelect={handleTemplateSelect} />
