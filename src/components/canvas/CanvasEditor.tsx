@@ -18,6 +18,7 @@ interface CanvasEditorProps {
   onCanvasChange: () => void
   textColors?: string[]
   textSizeMultiplier?: number
+  focusedTextIndex?: number | null
 }
 
 export default function CanvasEditor({
@@ -34,6 +35,7 @@ export default function CanvasEditor({
   onCanvasChange,
   textColors,
   textSizeMultiplier,
+  focusedTextIndex,
 }: CanvasEditorProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -273,11 +275,15 @@ export default function CanvasEditor({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .filter((obj: any) => obj.type === 'i-text' || obj.type === 'text')
     texts.forEach((text, i) => {
-      if (textObjs[i])
-        textObjs[i].set('text', text !== '' ? text : (template?.texts[i]?.text ?? ''))
+      if (textObjs[i]) {
+        const isFocused = focusedTextIndex === i
+        const displayText = text !== '' ? text : (isFocused ? '' : (template?.texts[i]?.text ?? ''))
+        textObjs[i].set('text', displayText)
+      }
     })
     canvas.renderAll()
-  }, [texts])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [texts, focusedTextIndex])
 
   useEffect(() => {
     const canvas = fabricRef.current

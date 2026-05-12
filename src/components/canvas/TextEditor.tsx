@@ -8,6 +8,7 @@ interface TextEditorProps {
   onColorChange?: (index: number, color: string) => void
   sizeMultiplier?: number
   onSizeChange?: (size: number) => void
+  onFocusIndex?: (index: number | null) => void
 }
 
 const LABELS = ['Title', 'Subtitle', 'Text 3', 'Text 4']
@@ -20,6 +21,7 @@ export default function TextEditor({
   onColorChange,
   sizeMultiplier,
   onSizeChange,
+  onFocusIndex,
 }: TextEditorProps) {
   if (values.length === 0) return null
   return (
@@ -34,6 +36,8 @@ export default function TextEditor({
                 type="text"
                 value={val}
                 onChange={(e) => onChange(i, e.target.value)}
+                onFocus={() => onFocusIndex?.(i)}
+                onBlur={() => onFocusIndex?.(null)}
                 placeholder={placeholders?.[i] ?? `Enter ${LABELS[i] ?? 'text'}...`}
                 className="flex-1 px-3 py-2 text-sm rounded-lg border border-border bg-white text-text-main placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow"
               />
