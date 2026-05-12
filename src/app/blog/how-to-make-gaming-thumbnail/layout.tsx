@@ -7,7 +7,7 @@ const OG_IMAGE = `${SITE_URL}/og-image.png`
 export const metadata: Metadata = {
   title: 'How to Make a Gaming Thumbnail That Gets More Clicks (2026)',
   description:
-    'Step-by-step guide to creating gaming thumbnails that increase click-through rate. Covers size, design principles, color, text, and the most common mistakes gaming creators make.',
+    'Step-by-step guide to gaming thumbnails: 1280×720px size, color rules, Impact font, face reactions — 7 design principles top gaming creators use to hit 6%+ CTR.',
   keywords: [
     'how to make a gaming thumbnail',
     'gaming thumbnail',

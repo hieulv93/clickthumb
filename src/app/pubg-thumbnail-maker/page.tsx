@@ -6,10 +6,10 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'PUBG Thumbnail Maker – Free PUBG Mobile & PC YouTube Thumbnails',
-  description: 'Free PUBG thumbnail maker. Create 1280×720px PUBG Mobile and PUBG PC YouTube thumbnails with Chicken Dinner, Military Tan, and Night Drop templates. No signup.',
+  title: 'Free PUBG Thumbnail Maker — Chicken Dinner Templates, No Signup',
+  description: 'Make PUBG thumbnails at 1280×720px free — Chicken Dinner, Military Tan, Night Drop templates for PUBG Mobile & PC. Download instantly, no account or software needed.',
   alternates: { canonical: 'https://click-thumb.com/pubg-thumbnail-maker/' },
-  openGraph: { title: 'PUBG Thumbnail Maker – Free PUBG Mobile & PC YouTube Thumbnails', description: 'Create 1280×720px PUBG thumbnails free. Chicken Dinner, Military Tan, and Night Drop templates for PUBG Mobile and PC creators.', url: 'https://click-thumb.com/pubg-thumbnail-maker/', siteName: 'ClickThumb', images: [{ url: '/og-image.png', width: 1200, height: 630 }] },
+  openGraph: { title: 'Free PUBG Thumbnail Maker — Chicken Dinner Templates, No Signup', description: 'Make PUBG thumbnails at 1280×720px free. Chicken Dinner, Military Tan, Night Drop templates for PUBG Mobile and PC creators.', url: 'https://click-thumb.com/pubg-thumbnail-maker/', siteName: 'ClickThumb', images: [{ url: '/og-image.png', width: 1200, height: 630 }] },
 }
 
 const platform = PLATFORMS.pubg

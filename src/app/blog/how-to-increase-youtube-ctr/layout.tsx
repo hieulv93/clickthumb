@@ -6,7 +6,7 @@ const OG_IMAGE = 'https://click-thumb.com/og-image.png'
 export const metadata: Metadata = {
   title: 'How to Increase YouTube CTR: 8 Thumbnail Tips That Work',
   description:
-    'Improve your YouTube click-through rate with proven thumbnail design strategies. Contrast, faces, bold text, A/B testing — practical tips backed by creator data.',
+    'Good YouTube CTR is 4–8%. These 8 thumbnail strategies — contrast, faces, bold text, curiosity gaps, A/B testing — can double your click rate without changing your content.',
   keywords: [
     'how to increase youtube ctr',
     'youtube ctr',

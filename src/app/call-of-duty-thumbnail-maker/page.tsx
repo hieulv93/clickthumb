@@ -6,10 +6,10 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Call of Duty Thumbnail Maker – Free COD YouTube Thumbnails',
-  description: 'Free Call of Duty thumbnail maker. Create 1280×720px COD Warzone & MW3 YouTube thumbnails with military templates. No signup, instant download.',
+  title: 'Free Call of Duty Thumbnail Maker — Warzone & MW3, No Signup',
+  description: 'Make COD thumbnails at 1280×720px free — Warzone, MW3, Military Dark, Combat Orange, Camo Green templates. Download instantly, no account or software needed.',
   alternates: { canonical: 'https://click-thumb.com/call-of-duty-thumbnail-maker/' },
-  openGraph: { title: 'Call of Duty Thumbnail Maker – Free COD YouTube Thumbnails', description: 'Create 1280×720px Call of Duty thumbnails free. Military Dark, Combat Orange, and Camo Green templates for COD Warzone & MW3 creators.', url: 'https://click-thumb.com/call-of-duty-thumbnail-maker/', siteName: 'ClickThumb', images: [{ url: '/og-image.png', width: 1200, height: 630 }] },
+  openGraph: { title: 'Free Call of Duty Thumbnail Maker — Warzone & MW3, No Signup', description: 'Make Call of Duty thumbnails at 1280×720px free. Military Dark, Combat Orange, Camo Green templates for Warzone & MW3 creators.', url: 'https://click-thumb.com/call-of-duty-thumbnail-maker/', siteName: 'ClickThumb', images: [{ url: '/og-image.png', width: 1200, height: 630 }] },
 }
 
 const platform = PLATFORMS.cod
