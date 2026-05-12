@@ -26,6 +26,7 @@ export const PLATFORMS: Record<string, Platform> = {
   gta: { id: 'gta', name: 'GTA Thumbnail', width: 1280, height: 720, route: '/gta-thumbnail-maker' },
   cs2: { id: 'cs2', name: 'CS2 Thumbnail', width: 1280, height: 720, route: '/cs2-thumbnail-maker' },
   pubg: { id: 'pubg', name: 'PUBG Thumbnail', width: 1280, height: 720, route: '/pubg-thumbnail-maker' },
+  blox_fruits: { id: 'blox_fruits', name: 'Blox Fruits Thumbnail', width: 1280, height: 720, route: '/blox-fruit-thumbnail-maker' },
   tiktok: { id: 'tiktok', name: 'TikTok Cover', width: 1080, height: 1920, route: '/tiktok-thumbnail-maker' },
   twitch: { id: 'twitch', name: 'Twitch Banner', width: 1920, height: 1080, route: '/twitch-banner-maker' },
 }

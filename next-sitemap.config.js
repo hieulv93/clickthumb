@@ -25,6 +25,7 @@ module.exports = {
       '/instagram-post-maker': 0.85,
       '/tiktok-thumbnail-maker': 0.8,
       '/roblox-thumbnail-maker': 0.8,
+      '/blox-fruit-thumbnail-maker': 0.8,
       '/call-of-duty-thumbnail-maker': 0.8,
       '/minecraft-thumbnail-maker': 0.75,
       '/gta-thumbnail-maker': 0.75,

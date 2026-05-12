@@ -528,6 +528,50 @@ export const ROBLOX_TEMPLATES: Template[] = [
   },
 ]
 
+// ─── Blox Fruits Thumbnail (1280×720) ────────────────────────────────────────
+export const BLOX_FRUITS_TEMPLATES: Template[] = [
+  {
+    id: 'bf-legendary',
+    name: 'Legendary Fruit',
+    platform: 'blox_fruits',
+    bgColor: '#001040',
+    texts: [
+      { text: 'LEGENDARY FRUIT!', fontSize: 96, fontFamily: 'Impact', fill: '#fbbf24', stroke: '#7c4500', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'blox fruits • rare drop • showcase', fontSize: 50, fontFamily: 'Arial', fill: '#93c5fd', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'bf-raid',
+    name: 'Raid Boss',
+    platform: 'blox_fruits',
+    bgColor: '#1a0000',
+    texts: [
+      { text: 'RAID BOSS FIGHT!', fontSize: 96, fontFamily: 'Impact', fill: '#f97316', stroke: '#7f1d1d', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'boss raid • max level • pvp', fontSize: 50, fontFamily: 'Arial', fill: '#fca5a5', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'bf-mythical',
+    name: 'Mythical Power',
+    platform: 'blox_fruits',
+    bgColor: '#0f0020',
+    texts: [
+      { text: 'MYTHICAL POWER!', fontSize: 96, fontFamily: 'Impact', fill: '#c084fc', stroke: '#4c1d95', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'awakening • devil fruit • op combo', fontSize: 50, fontFamily: 'Arial', fill: '#e9d5ff', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+  {
+    id: 'bf-sea',
+    name: 'Sea King',
+    platform: 'blox_fruits',
+    bgColor: '#001a1a',
+    texts: [
+      { text: 'SEA KING SLAYER', fontSize: 96, fontFamily: 'Impact', fill: '#22d3ee', stroke: '#164e63', strokeWidth: 3, fontWeight: 'bold', left: 640, top: 270, originX: 'center', originY: 'center', textAlign: 'center', width: 1150 },
+      { text: 'third sea • boss kill • exploration', fontSize: 50, fontFamily: 'Arial', fill: '#a5f3fc', fontWeight: 'normal', left: 640, top: 430, originX: 'center', originY: 'center', textAlign: 'center', width: 1050 },
+    ],
+  },
+]
+
 // ─── Fortnite Thumbnail (1280×720) ───────────────────────────────────────────
 export const FORTNITE_TEMPLATES: Template[] = [
   {
