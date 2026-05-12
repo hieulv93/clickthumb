@@ -41,6 +41,8 @@ export default function CanvasToolClient({
   const [bgImageUrl, setBgImageUrl] = useState<string | null>(null)
   const [fontFamily, setFontFamily] = useState(templates[0]?.texts[0]?.fontFamily ?? 'Impact')
   const [texts, setTexts] = useState<string[]>(templates[0]?.texts.map(() => '') ?? [])
+  const [textColors, setTextColors] = useState<string[]>(templates[0]?.texts.map((t) => t.fill) ?? [])
+  const [textSizeMultiplier, setTextSizeMultiplier] = useState(100)
   const [hasChanges, setHasChanges] = useState(false)
   const [exporting, setExporting] = useState(false)
   const [done, setDone] = useState(false)
@@ -60,6 +62,8 @@ export default function CanvasToolClient({
     setBgColor(t.bgColor)
     setFontFamily(t.texts[0]?.fontFamily ?? 'Impact')
     setTexts(t.texts.map(() => ''))
+    setTextColors(t.texts.map((tx) => tx.fill))
+    setTextSizeMultiplier(100)
     setHasChanges(false)
   }, [])
 
@@ -96,6 +100,8 @@ export default function CanvasToolClient({
     setBgColor(template?.bgColor ?? '#ffffff')
     setFontFamily(template?.texts[0]?.fontFamily ?? 'Impact')
     setTexts(template?.texts.map(() => '') ?? [])
+    setTextColors(template?.texts.map((t) => t.fill) ?? [])
+    setTextSizeMultiplier(100)
     setHasChanges(false)
   }, [template])
 
@@ -214,6 +220,8 @@ export default function CanvasToolClient({
                 onReady={handleReady}
                 onReset={handleReset}
                 onCanvasChange={() => setHasChanges(true)}
+                textColors={textColors}
+                textSizeMultiplier={textSizeMultiplier}
               />
             </Suspense>
             <div className="mt-2 space-y-2">
@@ -226,7 +234,15 @@ export default function CanvasToolClient({
         {/* Right: controls panel */}
         <div className="mt-4 lg:mt-0">
           <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
-            <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
+            <TextEditor
+              values={texts}
+              onChange={handleTextChange}
+              placeholders={template?.texts.map((t) => t.text)}
+              colors={textColors}
+              onColorChange={(i, color) => { setTextColors((prev) => prev.map((c, idx) => idx === i ? color : c)); setHasChanges(true) }}
+              sizeMultiplier={textSizeMultiplier}
+              onSizeChange={(s) => { setTextSizeMultiplier(s); setHasChanges(true) }}
+            />
             <FontSelector value={fontFamily} onChange={handleFontChange} />
             <TemplateSelector templates={templates} selected={template} onSelect={handleTemplateSelect} />
             <BgSection color={bgColor} onChange={handleBgColorChange} />

@@ -16,6 +16,8 @@ interface CanvasEditorProps {
   onReady: (exportFn: () => Promise<Blob>) => void
   onReset: () => void
   onCanvasChange: () => void
+  textColors?: string[]
+  textSizeMultiplier?: number
 }
 
 export default function CanvasEditor({
@@ -30,6 +32,8 @@ export default function CanvasEditor({
   onReady,
   onReset,
   onCanvasChange,
+  textColors,
+  textSizeMultiplier,
 }: CanvasEditorProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -274,6 +278,35 @@ export default function CanvasEditor({
     })
     canvas.renderAll()
   }, [texts])
+
+  useEffect(() => {
+    const canvas = fabricRef.current
+    if (!canvas || !textColors?.length) return
+    const textObjs = canvas
+      .getObjects()
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .filter((obj: any) => obj.type === 'i-text' || obj.type === 'text')
+    textColors.forEach((color, i) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if (textObjs[i]) (textObjs[i] as any).set('fill', color)
+    })
+    canvas.renderAll()
+  }, [textColors])
+
+  useEffect(() => {
+    const canvas = fabricRef.current
+    if (!canvas || !template) return
+    const mult = (textSizeMultiplier ?? 100) / 100
+    const textObjs = canvas
+      .getObjects()
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .filter((obj: any) => obj.type === 'i-text' || obj.type === 'text')
+    template.texts.forEach((preset, i) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if (textObjs[i]) (textObjs[i] as any).set('fontSize', preset.fontSize * scale * mult)
+    })
+    canvas.renderAll()
+  }, [textSizeMultiplier, template, scale])
 
   return (
     <div ref={wrapperRef} className="mx-auto" style={{ width: '100%', maxWidth: displayW }}>

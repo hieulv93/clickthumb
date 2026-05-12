@@ -30,6 +30,8 @@ export default function YouTubeThumbnailPage() {
   const [bgImageUrl, setBgImageUrl] = useState<string | null>(null)
   const [fontFamily, setFontFamily] = useState(YOUTUBE_TEMPLATES[0].texts[0]?.fontFamily ?? 'Impact')
   const [texts, setTexts] = useState<string[]>(YOUTUBE_TEMPLATES[0].texts.map(() => ''))
+  const [textColors, setTextColors] = useState<string[]>(YOUTUBE_TEMPLATES[0].texts.map((t) => t.fill))
+  const [textSizeMultiplier, setTextSizeMultiplier] = useState(100)
   const [exporting, setExporting] = useState(false)
   const [done, setDone] = useState(false)
   const [downloaded, setDownloaded] = useState(false)
@@ -47,6 +49,8 @@ export default function YouTubeThumbnailPage() {
     setBgColor(t.bgColor)
     setFontFamily(t.texts[0]?.fontFamily ?? 'Impact')
     setTexts(t.texts.map(() => ''))
+    setTextColors(t.texts.map((tx) => tx.fill))
+    setTextSizeMultiplier(100)
     setHasChanges(false)
   }, [])
 
@@ -83,6 +87,8 @@ export default function YouTubeThumbnailPage() {
     setBgColor(YOUTUBE_TEMPLATES[0].bgColor)
     setFontFamily(YOUTUBE_TEMPLATES[0].texts[0]?.fontFamily ?? 'Impact')
     setTexts(YOUTUBE_TEMPLATES[0].texts.map(() => ''))
+    setTextColors(YOUTUBE_TEMPLATES[0].texts.map((t) => t.fill))
+    setTextSizeMultiplier(100)
     setHasChanges(false)
   }, [])
 
@@ -141,6 +147,8 @@ export default function YouTubeThumbnailPage() {
                     onReady={handleReady}
                     onReset={handleReset}
                     onCanvasChange={() => setHasChanges(true)}
+                    textColors={textColors}
+                    textSizeMultiplier={textSizeMultiplier}
                   />
                 </Suspense>
                 <div className="mt-2 space-y-2">
@@ -159,7 +167,15 @@ export default function YouTubeThumbnailPage() {
             {/* Right: controls panel */}
             <div className="mt-4 lg:mt-0 space-y-4">
               <div className="rounded-2xl border border-border bg-white p-4 sm:p-5 space-y-5">
-                <TextEditor values={texts} onChange={handleTextChange} placeholders={template?.texts.map((t) => t.text)} />
+                <TextEditor
+                  values={texts}
+                  onChange={handleTextChange}
+                  placeholders={template?.texts.map((t) => t.text)}
+                  colors={textColors}
+                  onColorChange={(i, color) => { setTextColors((prev) => prev.map((c, idx) => idx === i ? color : c)); setHasChanges(true) }}
+                  sizeMultiplier={textSizeMultiplier}
+                  onSizeChange={(s) => { setTextSizeMultiplier(s); setHasChanges(true) }}
+                />
                 <FontSelector value={fontFamily} onChange={handleFontChange} />
                 <TemplateSelector templates={YOUTUBE_TEMPLATES} selected={template} onSelect={handleTemplateSelect} />
                 <BgSection color={bgColor} onChange={handleBgColorChange} />
