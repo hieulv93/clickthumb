@@ -64,9 +64,16 @@ export default function TextEditor({
             step={5}
             value={sizeMultiplier}
             onChange={(e) => onSizeChange(Number(e.target.value))}
-            className="w-full h-1.5 rounded-full appearance-none cursor-pointer"
+            style={{
+              background: `linear-gradient(to right, #7C3AED ${((sizeMultiplier - 60) / 90 * 100).toFixed(1)}%, #E5E7EB ${((sizeMultiplier - 60) / 90 * 100).toFixed(1)}%)`,
+            }}
+            className="w-full h-2 rounded-full appearance-none cursor-pointer"
             aria-label={`Font size: ${sizeMultiplier}%`}
           />
+          <div className="flex justify-between text-xs text-text-muted">
+            <span>Smaller</span>
+            <span>Larger</span>
+          </div>
         </div>
       )}
     </div>
