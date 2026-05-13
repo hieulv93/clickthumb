@@ -5,9 +5,9 @@ const PAGE_URL = `${SITE_URL}/blog/how-to-make-gaming-thumbnail/`
 const OG_IMAGE = `${SITE_URL}/og-image.png`
 
 export const metadata: Metadata = {
-  title: 'How to Make a Gaming Thumbnail That Gets More Clicks (2026)',
+  title: 'How to Make a Gaming Thumbnail That Gets Clicks — Free Maker',
   description:
-    'Step-by-step guide to gaming thumbnails: 1280×720px size, color rules, Impact font, face reactions — 7 design principles top gaming creators use to hit 6%+ CTR.',
+    'Step-by-step guide to gaming thumbnails: 1280×720px size, color rules, Impact font, face reactions — 7 design principles top gaming creators use to hit 6%+ CTR. Free maker included.',
   keywords: [
     'how to make a gaming thumbnail',
     'gaming thumbnail',

@@ -4,9 +4,9 @@ const PAGE_URL = 'https://click-thumb.com/blog/how-to-increase-youtube-ctr/'
 const OG_IMAGE = 'https://click-thumb.com/og-image.png'
 
 export const metadata: Metadata = {
-  title: 'How to Increase YouTube CTR: 8 Thumbnail Tips That Work',
+  title: 'How to Increase YouTube CTR: 8 Proven Thumbnail Strategies',
   description:
-    'Good YouTube CTR is 4–8%. These 8 thumbnail strategies — contrast, faces, bold text, curiosity gaps, A/B testing — can double your click rate without changing your content.',
+    'Good YouTube CTR is 4–8%. These 8 proven thumbnail strategies — contrast, faces, bold text, curiosity gaps — can double your click rate. Free thumbnail maker included.',
   keywords: [
     'how to increase youtube ctr',
     'youtube ctr',
