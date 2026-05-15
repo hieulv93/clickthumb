@@ -6,8 +6,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Free Call of Duty Thumbnail Maker — Warzone & MW3, No Signup',
-  description: 'Make COD thumbnails at 1280×720px free — Warzone, MW3, Military Dark, Combat Orange, Camo Green templates. Download instantly, no account or software needed.',
+  title: 'Free COD Thumbnail Maker — Warzone, Black Ops 6 & MW3, No Signup',
+  description: 'Free Call of Duty thumbnail maker — Warzone, BO6 & MW3 templates. Military Dark, Combat Orange, Camo Green. Create 1280×720px COD thumbnails instantly, no signup.',
   alternates: { canonical: 'https://click-thumb.com/call-of-duty-thumbnail-maker/' },
   openGraph: { title: 'Free Call of Duty Thumbnail Maker — Warzone & MW3, No Signup', description: 'Make Call of Duty thumbnails at 1280×720px free. Military Dark, Combat Orange, Camo Green templates for Warzone & MW3 creators.', url: 'https://click-thumb.com/call-of-duty-thumbnail-maker/', siteName: 'ClickThumb', images: [{ url: '/og-image.png', width: 1200, height: 630 }] },
 }
