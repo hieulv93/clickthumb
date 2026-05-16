@@ -48,7 +48,7 @@ export default function CanvasToolClient({
   const [done, setDone] = useState(false)
   const [downloaded, setDownloaded] = useState(false)
   const [exportError, setExportError] = useState(false)
-  const [format, setFormat] = useState<ExportFormat>('jpeg')
+  const [format] = useState<ExportFormat>('jpeg')
   const { w: displayW, h: displayH } = getDisplayDimensions(platform)
   const exportFnRef = useRef<(() => Promise<Blob>) | null>(null)
   const bgUrlRef = useRef<string | null>(null)
@@ -128,15 +128,6 @@ export default function CanvasToolClient({
 
   const downloadBtn = (
     <div className="space-y-2">
-      <div className="flex justify-end">
-        <button
-          type="button"
-          onClick={() => setFormat((f) => (f === 'jpeg' ? 'png' : 'jpeg'))}
-          className="text-xs text-text-muted hover:text-primary transition-colors"
-        >
-          {format === 'jpeg' ? 'Switch to PNG' : 'Switch to JPEG'}
-        </button>
-      </div>
       {exporting && <ProgressBar visible label="Exporting..." />}
       {exportError && (
         <p className="text-xs text-center text-red-500">Export failed. Please try again.</p>
