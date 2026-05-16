@@ -36,7 +36,7 @@ export default function YouTubeThumbnailPage() {
     YOUTUBE_TEMPLATES[0].texts[0]?.fontFamily ?? "Impact",
   );
   const [texts, setTexts] = useState<string[]>(
-    YOUTUBE_TEMPLATES[0].texts.map(() => ""),
+    YOUTUBE_TEMPLATES[0].texts.map((t) => t.text),
   );
   const [textColors, setTextColors] = useState<string[]>(
     YOUTUBE_TEMPLATES[0].texts.map((t) => t.fill),
@@ -58,7 +58,7 @@ export default function YouTubeThumbnailPage() {
     setTemplate(t);
     setBgColor(t.bgColor);
     setFontFamily(t.texts[0]?.fontFamily ?? "Impact");
-    setTexts(t.texts.map(() => ""));
+    setTexts(t.texts.map((tx) => tx.text));
     setTextColors(t.texts.map((tx) => tx.fill));
     setTextSizeMultiplier(100);
     setHasChanges(false);
@@ -96,7 +96,7 @@ export default function YouTubeThumbnailPage() {
   const handleReset = useCallback(() => {
     setBgColor(YOUTUBE_TEMPLATES[0].bgColor);
     setFontFamily(YOUTUBE_TEMPLATES[0].texts[0]?.fontFamily ?? "Impact");
-    setTexts(YOUTUBE_TEMPLATES[0].texts.map(() => ""));
+    setTexts(YOUTUBE_TEMPLATES[0].texts.map((t) => t.text));
     setTextColors(YOUTUBE_TEMPLATES[0].texts.map((t) => t.fill));
     setTextSizeMultiplier(100);
     setHasChanges(false);

@@ -1,23 +1,23 @@
-'use client'
+"use client";
 
-import { useEffect, useRef, useCallback, useState } from 'react'
-import type { Template } from '@/lib/templates'
-import { getDisplayDimensions, type Platform } from '@/lib/platforms'
+import { useEffect, useRef, useCallback, useState } from "react";
+import type { Template } from "@/lib/templates";
+import { getDisplayDimensions, type Platform } from "@/lib/platforms";
 
 interface CanvasEditorProps {
-  platform: Platform
-  template: Template | null
-  bgColor: string
-  bgImageUrl: string | null
-  fontFamily: string
-  texts: string[]
-  format: 'jpeg' | 'png'
-  hasChanges: boolean
-  onReady: (exportFn: () => Promise<Blob>) => void
-  onReset: () => void
-  onCanvasChange: () => void
-  textColors?: string[]
-  textSizeMultiplier?: number
+  platform: Platform;
+  template: Template | null;
+  bgColor: string;
+  bgImageUrl: string | null;
+  fontFamily: string;
+  texts: string[];
+  format: "jpeg" | "png";
+  hasChanges: boolean;
+  onReady: (exportFn: () => Promise<Blob>) => void;
+  onReset: () => void;
+  onCanvasChange: () => void;
+  textColors?: string[];
+  textSizeMultiplier?: number;
 }
 
 export default function CanvasEditor({
@@ -35,41 +35,44 @@ export default function CanvasEditor({
   textColors,
   textSizeMultiplier,
 }: CanvasEditorProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const fabricRef = useRef<any>(null)
-  const wrapperRef = useRef<HTMLDivElement>(null)
-  const [cssScale, setCssScale] = useState(1)
-  const { w: displayW, h: displayH } = getDisplayDimensions(platform)
-  const scale = displayW / platform.width
+  const fabricRef = useRef<any>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [cssScale, setCssScale] = useState(1);
+  const { w: displayW, h: displayH } = getDisplayDimensions(platform);
+  const scale = displayW / platform.width;
 
-  const formatRef = useRef(format)
+  const formatRef = useRef(format);
   useEffect(() => {
-    formatRef.current = format
-  }, [format])
+    formatRef.current = format;
+  }, [format]);
 
   useEffect(() => {
-    const wrapper = wrapperRef.current
-    if (!wrapper) return
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
     const observer = new ResizeObserver(([entry]) => {
-      setCssScale(Math.min(1, entry.contentRect.width / displayW))
-    })
-    observer.observe(wrapper)
-    return () => observer.disconnect()
-  }, [])
+      setCssScale(Math.min(1, entry.contentRect.width / displayW));
+    });
+    observer.observe(wrapper);
+    return () => observer.disconnect();
+  }, []);
 
   const applyTemplate = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async (canvas: any, fabric: any, tmpl: Template) => {
-      canvas.clear()
-      canvas.backgroundColor = tmpl.bgColor
+      canvas.clear();
+      canvas.backgroundColor = tmpl.bgColor;
 
       if (bgImageUrl) {
         await new Promise<void>((resolve) => {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           fabric.Image.fromURL(bgImageUrl, (img: any) => {
-            const coverScale = Math.max(canvas.width / img.width, canvas.height / img.height)
-            img.scale(coverScale)
+            const coverScale = Math.max(
+              canvas.width / img.width,
+              canvas.height / img.height,
+            );
+            img.scale(coverScale);
             img.set({
               left: (canvas.width - img.getScaledWidth()) / 2,
               top: (canvas.height - img.getScaledHeight()) / 2,
@@ -77,12 +80,12 @@ export default function CanvasEditor({
               evented: true,
               hasControls: false,
               hasBorders: false,
-            })
-            canvas.add(img)
-            canvas.sendToBack(img)
-            resolve()
-          })
-        })
+            });
+            canvas.add(img);
+            canvas.sendToBack(img);
+            resolve();
+          });
+        });
       }
 
       for (const preset of tmpl.texts) {
@@ -101,80 +104,80 @@ export default function CanvasEditor({
           width: preset.width * scale,
           hasBorders: false,
           hasControls: false,
-        })
-        canvas.add(textObj)
+        });
+        canvas.add(textObj);
       }
 
-      canvas.renderAll()
+      canvas.renderAll();
     },
-    [bgImageUrl, scale]
-  )
+    [bgImageUrl, scale],
+  );
 
   // Reset: restore each object's position to template defaults without rebuilding canvas.
   // Avoids canvas.loadFromJSON (which caused the black border bug) by setting coordinates directly.
   const handleReset = useCallback(() => {
-    const canvas = fabricRef.current
-    if (!canvas || !template) return
+    const canvas = fabricRef.current;
+    if (!canvas || !template) return;
 
     // Exit any active IText editing mode first
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const active = canvas.getActiveObject() as any
-    if (active && active.isEditing) active.exitEditing()
-    canvas.discardActiveObject()
+    const active = canvas.getActiveObject() as any;
+    if (active && active.isEditing) active.exitEditing();
+    canvas.discardActiveObject();
 
     const textObjs = canvas
       .getObjects()
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .filter((obj: any) => obj.type === 'i-text' || obj.type === 'text')
+      .filter((obj: any) => obj.type === "i-text" || obj.type === "text");
 
     template.texts.forEach((preset, i) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const obj = textObjs[i] as any
-      if (!obj) return
+      const obj = textObjs[i] as any;
+      if (!obj) return;
       obj.set({
         text: preset.text,
         left: preset.left * scale,
         top: preset.top * scale,
         originX: preset.originX,
         originY: preset.originY,
-      })
-      obj.setCoords()
-    })
+      });
+      obj.setCoords();
+    });
 
     // Re-center background image so no black edges after drag
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     canvas.getObjects().forEach((obj: any) => {
-      if (obj.type !== 'image') return
+      if (obj.type !== "image") return;
       obj.set({
         left: (canvas.width - obj.getScaledWidth()) / 2,
         top: (canvas.height - obj.getScaledHeight()) / 2,
-      })
-      obj.setCoords()
-    })
+      });
+      obj.setCoords();
+    });
 
-    canvas.renderAll()
-    onReset()
-  }, [template, scale, onReset])
+    canvas.renderAll();
+    onReset();
+  }, [template, scale, onReset]);
 
   // Ctrl+Z / Cmd+Z
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
-        e.preventDefault()
-        handleReset()
+      if ((e.ctrlKey || e.metaKey) && e.key === "z" && !e.shiftKey) {
+        e.preventDefault();
+        handleReset();
       }
-    }
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  }, [handleReset])
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [handleReset]);
 
   useEffect(() => {
-    if (!canvasRef.current) return
-    let mounted = true
+    if (!canvasRef.current) return;
+    let mounted = true;
 
-    ;(async () => {
-      const fabric = (await import('fabric')).fabric
-      if (!mounted || !canvasRef.current) return
+    (async () => {
+      const fabric = (await import("fabric")).fabric;
+      if (!mounted || !canvasRef.current) return;
 
       const canvas = new fabric.Canvas(canvasRef.current, {
         width: displayW,
@@ -182,142 +185,156 @@ export default function CanvasEditor({
         backgroundColor: bgColor,
         selection: true,
         preserveObjectStacking: true,
-      })
-      fabricRef.current = canvas
+      });
+      fabricRef.current = canvas;
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      canvas.on('object:moving', (e: any) => {
-        const obj = e.target
-        const cw = displayW
-        const ch = displayH
-        if (obj.type === 'i-text' || obj.type === 'text') {
-          const hw = obj.getScaledWidth() / 2
-          const hh = obj.getScaledHeight() / 2
-          obj.left = Math.max(hw, Math.min(cw - hw, obj.left))
-          obj.top = Math.max(hh, Math.min(ch - hh, obj.top))
-        } else if (obj.type === 'image') {
-          const sw = obj.getScaledWidth()
-          const sh = obj.getScaledHeight()
-          const newLeft = Math.max(cw - sw, Math.min(0, obj.left))
-          const newTop = Math.max(ch - sh, Math.min(0, obj.top))
-          obj.set({ left: newLeft, top: newTop })
-          obj.setCoords()
+      canvas.on("object:moving", (e: any) => {
+        const obj = e.target;
+        const cw = displayW;
+        const ch = displayH;
+        if (obj.type === "i-text" || obj.type === "text") {
+          const hw = obj.getScaledWidth() / 2;
+          const hh = obj.getScaledHeight() / 2;
+          obj.left = Math.max(hw, Math.min(cw - hw, obj.left));
+          obj.top = Math.max(hh, Math.min(ch - hh, obj.top));
+        } else if (obj.type === "image") {
+          const sw = obj.getScaledWidth();
+          const sh = obj.getScaledHeight();
+          const newLeft = Math.max(cw - sw, Math.min(0, obj.left));
+          const newTop = Math.max(ch - sh, Math.min(0, obj.top));
+          obj.set({ left: newLeft, top: newTop });
+          obj.setCoords();
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const t = (canvas as any)._currentTransform
-          if (t) { t.left = newLeft; t.top = newTop }
+          const t = (canvas as any)._currentTransform;
+          if (t) {
+            t.left = newLeft;
+            t.top = newTop;
+          }
         }
-      })
+      });
 
-      canvas.on('object:modified', () => onCanvasChange())
-      canvas.on('text:changed', () => onCanvasChange())
+      canvas.on("object:modified", () => onCanvasChange());
+      canvas.on("text:changed", () => onCanvasChange());
 
       if (template) {
-        await applyTemplate(canvas, fabric, template)
+        await applyTemplate(canvas, fabric, template);
       }
 
       onReady(async () => {
-        const fmt = formatRef.current
-        const multiplier = platform.width / displayW
+        const fmt = formatRef.current;
+        const multiplier = platform.width / displayW;
         const dataUrl = canvas.toDataURL({
           format: fmt,
-          quality: fmt === 'jpeg' ? 0.92 : 1,
+          quality: fmt === "jpeg" ? 0.92 : 1,
           multiplier,
-        })
-        return await fetch(dataUrl).then((r) => r.blob())
-      })
-    })()
+        });
+        return await fetch(dataUrl).then((r) => r.blob());
+      });
+    })();
 
     return () => {
-      mounted = false
+      mounted = false;
       if (fabricRef.current) {
-        fabricRef.current.dispose()
-        fabricRef.current = null
+        fabricRef.current.dispose();
+        fabricRef.current = null;
       }
-    }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [platform.id])
+  }, [platform.id]);
 
   useEffect(() => {
-    const canvas = fabricRef.current
-    if (!canvas) return
-    canvas.backgroundColor = bgColor
-    canvas.renderAll()
-  }, [bgColor])
+    const canvas = fabricRef.current;
+    if (!canvas) return;
+    canvas.backgroundColor = bgColor;
+    canvas.renderAll();
+  }, [bgColor]);
 
   useEffect(() => {
-    const canvas = fabricRef.current
-    if (!canvas || !template) return
-    ;(async () => {
-      const fabric = (await import('fabric')).fabric
-      await applyTemplate(canvas, fabric, template)
-    })()
-  }, [template, applyTemplate])
+    const canvas = fabricRef.current;
+    if (!canvas || !template) return;
+    (async () => {
+      const fabric = (await import("fabric")).fabric;
+      await applyTemplate(canvas, fabric, template);
+    })();
+  }, [template, applyTemplate]);
 
   useEffect(() => {
-    const canvas = fabricRef.current
-    if (!canvas || !fontFamily) return
+    const canvas = fabricRef.current;
+    if (!canvas || !fontFamily) return;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     canvas.getObjects().forEach((obj: any) => {
-      if (obj.type === 'i-text' || obj.type === 'text') {
-        obj.set('fontFamily', fontFamily)
+      if (obj.type === "i-text" || obj.type === "text") {
+        obj.set("fontFamily", fontFamily);
       }
-    })
-    canvas.renderAll()
-  }, [fontFamily])
+    });
+    canvas.renderAll();
+  }, [fontFamily]);
 
   useEffect(() => {
-    const canvas = fabricRef.current
-    if (!canvas || !texts.length) return
+    const canvas = fabricRef.current;
+    if (!canvas || !texts.length) return;
     const textObjs = canvas
       .getObjects()
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .filter((obj: any) => obj.type === 'i-text' || obj.type === 'text')
+      .filter((obj: any) => obj.type === "i-text" || obj.type === "text");
     texts.forEach((text, i) => {
-      if (textObjs[i])
-        textObjs[i].set('text', text !== '' ? text : (template?.texts[i]?.text ?? ''))
-    })
-    canvas.renderAll()
-  }, [texts])
+      if (textObjs[i]) textObjs[i].set("text", text);
+    });
+    canvas.renderAll();
+  }, [texts]);
 
   useEffect(() => {
-    const canvas = fabricRef.current
-    if (!canvas || !textColors?.length) return
+    const canvas = fabricRef.current;
+    if (!canvas || !textColors?.length) return;
     const textObjs = canvas
       .getObjects()
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .filter((obj: any) => obj.type === 'i-text' || obj.type === 'text')
+      .filter((obj: any) => obj.type === "i-text" || obj.type === "text");
     textColors.forEach((color, i) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if (textObjs[i]) (textObjs[i] as any).set('fill', color)
-    })
-    canvas.renderAll()
-  }, [textColors])
+      if (textObjs[i]) (textObjs[i] as any).set("fill", color);
+    });
+    canvas.renderAll();
+  }, [textColors]);
 
   useEffect(() => {
-    const canvas = fabricRef.current
-    if (!canvas || !template) return
-    const mult = (textSizeMultiplier ?? 100) / 100
+    const canvas = fabricRef.current;
+    if (!canvas || !template) return;
+    const mult = (textSizeMultiplier ?? 100) / 100;
     const textObjs = canvas
       .getObjects()
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .filter((obj: any) => obj.type === 'i-text' || obj.type === 'text')
+      .filter((obj: any) => obj.type === "i-text" || obj.type === "text");
     template.texts.forEach((preset, i) => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if (textObjs[i]) (textObjs[i] as any).set('fontSize', preset.fontSize * scale * mult)
-    })
-    canvas.renderAll()
-  }, [textSizeMultiplier, template, scale])
+      if (textObjs[i]) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (textObjs[i] as any).set("fontSize", preset.fontSize * scale * mult);
+      }
+    });
+    canvas.renderAll();
+  }, [textSizeMultiplier, template, scale]);
 
   return (
-    <div ref={wrapperRef} className="mx-auto" style={{ width: '100%', maxWidth: displayW }}>
+    <div
+      ref={wrapperRef}
+      className="mx-auto"
+      style={{ width: "100%", maxWidth: displayW }}
+    >
       {/* overflow:hidden clips the absolute canvas (fixed layout width) so it never causes page horizontal scroll */}
-      <div style={{ aspectRatio: `${displayW}/${displayH}`, position: 'relative', overflow: 'hidden' }}>
+      <div
+        style={{
+          aspectRatio: `${displayW}/${displayH}`,
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
         <div
           className="absolute top-0 left-0 rounded-xl overflow-hidden border border-border shadow-sm"
           style={{
             width: displayW,
             height: displayH,
-            transformOrigin: 'top left',
+            transformOrigin: "top left",
             transform: `scale(${cssScale})`,
           }}
         >
@@ -355,5 +372,5 @@ export default function CanvasEditor({
         </p>
       </div>
     </div>
-  )
+  );
 }

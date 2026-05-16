@@ -47,7 +47,7 @@ export default function CanvasToolClient({
     templates[0]?.texts[0]?.fontFamily ?? "Impact",
   );
   const [texts, setTexts] = useState<string[]>(
-    templates[0]?.texts.map(() => "") ?? [],
+    templates[0]?.texts.map((t) => t.text) ?? [],
   );
   const [textColors, setTextColors] = useState<string[]>(
     templates[0]?.texts.map((t) => t.fill) ?? [],
@@ -71,7 +71,7 @@ export default function CanvasToolClient({
     setTemplate(t);
     setBgColor(t.bgColor);
     setFontFamily(t.texts[0]?.fontFamily ?? "Impact");
-    setTexts(t.texts.map(() => ""));
+    setTexts(t.texts.map((tx) => tx.text));
     setTextColors(t.texts.map((tx) => tx.fill));
     setTextSizeMultiplier(100);
     setHasChanges(false);
@@ -109,7 +109,7 @@ export default function CanvasToolClient({
   const handleReset = useCallback(() => {
     setBgColor(template?.bgColor ?? "#ffffff");
     setFontFamily(template?.texts[0]?.fontFamily ?? "Impact");
-    setTexts(template?.texts.map(() => "") ?? []);
+    setTexts(template?.texts.map((t) => t.text) ?? []);
     setTextColors(template?.texts.map((t) => t.fill) ?? []);
     setTextSizeMultiplier(100);
     setHasChanges(false);
