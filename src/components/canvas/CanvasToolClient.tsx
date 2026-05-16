@@ -126,27 +126,17 @@ export default function CanvasToolClient({
     }
   }, [downloadFilename, format, platform.id, template?.id])
 
-  const formatToggle = (
-    <div className="flex rounded-lg border border-border overflow-hidden text-xs font-medium">
-      {(['jpeg', 'png'] as ExportFormat[]).map((fmt) => (
-        <button
-          key={fmt}
-          onClick={() => setFormat(fmt)}
-          className={`flex-1 py-1.5 transition-colors ${
-            format === fmt
-              ? 'bg-primary text-white'
-              : 'text-text-muted hover:text-text-main hover:bg-surface'
-          }`}
-        >
-          {fmt.toUpperCase()}
-        </button>
-      ))}
-    </div>
-  )
-
   const downloadBtn = (
     <div className="space-y-2">
-      {formatToggle}
+      <div className="flex justify-end">
+        <button
+          type="button"
+          onClick={() => setFormat((f) => (f === 'jpeg' ? 'png' : 'jpeg'))}
+          className="text-xs text-text-muted hover:text-primary transition-colors"
+        >
+          {format === 'jpeg' ? 'Switch to PNG' : 'Switch to JPEG'}
+        </button>
+      </div>
       {exporting && <ProgressBar visible label="Exporting..." />}
       {exportError && (
         <p className="text-xs text-center text-red-500">Export failed. Please try again.</p>
