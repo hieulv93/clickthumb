@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
@@ -9,12 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#7C3AED",
-        "primary-hover": "#6D28D9",
+        primary: "#2563EB",
+        "primary-hover": "#1D4ED8",
         success: "#16A34A",
         error: "#DC2626",
         "error-light": "#FEF2F2",
-        "drag-active": "#F5F3FF",
+        "drag-active": "#EFF6FF",
         surface: "#F9FAFB",
         border: "#E5E7EB",
         "text-main": "#111827",
@@ -39,6 +39,6 @@ const config: Config = {
     },
   },
   plugins: [],
-}
+};
 
-export default config
+export default config;
