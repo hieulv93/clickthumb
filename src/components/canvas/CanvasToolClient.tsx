@@ -152,8 +152,8 @@ export default function CanvasToolClient({
         disabled={exporting}
         className={`w-full touch-target flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
           downloaded
-            ? "bg-green-700 hover:bg-green-800 text-white active:scale-95"
-            : "bg-green-600 hover:bg-green-700 active:scale-95 disabled:opacity-60 text-white"
+            ? "bg-green-600 hover:bg-green-700 text-white active:scale-95"
+            : "bg-primary hover:bg-primary-hover active:bg-blue-800 active:scale-95 disabled:opacity-60 text-white"
         }`}
       >
         {downloaded ? (
