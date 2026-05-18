@@ -31,7 +31,7 @@ export default function BgSection({ color, onChange }: BgSectionProps) {
           <button
             key={c}
             onClick={() => onChange(c)}
-            className={`w-9 h-9 rounded-lg border-2 transition-transform ${
+            className={`w-11 h-11 rounded-lg border-2 transition-transform ${
               color === c
                 ? "border-primary scale-110"
                 : c === "#ffffff" || c === "#f3f4f6"
@@ -43,7 +43,7 @@ export default function BgSection({ color, onChange }: BgSectionProps) {
           />
         ))}
         <label
-          className="relative w-9 h-9 rounded-lg border-2 border-border overflow-hidden cursor-pointer hover:scale-105 transition-transform"
+          className="relative w-11 h-11 rounded-lg border-2 border-border overflow-hidden cursor-pointer hover:scale-105 transition-transform"
           title="Custom color"
         >
           <span className="absolute inset-0 flex items-center justify-center text-[10px] text-text-muted font-bold">

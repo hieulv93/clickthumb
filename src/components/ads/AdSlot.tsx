@@ -33,10 +33,8 @@ export default function AdSlot({
     } catch {}
   }, [showAd]);
 
-  const isDev = process.env.NODE_ENV === "development";
-
   if (!hasRealSlot) {
-    if (!isDev || !actionDone) return null;
+    if (!actionDone) return null;
     return (
       <div
         style={{ minHeight: "250px" }}

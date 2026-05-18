@@ -23,7 +23,7 @@ export default function TemplateSelector({
           <button
             key={t.id}
             onClick={() => onSelect(t)}
-            className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium border transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+            className={`flex items-center gap-1.5 px-3 py-2 min-h-[44px] rounded-lg text-xs font-medium border transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
               selected?.id === t.id
                 ? "bg-primary text-white border-primary"
                 : "bg-white text-text-main border-border hover:border-primary hover:text-primary"
