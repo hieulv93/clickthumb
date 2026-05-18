@@ -147,7 +147,7 @@ export default function CanvasToolClient({
           Export failed. Please try again.
         </p>
       )}
-      {downloaded && (
+      {done && (
         <p className="text-xs text-center text-text-muted">
           Need a smaller file?{" "}
           <a

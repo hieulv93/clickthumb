@@ -26,7 +26,7 @@ export default function FontSelector({ value, onChange }: FontSelectorProps) {
             key={f.name}
             onClick={() => onChange(f.name)}
             title={f.name}
-            className={`px-3 py-1.5 rounded-lg border text-xs transition-all ${
+            className={`px-3 py-2 rounded-lg border text-xs transition-all ${
               value === f.name
                 ? "border-primary bg-primary/10 text-primary"
                 : "border-border bg-white text-text-main hover:border-primary/50"

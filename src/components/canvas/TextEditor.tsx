@@ -58,7 +58,7 @@ export default function TextEditor({
                   type="color"
                   value={colors[i]}
                   onChange={(e) => onColorChange(i, e.target.value)}
-                  className="w-9 h-9 rounded-lg border border-border cursor-pointer p-0.5 shrink-0"
+                  className="w-10 h-10 rounded-lg border border-border cursor-pointer p-0.5 shrink-0"
                   title="Text color"
                   aria-label={`${LABELS[i] ?? `Text ${i + 1}`} color`}
                 />
