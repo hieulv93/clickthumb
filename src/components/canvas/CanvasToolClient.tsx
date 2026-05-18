@@ -190,19 +190,21 @@ export default function CanvasToolClient({
           </>
         )}
       </button>
-      {done && (
-        <p className="text-sm text-center text-text-muted">
-          Need a smaller file?{" "}
-          <a
-            href="https://compressimg.pro/compress-image"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:underline font-medium"
-          >
-            Compress it free →
-          </a>
-        </p>
-      )}
+      <p
+        className="text-sm text-center text-text-muted"
+        style={{ display: done ? "block" : "none" }}
+        data-testid="compress-suggest"
+      >
+        Need a smaller file?{" "}
+        <a
+          href="https://compressimg.pro/compress-image"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary hover:underline font-medium"
+        >
+          Compress it free →
+        </a>
+      </p>
     </div>
   );
 
