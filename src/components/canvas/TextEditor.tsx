@@ -70,7 +70,7 @@ export default function TextEditor({
           <button
             type="button"
             onClick={() => setShowExtra((v) => !v)}
-            className="text-xs text-text-muted hover:text-primary transition-colors py-2 block w-full text-left"
+            className="text-xs text-text-muted hover:text-primary transition-colors py-3 min-h-[44px] flex items-center w-full text-left"
           >
             {showExtra ? "− Less text fields" : "+ Add more text"}
           </button>

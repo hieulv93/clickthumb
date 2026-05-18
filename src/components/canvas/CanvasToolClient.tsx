@@ -191,7 +191,7 @@ export default function CanvasToolClient({
         )}
       </button>
       {done && (
-        <p className="text-xs text-center text-text-muted">
+        <p className="text-sm text-center text-text-muted">
           Need a smaller file?{" "}
           <a
             href="https://compressimg.pro/compress-image"
