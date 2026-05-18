@@ -7,6 +7,7 @@
     "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start",
+    "test": "jest",
     "lint": "next lint",
     "prepare": "husky"
   },
@@ -28,12 +29,15 @@
   ],
   "devDependencies": {
     "@types/fabric": "^5.3.10",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.35",
     "husky": "^9.1.7",
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1",
     "lint-staged": "^16.4.0",
     "postcss": "^8",
     "prettier": "^3.8.3",
