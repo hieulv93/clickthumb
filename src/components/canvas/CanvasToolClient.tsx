@@ -46,12 +46,17 @@ export default function CanvasToolClient({
   const [fontFamily, setFontFamily] = useState(
     templates[0]?.texts[0]?.fontFamily ?? "Impact",
   );
-  const [texts, setTexts] = useState<string[]>(
-    templates[0]?.texts.map((t) => t.text) ?? [],
-  );
-  const [textColors, setTextColors] = useState<string[]>(
-    templates[0]?.texts.map((t) => t.fill) ?? [],
-  );
+  const [texts, setTexts] = useState<string[]>(() => {
+    const base = templates[0]?.texts.map((t) => t.text) ?? [];
+    while (base.length < 4) base.push("");
+    return base;
+  });
+  const [textColors, setTextColors] = useState<string[]>(() => {
+    const base = templates[0]?.texts.map((t) => t.fill) ?? [];
+    const last = base[base.length - 1] ?? "#ffffff";
+    while (base.length < 4) base.push(last);
+    return base;
+  });
   const [textSizeMultiplier, setTextSizeMultiplier] = useState(100);
   const [hasChanges, setHasChanges] = useState(false);
   const [exporting, setExporting] = useState(false);
@@ -71,8 +76,13 @@ export default function CanvasToolClient({
     setTemplate(t);
     setBgColor(t.bgColor);
     setFontFamily(t.texts[0]?.fontFamily ?? "Impact");
-    setTexts(t.texts.map((tx) => tx.text));
-    setTextColors(t.texts.map((tx) => tx.fill));
+    const newTexts = t.texts.map((tx) => tx.text);
+    while (newTexts.length < 4) newTexts.push("");
+    setTexts(newTexts);
+    const newColors = t.texts.map((tx) => tx.fill);
+    const lastColor = newColors[newColors.length - 1] ?? "#ffffff";
+    while (newColors.length < 4) newColors.push(lastColor);
+    setTextColors(newColors);
     setTextSizeMultiplier(100);
     setHasChanges(false);
   }, []);
@@ -109,8 +119,13 @@ export default function CanvasToolClient({
   const handleReset = useCallback(() => {
     setBgColor(template?.bgColor ?? "#ffffff");
     setFontFamily(template?.texts[0]?.fontFamily ?? "Impact");
-    setTexts(template?.texts.map((t) => t.text) ?? []);
-    setTextColors(template?.texts.map((t) => t.fill) ?? []);
+    const resetTexts = template?.texts.map((t) => t.text) ?? [];
+    while (resetTexts.length < 4) resetTexts.push("");
+    setTexts(resetTexts);
+    const resetColors = template?.texts.map((t) => t.fill) ?? [];
+    const lastResetColor = resetColors[resetColors.length - 1] ?? "#ffffff";
+    while (resetColors.length < 4) resetColors.push(lastResetColor);
+    setTextColors(resetColors);
     setTextSizeMultiplier(100);
     setHasChanges(false);
   }, [template]);
