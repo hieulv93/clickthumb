@@ -626,6 +626,20 @@ export default function YouTubeThumbnailPage() {
             </div>
           </div>
 
+          {/* Size guide link */}
+          <div className="rounded-xl border border-border bg-surface p-4 text-sm">
+            <p className="text-text-muted">
+              Need the exact specs?{" "}
+              <Link
+                href="/blog/youtube-thumbnail-size-guide/"
+                className="text-primary hover:underline font-medium"
+              >
+                YouTube Thumbnail Size Guide 2026 →
+              </Link>{" "}
+              — dimensions, file size limits, and format requirements.
+            </p>
+          </div>
+
           {/* Related tools */}
           <div className="space-y-3 pt-2 border-t border-border">
             <h2 className="text-sm font-semibold text-text-main">

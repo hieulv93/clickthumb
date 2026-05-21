@@ -4,9 +4,9 @@ const PAGE_URL = "https://click-thumb.com/blog/how-to-increase-youtube-ctr/";
 const OG_IMAGE = "https://click-thumb.com/og-image.png";
 
 export const metadata: Metadata = {
-  title: "How to Increase YouTube CTR in 2026: 8 Tips That Doubled Mine",
+  title: "How to Increase YouTube CTR: 8 Proven Tips (2026 Guide)",
   description:
-    "YouTube CTR below 4%? Learn the 8 thumbnail psychology tricks that top creators use to hit 8–12% click-through rates. With real before/after examples.",
+    "YouTube CTR below 4%? Learn 8 thumbnail strategies top creators use to reach 8–12% click-through rate. Actionable tips with real before/after examples.",
   keywords: [
     "how to increase youtube ctr",
     "youtube ctr",
@@ -18,18 +18,18 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "How to Increase YouTube CTR in 2026: 8 Tips That Doubled Mine",
+    title: "How to Increase YouTube CTR: 8 Proven Tips (2026 Guide)",
     description:
-      "YouTube CTR below 4%? Learn 8 thumbnail psychology tricks that top creators use to hit 8–12% click-through rates. Real before/after examples included.",
+      "YouTube CTR below 4%? Learn 8 thumbnail strategies top creators use to reach 8–12% click-through rate. Actionable tips with real before/after examples.",
     url: PAGE_URL,
     images: [{ url: OG_IMAGE, width: 1200, height: 630 }],
     type: "article",
   },
   twitter: {
     card: "summary_large_image",
-    title: "How to Increase YouTube CTR in 2026: 8 Tips That Doubled Mine",
+    title: "How to Increase YouTube CTR: 8 Proven Tips (2026 Guide)",
     description:
-      "YouTube CTR below 4%? Learn 8 thumbnail tricks top creators use to hit 8–12% CTR. Real before/after examples.",
+      "YouTube CTR below 4%? Learn 8 thumbnail strategies top creators use to hit 8–12% CTR. Actionable tips with real examples.",
     images: [OG_IMAGE],
   },
 };
