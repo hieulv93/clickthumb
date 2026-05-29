@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Social Media Image Sizes 2026 — Complete Guide for All Platforms",
+  description:
+    "Exact image dimensions for every major platform in 2026: YouTube, Instagram, Twitter, LinkedIn, TikTok, Facebook. Updated specs for posts, covers, and banners.",
+  alternates: {
+    canonical: "https://click-thumb.com/blog/social-media-image-sizes/",
+  },
+};
 
 export default function SocialMediaImageSizes() {
   return (

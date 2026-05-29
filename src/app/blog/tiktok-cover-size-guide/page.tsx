@@ -1,12 +1,29 @@
-import Link from 'next/link'
+import type { Metadata } from "next";
+import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "TikTok Cover Size Guide 2026 — Exact Dimensions & Safe Zones",
+  description:
+    "The exact TikTok cover size is 1080×1920 pixels. Learn the safe zones, profile grid crop, design tips, and how to make a TikTok cover free online.",
+  alternates: {
+    canonical: "https://click-thumb.com/blog/tiktok-cover-size-guide/",
+  },
+};
 
 export default function TikTokCoverSizeGuide() {
   return (
     <main className="max-w-3xl mx-auto px-4 py-12">
-      <nav className="text-xs text-text-muted mb-8 flex items-center gap-1.5" aria-label="Breadcrumb">
-        <Link href="/" className="hover:text-primary">Home</Link>
+      <nav
+        className="text-xs text-text-muted mb-8 flex items-center gap-1.5"
+        aria-label="Breadcrumb"
+      >
+        <Link href="/" className="hover:text-primary">
+          Home
+        </Link>
         <span>/</span>
-        <Link href="/blog" className="hover:text-primary">Blog</Link>
+        <Link href="/blog" className="hover:text-primary">
+          Blog
+        </Link>
         <span>/</span>
         <span className="text-text-main">TikTok Cover Size Guide 2026</span>
       </nav>
@@ -14,7 +31,9 @@ export default function TikTokCoverSizeGuide() {
       <article>
         <header className="mb-10">
           <div className="flex items-center gap-2 text-xs text-text-muted mb-4">
-            <span className="bg-surface px-2 py-0.5 rounded font-medium">Guide</span>
+            <span className="bg-surface px-2 py-0.5 rounded font-medium">
+              Guide
+            </span>
             <span>·</span>
             <time dateTime="2026-05-05">May 5, 2026</time>
             <span>·</span>
@@ -24,89 +43,124 @@ export default function TikTokCoverSizeGuide() {
             TikTok Cover Size Guide 2026 — Exact Dimensions & Design Tips
           </h1>
           <p className="text-lg text-text-muted leading-relaxed">
-            Your TikTok cover is the still image viewers see in your profile grid before they
-            click a video. Most creators ignore it — but a consistent, well-designed cover is
-            one of the fastest ways to make your profile look professional and grow followers.
-            Here is everything you need to know.
+            Your TikTok cover is the still image viewers see in your profile
+            grid before they click a video. Most creators ignore it — but a
+            consistent, well-designed cover is one of the fastest ways to make
+            your profile look professional and grow followers. Here is
+            everything you need to know.
           </p>
         </header>
 
         <div className="space-y-10 text-text-main leading-relaxed">
-
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold">TikTok Cover Size: Exact Dimensions</h2>
+            <h2 className="text-2xl font-bold">
+              TikTok Cover Size: Exact Dimensions
+            </h2>
             <div className="bg-surface border border-border rounded-xl p-5 text-sm space-y-2">
-              <p className="font-semibold text-text-main mb-3">TikTok cover specifications (2026)</p>
+              <p className="font-semibold text-text-main mb-3">
+                TikTok cover specifications (2026)
+              </p>
               {[
-                ['Full cover size', '1080 × 1920 pixels (9:16 portrait)'],
-                ['Profile grid crop', '1080 × 1080 pixels (center square)'],
-                ['Safe zone for text/logo', 'Center 1080×1080 square — top and bottom 420px get cropped in grid'],
-                ['File format', 'JPG or PNG'],
-                ['Max file size', '< 10 MB recommended'],
+                ["Full cover size", "1080 × 1920 pixels (9:16 portrait)"],
+                ["Profile grid crop", "1080 × 1080 pixels (center square)"],
+                [
+                  "Safe zone for text/logo",
+                  "Center 1080×1080 square — top and bottom 420px get cropped in grid",
+                ],
+                ["File format", "JPG or PNG"],
+                ["Max file size", "< 10 MB recommended"],
               ].map(([label, value]) => (
                 <div key={label} className="flex gap-3 text-text-muted">
-                  <span className="font-medium text-text-main w-52 shrink-0">{label}</span>
+                  <span className="font-medium text-text-main w-52 shrink-0">
+                    {label}
+                  </span>
                   <span>{value}</span>
                 </div>
               ))}
             </div>
             <p className="text-text-muted">
-              The most important thing to understand: TikTok displays your cover at two different
-              sizes. In the video player (full-screen), it shows at <strong className="text-text-main">1080×1920</strong> (full
-              portrait). In your profile grid, it shows as a <strong className="text-text-main">1080×1080 center crop</strong> —
-              meaning the top and bottom ~420 pixels of your cover are hidden in the grid view.
+              The most important thing to understand: TikTok displays your cover
+              at two different sizes. In the video player (full-screen), it
+              shows at <strong className="text-text-main">1080×1920</strong>{" "}
+              (full portrait). In your profile grid, it shows as a{" "}
+              <strong className="text-text-main">1080×1080 center crop</strong>{" "}
+              — meaning the top and bottom ~420 pixels of your cover are hidden
+              in the grid view.
             </p>
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold">The Safe Zone: What Gets Cropped</h2>
+            <h2 className="text-2xl font-bold">
+              The Safe Zone: What Gets Cropped
+            </h2>
             <p className="text-text-muted">
-              This is the most common TikTok cover mistake: placing your text, logo, or subject
-              near the top or bottom of the frame, only to have it cut off in the profile grid.
+              This is the most common TikTok cover mistake: placing your text,
+              logo, or subject near the top or bottom of the frame, only to have
+              it cut off in the profile grid.
             </p>
             <div className="border border-border rounded-xl overflow-hidden text-sm">
               <div className="bg-red-50 border-b border-border p-4 text-center">
-                <p className="text-xs font-semibold text-red-600 uppercase tracking-wide mb-1">Cropped in grid view — top 420px</p>
-                <p className="text-text-muted text-xs">Avoid placing text, logos, or key subject here</p>
+                <p className="text-xs font-semibold text-red-600 uppercase tracking-wide mb-1">
+                  Cropped in grid view — top 420px
+                </p>
+                <p className="text-text-muted text-xs">
+                  Avoid placing text, logos, or key subject here
+                </p>
               </div>
               <div className="bg-green-50 p-6 text-center">
-                <p className="text-xs font-semibold text-green-700 uppercase tracking-wide mb-1">Safe zone — center 1080×1080px</p>
-                <p className="text-text-muted text-xs">All important elements (face, text, logo) must be here</p>
+                <p className="text-xs font-semibold text-green-700 uppercase tracking-wide mb-1">
+                  Safe zone — center 1080×1080px
+                </p>
+                <p className="text-text-muted text-xs">
+                  All important elements (face, text, logo) must be here
+                </p>
               </div>
               <div className="bg-red-50 border-t border-border p-4 text-center">
-                <p className="text-xs font-semibold text-red-600 uppercase tracking-wide mb-1">Cropped in grid view — bottom 420px</p>
-                <p className="text-text-muted text-xs">Avoid placing text, logos, or key subject here</p>
+                <p className="text-xs font-semibold text-red-600 uppercase tracking-wide mb-1">
+                  Cropped in grid view — bottom 420px
+                </p>
+                <p className="text-text-muted text-xs">
+                  Avoid placing text, logos, or key subject here
+                </p>
               </div>
             </div>
             <p className="text-text-muted">
-              Design your cover so that everything important — your face, text, brand logo — sits
-              within the center square. The top and bottom sections can have background elements
-              (gradient, pattern, color) but nothing critical.
+              Design your cover so that everything important — your face, text,
+              brand logo — sits within the center square. The top and bottom
+              sections can have background elements (gradient, pattern, color)
+              but nothing critical.
             </p>
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold">Why TikTok Covers Matter for Growth</h2>
+            <h2 className="text-2xl font-bold">
+              Why TikTok Covers Matter for Growth
+            </h2>
             <p className="text-text-muted">
-              When someone discovers your content and visits your profile, they see a grid of
-              cover images before anything else. If every cover looks different — random
-              screenshots, different color schemes, inconsistent style — the profile looks messy
-              and unprofessional. Viewers leave without following.
+              When someone discovers your content and visits your profile, they
+              see a grid of cover images before anything else. If every cover
+              looks different — random screenshots, different color schemes,
+              inconsistent style — the profile looks messy and unprofessional.
+              Viewers leave without following.
             </p>
             <p className="text-text-muted">
-              Creators who grow fastest on TikTok treat their profile grid like a magazine layout:
-              consistent color palette, consistent text placement, consistent visual style. Every
-              new video fits the grid. When someone sees one of your videos in their For You Page
-              and visits your profile, the grid immediately signals: <em>this creator is serious.</em>
+              Creators who grow fastest on TikTok treat their profile grid like
+              a magazine layout: consistent color palette, consistent text
+              placement, consistent visual style. Every new video fits the grid.
+              When someone sees one of your videos in their For You Page and
+              visits your profile, the grid immediately signals:{" "}
+              <em>this creator is serious.</em>
             </p>
             <div className="bg-surface border border-border rounded-xl p-5 text-sm space-y-3">
-              <p className="font-semibold text-text-main">What consistent TikTok covers do for your channel</p>
+              <p className="font-semibold text-text-main">
+                What consistent TikTok covers do for your channel
+              </p>
               <ul className="space-y-2 text-text-muted">
                 {[
-                  'Profile looks professional → increases follow rate from profile visits',
-                  'Consistent branding → viewers recognize your content in their feed',
-                  'Series covers (same template) → easier to binge-watch related videos',
-                  'Text overlays → communicate video topic even with sound off',
+                  "Profile looks professional → increases follow rate from profile visits",
+                  "Consistent branding → viewers recognize your content in their feed",
+                  "Series covers (same template) → easier to binge-watch related videos",
+                  "Text overlays → communicate video topic even with sound off",
                 ].map((item) => (
                   <li key={item} className="flex gap-2">
                     <span className="text-primary shrink-0">→</span>
@@ -118,62 +172,98 @@ export default function TikTokCoverSizeGuide() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold">TikTok Cover Ideas by Content Niche</h2>
+            <h2 className="text-2xl font-bold">
+              TikTok Cover Ideas by Content Niche
+            </h2>
             <p className="text-text-muted">
-              The best TikTok cover style depends on your content niche. Each audience has
-              visual expectations — covers that match your niche aesthetic attract the right
-              followers and set accurate expectations before anyone taps play.
+              The best TikTok cover style depends on your content niche. Each
+              audience has visual expectations — covers that match your niche
+              aesthetic attract the right followers and set accurate
+              expectations before anyone taps play.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
                 {
-                  niche: 'Gaming',
+                  niche: "Gaming",
                   idea: "Dark background matching the game's aesthetic. Game name or character centered in the safe zone. Bold white or neon text with the video hook. Consistent color palette per game — your gaming covers should look like a curated collection, not random screenshots.",
                 },
                 {
-                  niche: 'Lifestyle & Vlog',
+                  niche: "Lifestyle & Vlog",
                   idea: "Your face, bright and well-lit, centered in the safe zone. Warm background tones (cream, soft peach, warm gray). Short caption text overlay — your expression does the work. Clean, approachable, personal.",
                 },
                 {
-                  niche: 'Fashion & Beauty',
-                  idea: 'Outfit or product close-up in the center. High saturation on the subject; neutral or complementary background. Font choice should match your brand — serif for luxury, sans-serif for modern. Color palette consistent across covers.',
+                  niche: "Fashion & Beauty",
+                  idea: "Outfit or product close-up in the center. High saturation on the subject; neutral or complementary background. Font choice should match your brand — serif for luxury, sans-serif for modern. Color palette consistent across covers.",
                 },
                 {
-                  niche: 'Food & Recipe',
+                  niche: "Food & Recipe",
                   idea: 'Hero dish centered, photographed from directly above or at 45°. Bright, saturated food colors. Text overlay with dish name and time: "5 MIN PASTA". Natural light consistently outperforms artificial light for food TikTok covers.',
                 },
                 {
-                  niche: 'Education & Tips',
-                  idea: 'Text-first covers perform well for educational content — the title itself drives taps. Bold text on a solid background, minimal design. The viewer decides from the text whether the content is relevant to them.',
+                  niche: "Education & Tips",
+                  idea: "Text-first covers perform well for educational content — the title itself drives taps. Bold text on a solid background, minimal design. The viewer decides from the text whether the content is relevant to them.",
                 },
                 {
-                  niche: 'Fitness',
+                  niche: "Fitness",
                   idea: 'Action shot or before/after in the center. High contrast — dark gym background or bright outdoor setting. Text with the specific result or benefit: "LOSE 5KG", "30 DAY RESULT". Progress-based covers consistently outperform general fitness imagery.',
                 },
               ].map(({ niche, idea }) => (
-                <div key={niche} className="border border-border rounded-xl p-3 space-y-1.5">
-                  <p className="font-semibold text-text-main text-sm">{niche}</p>
-                  <p className="text-text-muted text-xs leading-relaxed">{idea}</p>
+                <div
+                  key={niche}
+                  className="border border-border rounded-xl p-3 space-y-1.5"
+                >
+                  <p className="font-semibold text-text-main text-sm">
+                    {niche}
+                  </p>
+                  <p className="text-text-muted text-xs leading-relaxed">
+                    {idea}
+                  </p>
                 </div>
               ))}
             </div>
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold">How to Design a TikTok Cover That Works</h2>
+            <h2 className="text-2xl font-bold">
+              How to Design a TikTok Cover That Works
+            </h2>
             <div className="space-y-4">
               {[
-                { num: '1', title: 'Pick one design system and stick with it', desc: "Choose a background color (or gradient), one font, and one layout — then use it for every video in a series. Your profile grid should look like it was designed by someone who cares about it." },
-                { num: '2', title: 'Put text in the center safe zone', desc: "All text must sit within the center 1080×1080px. For a 1080×1920 canvas, this means starting text no higher than 420px from the top and no lower than 420px from the bottom." },
-                { num: '3', title: 'Use high-contrast text', desc: "TikTok cover text is often read at the small grid size (~120px). White text on dark background, or dark text on light background. Add a subtle shadow or outline if the background color varies." },
-                { num: '4', title: 'Keep it simple', desc: "A solid color background + one line of bold text + your logo is often more effective than a complex design. Complexity gets lost at grid thumbnail size." },
-                { num: '5', title: 'Match your niche aesthetic', desc: "Dark and dramatic for gaming. Clean and minimal for lifestyle. Bright and playful for comedy. Your cover style should immediately signal what kind of creator you are." },
+                {
+                  num: "1",
+                  title: "Pick one design system and stick with it",
+                  desc: "Choose a background color (or gradient), one font, and one layout — then use it for every video in a series. Your profile grid should look like it was designed by someone who cares about it.",
+                },
+                {
+                  num: "2",
+                  title: "Put text in the center safe zone",
+                  desc: "All text must sit within the center 1080×1080px. For a 1080×1920 canvas, this means starting text no higher than 420px from the top and no lower than 420px from the bottom.",
+                },
+                {
+                  num: "3",
+                  title: "Use high-contrast text",
+                  desc: "TikTok cover text is often read at the small grid size (~120px). White text on dark background, or dark text on light background. Add a subtle shadow or outline if the background color varies.",
+                },
+                {
+                  num: "4",
+                  title: "Keep it simple",
+                  desc: "A solid color background + one line of bold text + your logo is often more effective than a complex design. Complexity gets lost at grid thumbnail size.",
+                },
+                {
+                  num: "5",
+                  title: "Match your niche aesthetic",
+                  desc: "Dark and dramatic for gaming. Clean and minimal for lifestyle. Bright and playful for comedy. Your cover style should immediately signal what kind of creator you are.",
+                },
               ].map(({ num, title, desc }) => (
                 <div key={num} className="flex gap-4">
-                  <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">{num}</div>
+                  <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">
+                    {num}
+                  </div>
                   <div>
                     <p className="font-semibold text-text-main mb-1">{title}</p>
-                    <p className="text-text-muted text-sm leading-relaxed">{desc}</p>
+                    <p className="text-text-muted text-sm leading-relaxed">
+                      {desc}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -181,25 +271,54 @@ export default function TikTokCoverSizeGuide() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold">Step-by-Step: Make a TikTok Cover Free</h2>
+            <h2 className="text-2xl font-bold">
+              Step-by-Step: Make a TikTok Cover Free
+            </h2>
             <p className="text-text-muted">
-              <Link href="/tiktok-thumbnail-maker" className="text-primary underline">
+              <Link
+                href="/tiktok-thumbnail-maker"
+                className="text-primary underline"
+              >
                 ClickThumb&apos;s TikTok Cover Maker
-              </Link>{' '}
-              opens at 1080×1920 — the exact TikTok cover size. Templates include safe zone
-              guidance so you never accidentally place text where it gets cropped.
+              </Link>{" "}
+              opens at 1080×1920 — the exact TikTok cover size. Templates
+              include safe zone guidance so you never accidentally place text
+              where it gets cropped.
             </p>
             <div className="space-y-3">
               {[
-                { step: 'Step 1', title: 'Open the TikTok Cover Maker', desc: 'Canvas opens at 1080×1920 automatically. No account, no signup. Choose a template that matches your content style.' },
-                { step: 'Step 2', title: 'Edit the title text', desc: 'Replace the template text with your video title or a short hook. Keep it to 3–5 words. Position within the center safe zone.' },
-                { step: 'Step 3', title: 'Set your background', desc: 'Upload a still from your video as the background, or use a solid color / gradient that matches your brand palette.' },
-                { step: 'Step 4', title: 'Download', desc: 'Exports at 1080×1920 as JPG. Upload directly to TikTok when posting your video by tapping "Select cover" in the TikTok app.' },
+                {
+                  step: "Step 1",
+                  title: "Open the TikTok Cover Maker",
+                  desc: "Canvas opens at 1080×1920 automatically. No account, no signup. Choose a template that matches your content style.",
+                },
+                {
+                  step: "Step 2",
+                  title: "Edit the title text",
+                  desc: "Replace the template text with your video title or a short hook. Keep it to 3–5 words. Position within the center safe zone.",
+                },
+                {
+                  step: "Step 3",
+                  title: "Set your background",
+                  desc: "Upload a still from your video as the background, or use a solid color / gradient that matches your brand palette.",
+                },
+                {
+                  step: "Step 4",
+                  title: "Download",
+                  desc: 'Exports at 1080×1920 as JPG. Upload directly to TikTok when posting your video by tapping "Select cover" in the TikTok app.',
+                },
               ].map(({ step, title, desc }) => (
-                <div key={step} className="border border-border rounded-xl p-5 space-y-1">
-                  <p className="text-xs font-semibold text-primary uppercase tracking-wide">{step}</p>
+                <div
+                  key={step}
+                  className="border border-border rounded-xl p-5 space-y-1"
+                >
+                  <p className="text-xs font-semibold text-primary uppercase tracking-wide">
+                    {step}
+                  </p>
                   <p className="font-semibold text-text-main">{title}</p>
-                  <p className="text-text-muted text-sm leading-relaxed">{desc}</p>
+                  <p className="text-text-muted text-sm leading-relaxed">
+                    {desc}
+                  </p>
                 </div>
               ))}
             </div>
@@ -209,16 +328,43 @@ export default function TikTokCoverSizeGuide() {
             <h2 className="text-2xl font-bold">Frequently Asked Questions</h2>
             <div className="space-y-4">
               {[
-                { q: 'What is the TikTok cover size in 2026?', a: '1080×1920 pixels (9:16 portrait ratio). This is the full cover shown in the video player. In your profile grid, TikTok crops to the center 1080×1080 square, so keep all important elements in the middle of the frame.' },
-                { q: 'How do I set a custom TikTok cover?', a: "When uploading a video in the TikTok app, tap 'Select cover' before posting. You can either drag the timeline to a specific frame from the video, or upload a custom cover image. Custom images must be under 10MB." },
-                { q: 'Does TikTok cover affect views?', a: "The cover doesn't affect the For You Page algorithm directly — TikTok distributes videos based on watch time and engagement. But it does affect your profile follow rate. A consistent, professional grid converts profile visitors into followers more effectively." },
-                { q: 'Can I use the same cover design for every video?', a: "Yes — with different text. Keeping the same template (background, layout, font) across all videos in a series makes your profile grid look intentional. Only the title text changes per video." },
-                { q: 'What aspect ratio is TikTok cover?', a: '9:16 portrait (same as TikTok videos). The exact pixel dimensions are 1080×1920. Do not use square (1:1) or landscape (16:9) covers — TikTok will stretch or crop them.' },
-                { q: 'How do I change a TikTok cover after posting?', a: "After posting, you can change the cover from TikTok's video management. Go to your profile → tap the video → tap the three-dot menu → Edit → Select cover. Note: changing the cover on a posted video may not update across all feeds immediately — the original cover may still appear in external links and embeds until TikTok re-caches it." },
-                { q: 'What text should I put on a TikTok cover?', a: 'The video hook in 3–5 words, positioned in the center safe zone. The best TikTok cover text communicates the value proposition immediately — what will the viewer learn or experience? Avoid vague titles like "Watch this" or "POV". Be specific: "How I gained 10K followers" becomes "10K FOLLOWERS STRATEGY" on the cover.' },
-                { q: 'Does a TikTok cover affect the For You Page algorithm?', a: "The cover itself is not a direct ranking signal for FYP distribution — TikTok ranks videos primarily on watch time, completion rate, and engagement. However, a strong cover improves your profile's follow rate. More followers means your future videos distribute to a larger immediate audience when posted, which compounds your reach over time." },
+                {
+                  q: "What is the TikTok cover size in 2026?",
+                  a: "1080×1920 pixels (9:16 portrait ratio). This is the full cover shown in the video player. In your profile grid, TikTok crops to the center 1080×1080 square, so keep all important elements in the middle of the frame.",
+                },
+                {
+                  q: "How do I set a custom TikTok cover?",
+                  a: "When uploading a video in the TikTok app, tap 'Select cover' before posting. You can either drag the timeline to a specific frame from the video, or upload a custom cover image. Custom images must be under 10MB.",
+                },
+                {
+                  q: "Does TikTok cover affect views?",
+                  a: "The cover doesn't affect the For You Page algorithm directly — TikTok distributes videos based on watch time and engagement. But it does affect your profile follow rate. A consistent, professional grid converts profile visitors into followers more effectively.",
+                },
+                {
+                  q: "Can I use the same cover design for every video?",
+                  a: "Yes — with different text. Keeping the same template (background, layout, font) across all videos in a series makes your profile grid look intentional. Only the title text changes per video.",
+                },
+                {
+                  q: "What aspect ratio is TikTok cover?",
+                  a: "9:16 portrait (same as TikTok videos). The exact pixel dimensions are 1080×1920. Do not use square (1:1) or landscape (16:9) covers — TikTok will stretch or crop them.",
+                },
+                {
+                  q: "How do I change a TikTok cover after posting?",
+                  a: "After posting, you can change the cover from TikTok's video management. Go to your profile → tap the video → tap the three-dot menu → Edit → Select cover. Note: changing the cover on a posted video may not update across all feeds immediately — the original cover may still appear in external links and embeds until TikTok re-caches it.",
+                },
+                {
+                  q: "What text should I put on a TikTok cover?",
+                  a: 'The video hook in 3–5 words, positioned in the center safe zone. The best TikTok cover text communicates the value proposition immediately — what will the viewer learn or experience? Avoid vague titles like "Watch this" or "POV". Be specific: "How I gained 10K followers" becomes "10K FOLLOWERS STRATEGY" on the cover.',
+                },
+                {
+                  q: "Does a TikTok cover affect the For You Page algorithm?",
+                  a: "The cover itself is not a direct ranking signal for FYP distribution — TikTok ranks videos primarily on watch time, completion rate, and engagement. However, a strong cover improves your profile's follow rate. More followers means your future videos distribute to a larger immediate audience when posted, which compounds your reach over time.",
+                },
               ].map(({ q, a }) => (
-                <div key={q} className="border border-border rounded-xl p-5 space-y-2">
+                <div
+                  key={q}
+                  className="border border-border rounded-xl p-5 space-y-2"
+                >
                   <p className="font-semibold text-text-main text-sm">{q}</p>
                   <p className="text-text-muted text-sm leading-relaxed">{a}</p>
                 </div>
@@ -227,21 +373,32 @@ export default function TikTokCoverSizeGuide() {
           </section>
 
           <section className="rounded-xl bg-surface border border-border p-6 space-y-3">
-            <h2 className="text-xl font-bold text-text-main">Make Your TikTok Cover Now</h2>
+            <h2 className="text-xl font-bold text-text-main">
+              Make Your TikTok Cover Now
+            </h2>
             <p className="text-text-muted text-sm leading-relaxed">
-              Free, no signup, no watermark. Canvas pre-set to 1080×1920 with safe zone templates.
-              Design your cover and download in under two minutes.
+              Free, no signup, no watermark. Canvas pre-set to 1080×1920 with
+              safe zone templates. Design your cover and download in under two
+              minutes.
             </p>
-            <Link href="/tiktok-thumbnail-maker" className="inline-block bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity">
+            <Link
+              href="/tiktok-thumbnail-maker"
+              className="inline-block bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity"
+            >
               Open TikTok Cover Maker →
             </Link>
           </section>
 
           <div className="border-t border-border pt-6 text-sm text-text-muted">
-            <p>More guides: <Link href="/blog" className="text-primary hover:underline">ClickThumb Blog →</Link></p>
+            <p>
+              More guides:{" "}
+              <Link href="/blog" className="text-primary hover:underline">
+                ClickThumb Blog →
+              </Link>
+            </p>
           </div>
         </div>
       </article>
     </main>
-  )
+  );
 }
