@@ -2,6 +2,61 @@ import Link from "next/link";
 
 const posts = [
   {
+    slug: "facebook-cover-photo-size-guide",
+    title: "Facebook Cover Photo Size Guide 2026 — Dimensions & Design Tips",
+    description:
+      "The exact Facebook cover photo size for 2026 — 851×315px on desktop, cropped to 640×360px on mobile. Safe zones, design rules, and how to make one free.",
+    date: "2026-05-30",
+    readTime: "7 min read",
+    category: "Guide",
+  },
+  {
+    slug: "how-to-make-apex-legends-thumbnail",
+    title: "How to Make an Apex Legends Thumbnail (Free, 2026)",
+    description:
+      "Complete guide to Apex Legends thumbnails that get clicks — correct size, legend showcase, Champion Squad screen, Champion Orange palette, 20-bomb milestones, squad wipes, and seasonal content strategy.",
+    date: "2026-05-30",
+    readTime: "8 min read",
+    category: "Guide",
+  },
+  {
+    slug: "best-youtube-thumbnail-fonts",
+    title: "Best Fonts for YouTube Thumbnails 2026 — What Top Creators Use",
+    description:
+      "The best fonts for YouTube thumbnails in 2026: Impact, Bebas Neue, Anton, Montserrat Black. Why bold condensed fonts work, how to use stroke and shadow, and common font mistakes.",
+    date: "2026-05-30",
+    readTime: "7 min read",
+    category: "Guide",
+  },
+  {
+    slug: "how-to-make-gta-thumbnail",
+    title: "How to Make a GTA Thumbnail (Free, 2026)",
+    description:
+      "Step-by-step guide to making GTA 5 thumbnails that get more clicks — GTA Gold color palette, heist and money themes, luxury cars, character customization, GTA Online grind vs story mode strategies. Free maker included.",
+    date: "2026-05-30",
+    readTime: "8 min read",
+    category: "Guide",
+  },
+  {
+    slug: "og-image-size-guide",
+    title:
+      "OG Image Size Guide 2026 — Open Graph Dimensions for Every Platform",
+    description:
+      "The correct OG image size for 2026: 1200×630px for Facebook, Twitter, LinkedIn, Slack, and Discord. Minimum sizes, text safe zones, and how to create one free.",
+    date: "2026-05-30",
+    readTime: "7 min read",
+    category: "Guide",
+  },
+  {
+    slug: "how-to-make-valorant-thumbnail",
+    title: "How to Make a Valorant Thumbnail (Free, 2026)",
+    description:
+      "Step-by-step guide to making Valorant thumbnails that stand out — correct size, agent showcase, rank display, Valorant Red color strategy, dark backgrounds, and clutch moment design. Free maker included.",
+    date: "2026-05-30",
+    readTime: "8 min read",
+    category: "Guide",
+  },
+  {
     slug: "how-to-make-thumbnail-without-canva",
     title: "How to Make a Thumbnail Without Canva (Free, 2026)",
     description:
