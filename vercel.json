@@ -5,6 +5,36 @@
       "source": "/gaming",
       "destination": "/gaming-thumbnail-maker/",
       "permanent": true
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy/",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-make-a-thumbnail-without-canva",
+      "destination": "/blog/how-to-make-thumbnail-without-canva/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-make-a-thumbnail-without-canva/",
+      "destination": "/blog/how-to-make-thumbnail-without-canva/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-make-a-youtube-thumbnail-without-photoshop",
+      "destination": "/blog/how-to-make-youtube-thumbnail-without-photoshop/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-make-a-youtube-thumbnail-without-photoshop/",
+      "destination": "/blog/how-to-make-youtube-thumbnail-without-photoshop/",
+      "permanent": true
     }
   ],
   "headers": [
