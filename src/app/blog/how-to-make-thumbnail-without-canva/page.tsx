@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AuthorBox from "@/components/blog/AuthorBox";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -490,6 +491,7 @@ export default function HowToMakeThumbnailWithoutCanvaPage() {
             ← Back to Blog
           </Link>
         </div>
+        <AuthorBox />
       </article>
     </main>
   );

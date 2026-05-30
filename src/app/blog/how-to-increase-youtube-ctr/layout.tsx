@@ -69,9 +69,9 @@ const jsonLd = {
       datePublished: "2026-04-29",
       dateModified: "2026-04-29",
       author: {
-        "@type": "Organization",
-        name: "ClickThumb",
-        url: "https://click-thumb.com",
+        "@type": "Person",
+        name: "Alex Kim",
+        url: "https://click-thumb.com/about/",
       },
       publisher: {
         "@type": "Organization",

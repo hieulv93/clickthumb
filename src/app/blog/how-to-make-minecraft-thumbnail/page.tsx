@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AuthorBox from "@/components/blog/AuthorBox";
 
 export default function HowToMakeMinecraftThumbnailPage() {
   return (
@@ -539,6 +540,7 @@ export default function HowToMakeMinecraftThumbnailPage() {
             </ul>
           </section>
         </div>
+        <AuthorBox />
       </article>
     </main>
   );

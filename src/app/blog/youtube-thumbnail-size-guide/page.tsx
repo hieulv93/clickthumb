@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AuthorBox from "@/components/blog/AuthorBox";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -596,6 +597,7 @@ export default function YouTubeThumbnailSizeGuide() {
             </ul>
           </section>
         </div>
+        <AuthorBox />
       </article>
     </main>
   );

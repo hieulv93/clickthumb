@@ -145,6 +145,32 @@ export default function HomePage() {
           </Link>
         </div>
 
+        {/* Intro */}
+        <div className="space-y-3 text-sm text-text-muted leading-relaxed max-w-2xl mx-auto text-center">
+          <p>
+            ClickThumb is a free, browser-based image creator built for content
+            creators who need platform-correct visuals without a design
+            subscription. Every tool produces images at the exact dimensions
+            each platform requires — 1280×720px for YouTube thumbnails,
+            1080×1920px for TikTok covers, 1584×396px for LinkedIn banners — so
+            your uploads are never cropped, stretched, or rejected.
+          </p>
+          <p>
+            No account to create, no premium element traps, no watermark on
+            exports. Everything runs entirely in your browser. Whether
+            you&apos;re a YouTuber making weekly thumbnails, a gamer who needs
+            Roblox or Fortnite templates, or a business creating social
+            graphics, choose a tool below or{" "}
+            <a
+              href="/blog"
+              className="text-primary hover:underline font-medium"
+            >
+              read the blog
+            </a>{" "}
+            for design guides and platform size specs.
+          </p>
+        </div>
+
         {/* Tool grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {tools.map((tool) => (

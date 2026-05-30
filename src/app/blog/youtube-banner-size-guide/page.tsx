@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AuthorBox from "@/components/blog/AuthorBox";
 
 export default function YouTubeBannerSizeGuide() {
   return (
@@ -519,6 +520,7 @@ export default function YouTubeBannerSizeGuide() {
             </ul>
           </section>
         </div>
+        <AuthorBox />
       </article>
     </main>
   );

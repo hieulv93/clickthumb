@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AuthorBox from "@/components/blog/AuthorBox";
 
 export default function HowToMakeRobloxThumbnailPage() {
   return (
@@ -529,6 +530,7 @@ export default function HowToMakeRobloxThumbnailPage() {
             </ul>
           </section>
         </div>
+        <AuthorBox />
       </article>
     </main>
   );

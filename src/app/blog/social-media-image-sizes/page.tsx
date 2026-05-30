@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AuthorBox from "@/components/blog/AuthorBox";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -637,6 +638,7 @@ export default function SocialMediaImageSizes() {
             </div>
           </section>
         </div>
+        <AuthorBox />
       </article>
     </main>
   );

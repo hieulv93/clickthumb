@@ -74,7 +74,11 @@ const jsonLd = {
       url: PAGE_URL,
       datePublished: "2026-05-30",
       dateModified: "2026-05-30",
-      author: { "@type": "Organization", name: "ClickThumb", url: SITE_URL },
+      author: {
+        "@type": "Person",
+        name: "Alex Kim",
+        url: `${SITE_URL}/about/`,
+      },
       publisher: {
         "@type": "Organization",
         name: "ClickThumb",
