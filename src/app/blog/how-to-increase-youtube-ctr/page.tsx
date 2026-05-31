@@ -379,6 +379,10 @@ export default function HowToIncreaseYouTubeCTR() {
                   q: "Should my thumbnail match my title?",
                   a: "They should complement, not repeat each other. The title and thumbnail work as a pair to create curiosity. If your title already explains the premise, your thumbnail should show the emotion, result, or a key visual that adds context without repeating the words.",
                 },
+                {
+                  q: "What thumbnail size does YouTube require?",
+                  a: "YouTube requires thumbnails at 1280×720 pixels (16:9 aspect ratio), saved as JPG, GIF, BMP, or PNG under 2MB. The minimum width is 640 pixels, but 1280×720 ensures sharp display on desktop and mobile. If your file exceeds 2MB, compress it before uploading.",
+                },
               ].map(({ q, a }) => (
                 <div
                   key={q}

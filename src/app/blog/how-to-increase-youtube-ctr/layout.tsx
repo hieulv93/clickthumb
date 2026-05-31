@@ -107,6 +107,30 @@ const jsonLd = {
             text: "Yes. YouTube uses CTR as a primary signal in the first 24–48 hours after upload. Videos with higher CTR get shown to more viewers in Browse and Suggested feeds. However, YouTube balances CTR against watch time and satisfaction — a high CTR with low watch time will eventually suppress a video.",
           },
         },
+        {
+          "@type": "Question",
+          name: "How often should I change my thumbnail?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Change a thumbnail when its CTR drops below your channel average or when a video has been live for 2+ weeks with under 4% CTR. Do not change thumbnails on videos with stable, good CTR — disrupting a working thumbnail can temporarily reduce performance.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Should my thumbnail match my title?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "They should complement, not repeat each other. The title and thumbnail work as a pair to create curiosity. If your title already explains the premise, your thumbnail should show the emotion, result, or a key visual that adds context without repeating the words.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What thumbnail size does YouTube require?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "YouTube requires thumbnails at 1280×720 pixels (16:9 aspect ratio), saved as JPG, GIF, BMP, or PNG under 2MB. The minimum width is 640 pixels, but 1280×720 ensures sharp display on desktop and mobile. If your file exceeds 2MB, compress it before uploading.",
+          },
+        },
       ],
     },
   ],
