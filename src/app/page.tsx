@@ -145,6 +145,24 @@ export default function HomePage() {
           </Link>
         </div>
 
+        {/* Tool grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {tools.map((tool) => (
+            <Link
+              key={tool.href}
+              href={tool.href}
+              className="block rounded-2xl border border-border p-5 hover:border-primary hover:shadow-sm transition-all duration-150 group"
+            >
+              <p className="font-semibold text-text-main group-hover:text-primary transition-colors text-sm mb-2">
+                {tool.title}
+              </p>
+              <p className="text-xs text-text-muted leading-relaxed">
+                {tool.desc}
+              </p>
+            </Link>
+          ))}
+        </div>
+
         {/* Intro */}
         <div className="space-y-3 text-sm text-text-muted leading-relaxed max-w-2xl mx-auto text-center">
           <p>
@@ -160,38 +178,15 @@ export default function HomePage() {
             exports. Everything runs entirely in your browser. Whether
             you&apos;re a YouTuber making weekly thumbnails, a gamer who needs
             Roblox or Fortnite templates, or a business creating social
-            graphics, choose a tool below or{" "}
+            graphics, choose a tool above or{" "}
             <a
-              href="/blog"
+              href="/blog/"
               className="text-primary hover:underline font-medium"
             >
               read the blog
             </a>{" "}
             for design guides and platform size specs.
           </p>
-        </div>
-
-        {/* Tool grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {tools.map((tool) => (
-            <Link
-              key={tool.href}
-              href={tool.href}
-              className="block rounded-2xl border border-border p-5 hover:border-primary hover:shadow-sm transition-all duration-150 group"
-            >
-              <div className="flex items-start justify-between gap-2 mb-2">
-                <p className="font-semibold text-text-main group-hover:text-primary transition-colors text-sm">
-                  {tool.title}
-                </p>
-                <span className="flex-shrink-0 text-[10px] bg-drag-active text-primary font-medium px-2 py-0.5 rounded-full">
-                  {tool.badge}
-                </span>
-              </div>
-              <p className="text-xs text-text-muted leading-relaxed">
-                {tool.desc}
-              </p>
-            </Link>
-          ))}
         </div>
 
         {/* About section */}

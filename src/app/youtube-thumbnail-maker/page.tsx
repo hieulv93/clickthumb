@@ -16,6 +16,7 @@ import type { Template } from "@/lib/templates";
 import { triggerDownload } from "@/lib/utils";
 import { analytics } from "@/lib/analytics";
 import Link from "next/link";
+import Breadcrumb from "@/components/layout/Breadcrumb";
 
 const CanvasEditor = dynamic(() => import("@/components/canvas/CanvasEditor"), {
   ssr: false,
@@ -58,7 +59,7 @@ export default function YouTubeThumbnailPage() {
     setTemplate(t);
     setBgColor(t.bgColor);
     setFontFamily(t.texts[0]?.fontFamily ?? "Impact");
-    setTexts(t.texts.map((tx) => tx.text));
+    setTexts((prev) => t.texts.map((tx, i) => prev[i] ?? tx.text));
     setTextColors(t.texts.map((tx) => tx.fill));
     setTextSizeMultiplier(100);
     setHasChanges(false);
@@ -128,6 +129,15 @@ export default function YouTubeThumbnailPage() {
     <main className="flex-1">
       <div className="max-w-4xl mx-auto px-4 py-8 sm:py-12 space-y-6">
         {/* Header */}
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            {
+              label: "YouTube Thumbnail Maker",
+              url: "https://click-thumb.com/youtube-thumbnail-maker/",
+            },
+          ]}
+        />
         <div className="text-center space-y-2">
           <h1 className="text-2xl sm:text-3xl font-bold text-text-main">
             YouTube Thumbnail Maker

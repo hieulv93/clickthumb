@@ -1,6 +1,7 @@
 "use client";
 
 import CanvasToolClient from "@/components/canvas/CanvasToolClient";
+import Breadcrumb from "@/components/layout/Breadcrumb";
 import FAQItem from "@/components/tool/FAQItem";
 import { PLATFORMS } from "@/lib/platforms";
 import { GAMING_TEMPLATES } from "@/lib/templates";
@@ -102,6 +103,15 @@ export default function GamingThumbnailMakerPage() {
       />
       <main className="flex-1">
         <div className="max-w-4xl mx-auto px-4 py-8 sm:py-12 space-y-6">
+          <Breadcrumb
+            items={[
+              { label: "Home", href: "/" },
+              {
+                label: "Gaming Thumbnail Maker",
+                url: "https://click-thumb.com/gaming-thumbnail-maker/",
+              },
+            ]}
+          />
           <div className="text-center space-y-2">
             <h1 className="text-2xl sm:text-3xl font-bold text-text-main">
               Gaming Thumbnail Maker

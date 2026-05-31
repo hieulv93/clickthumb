@@ -39,6 +39,10 @@ export default function CanvasEditor({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const fabricRef = useRef<any>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const textsRef = useRef<string[]>(texts);
+  useEffect(() => {
+    textsRef.current = texts;
+  }, [texts]);
   const [cssScale, setCssScale] = useState(1);
   const { w: displayW, h: displayH } = getDisplayDimensions(platform);
   const scale = displayW / platform.width;
@@ -256,6 +260,15 @@ export default function CanvasEditor({
     (async () => {
       const fabric = (await import("fabric")).fabric;
       await applyTemplate(canvas, fabric, template);
+      // After rebuild, restore user-typed text (overrides template defaults)
+      const textObjs = canvas
+        .getObjects()
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .filter((obj: any) => obj.type === "i-text" || obj.type === "text");
+      textsRef.current.forEach((text, i) => {
+        if (textObjs[i]) textObjs[i].set("text", text);
+      });
+      canvas.renderAll();
     })();
   }, [template, applyTemplate]);
 

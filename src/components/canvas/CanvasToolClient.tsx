@@ -71,7 +71,7 @@ export default function CanvasToolClient({
     setTemplate(t);
     setBgColor(t.bgColor);
     setFontFamily(t.texts[0]?.fontFamily ?? "Impact");
-    setTexts(t.texts.map((tx) => tx.text));
+    setTexts((prev) => t.texts.map((tx, i) => prev[i] ?? tx.text));
     setTextColors(t.texts.map((tx) => tx.fill));
     setTextSizeMultiplier(100);
     setHasChanges(false);
