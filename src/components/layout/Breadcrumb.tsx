@@ -34,7 +34,7 @@ export default function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
   };
 
   return (
-    <>
+    <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -63,6 +63,6 @@ export default function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
           </span>
         ))}
       </nav>
-    </>
+    </div>
   );
 }
