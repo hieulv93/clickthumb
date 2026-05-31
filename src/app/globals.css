@@ -10,12 +10,23 @@
     @apply bg-white text-text-main;
     font-family: var(--font-inter), system-ui, sans-serif;
   }
-  a, button {
+  a,
+  button {
     cursor: pointer;
     user-select: none;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     outline: none;
+  }
+  /* WCAG 1.4.1: inline content links must be distinguishable without relying on color alone */
+  main p a,
+  main li a {
+    text-decoration: underline;
   }
 }
 
