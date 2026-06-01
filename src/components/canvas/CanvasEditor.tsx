@@ -351,7 +351,11 @@ export default function CanvasEditor({
             transform: `scale(${cssScale})`,
           }}
         >
-          <canvas ref={canvasRef} />
+          <canvas
+            ref={canvasRef}
+            role="img"
+            aria-label="Thumbnail preview canvas"
+          />
         </div>
       </div>
       {/* Dimension + reset share one fixed-height row — no UI jump when reset appears */}

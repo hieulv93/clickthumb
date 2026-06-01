@@ -40,11 +40,15 @@ export default function TextEditor({
       <div className="space-y-2">
         {values.slice(0, visibleCount).map((val, i) => (
           <div key={i}>
-            <label className="block text-xs text-text-muted mb-1">
+            <label
+              htmlFor={`text-input-${i}`}
+              className="block text-xs text-text-muted mb-1"
+            >
               {LABELS[i] ?? `Text ${i + 1}`}
             </label>
             <div className="flex gap-2 items-center">
               <input
+                id={`text-input-${i}`}
                 type="text"
                 value={val}
                 onChange={(e) => onChange(i, e.target.value)}
