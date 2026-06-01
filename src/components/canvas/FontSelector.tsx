@@ -28,7 +28,7 @@ export default function FontSelector({ value, onChange }: FontSelectorProps) {
             title={f.name}
             className={`px-3 py-2 min-h-[44px] rounded-lg border text-xs transition-all ${
               value === f.name
-                ? "border-primary bg-primary text-white font-semibold"
+                ? "border-primary bg-primary text-white"
                 : "border-border bg-white text-text-main hover:border-primary/50"
             }`}
             style={{ fontFamily: f.name }}
