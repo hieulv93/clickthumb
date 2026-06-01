@@ -1,5 +1,7 @@
 "use client";
 
+import { useRef } from "react";
+
 const PRESETS = [
   "#0a0a0a",
   "#1a1a2e",
@@ -21,6 +23,7 @@ interface BgSectionProps {
 }
 
 export default function BgSection({ color, onChange }: BgSectionProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
   return (
     <div className="space-y-2">
       <p className="text-xs font-semibold text-text-main uppercase tracking-wide">
@@ -42,20 +45,29 @@ export default function BgSection({ color, onChange }: BgSectionProps) {
             aria-label={`Background color ${c}`}
           />
         ))}
-        <label
+        {/* Custom color — button triggers hidden input; input hidden from a11y tree */}
+        <button
+          type="button"
+          onClick={() => inputRef.current?.click()}
           className="relative w-11 h-11 rounded-lg border-2 border-border overflow-hidden cursor-pointer hover:scale-105 transition-transform"
-          title="Custom color"
+          aria-label="Custom background color"
         >
-          <span className="absolute inset-0 flex items-center justify-center text-[10px] text-text-muted font-bold">
+          <span
+            className="absolute inset-0 flex items-center justify-center text-[10px] text-text-muted font-bold"
+            aria-hidden="true"
+          >
             +
           </span>
-          <input
-            type="color"
-            value={color}
-            onChange={(e) => onChange(e.target.value)}
-            className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
-          />
-        </label>
+        </button>
+        <input
+          ref={inputRef}
+          type="color"
+          value={color}
+          onChange={(e) => onChange(e.target.value)}
+          className="sr-only"
+          aria-hidden="true"
+          tabIndex={-1}
+        />
       </div>
     </div>
   );
