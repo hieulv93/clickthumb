@@ -8,16 +8,6 @@ export const metadata: Metadata = {
   title: "How to Make a GTA Thumbnail (Free, 2026)",
   description:
     "Step-by-step guide to making GTA 5 thumbnails that get more clicks — GTA Gold color palette, heist and money themes, luxury cars, character customization, GTA Online grind vs story mode strategies. Free maker included.",
-  keywords: [
-    "how to make a gta thumbnail",
-    "gta thumbnail",
-    "gta 5 thumbnail maker",
-    "gta youtube thumbnail",
-    "gta thumbnail design",
-    "gta thumbnail size",
-    "gta online thumbnail",
-    "gta 5 thumbnail tips",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "How to Make a GTA 5 Thumbnail That Gets More Clicks (2026)",

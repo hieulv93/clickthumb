@@ -1,84 +1,88 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import Script from 'next/script'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Script from "next/script";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'optional',
-})
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "optional",
+});
 
 export const metadata: Metadata = {
   verification: {
     other: {
-      'google-adsense-account': process.env.NEXT_PUBLIC_ADSENSE_ID ?? '',
+      "google-adsense-account": process.env.NEXT_PUBLIC_ADSENSE_ID ?? "",
     },
   },
   icons: {
     icon: [
-      { url: '/icon.svg', type: 'image/svg+xml', sizes: 'any' },
-      { url: '/logo.png', sizes: '512x512', type: 'image/png' },
+      { url: "/icon.svg", type: "image/svg+xml", sizes: "any" },
+      { url: "/logo.png", sizes: "512x512", type: "image/png" },
     ],
-    shortcut: '/logo.png',
+    shortcut: "/logo.png",
   },
-  metadataBase: new URL(process.env.SITE_URL || 'https://click-thumb.com'),
+  metadataBase: new URL(process.env.SITE_URL || "https://click-thumb.com"),
   title: {
-    default: 'Free Thumbnail & Social Media Image Maker | ClickThumb',
-    template: '%s | ClickThumb',
+    default: "Free Thumbnail & Social Media Image Maker | ClickThumb",
+    template: "%s | ClickThumb",
   },
   description:
-    'Free online thumbnail and social media image creator. Make YouTube thumbnails, Instagram posts, Twitter headers, and LinkedIn banners instantly. No signup, 100% browser-based.',
-  keywords: [
-    'thumbnail maker',
-    'youtube thumbnail maker',
-    'social media image creator',
-    'instagram post maker',
-    'thumbnail studio',
-  ],
-  authors: [{ name: 'ClickThumb' }],
-  alternates: { canonical: 'https://click-thumb.com/' },
-  robots: { index: true, follow: true, 'max-snippet': -1, 'max-image-preview': 'large' },
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    siteName: 'ClickThumb',
-    url: 'https://click-thumb.com/',
-    images: [{ url: 'https://click-thumb.com/og-image.png', width: 1200, height: 630 }],
+    "Free online thumbnail and social media image creator. Make YouTube thumbnails, Instagram posts, Twitter headers, and LinkedIn banners instantly. No signup, 100% browser-based.",
+  authors: [{ name: "ClickThumb" }],
+  alternates: { canonical: "https://click-thumb.com/" },
+  robots: {
+    index: true,
+    follow: true,
+    "max-snippet": -1,
+    "max-image-preview": "large",
   },
-  twitter: { card: 'summary_large_image', site: '@clickthumb' },
-}
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "ClickThumb",
+    url: "https://click-thumb.com/",
+    images: [
+      { url: "https://click-thumb.com/og-image.png", width: 1200, height: 630 },
+    ],
+  },
+  twitter: { card: "summary_large_image", site: "@clickthumb" },
+};
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID
-const ADSENSE_ID = process.env.NEXT_PUBLIC_ADSENSE_ID
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const ADSENSE_ID = process.env.NEXT_PUBLIC_ADSENSE_ID;
 
 const siteJsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      '@type': 'WebSite',
-      url: 'https://click-thumb.com',
-      name: 'ClickThumb',
+      "@type": "WebSite",
+      url: "https://click-thumb.com",
+      name: "ClickThumb",
       description:
-        'Free browser-based image creator. Make YouTube thumbnails, Instagram posts, Twitter headers, and LinkedIn banners instantly. No upload, no login — 100% private.',
+        "Free browser-based image creator. Make YouTube thumbnails, Instagram posts, Twitter headers, and LinkedIn banners instantly. No upload, no login — 100% private.",
     },
     {
-      '@type': 'Organization',
-      url: 'https://click-thumb.com',
-      name: 'ClickThumb',
+      "@type": "Organization",
+      url: "https://click-thumb.com",
+      name: "ClickThumb",
       logo: {
-        '@type': 'ImageObject',
-        url: 'https://click-thumb.com/logo.png',
+        "@type": "ImageObject",
+        url: "https://click-thumb.com/logo.png",
         width: 512,
         height: 512,
       },
     },
   ],
-}
+};
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className={inter.variable}>
       <body className="font-sans antialiased bg-white text-text-main flex flex-col min-h-screen">
@@ -111,5 +115,5 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )}
       </body>
     </html>
-  )
+  );
 }

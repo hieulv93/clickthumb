@@ -8,14 +8,6 @@ export const metadata: Metadata = {
   title: "YouTube Thumbnail Size: The Complete 2026 Guide",
   description:
     "YouTube thumbnail dimensions: 1280×720px, 16:9 ratio, max 2MB. Learn the exact specs plus design tips that increase click-through rate.",
-  keywords: [
-    "youtube thumbnail size",
-    "youtube thumbnail dimensions",
-    "youtube thumbnail resolution",
-    "youtube thumbnail specs",
-    "best youtube thumbnail size",
-    "youtube thumbnail size 2026",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "YouTube Thumbnail Size: The Complete 2026 Guide",

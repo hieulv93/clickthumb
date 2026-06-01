@@ -8,16 +8,6 @@ export const metadata: Metadata = {
   title: "How to Make a YouTube Thumbnail Without Photoshop (Free, 2026)",
   description:
     "Make professional YouTube thumbnails for free without Photoshop — step-by-step guide covering the right size, templates, design tips, and common mistakes to avoid.",
-  keywords: [
-    "how to make youtube thumbnail without photoshop",
-    "youtube thumbnail without photoshop",
-    "free youtube thumbnail maker",
-    "youtube thumbnail maker no photoshop",
-    "make youtube thumbnail free",
-    "youtube thumbnail design free",
-    "photoshop alternative thumbnail",
-    "youtube thumbnail online free",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "How to Make a YouTube Thumbnail Without Photoshop (Free, 2026)",

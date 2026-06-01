@@ -8,16 +8,6 @@ export const metadata: Metadata = {
   title: "How to Make a Fortnite Thumbnail (Free, 2026 Guide)",
   description:
     "Step-by-step guide to making a Fortnite thumbnail that gets more clicks — correct size, color strategy, text rules, character placement, and common mistakes to avoid.",
-  keywords: [
-    "how to make a fortnite thumbnail",
-    "fortnite thumbnail",
-    "fortnite thumbnail maker",
-    "fortnite thumbnail size",
-    "fortnite youtube thumbnail",
-    "fortnite thumbnail design",
-    "fortnite thumbnail ideas",
-    "gaming thumbnail fortnite",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "How to Make a Fortnite Thumbnail That Gets Clicked (2026)",

@@ -8,14 +8,6 @@ export const metadata: Metadata = {
   title: "YouTube Banner Size Guide 2026 — Exact Dimensions & Safe Zones",
   description:
     "The exact YouTube banner (channel art) size for 2026 — 2560×1440px explained, what gets cropped on TV, desktop, and mobile, and how to design one that looks great everywhere.",
-  keywords: [
-    "youtube banner size",
-    "youtube channel art size",
-    "youtube banner dimensions",
-    "youtube banner safe zone",
-    "youtube banner size 2026",
-    "youtube channel art dimensions",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "YouTube Banner Size Guide 2026 — Exact Dimensions & Safe Zones",

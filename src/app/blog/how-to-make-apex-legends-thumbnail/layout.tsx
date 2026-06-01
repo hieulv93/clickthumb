@@ -8,16 +8,6 @@ export const metadata: Metadata = {
   title: "How to Make an Apex Legends Thumbnail (Free, 2026)",
   description:
     "Complete guide to Apex Legends thumbnails that get clicks — correct size, legend showcase, Champion Squad screen, Champion Orange palette, 20-bomb milestones, squad wipes, and seasonal content strategy.",
-  keywords: [
-    "how to make an apex legends thumbnail",
-    "apex legends thumbnail",
-    "apex legends thumbnail maker",
-    "apex legends youtube thumbnail",
-    "apex legends thumbnail design",
-    "apex legends thumbnail size",
-    "apex legends wraith thumbnail",
-    "apex legends 20 bomb thumbnail",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "How to Make an Apex Legends Thumbnail That Gets Clicks (2026)",

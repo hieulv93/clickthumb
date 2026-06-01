@@ -8,16 +8,6 @@ export const metadata: Metadata = {
   title: "How to Make a Gaming Thumbnail That Gets Clicks — Free Maker",
   description:
     "Step-by-step guide to gaming thumbnails: 1280×720px size, color rules, Impact font, face reactions — 7 design principles top gaming creators use to hit 6%+ CTR. Free maker included.",
-  keywords: [
-    "how to make a gaming thumbnail",
-    "gaming thumbnail",
-    "gaming thumbnail maker",
-    "gaming thumbnail design",
-    "gaming thumbnail tips",
-    "youtube gaming thumbnail",
-    "how to make youtube gaming thumbnail",
-    "gaming thumbnail size",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "How to Make a Gaming Thumbnail That Gets More Clicks (2026)",

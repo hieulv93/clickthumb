@@ -8,16 +8,6 @@ export const metadata: Metadata = {
   title: "Instagram Post Size Guide 2026 — All Formats & Dimensions",
   description:
     "Exact Instagram post sizes for 2026 — square, portrait, landscape, Stories, Reels, and carousel. The right dimensions for every format so your images never get cropped.",
-  keywords: [
-    "instagram post size",
-    "instagram image size 2026",
-    "instagram photo dimensions",
-    "instagram story size",
-    "instagram reel size",
-    "instagram carousel size",
-    "instagram square size",
-    "instagram portrait size",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Instagram Post Size Guide 2026 — All Formats & Dimensions",

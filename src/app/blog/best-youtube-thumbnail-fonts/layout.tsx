@@ -8,14 +8,6 @@ export const metadata: Metadata = {
   title: "Best Fonts for YouTube Thumbnails 2026 — What Top Creators Use",
   description:
     "The best fonts for YouTube thumbnails in 2026: Impact, Bebas Neue, Anton, Montserrat Black. Why bold condensed fonts work, how to use stroke and shadow, and common font mistakes.",
-  keywords: [
-    "best fonts for youtube thumbnails",
-    "youtube thumbnail fonts",
-    "best youtube thumbnail font 2026",
-    "impact font youtube thumbnail",
-    "bebas neue youtube thumbnail",
-    "bold fonts for thumbnails",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Best Fonts for YouTube Thumbnails 2026 — What Top Creators Use",

@@ -8,16 +8,6 @@ export const metadata: Metadata = {
   title: "Social Media Image Sizes 2026: Every Platform (Cheat Sheet)",
   description:
     "All social media image dimensions for 2026 — Instagram, YouTube, TikTok, Twitter, LinkedIn, Facebook. Free cheat sheet with exact pixel sizes for every post type.",
-  keywords: [
-    "social media image sizes",
-    "social media image dimensions",
-    "social media sizes 2026",
-    "instagram image size",
-    "youtube thumbnail size",
-    "twitter header size",
-    "linkedin banner size",
-    "facebook cover size",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Social Media Image Sizes 2026: Every Platform (Cheat Sheet)",

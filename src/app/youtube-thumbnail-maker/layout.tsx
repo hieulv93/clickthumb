@@ -8,16 +8,6 @@ export const metadata: Metadata = {
   title: "Free YouTube Thumbnail Maker — Create Thumbnails Online, No Signup",
   description:
     "Create professional YouTube thumbnails at 1280×720px free online. No Photoshop needed — choose a template, add bold text, upload your photo. No signup, no watermark.",
-  keywords: [
-    "youtube thumbnail maker",
-    "thumbnail maker online free",
-    "youtube thumbnail creator",
-    "free thumbnail maker",
-    "make youtube thumbnail",
-    "youtube thumbnail maker without photoshop",
-    "youtube thumbnail size",
-    "create youtube thumbnail",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Free YouTube Thumbnail Maker — No Signup, No Watermark",

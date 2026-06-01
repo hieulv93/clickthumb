@@ -8,14 +8,6 @@ export const metadata: Metadata = {
   title: "OG Image Size Guide 2026 — Open Graph Dimensions for Every Platform",
   description:
     "The correct OG image size for 2026: 1200×630px for Facebook, Twitter, LinkedIn, Slack, and Discord. Minimum sizes, text safe zones, and how to create one free.",
-  keywords: [
-    "og image size",
-    "open graph image size",
-    "og image dimensions 2026",
-    "open graph image dimensions",
-    "social media preview image size",
-    "og:image size",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title:

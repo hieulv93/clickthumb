@@ -114,7 +114,7 @@ export default function TwitchBannerMakerPage() {
           />
           <div className="text-center space-y-2">
             <h1 className="text-2xl sm:text-3xl font-bold text-text-main">
-              Twitch Banner Maker
+              Twitch Offline Banner Maker
             </h1>
             <p className="text-text-muted text-sm sm:text-base">
               Free online — 1920×1080px offline screen — no signup, no watermark

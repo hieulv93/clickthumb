@@ -8,16 +8,6 @@ export const metadata: Metadata = {
   title: "How to Make a Minecraft Thumbnail (Free, 2026)",
   description:
     "Complete guide to making Minecraft thumbnails that get more views — correct size, pixel art vs screenshot styles, Steve/Alex and Creeper placement, survival vs PvP color strategies. Free maker included.",
-  keywords: [
-    "how to make a minecraft thumbnail",
-    "minecraft thumbnail",
-    "minecraft thumbnail maker",
-    "minecraft thumbnail size",
-    "minecraft youtube thumbnail",
-    "minecraft thumbnail design",
-    "minecraft thumbnail tips",
-    "minecraft creeper thumbnail",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "How to Make a Minecraft Thumbnail That Gets More Views (2026)",

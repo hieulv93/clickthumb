@@ -7,15 +7,6 @@ export const metadata: Metadata = {
   title: "How to Increase YouTube CTR: 8 Proven Tips (2026 Guide)",
   description:
     "YouTube CTR below 4%? Learn 8 thumbnail strategies top creators use to reach 8–12% click-through rate. Actionable tips with real before/after examples.",
-  keywords: [
-    "how to increase youtube ctr",
-    "youtube ctr",
-    "youtube click through rate",
-    "improve youtube ctr",
-    "youtube thumbnail ctr",
-    "increase youtube clicks",
-    "youtube thumbnail tips",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "How to Increase YouTube CTR: 8 Proven Tips (2026 Guide)",

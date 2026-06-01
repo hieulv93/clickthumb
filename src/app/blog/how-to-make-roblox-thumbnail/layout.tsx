@@ -8,16 +8,6 @@ export const metadata: Metadata = {
   title: "How to Make a Roblox Thumbnail (Free, 2026)",
   description:
     "Step-by-step guide to making a Roblox thumbnail that gets more clicks — correct size, color strategy, character placement, game-specific tips for Adopt Me, Blox Fruits, and Obby. Free tool included.",
-  keywords: [
-    "how to make a roblox thumbnail",
-    "roblox thumbnail",
-    "roblox thumbnail maker",
-    "roblox thumbnail size",
-    "roblox youtube thumbnail",
-    "roblox thumbnail design",
-    "adopt me thumbnail",
-    "blox fruits thumbnail",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "How to Make a Roblox Thumbnail That Gets Clicked (2026)",

@@ -8,14 +8,6 @@ export const metadata: Metadata = {
   title: "Facebook Cover Photo Size Guide 2026 — Dimensions & Design Tips",
   description:
     "The exact Facebook cover photo size for 2026 — 851×315px on desktop, cropped to 640×360px on mobile. Safe zones, design rules, and how to make one free.",
-  keywords: [
-    "facebook cover photo size",
-    "facebook cover photo dimensions",
-    "facebook cover size 2026",
-    "facebook banner size",
-    "facebook cover photo safe zone",
-    "facebook cover image size",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Facebook Cover Photo Size Guide 2026 — Dimensions & Design Tips",

@@ -8,16 +8,6 @@ export const metadata: Metadata = {
   title: "How to Make a Valorant Thumbnail (Free, 2026)",
   description:
     "Step-by-step guide to making Valorant thumbnails that stand out — correct size, agent showcase, rank display, Valorant Red color strategy, dark backgrounds, and clutch moment design. Free maker included.",
-  keywords: [
-    "how to make a valorant thumbnail",
-    "valorant thumbnail",
-    "valorant thumbnail maker",
-    "valorant thumbnail size",
-    "valorant youtube thumbnail",
-    "valorant thumbnail design",
-    "valorant agent thumbnail",
-    "valorant ranked thumbnail",
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "How to Make a Valorant Thumbnail That Stands Out (2026)",
