@@ -1,6 +1,24 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 const posts = [
+  {
+    slug: "twitch-banner-size-guide",
+    title: "Twitch Banner Size Guide 2026: Dimensions, Safe Zones & Tips",
+    description:
+      "Twitch offline banner is 1920×1080px. Profile banner is 1200×480px. Complete guide to every Twitch image size, safe zones, and design tips for a professional channel.",
+    date: "2026-06-08",
+    readTime: "7 min read",
+    category: "Guide",
+  },
+  {
+    slug: "how-to-make-pubg-thumbnail",
+    title: "How to Make a PUBG Thumbnail (Free, 2026)",
+    description:
+      "Step-by-step guide to making PUBG thumbnails that get clicks — correct size, chicken dinner design, weapon showcase, Erangel color palette, and zone circle visuals.",
+    date: "2026-06-08",
+    readTime: "8 min read",
+    category: "Guide",
+  },
   {
     slug: "facebook-cover-photo-size-guide",
     title: "Facebook Cover Photo Size Guide 2026 — Dimensions & Design Tips",
@@ -60,7 +78,7 @@ const posts = [
     slug: "how-to-make-thumbnail-without-canva",
     title: "How to Make a Thumbnail Without Canva (Free, 2026)",
     description:
-      "Make YouTube and social media thumbnails without Canva — no subscription, no watermark, no account. Free browser-based tool with platform-correct sizes built in.",
+      "Make YouTube and social media thumbnails without Canva — no subscription, no account. Free browser-based tool with platform-correct sizes built in.",
     date: "2026-05-11",
     readTime: "8 min read",
     category: "Guide",
