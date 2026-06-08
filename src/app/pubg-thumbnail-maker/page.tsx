@@ -1,4 +1,4 @@
-import CanvasToolClient from "@/components/canvas/CanvasToolClient";
+﻿import CanvasToolClient from "@/components/canvas/CanvasToolClient";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import FAQItem from "@/components/tool/FAQItem";
 import { PLATFORMS } from "@/lib/platforms";
@@ -7,14 +7,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Free PUBG Thumbnail Maker — HD Templates, No Signup",
+  title: "PUBG Thumbnail Maker — Free Chicken Dinner Templates (2026)",
   description:
-    "Create HD PUBG thumbnails free in 30 seconds. Chicken Dinner, Military Tan & Night Drop templates. No Photoshop, no signup — download at 1280×720px instantly.",
+    "Make PUBG thumbnails at 1280×720px in 30 seconds. Chicken Dinner, Night Drop & Military Tan templates. No Photoshop, no account — customize and download free.",
   alternates: { canonical: "https://click-thumb.com/pubg-thumbnail-maker/" },
   openGraph: {
-    title: "Free PUBG Thumbnail Maker — HD Templates, No Signup",
+    title: "PUBG Thumbnail Maker — Free Chicken Dinner Templates (2026)",
     description:
-      "Create HD PUBG thumbnails free in 30 seconds. Chicken Dinner, Military Tan & Night Drop templates. No Photoshop, no signup — download instantly.",
+      "Make PUBG thumbnails at 1280×720px in 30 seconds. Chicken Dinner, Night Drop & Military Tan templates. No Photoshop, no account — customize and download free.",
     url: "https://click-thumb.com/pubg-thumbnail-maker/",
     siteName: "ClickThumb",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
@@ -52,7 +52,7 @@ const jsonLd = {
           name: "Is this PUBG thumbnail maker free?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes, completely free. No account required, no watermark. Create and download unlimited PUBG Mobile and PUBG PC thumbnails for your YouTube channel.",
+            text: "Yes, completely free. No account required. Free downloads include a small watermark — upgrade to Pro to remove it. Create and download unlimited PUBG Mobile and PUBG PC thumbnails for your YouTube channel.",
           },
         },
         {
@@ -131,7 +131,7 @@ export default function PUBGThumbnailMakerPage() {
               PUBG Thumbnail Maker
             </h1>
             <p className="text-text-muted text-sm sm:text-base">
-              Free online — 1280×720px — no signup, no watermark
+              Free online — 1280×720px — no signup required
             </p>
           </div>
 
@@ -382,7 +382,7 @@ export default function PUBGThumbnailMakerPage() {
                     },
                     {
                       q: "Is this PUBG thumbnail maker free?",
-                      a: "Yes, completely free. No account, no watermark. Download unlimited thumbnails.",
+                      a: "Yes, completely free. No account required. Free downloads include a small watermark — upgrade to Pro to remove it. Download unlimited thumbnails.",
                     },
                     {
                       q: "What colors work best for PUBG thumbnails?",
