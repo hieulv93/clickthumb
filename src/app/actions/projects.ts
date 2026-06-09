@@ -52,6 +52,16 @@ export async function saveProject(
     }
   }
 
+  const { count: dupCount } = await supabase
+    .from("projects")
+    .select("id", { count: "exact", head: true })
+    .eq("user_id", dbUser.id)
+    .eq("title", title);
+
+  if ((dupCount ?? 0) > 0) {
+    return { error: "duplicate_name" };
+  }
+
   const { data, error } = await supabase
     .from("projects")
     .insert({

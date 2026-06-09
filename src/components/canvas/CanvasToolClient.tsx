@@ -218,6 +218,10 @@ export default function CanvasToolClient({
         setSaveError("Sign in to save projects.");
       } else if (result.error === "limit_reached") {
         setSaveError("Free limit (3 projects) reached. Upgrade to save more.");
+      } else if (result.error === "duplicate_name") {
+        setSaveError(
+          "A project with this name already exists. Choose a different name.",
+        );
       } else if (result.error) {
         setSaveError("Save failed. Please try again.");
       } else {
@@ -225,6 +229,8 @@ export default function CanvasToolClient({
         setShowSaveForm(false);
         setTimeout(() => setSaveSaved(false), 3000);
       }
+    } catch {
+      setSaveError("Save failed. Please try again.");
     } finally {
       setSaving(false);
     }
