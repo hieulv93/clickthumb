@@ -74,7 +74,11 @@ export async function saveProject(
     .single();
 
   if (error) return { error: error.message };
-  revalidatePath("/dashboard");
+  try {
+    revalidatePath("/dashboard");
+  } catch {
+    /* non-fatal */
+  }
   return { id: data.id };
 }
 

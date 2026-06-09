@@ -241,7 +241,7 @@ export default function YouTubeThumbnailPage() {
       } else {
         setSaveSaved(true);
         setShowSaveForm(false);
-        setTimeout(() => setSaveSaved(false), 3000);
+        setTimeout(() => setSaveSaved(false), 8000);
       }
     } catch {
       setSaveError("Save failed. Please try again.");
