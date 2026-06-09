@@ -201,6 +201,11 @@ export default function YouTubeThumbnailPage() {
     getJsonFnRef.current = fn;
   }, []);
 
+  const getPreviewFnRef = useRef<(() => string) | null>(null);
+  const handleGetPreview = useCallback((fn: () => string) => {
+    getPreviewFnRef.current = fn;
+  }, []);
+
   const handleSave = useCallback(async () => {
     if (!saveTitle.trim()) return;
     const getJson = getJsonFnRef.current;
@@ -212,6 +217,7 @@ export default function YouTubeThumbnailPage() {
     setSaveError("");
     try {
       const json = await getJson();
+      const previewUrl = getPreviewFnRef.current?.() ?? null;
       const withMeta = {
         ...(json as object),
         platform_id: "youtube",
@@ -220,6 +226,7 @@ export default function YouTubeThumbnailPage() {
       const result = await saveProject(
         saveTitle.trim(),
         JSON.stringify(withMeta),
+        previewUrl,
       );
       if (result.error === "Not authenticated") {
         setSaveError("Sign in to save projects.");
@@ -376,6 +383,7 @@ export default function YouTubeThumbnailPage() {
                     textSizeMultiplier={textSizeMultiplier}
                     initialJson={loadedProjectJson}
                     onGetJson={handleGetJson}
+                    onGetPreview={handleGetPreview}
                   />
                 )}
               </Suspense>

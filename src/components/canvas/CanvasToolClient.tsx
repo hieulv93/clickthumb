@@ -77,6 +77,7 @@ export default function CanvasToolClient({
 
   // Project save state
   const getJsonFnRef = useRef<(() => Promise<object>) | null>(null);
+  const getPreviewFnRef = useRef<(() => string) | null>(null);
   const [showSaveForm, setShowSaveForm] = useState(false);
   const [saveTitle, setSaveTitle] = useState("");
   const [saving, setSaving] = useState(false);
@@ -187,6 +188,10 @@ export default function CanvasToolClient({
     getJsonFnRef.current = fn;
   }, []);
 
+  const handleGetPreview = useCallback((fn: () => string) => {
+    getPreviewFnRef.current = fn;
+  }, []);
+
   const handleSave = useCallback(async () => {
     if (!saveTitle.trim()) return;
     const getJson = getJsonFnRef.current;
@@ -198,6 +203,7 @@ export default function CanvasToolClient({
     setSaveError("");
     try {
       const json = await getJson();
+      const previewUrl = getPreviewFnRef.current?.() ?? null;
       const withMeta = {
         ...(json as object),
         platform_id: platform.id,
@@ -206,6 +212,7 @@ export default function CanvasToolClient({
       const result = await saveProject(
         saveTitle.trim(),
         JSON.stringify(withMeta),
+        previewUrl,
       );
       if (result.error === "Not authenticated") {
         setSaveError("Sign in to save projects.");
@@ -481,6 +488,7 @@ export default function CanvasToolClient({
                   textSizeMultiplier={textSizeMultiplier}
                   initialJson={loadedProjectJson}
                   onGetJson={handleGetJson}
+                  onGetPreview={handleGetPreview}
                 />
               )}
             </Suspense>

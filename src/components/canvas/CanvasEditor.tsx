@@ -22,6 +22,7 @@ interface CanvasEditorProps {
   initialJson?: string | null;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onGetJson?: (fn: () => Promise<any>) => void;
+  onGetPreview?: (fn: () => string) => void;
 }
 
 export default function CanvasEditor({
@@ -40,6 +41,7 @@ export default function CanvasEditor({
   textSizeMultiplier,
   initialJson,
   onGetJson,
+  onGetPreview,
 }: CanvasEditorProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -248,6 +250,16 @@ export default function CanvasEditor({
         });
         return await fetch(dataUrl).then((r) => r.blob());
       });
+
+      if (onGetPreview) {
+        onGetPreview(() =>
+          canvas.toDataURL({
+            format: "jpeg",
+            quality: 0.6,
+            multiplier: 320 / displayW,
+          }),
+        );
+      }
 
       if (onGetJson) {
         onGetJson(async () => {
