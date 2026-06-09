@@ -18,6 +18,10 @@ interface CanvasEditorProps {
   onCanvasChange: () => void;
   textColors?: string[];
   textSizeMultiplier?: number;
+  // Project load/save
+  initialJson?: string | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onGetJson?: (fn: () => Promise<any>) => void;
 }
 
 export default function CanvasEditor({
@@ -34,6 +38,8 @@ export default function CanvasEditor({
   onCanvasChange,
   textColors,
   textSizeMultiplier,
+  initialJson,
+  onGetJson,
 }: CanvasEditorProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -221,7 +227,14 @@ export default function CanvasEditor({
       canvas.on("object:modified", () => onCanvasChange());
       canvas.on("text:changed", () => onCanvasChange());
 
-      if (template) {
+      if (initialJson) {
+        await new Promise<void>((resolve) => {
+          canvas.loadFromJSON(JSON.parse(initialJson), () => {
+            canvas.renderAll();
+            resolve();
+          });
+        });
+      } else if (template) {
         await applyTemplate(canvas, fabric, template);
       }
 
@@ -235,6 +248,35 @@ export default function CanvasEditor({
         });
         return await fetch(dataUrl).then((r) => r.blob());
       });
+
+      if (onGetJson) {
+        onGetJson(async () => {
+          const json = canvas.toJSON();
+          // Convert blob URLs to base64 data URLs so uploaded images persist across sessions
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          for (const obj of json.objects as any[]) {
+            if (
+              obj.type === "image" &&
+              typeof obj.src === "string" &&
+              obj.src.startsWith("blob:")
+            ) {
+              try {
+                const res = await fetch(obj.src);
+                const blob = await res.blob();
+                obj.src = await new Promise<string>((resolve, reject) => {
+                  const reader = new FileReader();
+                  reader.onload = () => resolve(reader.result as string);
+                  reader.onerror = reject;
+                  reader.readAsDataURL(blob);
+                });
+              } catch {
+                // blob URL already revoked — skip, image won't restore
+              }
+            }
+          }
+          return json;
+        });
+      }
     })();
 
     return () => {

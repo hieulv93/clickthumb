@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useCallback, useRef, Suspense } from "react";
+import { useState, useCallback, useRef, Suspense, useEffect } from "react";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 import TemplateSelector from "./TemplateSelector";
 import TextEditor from "./TextEditor";
 import BgSection from "./BgSection";
@@ -13,6 +14,9 @@ import { getDisplayDimensions, type Platform } from "@/lib/platforms";
 import type { Template } from "@/lib/templates";
 import { triggerDownload } from "@/lib/utils";
 import { analytics } from "@/lib/analytics";
+import { getUserPlan } from "@/app/actions/plan";
+import { applyWatermark } from "@/lib/watermark";
+import { getProject, saveProject } from "@/app/actions/projects";
 
 const CanvasEditor = dynamic(() => import("./CanvasEditor"), {
   ssr: false,
@@ -22,6 +26,8 @@ const CanvasEditor = dynamic(() => import("./CanvasEditor"), {
 });
 
 type ExportFormat = "jpeg" | "png";
+
+const FREE_TEMPLATE_LIMIT = 3;
 
 interface CanvasToolClientProps {
   platform: Platform;
@@ -38,6 +44,7 @@ export default function CanvasToolClient({
   exportLabel,
   children,
 }: CanvasToolClientProps) {
+  const router = useRouter();
   const [template, setTemplate] = useState<Template | null>(
     templates[0] ?? null,
   );
@@ -58,7 +65,68 @@ export default function CanvasToolClient({
   const [done, setDone] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
   const [exportError, setExportError] = useState(false);
-  const [format] = useState<ExportFormat>("jpeg");
+  const [format, setFormat] = useState<ExportFormat>("jpeg");
+  const [plan, setPlan] = useState<"free" | "pro">("free");
+
+  // Project load state
+  const [loadedProjectJson, setLoadedProjectJson] = useState<string | null>(
+    null,
+  );
+  const [canvasKey, setCanvasKey] = useState("default");
+  const [loadingProject, setLoadingProject] = useState(false);
+
+  // Project save state
+  const getJsonFnRef = useRef<(() => Promise<object>) | null>(null);
+  const [showSaveForm, setShowSaveForm] = useState(false);
+  const [saveTitle, setSaveTitle] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [saveSaved, setSaveSaved] = useState(false);
+  const [saveError, setSaveError] = useState("");
+
+  useEffect(() => {
+    getUserPlan().then(setPlan);
+  }, []);
+
+  // Load project from ?project=<id> URL param
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const pid = params.get("project");
+    if (!pid) return;
+    setLoadingProject(true);
+    getProject(pid).then((data) => {
+      if (data?.canvas_json) {
+        try {
+          const parsed = JSON.parse(data.canvas_json);
+          // Sync React state from JSON so text inputs reflect loaded state
+          const textObjs = (parsed.objects ?? []).filter(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (o: any) => o.type === "i-text" || o.type === "text",
+          );
+          if (textObjs.length > 0) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            setTexts(textObjs.map((o: any) => o.text ?? ""));
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            setTextColors(textObjs.map((o: any) => o.fill ?? "#ffffff"));
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            setFontFamily(textObjs[0]?.fontFamily ?? "Impact");
+          }
+          if (parsed.background) setBgColor(parsed.background);
+          if (parsed.template_id) {
+            const savedTemplate = templates.find(
+              (t) => t.id === parsed.template_id,
+            );
+            if (savedTemplate) setTemplate(savedTemplate);
+          }
+          setLoadedProjectJson(data.canvas_json);
+          setCanvasKey(pid); // force CanvasEditor remount with initialJson
+          setSaveTitle(data.title ?? "");
+        } catch {
+          // Malformed JSON — load default template
+        }
+      }
+      setLoadingProject(false);
+    });
+  }, []);
   const { w: displayW, h: displayH } = getDisplayDimensions(platform);
   const exportFnRef = useRef<(() => Promise<Blob>) | null>(null);
   const bgUrlRef = useRef<string | null>(null);
@@ -115,13 +183,61 @@ export default function CanvasToolClient({
     setHasChanges(false);
   }, [template]);
 
+  const handleGetJson = useCallback((fn: () => Promise<object>) => {
+    getJsonFnRef.current = fn;
+  }, []);
+
+  const handleSave = useCallback(async () => {
+    if (!saveTitle.trim()) return;
+    const getJson = getJsonFnRef.current;
+    if (!getJson) {
+      setSaveError("Canvas not ready. Try again.");
+      return;
+    }
+    setSaving(true);
+    setSaveError("");
+    try {
+      const json = await getJson();
+      const withMeta = {
+        ...(json as object),
+        platform_id: platform.id,
+        template_id: template?.id ?? null,
+      };
+      const result = await saveProject(
+        saveTitle.trim(),
+        JSON.stringify(withMeta),
+      );
+      if (result.error === "Not authenticated") {
+        setSaveError("Sign in to save projects.");
+      } else if (result.error === "limit_reached") {
+        setSaveError("Free limit (3 projects) reached. Upgrade to save more.");
+      } else if (result.error) {
+        setSaveError("Save failed. Please try again.");
+      } else {
+        setSaveSaved(true);
+        setShowSaveForm(false);
+        setTimeout(() => setSaveSaved(false), 3000);
+      }
+    } finally {
+      setSaving(false);
+    }
+  }, [saveTitle, platform.id, template?.id]);
+
   const handleExport = useCallback(async () => {
     if (!exportFnRef.current) return;
     setExporting(true);
     setExportError(false);
     try {
-      const blob = await exportFnRef.current();
-      const filename = downloadFilename.replace(/\.(jpg|jpeg|png)$/i, ".jpg");
+      // Re-verify plan server-side at download time to prevent client-state bypass
+      const currentPlan = await getUserPlan();
+      let blob = await exportFnRef.current();
+      if (currentPlan !== "pro") {
+        blob = await applyWatermark(blob, platform.width, platform.height);
+      }
+      const filename = downloadFilename.replace(
+        /\.(jpg|jpeg|png)$/i,
+        format === "png" ? ".png" : ".jpg",
+      );
       triggerDownload(blob, filename);
       setDone(true);
       setDownloaded(true);
@@ -137,11 +253,46 @@ export default function CanvasToolClient({
     } finally {
       setExporting(false);
     }
-  }, [downloadFilename, platform.id, template?.id]);
+  }, [
+    downloadFilename,
+    format,
+    platform.id,
+    platform.width,
+    platform.height,
+    template?.id,
+  ]);
 
   const downloadBtn = (
     <div className="space-y-2">
-      {exporting && <ProgressBar visible label="Exporting..." />}
+      {plan === "pro" && (
+        <div className="flex items-center gap-1 justify-end">
+          <span className="text-xs text-text-muted mr-1">Format:</span>
+          {(["jpeg", "png"] as ExportFormat[]).map((f) => (
+            <button
+              key={f}
+              onClick={() => setFormat(f)}
+              className={`px-2.5 py-1 rounded-lg text-xs font-medium border transition-colors ${
+                format === f
+                  ? "bg-primary text-white border-primary"
+                  : "bg-white text-text-main border-border hover:border-primary"
+              }`}
+            >
+              {f === "jpeg" ? "JPG" : "PNG"}
+            </button>
+          ))}
+        </div>
+      )}
+      {plan === "free" && (
+        <p className="text-xs text-center text-text-muted mb-2">
+          Free downloads include a small watermark —{" "}
+          <a
+            href="/upgrade"
+            className="text-primary hover:underline font-medium"
+          >
+            Upgrade to remove
+          </a>
+        </p>
+      )}
       {exportError && (
         <p className="text-xs text-center text-red-500">
           Export failed. Please try again.
@@ -205,6 +356,73 @@ export default function CanvasToolClient({
           Compress it free →
         </a>
       </p>
+
+      {/* Save to My Projects */}
+      <div className="mt-2 space-y-1.5">
+        {showSaveForm ? (
+          <div className="flex gap-2 items-center">
+            <input
+              type="text"
+              value={saveTitle}
+              onChange={(e) => setSaveTitle(e.target.value)}
+              placeholder="Project name…"
+              className="flex-1 rounded-lg border border-border px-3 py-2 text-sm outline-none focus:border-primary"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleSave();
+                if (e.key === "Escape") setShowSaveForm(false);
+              }}
+              autoFocus
+            />
+            <button
+              onClick={handleSave}
+              disabled={saving || !saveTitle.trim()}
+              className="px-3 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary-hover disabled:opacity-50 transition-colors"
+            >
+              {saving ? "Saving…" : "Save"}
+            </button>
+            <button
+              onClick={() => setShowSaveForm(false)}
+              className="text-text-muted hover:text-text-main text-sm px-1"
+            >
+              ✕
+            </button>
+          </div>
+        ) : saveSaved ? (
+          <div className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-green-200 bg-green-50 text-green-700 text-sm font-medium">
+            <svg
+              className="w-4 h-4 shrink-0"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                fillRule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clipRule="evenodd"
+              />
+            </svg>
+            Saved to My Projects
+          </div>
+        ) : (
+          <button
+            onClick={() => setShowSaveForm(true)}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-border bg-white hover:border-primary hover:text-primary text-sm font-medium text-gray-700 transition-colors"
+          >
+            <svg
+              className="w-4 h-4 shrink-0"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M7.707 10.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V6h5a2 2 0 012 2v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h5v5.586l-1.293-1.293zM9 4a1 1 0 012 0v2H9V4z" />
+            </svg>
+            Save to My Projects
+          </button>
+        )}
+        {saveError && (
+          <p className="text-xs text-red-500 text-center">{saveError}</p>
+        )}
+      </div>
     </div>
   );
 
@@ -233,21 +451,38 @@ export default function CanvasToolClient({
                 </div>
               }
             >
-              <CanvasEditor
-                platform={platform}
-                template={template}
-                bgColor={bgColor}
-                bgImageUrl={bgImageUrl}
-                fontFamily={fontFamily}
-                texts={texts}
-                format={format}
-                hasChanges={hasChanges}
-                onReady={handleReady}
-                onReset={handleReset}
-                onCanvasChange={() => setHasChanges(true)}
-                textColors={textColors}
-                textSizeMultiplier={textSizeMultiplier}
-              />
+              {loadingProject ? (
+                <div
+                  className="mx-auto"
+                  style={{ width: "100%", maxWidth: displayW }}
+                >
+                  <div
+                    className="w-full bg-surface rounded-xl border border-border animate-pulse flex items-center justify-center"
+                    style={{ aspectRatio: `${displayW} / ${displayH}` }}
+                  >
+                    <p className="text-xs text-text-muted">Loading project…</p>
+                  </div>
+                </div>
+              ) : (
+                <CanvasEditor
+                  key={canvasKey}
+                  platform={platform}
+                  template={template}
+                  bgColor={bgColor}
+                  bgImageUrl={bgImageUrl}
+                  fontFamily={fontFamily}
+                  texts={texts}
+                  format={format}
+                  hasChanges={hasChanges}
+                  onReady={handleReady}
+                  onReset={handleReset}
+                  onCanvasChange={() => setHasChanges(true)}
+                  textColors={textColors}
+                  textSizeMultiplier={textSizeMultiplier}
+                  initialJson={loadedProjectJson}
+                  onGetJson={handleGetJson}
+                />
+              )}
             </Suspense>
             <div className="mt-2 space-y-2">
               <BgImageUpload
@@ -285,6 +520,9 @@ export default function CanvasToolClient({
               templates={templates}
               selected={template}
               onSelect={handleTemplateSelect}
+              plan={plan}
+              freeLimit={FREE_TEMPLATE_LIMIT}
+              onUpgrade={() => router.push("/upgrade")}
             />
             <BgSection color={bgColor} onChange={handleBgColorChange} />
           </div>

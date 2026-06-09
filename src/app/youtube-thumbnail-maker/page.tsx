@@ -1,20 +1,23 @@
-"use client";
+﻿"use client";
 
-import { useState, useCallback, useRef, Suspense } from "react";
+import { useState, useCallback, useRef, Suspense, useEffect } from "react";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 import TemplateSelector from "@/components/canvas/TemplateSelector";
 import TextEditor from "@/components/canvas/TextEditor";
 import BgSection from "@/components/canvas/BgSection";
 import BgImageUpload from "@/components/canvas/BgImageUpload";
 import FontSelector from "@/components/canvas/FontSelector";
-import ProgressBar from "@/components/tool/ProgressBar";
 import FAQItem from "@/components/tool/FAQItem";
 import AdSlot from "@/components/ads/AdSlot";
 import { PLATFORMS } from "@/lib/platforms";
-import { YOUTUBE_TEMPLATES } from "@/lib/templates";
+import { YOUTUBE_TEMPLATES, YOUTUBE_FREE_LIMIT } from "@/lib/templates";
 import type { Template } from "@/lib/templates";
 import { triggerDownload } from "@/lib/utils";
 import { analytics } from "@/lib/analytics";
+import { getUserPlan } from "@/app/actions/plan";
+import { applyWatermark } from "@/lib/watermark";
+import { getProject, saveProject } from "@/app/actions/projects";
 import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 
@@ -48,8 +51,68 @@ export default function YouTubeThumbnailPage() {
   const [downloaded, setDownloaded] = useState(false);
   const [exportError, setExportError] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
+  const [format, setFormat] = useState<"jpeg" | "png">("jpeg");
+  const [plan, setPlan] = useState<"free" | "pro">("free");
   const exportFnRef = useRef<(() => Promise<Blob>) | null>(null);
   const bgUrlRef = useRef<string | null>(null);
+  const router = useRouter();
+
+  // Project load state
+  const [loadedProjectJson, setLoadedProjectJson] = useState<string | null>(
+    null,
+  );
+  const [canvasKey, setCanvasKey] = useState("default");
+  const [loadingProject, setLoadingProject] = useState(false);
+
+  // Project save state
+  const getJsonFnRef = useRef<(() => Promise<object>) | null>(null);
+  const [showSaveForm, setShowSaveForm] = useState(false);
+  const [saveTitle, setSaveTitle] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [saveSaved, setSaveSaved] = useState(false);
+  const [saveError, setSaveError] = useState("");
+
+  useEffect(() => {
+    getUserPlan().then(setPlan);
+  }, []);
+
+  // Load project from ?project=<id> URL param
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const pid = params.get("project");
+    if (!pid) return;
+    setLoadingProject(true);
+    getProject(pid).then((data) => {
+      if (data?.canvas_json) {
+        try {
+          const parsed = JSON.parse(data.canvas_json);
+          const textObjs = (parsed.objects ?? []).filter(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (o: any) => o.type === "i-text" || o.type === "text",
+          );
+          if (textObjs.length > 0) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            setTexts(textObjs.map((o: any) => o.text ?? ""));
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            setTextColors(textObjs.map((o: any) => o.fill ?? "#ffffff"));
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            setFontFamily(textObjs[0]?.fontFamily ?? "Impact");
+          }
+          if (parsed.background) setBgColor(parsed.background);
+          if (parsed.template_id) {
+            const savedTemplate = YOUTUBE_TEMPLATES.find(
+              (t) => t.id === parsed.template_id,
+            );
+            if (savedTemplate) setTemplate(savedTemplate);
+          }
+          setLoadedProjectJson(data.canvas_json);
+          setCanvasKey(pid);
+          setSaveTitle(data.title ?? "");
+        } catch {}
+      }
+      setLoadingProject(false);
+    });
+  }, []);
 
   const handleReady = useCallback((fn: () => Promise<Blob>) => {
     exportFnRef.current = fn;
@@ -107,8 +170,17 @@ export default function YouTubeThumbnailPage() {
     if (!exportFnRef.current) return;
     setExporting(true);
     try {
-      const blob = await exportFnRef.current();
-      triggerDownload(blob, "click-thumb-youtube-thumbnail.jpg");
+      const currentPlan = await getUserPlan();
+      let blob = await exportFnRef.current();
+      if (currentPlan !== "pro") {
+        blob = await applyWatermark(blob, platform.width, platform.height);
+      }
+      triggerDownload(
+        blob,
+        format === "png"
+          ? "click-thumb-youtube-thumbnail.png"
+          : "click-thumb-youtube-thumbnail.jpg",
+      );
       setDone(true);
       setDownloaded(true);
       setTimeout(() => setDownloaded(false), 3000);
@@ -123,7 +195,115 @@ export default function YouTubeThumbnailPage() {
     } finally {
       setExporting(false);
     }
-  }, [template]);
+  }, [template, format]);
+
+  const handleGetJson = useCallback((fn: () => Promise<object>) => {
+    getJsonFnRef.current = fn;
+  }, []);
+
+  const handleSave = useCallback(async () => {
+    if (!saveTitle.trim()) return;
+    const getJson = getJsonFnRef.current;
+    if (!getJson) {
+      setSaveError("Canvas not ready. Try again.");
+      return;
+    }
+    setSaving(true);
+    setSaveError("");
+    try {
+      const json = await getJson();
+      const withMeta = {
+        ...(json as object),
+        platform_id: "youtube",
+        template_id: template?.id ?? null,
+      };
+      const result = await saveProject(
+        saveTitle.trim(),
+        JSON.stringify(withMeta),
+      );
+      if (result.error === "Not authenticated") {
+        setSaveError("Sign in to save projects.");
+      } else if (result.error === "limit_reached") {
+        setSaveError("Free limit (3 projects) reached. Upgrade to save more.");
+      } else if (result.error) {
+        setSaveError("Save failed. Please try again.");
+      } else {
+        setSaveSaved(true);
+        setShowSaveForm(false);
+        setTimeout(() => setSaveSaved(false), 3000);
+      }
+    } finally {
+      setSaving(false);
+    }
+  }, [saveTitle, template?.id]);
+
+  const saveUI = (
+    <div className="mt-2 space-y-1.5">
+      {showSaveForm ? (
+        <div className="flex gap-2 items-center">
+          <input
+            type="text"
+            value={saveTitle}
+            onChange={(e) => setSaveTitle(e.target.value)}
+            placeholder="Project name…"
+            className="flex-1 rounded-lg border border-border px-3 py-2 text-sm outline-none focus:border-primary"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleSave();
+              if (e.key === "Escape") setShowSaveForm(false);
+            }}
+            autoFocus
+          />
+          <button
+            onClick={handleSave}
+            disabled={saving || !saveTitle.trim()}
+            className="px-3 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary-hover disabled:opacity-50 transition-colors"
+          >
+            {saving ? "Saving…" : "Save"}
+          </button>
+          <button
+            onClick={() => setShowSaveForm(false)}
+            className="text-text-muted hover:text-text-main text-sm px-1"
+          >
+            ✕
+          </button>
+        </div>
+      ) : saveSaved ? (
+        <div className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-green-200 bg-green-50 text-green-700 text-sm font-medium">
+          <svg
+            className="w-4 h-4 shrink-0"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              fillRule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clipRule="evenodd"
+            />
+          </svg>
+          Saved to My Projects
+        </div>
+      ) : (
+        <button
+          onClick={() => setShowSaveForm(true)}
+          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-border bg-white hover:border-primary hover:text-primary text-sm font-medium text-gray-700 transition-colors"
+        >
+          <svg
+            className="w-4 h-4 shrink-0"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M7.707 10.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V6h5a2 2 0 012 2v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h5v5.586l-1.293-1.293zM9 4a1 1 0 012 0v2H9V4z" />
+          </svg>
+          Save to My Projects
+        </button>
+      )}
+      {saveError && (
+        <p className="text-xs text-red-500 text-center">{saveError}</p>
+      )}
+    </div>
+  );
 
   return (
     <main className="flex-1">
@@ -143,7 +323,7 @@ export default function YouTubeThumbnailPage() {
             YouTube Thumbnail Maker
           </h1>
           <p className="text-text-muted text-sm sm:text-base">
-            Free online — 1280×720px — no signup, no watermark
+            Free online — 1280×720px — no signup required
           </p>
         </div>
 
@@ -165,21 +345,39 @@ export default function YouTubeThumbnailPage() {
                   </div>
                 }
               >
-                <CanvasEditor
-                  platform={platform}
-                  template={template}
-                  bgColor={bgColor}
-                  bgImageUrl={bgImageUrl}
-                  fontFamily={fontFamily}
-                  texts={texts}
-                  format="jpeg"
-                  hasChanges={hasChanges}
-                  onReady={handleReady}
-                  onReset={handleReset}
-                  onCanvasChange={() => setHasChanges(true)}
-                  textColors={textColors}
-                  textSizeMultiplier={textSizeMultiplier}
-                />
+                {loadingProject ? (
+                  <div
+                    style={{ width: "100%", maxWidth: 640, margin: "0 auto" }}
+                  >
+                    <div
+                      className="w-full bg-surface rounded-xl border border-border animate-pulse flex items-center justify-center"
+                      style={{ aspectRatio: "16 / 9" }}
+                    >
+                      <p className="text-xs text-text-muted">
+                        Loading project…
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <CanvasEditor
+                    key={canvasKey}
+                    platform={platform}
+                    template={template}
+                    bgColor={bgColor}
+                    bgImageUrl={bgImageUrl}
+                    fontFamily={fontFamily}
+                    texts={texts}
+                    format={format}
+                    hasChanges={hasChanges}
+                    onReady={handleReady}
+                    onReset={handleReset}
+                    onCanvasChange={() => setHasChanges(true)}
+                    textColors={textColors}
+                    textSizeMultiplier={textSizeMultiplier}
+                    initialJson={loadedProjectJson}
+                    onGetJson={handleGetJson}
+                  />
+                )}
               </Suspense>
               <div className="mt-2 space-y-2">
                 <BgImageUpload
@@ -188,8 +386,32 @@ export default function YouTubeThumbnailPage() {
                   onClear={handleBgClear}
                 />
                 <div className="hidden lg:block">
-                  {exporting && (
-                    <ProgressBar visible label="Exporting thumbnail..." />
+                  {plan === "pro" && (
+                    <div className="flex items-center gap-1 justify-end mb-2">
+                      <span className="text-xs text-text-muted mr-1">
+                        Format:
+                      </span>
+                      {(["jpeg", "png"] as const).map((f) => (
+                        <button
+                          key={f}
+                          onClick={() => setFormat(f)}
+                          className={`px-2.5 py-1 rounded-lg text-xs font-medium border transition-colors ${format === f ? "bg-primary text-white border-primary" : "bg-white text-text-main border-border hover:border-primary"}`}
+                        >
+                          {f === "jpeg" ? "JPG" : "PNG"}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  {plan === "free" && (
+                    <p className="text-xs text-center text-text-muted mb-2">
+                      Free downloads include a small watermark —{" "}
+                      <a
+                        href="/upgrade"
+                        className="text-primary hover:underline font-medium"
+                      >
+                        Upgrade to remove
+                      </a>
+                    </p>
                   )}
                   {exportError && (
                     <p className="text-xs text-red-500 text-center">
@@ -252,6 +474,7 @@ export default function YouTubeThumbnailPage() {
                       Compress it free →
                     </a>
                   </p>
+                  {saveUI}
                 </div>
               </div>
             </div>
@@ -282,74 +505,104 @@ export default function YouTubeThumbnailPage() {
                 templates={YOUTUBE_TEMPLATES}
                 selected={template}
                 onSelect={handleTemplateSelect}
+                plan={plan}
+                freeLimit={YOUTUBE_FREE_LIMIT}
+                onUpgrade={() => router.push("/upgrade")}
               />
               <BgSection color={bgColor} onChange={handleBgColorChange} />
             </div>
             <div className="lg:hidden mt-4">
-              {exporting && (
-                <ProgressBar visible label="Exporting thumbnail..." />
-              )}
-              {exportError && (
-                <p className="text-xs text-red-500 text-center">
-                  Export failed. Please try again.
-                </p>
-              )}
-              <button
-                onClick={handleExport}
-                disabled={exporting}
-                className={`w-full touch-target flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${downloaded ? "bg-green-600 hover:bg-green-700 text-white active:scale-95" : "bg-primary hover:bg-primary-hover active:bg-blue-800 active:scale-95 disabled:opacity-60 text-white"}`}
-              >
-                {downloaded ? (
-                  <>
-                    <svg
-                      className="w-4 h-4 shrink-0"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    Downloaded!
-                  </>
-                ) : (
-                  <>
-                    <svg
-                      className="w-4 h-4 shrink-0"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    {exporting
-                      ? "Exporting..."
-                      : "Download Thumbnail (1280×720)"}
-                  </>
+              <div className="space-y-2">
+                {plan === "pro" && (
+                  <div className="flex items-center gap-1 justify-end">
+                    <span className="text-xs text-text-muted mr-1">
+                      Format:
+                    </span>
+                    {(["jpeg", "png"] as const).map((f) => (
+                      <button
+                        key={f}
+                        onClick={() => setFormat(f)}
+                        className={`px-2.5 py-1 rounded-lg text-xs font-medium border transition-colors ${format === f ? "bg-primary text-white border-primary" : "bg-white text-text-main border-border hover:border-primary"}`}
+                      >
+                        {f === "jpeg" ? "JPG" : "PNG"}
+                      </button>
+                    ))}
+                  </div>
                 )}
-              </button>
-              <p
-                className="text-sm text-center text-text-muted"
-                style={{ display: done ? "block" : "none" }}
-                data-testid="compress-suggest"
-              >
-                Need a smaller file?{" "}
-                <a
-                  href="https://compressimg.pro/compress-image"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline font-medium"
+                {plan === "free" && (
+                  <p className="text-xs text-center text-text-muted">
+                    Free downloads include a small watermark —{" "}
+                    <a
+                      href="/upgrade"
+                      className="text-primary hover:underline font-medium"
+                    >
+                      Upgrade to remove
+                    </a>
+                  </p>
+                )}
+                {exportError && (
+                  <p className="text-xs text-red-500 text-center">
+                    Export failed. Please try again.
+                  </p>
+                )}
+                <button
+                  onClick={handleExport}
+                  disabled={exporting}
+                  className={`w-full touch-target flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${downloaded ? "bg-green-600 hover:bg-green-700 text-white active:scale-95" : "bg-primary hover:bg-primary-hover active:bg-blue-800 active:scale-95 disabled:opacity-60 text-white"}`}
                 >
-                  Compress it free →
-                </a>
-              </p>
+                  {downloaded ? (
+                    <>
+                      <svg
+                        className="w-4 h-4 shrink-0"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      Downloaded!
+                    </>
+                  ) : (
+                    <>
+                      <svg
+                        className="w-4 h-4 shrink-0"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      {exporting
+                        ? "Exporting..."
+                        : "Download Thumbnail (1280×720)"}
+                    </>
+                  )}
+                </button>
+                <p
+                  className="text-sm text-center text-text-muted"
+                  style={{ display: done ? "block" : "none" }}
+                  data-testid="compress-suggest"
+                >
+                  Need a smaller file?{" "}
+                  <a
+                    href="https://compressimg.pro/compress-image"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline font-medium"
+                  >
+                    Compress it free →
+                  </a>
+                </p>
+                {saveUI}
+              </div>
             </div>
           </div>
         </div>
@@ -372,9 +625,9 @@ export default function YouTubeThumbnailPage() {
             </p>
             <p>
               This free YouTube thumbnail maker runs entirely in your browser.
-              No account, no watermark, no app to install. It exports at exactly
-              1280×720px — the recommended YouTube thumbnail size — so your file
-              is always ready to upload directly to YouTube Studio.
+              No account, no app to install. It exports at exactly 1280×720px —
+              the recommended YouTube thumbnail size — so your file is always
+              ready to upload directly to YouTube Studio.
             </p>
           </div>
 
@@ -492,8 +745,9 @@ export default function YouTubeThumbnailPage() {
               </li>
             </ol>
             <p>
-              No account needed. No watermark. The entire process runs in your
-              browser — your images never leave your device.
+              No account needed. The entire process runs in your browser — your
+              images never leave your device. Free downloads include a small
+              watermark; upgrade to Pro to remove it.
             </p>
           </div>
 
@@ -592,7 +846,7 @@ export default function YouTubeThumbnailPage() {
                 },
                 {
                   q: "Is this YouTube thumbnail maker really free?",
-                  a: "Yes, completely free. No account required, no watermark on the exported file, no daily limits. Download as many thumbnails as you need.",
+                  a: "Yes, completely free. No account required, no daily limits. Free downloads include a small watermark — upgrade to Pro to remove it. Download as many thumbnails as you need.",
                 },
                 {
                   q: "Can I use my own photo as a background?",
@@ -628,7 +882,7 @@ export default function YouTubeThumbnailPage() {
                 },
                 {
                   q: "What is the best free YouTube thumbnail maker?",
-                  a: "The best free YouTube thumbnail maker depends on your needs. If you want full template customization with no watermark, no sign-up, and instant download — this tool is built for exactly that. It runs 100% in your browser, exports at the correct 1280×720px size, and has zero limits on how many thumbnails you create.",
+                  a: "The best free YouTube thumbnail maker depends on your needs. If you want full template customization with no sign-up, and instant download — this tool is built for exactly that. It runs 100% in your browser, exports at the correct 1280×720px size, and has zero limits on how many thumbnails you create.",
                 },
               ].map((item) => (
                 <FAQItem key={item.q} question={item.q} answer={item.a} />
