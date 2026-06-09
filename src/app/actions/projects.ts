@@ -2,7 +2,6 @@
 
 import { currentUser } from "@clerk/nextjs/server";
 import { createServerClient } from "@/lib/supabase/server";
-import { revalidatePath } from "next/cache";
 
 const FREE_PROJECT_LIMIT = 3;
 
@@ -74,11 +73,6 @@ export async function saveProject(
     .single();
 
   if (error) return { error: error.message };
-  try {
-    revalidatePath("/dashboard");
-  } catch {
-    /* non-fatal */
-  }
   return { id: data.id };
 }
 
@@ -105,7 +99,6 @@ export async function updateProject(
     .eq("user_id", dbUser.id);
 
   if (error) return { error: error.message };
-  revalidatePath("/dashboard");
   return { ok: true };
 }
 
@@ -124,7 +117,6 @@ export async function deleteProject(id: string) {
     .eq("user_id", dbUser.id);
 
   if (error) return { error: error.message };
-  revalidatePath("/dashboard");
   return { ok: true };
 }
 
