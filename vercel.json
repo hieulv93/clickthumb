@@ -1,5 +1,8 @@
 {
-  "outputDirectory": "out",
+  "framework": "nextjs",
+  "buildCommand": "next build",
+  "outputDirectory": ".next",
+  "regions": ["sin1"],
   "redirects": [
     {
       "source": "/gaming",
