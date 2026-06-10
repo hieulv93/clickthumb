@@ -235,18 +235,27 @@ export default function CanvasEditor({
       if (initialJson) {
         await new Promise<void>((resolve) => {
           canvas.loadFromJSON(JSON.parse(initialJson), () => {
-            // Blob URLs were compressed to max 1280px before saving, so the
-            // loaded image's natural dims differ from the original. The stored
-            // scaleX/scaleY was calculated against the original dims, so it is
-            // now wrong. Recalculate cover-scale from actual loaded dimensions.
+            // Blob URLs were compressed to max 1280px before saving. Fabric's
+            // _renderFill draws at min(obj.width, el.naturalWidth) in local
+            // space — so if obj.width=3840 but element=1280px, only ~33% renders.
+            // Fix: sync obj.width/height to element's actual dims, then
+            // recalculate cover scale from those real dimensions.
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             canvas.getObjects().forEach((obj: any) => {
               if (obj.type !== "image") return;
-              const cs = Math.max(displayW / obj.width, displayH / obj.height);
-              obj.scale(cs);
+              const el = obj._element;
+              if (!el) return;
+              const natW = el.naturalWidth || el.width;
+              const natH = el.naturalHeight || el.height;
+              if (!natW || !natH) return;
+              obj.width = natW;
+              obj.height = natH;
+              const cs = Math.max(displayW / natW, displayH / natH);
+              obj.scaleX = cs;
+              obj.scaleY = cs;
               obj.set({
-                left: (displayW - obj.getScaledWidth()) / 2,
-                top: (displayH - obj.getScaledHeight()) / 2,
+                left: (displayW - natW * cs) / 2,
+                top: (displayH - natH * cs) / 2,
               });
               obj.setCoords();
             });
