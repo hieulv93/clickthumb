@@ -23,6 +23,7 @@ interface CanvasEditorProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onGetJson?: (fn: () => Promise<any>) => void;
   onGetPreview?: (fn: () => string) => void;
+  onBgImageRestored?: (dataUrl: string) => void;
 }
 
 export default function CanvasEditor({
@@ -42,10 +43,12 @@ export default function CanvasEditor({
   initialJson,
   onGetJson,
   onGetPreview,
+  onBgImageRestored,
 }: CanvasEditorProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const fabricRef = useRef<any>(null);
+  const loadedFromJsonRef = useRef(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const textsRef = useRef<string[]>(texts);
   useEffect(() => {
@@ -232,6 +235,33 @@ export default function CanvasEditor({
       if (initialJson) {
         await new Promise<void>((resolve) => {
           canvas.loadFromJSON(JSON.parse(initialJson), () => {
+            // Blob URLs were compressed to max 1280px before saving, so the
+            // loaded image's natural dims differ from the original. The stored
+            // scaleX/scaleY was calculated against the original dims, so it is
+            // now wrong. Recalculate cover-scale from actual loaded dimensions.
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            canvas.getObjects().forEach((obj: any) => {
+              if (obj.type !== "image") return;
+              const cs = Math.max(displayW / obj.width, displayH / obj.height);
+              obj.scale(cs);
+              obj.set({
+                left: (displayW - obj.getScaledWidth()) / 2,
+                top: (displayH - obj.getScaledHeight()) / 2,
+              });
+              obj.setCoords();
+            });
+            // Notify parent so BgImageUpload shows "Background image set" state.
+            // Set the flag first so the template-change effect doesn't fire and
+            // wipe the canvas when bgImageUrl propagates back down.
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const firstImg = canvas
+              .getObjects()
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              .find((o: any) => o.type === "image") as any;
+            if (firstImg?.src?.startsWith("data:")) {
+              loadedFromJsonRef.current = true;
+              onBgImageRestored?.(firstImg.src);
+            }
             canvas.renderAll();
             resolve();
           });
@@ -330,6 +360,13 @@ export default function CanvasEditor({
   }, [bgColor]);
 
   useEffect(() => {
+    // When a project was just loaded from JSON, bgImageUrl propagating down
+    // changes applyTemplate (closure dep) and would trigger this effect,
+    // clearing the canvas. Suppress it once and let subsequent changes through.
+    if (loadedFromJsonRef.current) {
+      loadedFromJsonRef.current = false;
+      return;
+    }
     const canvas = fabricRef.current;
     if (!canvas || !template) return;
     (async () => {

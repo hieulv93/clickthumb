@@ -192,6 +192,10 @@ export default function CanvasToolClient({
     getPreviewFnRef.current = fn;
   }, []);
 
+  const handleBgImageRestored = useCallback((dataUrl: string) => {
+    setBgImageUrl(dataUrl);
+  }, []);
+
   const handleSave = useCallback(async () => {
     if (!saveTitle.trim()) return;
     const getJson = getJsonFnRef.current;
@@ -495,6 +499,7 @@ export default function CanvasToolClient({
                   initialJson={loadedProjectJson}
                   onGetJson={handleGetJson}
                   onGetPreview={handleGetPreview}
+                  onBgImageRestored={handleBgImageRestored}
                 />
               )}
             </Suspense>
