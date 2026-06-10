@@ -275,11 +275,32 @@ export default function CanvasEditor({
               try {
                 const res = await fetch(obj.src);
                 const blob = await res.blob();
+                // Resize + compress to JPEG ≤1280px so base64 stays under Vercel's 4.5MB body limit
                 obj.src = await new Promise<string>((resolve, reject) => {
-                  const reader = new FileReader();
-                  reader.onload = () => resolve(reader.result as string);
-                  reader.onerror = reject;
-                  reader.readAsDataURL(blob);
+                  const img = new Image();
+                  const tempUrl = URL.createObjectURL(blob);
+                  img.onload = () => {
+                    const MAX = 1280;
+                    let w = img.naturalWidth;
+                    let h = img.naturalHeight;
+                    if (w > MAX || h > MAX) {
+                      const scale = MAX / Math.max(w, h);
+                      w = Math.round(w * scale);
+                      h = Math.round(h * scale);
+                    }
+                    const offscreen = document.createElement("canvas");
+                    offscreen.width = w;
+                    offscreen.height = h;
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                    offscreen.getContext("2d")!.drawImage(img, 0, 0, w, h);
+                    URL.revokeObjectURL(tempUrl);
+                    resolve(offscreen.toDataURL("image/jpeg", 0.8));
+                  };
+                  img.onerror = () => {
+                    URL.revokeObjectURL(tempUrl);
+                    reject(new Error("img load failed"));
+                  };
+                  img.src = tempUrl;
                 });
               } catch {
                 // blob URL already revoked — skip, image won't restore
