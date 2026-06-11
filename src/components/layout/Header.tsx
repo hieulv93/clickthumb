@@ -1,27 +1,30 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
 
 const navLinks = [
-  { href: '/youtube-thumbnail-maker', label: 'YouTube' },
-  { href: '/tiktok-thumbnail-maker', label: 'TikTok' },
-  { href: '/gaming-thumbnail-maker', label: 'Gaming' },
-  { href: '/instagram-post-maker', label: 'Instagram' },
-  { href: '/twitter-header-maker', label: 'Twitter' },
-  { href: '/linkedin-banner-maker', label: 'LinkedIn' },
-  { href: '/blog', label: 'Blog' },
-]
+  { href: "/youtube-thumbnail-maker", label: "YouTube" },
+  { href: "/tiktok-thumbnail-maker", label: "TikTok" },
+  { href: "/gaming-thumbnail-maker", label: "Gaming" },
+  { href: "/instagram-post-maker", label: "Instagram" },
+  { href: "/twitter-header-maker", label: "Twitter" },
+  { href: "/linkedin-banner-maker", label: "LinkedIn" },
+  { href: "/blog", label: "Blog" },
+];
 
 export default function Header() {
-  const pathname = usePathname()
+  const pathname = usePathname();
+  const { isLoaded, isSignedIn } = useUser();
 
   return (
     <header className="w-full border-b border-border bg-white sticky top-0 z-10">
-      <div className="max-w-3xl mx-auto px-4 py-3 sm:h-14 sm:py-0 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+      <div className="max-w-5xl mx-auto px-4 h-14 flex items-center gap-3">
+        {/* Logo — shrink-0 so it never gets squeezed */}
         <Link
           href="/"
-          className="flex items-center gap-2 font-bold text-text-main hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+          className="shrink-0 flex items-center gap-2 font-bold text-text-main hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
           aria-label="ClickThumb - Home"
         >
           <svg
@@ -34,14 +37,14 @@ export default function Header() {
             strokeLinejoin="round"
             aria-hidden="true"
           >
-            {/* Thumbnail frame — landscape, fills icon */}
             <rect x="2" y="5" width="20" height="14" rx="2" />
-            {/* Title text line */}
             <line x1="4" y1="8.5" x2="15" y2="8.5" strokeWidth="1.5" />
-            {/* Subtitle text line */}
             <line x1="4" y1="11.5" x2="11" y2="11.5" strokeWidth="1" />
-            {/* Play button — bottom right inside frame */}
-            <path d="M15 12 L15 18 L21 15 Z" fill="currentColor" stroke="none" />
+            <path
+              d="M15 12 L15 18 L21 15 Z"
+              fill="currentColor"
+              stroke="none"
+            />
           </svg>
           <span className="flex flex-col leading-tight">
             <span className="text-sm sm:text-base font-bold">ClickThumb</span>
@@ -51,29 +54,68 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav aria-label="Main navigation">
-          <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm sm:flex-nowrap sm:gap-3">
-            {navLinks.map(({ href, label }) => {
-              const isActive = pathname === href || pathname === href + '/'
-              return (
-                <li key={href}>
-                  <Link
-                    href={href}
-                    aria-current={isActive ? 'page' : undefined}
-                    className={`transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1 py-1 ${
-                      isActive
-                        ? 'text-primary font-semibold'
-                        : 'text-text-muted hover:text-primary'
-                    }`}
-                  >
-                    {label}
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
-        </nav>
+        {/* Nav — scrolls horizontally, tool links only (Dashboard moved to auth area) */}
+        <div className="relative flex-1 min-w-0">
+          <nav
+            className="overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            aria-label="Main navigation"
+          >
+            <ul className="flex flex-nowrap gap-x-1 text-sm">
+              {navLinks.map(({ href, label }) => {
+                const isActive = pathname === href || pathname === href + "/";
+                return (
+                  <li key={href} className="shrink-0">
+                    <Link
+                      href={href}
+                      aria-current={isActive ? "page" : undefined}
+                      className={`transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-2 py-1 whitespace-nowrap block ${
+                        isActive
+                          ? "text-primary font-semibold"
+                          : "text-text-muted hover:text-primary"
+                      }`}
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+          {/* Gradient fade hint — indicates more links to the right */}
+          <div
+            className="absolute right-0 top-0 h-full w-6 bg-gradient-to-l from-white to-transparent pointer-events-none"
+            aria-hidden="true"
+          />
+        </div>
+
+        {/* Auth + Dashboard — shrink-0, always visible */}
+        <div className="shrink-0 flex items-center gap-2">
+          {isLoaded && isSignedIn && (
+            <Link
+              href="/dashboard"
+              aria-current={pathname === "/dashboard" ? "page" : undefined}
+              className={`transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-2 py-1 whitespace-nowrap text-sm ${
+                pathname === "/dashboard"
+                  ? "text-primary font-semibold"
+                  : "text-text-muted hover:text-primary"
+              }`}
+            >
+              Dashboard
+            </Link>
+          )}
+          {!isLoaded ? (
+            <div className="w-16 h-7 rounded-lg bg-gray-100 animate-pulse" />
+          ) : isSignedIn ? (
+            <UserButton />
+          ) : (
+            <SignInButton mode="redirect">
+              <button className="px-3 py-1.5 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary-hover transition-colors whitespace-nowrap">
+                Sign in
+              </button>
+            </SignInButton>
+          )}
+        </div>
       </div>
     </header>
-  )
+  );
 }

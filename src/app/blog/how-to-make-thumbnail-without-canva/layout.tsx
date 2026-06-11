@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
 const SITE_URL = "https://click-thumb.com";
 const PAGE_URL = `${SITE_URL}/blog/how-to-make-thumbnail-without-canva/`;
@@ -7,12 +7,12 @@ const OG_IMAGE = `${SITE_URL}/og-image.png`;
 export const metadata: Metadata = {
   title: "How to Make a Thumbnail Without Canva (Free, 2026)",
   description:
-    "Make YouTube and social media thumbnails without Canva — no subscription, no watermark, no account. Free browser-based tool with platform-correct sizes built in.",
+    "Make YouTube and social media thumbnails without Canva — no subscription, no account. Free browser-based tool with platform-correct sizes built in.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "How to Make a Thumbnail Without Canva (Free, 2026)",
     description:
-      "Skip the Canva subscription. Make thumbnails free in your browser — correct platform sizes, ready-made templates, no watermark.",
+      "Skip the Canva subscription. Make thumbnails free in your browser — correct platform sizes, ready-made templates.",
     url: PAGE_URL,
     images: [{ url: OG_IMAGE, width: 1200, height: 630 }],
     type: "article",
@@ -64,7 +64,7 @@ const jsonLd = {
           name: "Can I make thumbnails without Canva?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes. Browser-based thumbnail makers like ClickThumb work without any account or subscription. You get a canvas pre-sized to 1280×720px for YouTube, templates to start from, text and background controls, and direct download — no watermark, no sign-up.",
+            text: "Yes. Browser-based thumbnail makers like ClickThumb work without any account or subscription. You get a canvas pre-sized to 1280×720px for YouTube, templates to start from, text and background controls, and direct download — no sign-up.",
           },
         },
         {

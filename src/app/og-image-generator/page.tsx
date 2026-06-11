@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import CanvasToolClient from "@/components/canvas/CanvasToolClient";
 import Breadcrumb from "@/components/layout/Breadcrumb";
@@ -46,7 +46,7 @@ const jsonLd = {
           name: "Is this OG image generator free?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes, completely free. No account required, no watermark. Download your OG image instantly.",
+            text: "Yes, completely free. No account required. Free downloads include a small watermark — upgrade to Pro to remove it. Download your OG image instantly.",
           },
         },
         {
@@ -378,7 +378,7 @@ export default function OgImageGeneratorPage() {
                     },
                     {
                       q: "Is this OG image generator free?",
-                      a: "Yes, completely free. No account required, no watermark. Download instantly.",
+                      a: "Yes, completely free. No account required. Free downloads include a small watermark — upgrade to Pro to remove it. Download instantly.",
                     },
                     {
                       q: "How do I add an OG image to my website?",

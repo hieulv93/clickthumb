@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import AuthorBox from "@/components/blog/AuthorBox";
 
 export default function HowToMakeYouTubeThumbnailWithoutPhotoshop() {
@@ -375,8 +375,8 @@ export default function HowToMakeYouTubeThumbnailWithoutPhotoshop() {
                   a: "Only change your style when your CTR drops and stays low for 2–3 weeks despite consistent upload quality. Changing style too often prevents viewers from building pattern recognition around your brand.",
                 },
                 {
-                  q: "Is ClickThumb really free with no watermark?",
-                  a: "Yes. ClickThumb exports thumbnails at full resolution with no watermark and no account required. The core tools are free and will stay that way.",
+                  q: "Is ClickThumb really free?",
+                  a: "Yes. ClickThumb exports thumbnails at full resolution with no account required. The core tools are free and will stay that way. Free downloads include a small watermark — upgrade to Pro ($8/month) to download without it.",
                 },
               ].map(({ q, a }) => (
                 <div
@@ -397,9 +397,8 @@ export default function HowToMakeYouTubeThumbnailWithoutPhotoshop() {
             </h2>
             <p className="text-text-muted text-sm leading-relaxed">
               Open ClickThumb&apos;s YouTube Thumbnail Maker — free, no signup,
-              no watermark. The canvas is pre-set to 1280×720. Pick a template,
-              add your title, upload your image, and download in under two
-              minutes.
+              The canvas is pre-set to 1280×720. Pick a template, add your
+              title, upload your image, and download in under two minutes.
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
               <Link

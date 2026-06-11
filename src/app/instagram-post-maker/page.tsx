@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import CanvasToolClient from "@/components/canvas/CanvasToolClient";
 import Breadcrumb from "@/components/layout/Breadcrumb";
@@ -38,7 +38,7 @@ const jsonLd = {
           name: "Is this Instagram post maker free?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes, completely free. No account required, no watermark. Download unlimited Instagram posts.",
+            text: "Yes, completely free. No account required. Free downloads include a small watermark — upgrade to Pro to remove it. Download unlimited Instagram posts.",
           },
         },
         {
@@ -117,7 +117,7 @@ export default function InstagramPostMakerPage() {
               Instagram Post Maker
             </h1>
             <p className="text-text-muted text-sm sm:text-base">
-              Free online — 1080×1080px — no signup, no watermark
+              Free online — 1080×1080px — no signup required
             </p>
           </div>
 
@@ -304,7 +304,7 @@ export default function InstagramPostMakerPage() {
                     },
                     {
                       q: "Is this Instagram post maker free?",
-                      a: "Yes, completely free. No account required, no watermark on the downloaded image. Create and download as many posts as you need.",
+                      a: "Yes, completely free. No account required, Free downloads include a small watermark — upgrade to Pro to remove it. Create and download as many posts as you need.",
                     },
                     {
                       q: "Can I upload my own photo as background?",

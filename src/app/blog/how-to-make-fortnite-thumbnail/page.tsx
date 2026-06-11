@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import AuthorBox from "@/components/blog/AuthorBox";
 
 export default function HowToMakeFortniteThumbnail() {
@@ -135,7 +135,7 @@ export default function HowToMakeFortniteThumbnail() {
                 ClickThumb&apos;s Fortnite Thumbnail Maker
               </Link>{" "}
               opens at 1280×720 with Fortnite-styled templates ready. No signup,
-              no watermark.
+              small watermark on free downloads.
             </p>
             <div className="space-y-3">
               {[
@@ -361,7 +361,7 @@ export default function HowToMakeFortniteThumbnail() {
               Make Your Fortnite Thumbnail Now
             </h2>
             <p className="text-text-muted text-sm leading-relaxed">
-              Free, no signup, no watermark. Canvas pre-set to 1280×720 with
+              Free, no signup required. Canvas pre-set to 1280×720 with
               Fortnite-style templates. Edit text, upload your background,
               download in two minutes.
             </p>

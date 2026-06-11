@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import CanvasToolClient from "@/components/canvas/CanvasToolClient";
 import Breadcrumb from "@/components/layout/Breadcrumb";
@@ -62,7 +62,7 @@ const jsonLd = {
           name: "Is this Twitch banner maker free?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes, completely free. No account required, no watermark on the downloaded file, no limits. Download as many Twitch banners as you need.",
+            text: "Yes, completely free. No account required, no limits. Free downloads include a small watermark — upgrade to Pro to remove it. Download as many Twitch banners as you need.",
           },
         },
         {
@@ -117,7 +117,7 @@ export default function TwitchBannerMakerPage() {
               Twitch Offline Banner Maker
             </h1>
             <p className="text-text-muted text-sm sm:text-base">
-              Free online — 1920×1080px offline screen — no signup, no watermark
+              Free online — 1920×1080px offline screen — no signup required
             </p>
           </div>
 
@@ -332,7 +332,7 @@ export default function TwitchBannerMakerPage() {
                     },
                     {
                       q: "Is this Twitch banner maker free?",
-                      a: "Yes, completely free. No account required, no watermark on the downloaded file, no daily limits.",
+                      a: "Yes, completely free. No account required, no daily limits. Free downloads include a small watermark — upgrade to Pro to remove it.",
                     },
                     {
                       q: "Can I use my own image as the background?",

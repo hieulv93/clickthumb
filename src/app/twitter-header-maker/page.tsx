@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import CanvasToolClient from "@/components/canvas/CanvasToolClient";
 import Breadcrumb from "@/components/layout/Breadcrumb";
@@ -38,7 +38,7 @@ const jsonLd = {
           name: "Is this Twitter header maker free?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes, completely free. No account required, no watermark. Download your Twitter header instantly.",
+            text: "Yes, completely free. No account required. Free downloads include a small watermark — upgrade to Pro to remove it. Download your Twitter header instantly.",
           },
         },
         {
@@ -117,7 +117,7 @@ export default function TwitterHeaderMakerPage() {
               Twitter Header Maker
             </h1>
             <p className="text-text-muted text-sm sm:text-base">
-              Free online — 1500×500px — no signup, no watermark
+              Free online — 1500×500px — no signup required
             </p>
           </div>
 
@@ -368,7 +368,7 @@ export default function TwitterHeaderMakerPage() {
                     },
                     {
                       q: "Is this Twitter header maker free?",
-                      a: "Yes, completely free. No account required, no watermark. Download your header instantly.",
+                      a: "Yes, completely free. No account required. Free downloads include a small watermark — upgrade to Pro to remove it. Download your header instantly.",
                     },
                     {
                       q: "How do I upload a new Twitter header?",

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import CanvasToolClient from "@/components/canvas/CanvasToolClient";
 import Breadcrumb from "@/components/layout/Breadcrumb";
@@ -38,7 +38,7 @@ const jsonLd = {
           name: "Is this YouTube banner maker free?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes, completely free. No account required, no watermark. Download your YouTube channel art instantly.",
+            text: "Yes, completely free. No account required. Free downloads include a small watermark — upgrade to Pro to remove it. Download your YouTube channel art instantly.",
           },
         },
         {
@@ -117,7 +117,7 @@ export default function YoutubeBannerMakerPage() {
               YouTube Banner Maker
             </h1>
             <p className="text-text-muted text-sm sm:text-base">
-              Free online — 2560×1440px channel art — no signup, no watermark
+              Free online — 2560×1440px channel art — no signup required
             </p>
           </div>
 
@@ -319,7 +319,7 @@ export default function YoutubeBannerMakerPage() {
                     },
                     {
                       q: "Is this YouTube banner maker free?",
-                      a: "Yes, completely free. No account required, no watermark. Download your YouTube channel art instantly.",
+                      a: "Yes, completely free. No account required. Free downloads include a small watermark — upgrade to Pro to remove it. Download your YouTube channel art instantly.",
                     },
                     {
                       q: "How do I upload a YouTube banner?",

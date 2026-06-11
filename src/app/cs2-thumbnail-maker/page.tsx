@@ -1,4 +1,4 @@
-import CanvasToolClient from "@/components/canvas/CanvasToolClient";
+﻿import CanvasToolClient from "@/components/canvas/CanvasToolClient";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import FAQItem from "@/components/tool/FAQItem";
 import { PLATFORMS } from "@/lib/platforms";
@@ -52,7 +52,7 @@ const jsonLd = {
           name: "Is this CS2 thumbnail maker free?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes, completely free. No account required, no watermark. Create and download unlimited CS2 thumbnails for your Counter-Strike YouTube channel.",
+            text: "Yes, completely free. No account required. Free downloads include a small watermark — upgrade to Pro to remove it. Create and download unlimited CS2 thumbnails for your Counter-Strike YouTube channel.",
           },
         },
         {
@@ -131,7 +131,7 @@ export default function CS2ThumbnailMakerPage() {
               CS2 Thumbnail Maker
             </h1>
             <p className="text-text-muted text-sm sm:text-base">
-              Free online — 1280×720px — no signup, no watermark
+              Free online — 1280×720px — no signup required
             </p>
           </div>
 
@@ -384,7 +384,7 @@ export default function CS2ThumbnailMakerPage() {
                     },
                     {
                       q: "Is this CS2 thumbnail maker free?",
-                      a: "Yes, completely free. No account, no watermark. Download unlimited thumbnails.",
+                      a: "Yes, completely free. No account required. Free downloads include a small watermark — upgrade to Pro to remove it. Download unlimited thumbnails.",
                     },
                     {
                       q: "What colors work best for CS2 thumbnails?",

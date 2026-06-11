@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
 const SITE_URL = "https://click-thumb.com";
 const PAGE_URL = `${SITE_URL}/youtube-thumbnail-maker/`;
@@ -7,10 +7,10 @@ const OG_IMAGE = `${SITE_URL}/og-image.png`;
 export const metadata: Metadata = {
   title: "Free YouTube Thumbnail Maker — Create Thumbnails Online, No Signup",
   description:
-    "Create professional YouTube thumbnails at 1280×720px free online. No Photoshop needed — choose a template, add bold text, upload your photo. No signup, no watermark.",
+    "Create professional YouTube thumbnails at 1280×720px free online. No Photoshop needed — choose a template, add bold text, upload your photo. no signup required.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Free YouTube Thumbnail Maker — No Signup, No Watermark",
+    title: "Free YouTube Thumbnail Maker — no signup required",
     description:
       "Create pro YouTube thumbnails at 1280×720px. Templates, custom text, instant download. No Photoshop or account needed.",
     url: PAGE_URL,
@@ -57,7 +57,7 @@ const jsonLd = {
           name: "Is this YouTube thumbnail maker really free?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes, completely free. No account required, no watermark on the exported file, no daily limits. Download as many thumbnails as you need.",
+            text: "Yes, completely free. No account required, no daily limits. Free downloads include a small watermark — upgrade to Pro to remove it. Download as many thumbnails as you need.",
           },
         },
         {
@@ -129,7 +129,7 @@ const jsonLd = {
           name: "What is the best free YouTube thumbnail maker?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "The best free YouTube thumbnail maker depends on your needs. If you want full template customization with no watermark, no sign-up, and instant download — this tool is built for exactly that. It runs 100% in your browser, exports at the correct 1280×720px size, and has zero limits on how many thumbnails you create.",
+            text: "The best free YouTube thumbnail maker depends on your needs. If you want full template customization with no sign-up, and instant download — this tool is built for exactly that. It runs 100% in your browser, exports at the correct 1280×720px size, and has zero limits on how many thumbnails you create.",
           },
         },
       ],

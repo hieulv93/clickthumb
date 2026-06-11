@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import AuthorBox from "@/components/blog/AuthorBox";
 import Link from "next/link";
 
@@ -382,7 +382,7 @@ export default function LinkedInBannerSizeGuide() {
               Make Your LinkedIn Banner Now
             </h2>
             <p className="text-text-muted text-sm leading-relaxed">
-              Free, no signup, no watermark. Canvas pre-set to 1584×396 with
+              Free, no signup required. Canvas pre-set to 1584×396 with
               professional templates. Design your banner and download in under
               two minutes.
             </p>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import CanvasToolClient from "@/components/canvas/CanvasToolClient";
 import Breadcrumb from "@/components/layout/Breadcrumb";
@@ -38,7 +38,7 @@ const jsonLd = {
           name: "Is this Facebook cover maker free?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes, completely free. No account required, no watermark on downloads.",
+            text: "Yes, completely free. No account required. Free downloads include a small watermark — upgrade to Pro to remove it.",
           },
         },
         {
@@ -117,7 +117,7 @@ export default function FacebookCoverMakerPage() {
               Facebook Cover Maker
             </h1>
             <p className="text-text-muted text-sm sm:text-base">
-              Free online — 851×315px — no signup, no watermark
+              Free online — 851×315px — no signup required
             </p>
           </div>
 
@@ -383,7 +383,7 @@ export default function FacebookCoverMakerPage() {
                     },
                     {
                       q: "Is this Facebook cover maker free?",
-                      a: "Yes, completely free. No account required, no watermark on downloads. Create and download unlimited Facebook cover photos.",
+                      a: "Yes, completely free. No account required. Free downloads include a small watermark — upgrade to Pro to remove it. Create and download unlimited Facebook cover photos.",
                     },
                     {
                       q: "How do I change my Facebook cover photo?",

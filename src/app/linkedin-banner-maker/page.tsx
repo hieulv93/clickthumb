@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import CanvasToolClient from "@/components/canvas/CanvasToolClient";
 import Breadcrumb from "@/components/layout/Breadcrumb";
@@ -38,7 +38,7 @@ const jsonLd = {
           name: "Is this LinkedIn banner maker free?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes, completely free. No account required, no watermark. Download your LinkedIn banner instantly.",
+            text: "Yes, completely free. No account required. Free downloads include a small watermark — upgrade to Pro to remove it. Download your LinkedIn banner instantly.",
           },
         },
         {
@@ -117,7 +117,7 @@ export default function LinkedInBannerMakerPage() {
               LinkedIn Banner Maker
             </h1>
             <p className="text-text-muted text-sm sm:text-base">
-              Free online — 1584×396px — no signup, no watermark
+              Free online — 1584×396px — no signup required
             </p>
           </div>
 
@@ -375,7 +375,7 @@ export default function LinkedInBannerMakerPage() {
                     },
                     {
                       q: "Is this LinkedIn banner maker free?",
-                      a: "Yes, completely free. No account required, no watermark. Download instantly.",
+                      a: "Yes, completely free. No account required. Free downloads include a small watermark — upgrade to Pro to remove it. Download instantly.",
                     },
                     {
                       q: "How do I upload my LinkedIn banner?",

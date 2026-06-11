@@ -1,4 +1,4 @@
-import CanvasToolClient from "@/components/canvas/CanvasToolClient";
+﻿import CanvasToolClient from "@/components/canvas/CanvasToolClient";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import FAQItem from "@/components/tool/FAQItem";
 import { PLATFORMS } from "@/lib/platforms";
@@ -36,7 +36,7 @@ const jsonLd = {
           name: "Is this Roblox thumbnail maker free?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes, completely free. No account required, no watermark. Create and download unlimited Roblox thumbnails for your YouTube channel.",
+            text: "Yes, completely free. No account required. Free downloads include a small watermark — upgrade to Pro to remove it. Create and download unlimited Roblox thumbnails for your YouTube channel.",
           },
         },
         {
@@ -115,7 +115,7 @@ export default function RobloxThumbnailMakerPage() {
               Roblox Thumbnail Maker
             </h1>
             <p className="text-text-muted text-sm sm:text-base">
-              Free online — 1280×720px — no signup, no watermark
+              Free online — 1280×720px — no signup required
             </p>
           </div>
 
@@ -468,7 +468,7 @@ export default function RobloxThumbnailMakerPage() {
                     },
                     {
                       q: "Is this Roblox thumbnail maker free?",
-                      a: "Yes, completely free. No account, no watermark. Download unlimited Roblox thumbnails.",
+                      a: "Yes, completely free. No account required. Free downloads include a small watermark — upgrade to Pro to remove it. Download unlimited Roblox thumbnails.",
                     },
                     {
                       q: "What makes a good Roblox thumbnail?",

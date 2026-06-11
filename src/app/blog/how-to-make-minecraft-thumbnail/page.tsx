@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import AuthorBox from "@/components/blog/AuthorBox";
 
 export default function HowToMakeMinecraftThumbnailPage() {
@@ -391,7 +391,7 @@ export default function HowToMakeMinecraftThumbnailPage() {
                 ClickThumb&apos;s Minecraft Thumbnail Maker
               </Link>{" "}
               has Minecraft-style templates, pixel art backgrounds, and bold
-              fonts pre-loaded. No Photoshop, no signup, no watermark.
+              fonts pre-loaded. No Photoshop, no signup required.
             </p>
             <div className="space-y-3">
               {[

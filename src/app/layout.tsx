@@ -4,6 +4,7 @@ import "./globals.css";
 import Script from "next/script";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -84,36 +85,38 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="font-sans antialiased bg-white text-text-main flex flex-col min-h-screen">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }}
-        />
-        <Header />
-        <div className="flex-1 flex flex-col">{children}</div>
-        <Footer />
-        {ADSENSE_ID && (
-          <Script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
-            crossOrigin="anonymous"
-            strategy="lazyOnload"
-            id="adsense-script"
+    <ClerkProvider>
+      <html lang="en" className={inter.variable}>
+        <body className="font-sans antialiased bg-white text-text-main flex flex-col min-h-screen">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }}
           />
-        )}
-        {GA_ID && (
-          <>
+          <Header />
+          <div className="flex-1 flex flex-col">{children}</div>
+          <Footer />
+          {ADSENSE_ID && (
             <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              async
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
+              crossOrigin="anonymous"
               strategy="lazyOnload"
+              id="adsense-script"
             />
-            <Script id="ga4-init" strategy="lazyOnload">
-              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}
-            </Script>
-          </>
-        )}
-      </body>
-    </html>
+          )}
+          {GA_ID && (
+            <>
+              <Script
+                src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+                strategy="lazyOnload"
+              />
+              <Script id="ga4-init" strategy="lazyOnload">
+                {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}
+              </Script>
+            </>
+          )}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

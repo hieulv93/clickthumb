@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 const tools = [
   {
@@ -106,7 +106,7 @@ const tools = [
   {
     href: "/facebook-cover-maker",
     title: "Facebook Cover Maker",
-    desc: "Design a Facebook cover photo at 851×315px. Free, no watermark.",
+    desc: "Design a Facebook cover photo at 851×315px. Free.",
     badge: "150K searches/mo",
   },
   {
@@ -130,12 +130,18 @@ export default function HomePage() {
         {/* Hero */}
         <div className="text-center space-y-4">
           <h1 className="text-3xl sm:text-4xl font-bold text-text-main leading-tight">
-            Free YouTube Thumbnail Maker &amp; Social Image Creator
+            YouTube Thumbnail Maker &amp; Social Image Creator
           </h1>
           <p className="text-text-muted text-base sm:text-lg max-w-xl mx-auto">
             Create platform-perfect images in seconds — YouTube thumbnails,
-            Instagram posts, Twitter headers, and more. No signup, no watermark,
-            100% free.
+            Instagram posts, Twitter headers, and more. Free to use, no signup.{" "}
+            <Link
+              href="/upgrade"
+              className="text-primary hover:underline font-medium"
+            >
+              Pro
+            </Link>{" "}
+            removes watermark and unlocks all templates.
           </p>
           <Link
             href="/youtube-thumbnail-maker"
@@ -174,11 +180,11 @@ export default function HomePage() {
             your uploads are never cropped, stretched, or rejected.
           </p>
           <p>
-            No account to create, no premium element traps, no watermark on
-            exports. Everything runs entirely in your browser. Whether
-            you&apos;re a YouTuber making weekly thumbnails, a gamer who needs
-            Roblox or Fortnite templates, or a business creating social
-            graphics, choose a tool above or{" "}
+            No account to create, no premium element traps on exports.
+            Everything runs entirely in your browser. Whether you&apos;re a
+            YouTuber making weekly thumbnails, a gamer who needs Roblox or
+            Fortnite templates, or a business creating social graphics, choose a
+            tool above or{" "}
             <a
               href="/blog/"
               className="text-primary hover:underline font-medium"
@@ -206,10 +212,11 @@ export default function HomePage() {
             </p>
             <p>
               All creation happens inside your browser. No files are uploaded to
-              a server, no account is required, and there is no watermark on any
-              download. The canvas editor runs on the Web Canvas API, which
-              means it works on any modern device — desktop, tablet, or phone —
-              without installing software.
+              a server, no account is required. Free downloads include a small
+              watermark — Pro users download without watermark. The canvas
+              editor runs on the Web Canvas API, which means it works on any
+              modern device — desktop, tablet, or phone — without installing
+              software.
             </p>
           </div>
 

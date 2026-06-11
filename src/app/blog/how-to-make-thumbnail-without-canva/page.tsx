@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import AuthorBox from "@/components/blog/AuthorBox";
 import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "How to Make a Thumbnail Without Canva — Free Alternatives 2026",
   description:
-    "Make YouTube thumbnails without Canva. Free browser-based tools with no signup, no watermark, no subscription. Faster and simpler for most creators.",
+    "Make YouTube thumbnails without Canva. Free browser-based tools with no signup required, no subscription. Faster and simpler for most creators.",
   alternates: {
     canonical:
       "https://click-thumb.com/blog/how-to-make-thumbnail-without-canva/",
@@ -186,7 +186,7 @@ export default function HowToMakeThumbnailWithoutCanvaPage() {
                 },
                 {
                   step: "5. Export and download",
-                  desc: "Click the Download button. The image saves to your device as a JPG or PNG at the exact platform dimensions. No watermark, no account, no upload to any server.",
+                  desc: "Click the Download button. The image saves to your device as a JPG or PNG at the exact platform dimensions. no account, no upload to any server.",
                   link: null,
                 },
               ].map(({ step, desc }) => (
@@ -449,7 +449,7 @@ export default function HowToMakeThumbnailWithoutCanvaPage() {
               {[
                 {
                   q: "Can I make thumbnails without Canva?",
-                  a: "Yes. Browser-based thumbnail makers like ClickThumb work without any account or subscription. You get a canvas pre-sized to the correct platform dimensions, templates to start from, text and background controls, and direct download — no watermark, no sign-up.",
+                  a: "Yes. Browser-based thumbnail makers like ClickThumb work without any account or subscription. You get a canvas pre-sized to the correct platform dimensions, templates to start from, text and background controls, and direct download — no sign-up.",
                 },
                 {
                   q: "What is the best free Canva alternative for thumbnails?",

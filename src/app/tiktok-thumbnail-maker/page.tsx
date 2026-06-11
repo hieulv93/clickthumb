@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import CanvasToolClient from "@/components/canvas/CanvasToolClient";
 import Breadcrumb from "@/components/layout/Breadcrumb";
@@ -38,7 +38,7 @@ const jsonLd = {
           name: "Is this TikTok thumbnail maker free?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes, completely free. No account required, no watermark. Create and download unlimited TikTok covers.",
+            text: "Yes, completely free. No account required. Free downloads include a small watermark — upgrade to Pro to remove it. Create and download unlimited TikTok covers.",
           },
         },
         {
@@ -117,7 +117,7 @@ export default function TikTokThumbnailMakerPage() {
               TikTok Thumbnail Maker
             </h1>
             <p className="text-text-muted text-sm sm:text-base">
-              Free online — 1080×1920px — no signup, no watermark
+              Free online — 1080×1920px — no signup required
             </p>
           </div>
 
@@ -364,7 +364,7 @@ export default function TikTokThumbnailMakerPage() {
                     },
                     {
                       q: "Is this TikTok thumbnail maker free?",
-                      a: "Yes, completely free. No account, no watermark, no limits. Download as many TikTok covers as you need.",
+                      a: "Yes, completely free. No account, no limits. Free downloads include a small watermark — upgrade to Pro to remove it. Download as many TikTok covers as you need.",
                     },
                     {
                       q: "What makes a good TikTok cover image?",

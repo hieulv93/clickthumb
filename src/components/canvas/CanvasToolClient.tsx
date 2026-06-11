@@ -14,6 +14,8 @@ import { getDisplayDimensions, type Platform } from "@/lib/platforms";
 import type { Template } from "@/lib/templates";
 import { triggerDownload } from "@/lib/utils";
 import { analytics } from "@/lib/analytics";
+import Link from "next/link";
+import { useUser } from "@clerk/nextjs";
 import { getUserPlan } from "@/app/actions/plan";
 import { applyWatermark } from "@/lib/watermark";
 import { getProject, saveProject } from "@/app/actions/projects";
@@ -67,6 +69,7 @@ export default function CanvasToolClient({
   const [exportError, setExportError] = useState(false);
   const [format, setFormat] = useState<ExportFormat>("jpeg");
   const [plan, setPlan] = useState<"free" | "pro">("free");
+  const [planLoaded, setPlanLoaded] = useState(false);
 
   // Project load state
   const [loadedProjectJson, setLoadedProjectJson] = useState<string | null>(
@@ -75,17 +78,23 @@ export default function CanvasToolClient({
   const [canvasKey, setCanvasKey] = useState("default");
   const [loadingProject, setLoadingProject] = useState(false);
 
+  const { isSignedIn } = useUser();
+
   // Project save state
   const getJsonFnRef = useRef<(() => Promise<object>) | null>(null);
   const getPreviewFnRef = useRef<(() => string) | null>(null);
   const [showSaveForm, setShowSaveForm] = useState(false);
+  const [showSignInPrompt, setShowSignInPrompt] = useState(false);
   const [saveTitle, setSaveTitle] = useState("");
   const [saving, setSaving] = useState(false);
   const [saveSaved, setSaveSaved] = useState(false);
   const [saveError, setSaveError] = useState("");
 
   useEffect(() => {
-    getUserPlan().then(setPlan);
+    getUserPlan().then((p) => {
+      setPlan(p);
+      setPlanLoaded(true);
+    });
   }, []);
 
   // Load project from ?project=<id> URL param
@@ -120,7 +129,6 @@ export default function CanvasToolClient({
           }
           setLoadedProjectJson(data.canvas_json);
           setCanvasKey(pid); // force CanvasEditor remount with initialJson
-          setSaveTitle(data.title ?? "");
         } catch {
           // Malformed JSON — load default template
         }
@@ -231,7 +239,8 @@ export default function CanvasToolClient({
       } else {
         setSaveSaved(true);
         setShowSaveForm(false);
-        setTimeout(() => setSaveSaved(false), 8000);
+        setSaveTitle("");
+        setTimeout(() => setSaveSaved(false), 2000);
       }
     } catch {
       setSaveError("Save failed. Please try again.");
@@ -299,7 +308,7 @@ export default function CanvasToolClient({
           ))}
         </div>
       )}
-      {plan === "free" && (
+      {planLoaded && plan === "free" && (
         <p className="text-xs text-center text-text-muted mb-2">
           Free downloads include a small watermark —{" "}
           <a
@@ -376,14 +385,24 @@ export default function CanvasToolClient({
 
       {/* Save to My Projects */}
       <div className="mt-2 space-y-1.5">
-        {showSaveForm ? (
+        {showSignInPrompt ? (
+          <div className="w-full flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 text-sm text-gray-600">
+            <Link
+              href="/sign-in"
+              className="text-primary font-medium hover:underline"
+            >
+              Sign in
+            </Link>
+            to save your projects
+          </div>
+        ) : showSaveForm ? (
           <div className="flex gap-2 items-center">
             <input
               type="text"
               value={saveTitle}
               onChange={(e) => setSaveTitle(e.target.value)}
               placeholder="Project name…"
-              className="flex-1 rounded-lg border border-border px-3 py-2 text-sm outline-none focus:border-primary"
+              className="flex-1 rounded-lg border border-border px-3 py-2 text-base sm:text-sm outline-none focus:border-primary"
               onKeyDown={(e) => {
                 if (e.key === "Enter") handleSave();
                 if (e.key === "Escape") setShowSaveForm(false);
@@ -422,7 +441,15 @@ export default function CanvasToolClient({
           </div>
         ) : (
           <button
-            onClick={() => setShowSaveForm(true)}
+            onClick={() => {
+              if (!isSignedIn) {
+                setShowSignInPrompt(true);
+                setTimeout(() => setShowSignInPrompt(false), 5000);
+                return;
+              }
+              setSaveTitle("");
+              setShowSaveForm(true);
+            }}
             className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-border bg-white hover:border-primary hover:text-primary text-sm font-medium text-gray-700 transition-colors"
           >
             <svg
@@ -540,6 +567,7 @@ export default function CanvasToolClient({
               selected={template}
               onSelect={handleTemplateSelect}
               plan={plan}
+              planLoaded={planLoaded}
               freeLimit={FREE_TEMPLATE_LIMIT}
               onUpgrade={() => router.push("/upgrade")}
             />

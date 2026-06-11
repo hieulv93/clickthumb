@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "YouTube Banner Maker — Free Channel Art, 2560×1440px",
   description:
-    "Create YouTube channel art at 2560×1440px free online. Professional banner templates for any channel type. Download instantly, no signup, no watermark.",
+    "Create YouTube channel art at 2560×1440px free online. Professional banner templates for any channel type. Download instantly, no signup required.",
   alternates: { canonical: "https://click-thumb.com/youtube-banner-maker/" },
   openGraph: {
     title: "YouTube Banner Maker — Free Channel Art, 2560×1440px",

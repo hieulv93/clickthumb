@@ -39,11 +39,14 @@ export default function ProjectsSection({ projects, plan }: Props) {
   const [list, setList] = useState(projects);
   const [deleteErrors, setDeleteErrors] = useState<Record<string, string>>({});
   const [showUpgrade, setShowUpgrade] = useState(false);
+  const [deleteConfirm, setDeleteConfirm] = useState<{
+    id: string;
+    title: string;
+  } | null>(null);
 
   async function handleDelete(id: string) {
-    if (!confirm("Delete this project?")) return;
+    setDeleteConfirm(null);
 
-    // Optimistic: remove immediately
     const snapshot = list.find((p) => p.id === id);
     setList((prev) => prev.filter((p) => p.id !== id));
     setDeleteErrors((prev) => {
@@ -56,7 +59,6 @@ export default function ProjectsSection({ projects, plan }: Props) {
     try {
       const result = await deleteProject(id);
       if (result && "error" in result && result.error) {
-        // Restore on server error
         if (snapshot)
           setList((prev) =>
             [snapshot, ...prev].sort(
@@ -88,6 +90,48 @@ export default function ProjectsSection({ projects, plan }: Props) {
 
   return (
     <div className="space-y-3">
+      {/* Delete confirmation modal */}
+      {deleteConfirm && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+          onClick={() => setDeleteConfirm(null)}
+        >
+          <div
+            className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-sm mx-4 space-y-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="space-y-1">
+              <h3 className="font-semibold text-gray-900">Delete project?</h3>
+              <p className="text-sm text-gray-500">
+                &ldquo;{deleteConfirm.title}&rdquo; will be permanently removed.
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setDeleteConfirm(null)}
+                className="flex-1 py-2 rounded-lg border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => handleDelete(deleteConfirm.id)}
+                className="flex-1 py-2 rounded-lg bg-red-600 text-white text-sm font-medium hover:bg-red-700 transition-colors"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="flex items-center justify-between mb-3">
+        <h2 className="font-semibold text-gray-900 sm:text-lg">
+          Saved Projects
+        </h2>
+        <span className="text-xs sm:text-sm text-gray-400">
+          {list.length} / {plan === "pro" ? "∞" : "3"}
+        </span>
+      </div>
       {showUpgrade && <UpgradePrompt reason="project_limit" />}
 
       {list.length === 0 ? (
@@ -96,7 +140,7 @@ export default function ProjectsSection({ projects, plan }: Props) {
           <p className="text-xs text-gray-400">
             Open any tool and click{" "}
             <span className="font-medium text-gray-500">
-              "Save to My Projects"
+              &ldquo;Save to My Projects&rdquo;
             </span>{" "}
             after designing.
           </p>
@@ -126,10 +170,10 @@ export default function ProjectsSection({ projects, plan }: Props) {
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <p className="font-medium text-gray-900 text-sm truncate">
+                  <p className="font-medium text-gray-900 text-sm sm:text-base truncate">
                     {p.title}
                   </p>
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs sm:text-sm text-gray-400">
                     {new Date(p.updated_at).toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",
@@ -142,15 +186,17 @@ export default function ProjectsSection({ projects, plan }: Props) {
                   {openHref && (
                     <Link
                       href={openHref}
-                      className="text-xs text-blue-600 hover:text-blue-700 font-medium transition-colors"
+                      className="text-xs sm:text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors"
                     >
                       Open →
                     </Link>
                   )}
                   <div className="flex flex-col items-end gap-0.5">
                     <button
-                      onClick={() => handleDelete(p.id)}
-                      className="text-xs text-red-400 hover:text-red-600 transition-colors"
+                      onClick={() =>
+                        setDeleteConfirm({ id: p.id, title: p.title })
+                      }
+                      className="text-xs sm:text-sm text-red-400 hover:text-red-600 transition-colors"
                     >
                       Delete
                     </button>

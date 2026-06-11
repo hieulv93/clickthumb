@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
 const SITE_URL = "https://click-thumb.com";
 const PAGE_URL = `${SITE_URL}/blog/how-to-make-youtube-thumbnail-without-photoshop/`;
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "How to Make a YouTube Thumbnail Without Photoshop (Free, 2026)",
     description:
-      "Step-by-step guide to professional YouTube thumbnails — no Photoshop, no cost, no watermark.",
+      "Step-by-step guide to professional YouTube thumbnails — no Photoshop, no cost.",
     url: PAGE_URL,
     siteName: "ClickThumb",
     images: [
@@ -86,7 +86,7 @@ const jsonLd = {
           name: "Can you make YouTube thumbnails without Photoshop?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes. Browser-based tools like ClickThumb create thumbnails at exactly 1280×720px — the correct YouTube size — without any software download or design experience. You get templates, text controls, and direct download with no watermark.",
+            text: "Yes. Browser-based tools like ClickThumb create thumbnails at exactly 1280×720px — the correct YouTube size — without any software download or design experience. You get templates, text controls, and direct download.",
           },
         },
         {
@@ -126,7 +126,7 @@ const jsonLd = {
           name: "Is Canva good for YouTube thumbnails?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Canva works for thumbnails but has trade-offs: many premium templates are locked behind a $15/month subscription, and it's designed as a general tool rather than a thumbnail-specific one. ClickThumb is purpose-built for thumbnails with templates optimized for CTR, pre-set to 1280×720px, and completely free with no watermark.",
+            text: "Canva works for thumbnails but has trade-offs: many premium templates are locked behind a $15/month subscription, and it's designed as a general tool rather than a thumbnail-specific one. ClickThumb is purpose-built for thumbnails with templates optimized for CTR, pre-set to 1280×720px, and free (small watermark on free downloads).",
           },
         },
         {

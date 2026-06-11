@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import AuthorBox from "@/components/blog/AuthorBox";
 
 export default function InstagramPostSizeGuide() {
@@ -391,7 +391,7 @@ export default function InstagramPostSizeGuide() {
               Create Your Instagram Post Now
             </h2>
             <p className="text-text-muted text-sm leading-relaxed">
-              Free, no signup, no watermark. Canvas pre-set to 1080×1080 with
+              Free, no signup required. Canvas pre-set to 1080×1080 with
               Instagram-ready templates. Design your post and download in under
               two minutes.
             </p>

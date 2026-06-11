@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Twitch Offline Banner Maker — Free, 1920×1080, No Signup",
   description:
-    "Create a Twitch offline banner at 1920×1080px free online. Gaming templates, custom text, instant download. No signup, no watermark.",
+    "Create a Twitch offline banner at 1920×1080px free online. Gaming templates, custom text, instant download. no signup required.",
   alternates: { canonical: "https://click-thumb.com/twitch-banner-maker/" },
   openGraph: {
     title: "Twitch Offline Banner Maker — Free, 1920×1080, No Signup",

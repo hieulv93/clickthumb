@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "About ClickThumb — Free Browser-Based Thumbnail Maker",
   description:
-    "Learn about ClickThumb — who built it, why, and our commitment to free, private, instant thumbnail creation. No signup, no watermarks, no uploads.",
+    "Learn about ClickThumb — who built it, why, and our commitment to free, private, instant thumbnail creation. no signup requireds, no uploads.",
   alternates: { canonical: "https://click-thumb.com/about/" },
 };
 
@@ -85,7 +85,7 @@ export default function AboutPage() {
             entirely in your browser, pre-configured for the exact size each
             platform expects, with ready-made templates so you can go from
             nothing to a polished thumbnail in under two minutes — no account
-            required, no watermark, no upload.
+            required, no upload.
           </p>
         </section>
 
@@ -116,8 +116,8 @@ export default function AboutPage() {
               <h3 className="font-semibold text-text-main">Free Forever</h3>
               <p className="text-sm text-text-muted leading-relaxed">
                 The core tools — templates, backgrounds, text, export — are free
-                with no watermarks and no account required. That will not
-                change.
+                with no account required. Free downloads include a small
+                watermark; Pro users download without it. That will not change.
               </p>
             </div>
           </div>

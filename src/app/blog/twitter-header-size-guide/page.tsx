@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import AuthorBox from "@/components/blog/AuthorBox";
 import Link from "next/link";
 
@@ -385,8 +385,8 @@ export default function TwitterHeaderSizeGuide() {
               Make Your Twitter Header Now
             </h2>
             <p className="text-text-muted text-sm leading-relaxed">
-              Free, no signup, no watermark. Canvas pre-set to 1500×500 with
-              safe zone templates. Design your header and download in under two
+              Free, no signup required. Canvas pre-set to 1500×500 with safe
+              zone templates. Design your header and download in under two
               minutes.
             </p>
             <Link
