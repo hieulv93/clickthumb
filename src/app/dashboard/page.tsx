@@ -3,6 +3,24 @@ import { createServerClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import ProjectsSection from "./ProjectsSection";
+import { PLATFORMS } from "@/lib/platforms";
+
+function getOpenHref(
+  id: string,
+  canvasJson: string | null | undefined,
+): string | null {
+  if (!canvasJson) return null;
+  try {
+    const parsed = JSON.parse(canvasJson);
+    const platformId = parsed.platform_id as string | undefined;
+    if (platformId && PLATFORMS[platformId]) {
+      return `${PLATFORMS[platformId].route}?project=${id}`;
+    }
+  } catch {
+    /* malformed JSON */
+  }
+  return null;
+}
 
 async function resolveDbUser(clerkId: string) {
   const supabase = createServerClient();
@@ -114,7 +132,13 @@ export default async function DashboardPage({
       </div>
 
       <section>
-        <ProjectsSection projects={projects ?? []} plan={plan} />
+        <ProjectsSection
+          projects={(projects ?? []).map(({ canvas_json, ...rest }) => ({
+            ...rest,
+            openHref: getOpenHref(rest.id, canvas_json),
+          }))}
+          plan={plan}
+        />
       </section>
 
       <section>

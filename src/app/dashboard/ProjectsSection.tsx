@@ -4,14 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { deleteProject } from "../actions/projects";
 import UpgradePrompt from "./UpgradePrompt";
-import { PLATFORMS } from "@/lib/platforms";
 
 interface Project {
   id: string;
   title: string;
   preview_url: string | null;
   updated_at: string;
-  canvas_json?: string | null;
+  openHref: string | null;
 }
 
 interface Props {
@@ -20,20 +19,6 @@ interface Props {
 }
 
 const FREE_LIMIT = 3;
-
-function getOpenHref(project: Project): string | null {
-  if (!project.canvas_json) return null;
-  try {
-    const parsed = JSON.parse(project.canvas_json);
-    const platformId = parsed.platform_id as string | undefined;
-    if (platformId && PLATFORMS[platformId]) {
-      return `${PLATFORMS[platformId].route}?project=${project.id}`;
-    }
-  } catch {
-    // malformed JSON — no link
-  }
-  return null;
-}
 
 export default function ProjectsSection({ projects, plan }: Props) {
   const [list, setList] = useState(projects);
@@ -148,7 +133,7 @@ export default function ProjectsSection({ projects, plan }: Props) {
       ) : (
         <div className="grid gap-2">
           {list.map((p) => {
-            const openHref = getOpenHref(p);
+            const { openHref } = p;
             return (
               <div
                 key={p.id}
