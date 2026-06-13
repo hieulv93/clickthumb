@@ -18,7 +18,7 @@ import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
 import { getUserPlan } from "@/app/actions/plan";
 import { applyWatermark } from "@/lib/watermark";
-import { getProject, saveProject } from "@/app/actions/projects";
+import { getProject, saveProject, updateProject } from "@/app/actions/projects";
 
 const CanvasEditor = dynamic(() => import("./CanvasEditor"), {
   ssr: false,
@@ -75,6 +75,7 @@ export default function CanvasToolClient({
   const [loadedProjectJson, setLoadedProjectJson] = useState<string | null>(
     null,
   );
+  const [loadedProjectId, setLoadedProjectId] = useState<string | null>(null);
   const [canvasKey, setCanvasKey] = useState("default");
   const [loadingProject, setLoadingProject] = useState(false);
 
@@ -128,6 +129,8 @@ export default function CanvasToolClient({
             if (savedTemplate) setTemplate(savedTemplate);
           }
           setLoadedProjectJson(data.canvas_json);
+          setLoadedProjectId(pid);
+          setSaveTitle(data.title ?? "");
           setCanvasKey(pid); // force CanvasEditor remount with initialJson
         } catch {
           // Malformed JSON — load default template
@@ -221,11 +224,21 @@ export default function CanvasToolClient({
         platform_id: platform.id,
         template_id: template?.id ?? null,
       };
-      const result = await saveProject(
-        saveTitle.trim(),
-        JSON.stringify(withMeta),
-        previewUrl,
-      );
+      let result: { error?: string; id?: string; ok?: boolean };
+      if (loadedProjectId) {
+        result = await updateProject(
+          loadedProjectId,
+          saveTitle.trim(),
+          JSON.stringify(withMeta),
+          previewUrl,
+        );
+      } else {
+        result = await saveProject(
+          saveTitle.trim(),
+          JSON.stringify(withMeta),
+          previewUrl,
+        );
+      }
       if (result.error === "Not authenticated") {
         setSaveError("Sign in to save projects.");
       } else if (result.error === "limit_reached") {
@@ -237,6 +250,7 @@ export default function CanvasToolClient({
       } else if (result.error) {
         setSaveError("Save failed. Please try again.");
       } else {
+        if ("id" in result && result.id) setLoadedProjectId(result.id);
         setSaveSaved(true);
         setShowSaveForm(false);
         setSaveTitle("");

@@ -80,6 +80,7 @@ export async function updateProject(
   id: string,
   title: string,
   canvasJson: string,
+  previewUrl?: string | null,
 ) {
   const user = await currentUser();
   if (!user) return { error: "Not authenticated" };
@@ -94,6 +95,7 @@ export async function updateProject(
       title,
       canvas_json: canvasJson,
       updated_at: new Date().toISOString(),
+      ...(previewUrl !== undefined ? { preview_url: previewUrl } : {}),
     })
     .eq("id", id)
     .eq("user_id", dbUser.id);

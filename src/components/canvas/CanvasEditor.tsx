@@ -248,14 +248,21 @@ export default function CanvasEditor({
               const natW = el.naturalWidth || el.width;
               const natH = el.naturalHeight || el.height;
               if (!natW || !natH) return;
+              // Preserve the user's drag offset relative to center.
+              // obj.width/scaleX here are the values from the saved JSON
+              // (may differ from natW because image was compressed before saving).
+              const oldCenterLeft = (displayW - obj.width * obj.scaleX) / 2;
+              const oldCenterTop = (displayH - obj.height * obj.scaleY) / 2;
+              const dragLeft = obj.left - oldCenterLeft;
+              const dragTop = obj.top - oldCenterTop;
               obj.width = natW;
               obj.height = natH;
               const cs = Math.max(displayW / natW, displayH / natH);
               obj.scaleX = cs;
               obj.scaleY = cs;
               obj.set({
-                left: (displayW - natW * cs) / 2,
-                top: (displayH - natH * cs) / 2,
+                left: (displayW - natW * cs) / 2 + dragLeft,
+                top: (displayH - natH * cs) / 2 + dragTop,
               });
               obj.setCoords();
             });

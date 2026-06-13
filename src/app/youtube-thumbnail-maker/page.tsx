@@ -18,7 +18,7 @@ import { analytics } from "@/lib/analytics";
 import { useUser } from "@clerk/nextjs";
 import { getUserPlan } from "@/app/actions/plan";
 import { applyWatermark } from "@/lib/watermark";
-import { getProject, saveProject } from "@/app/actions/projects";
+import { getProject, saveProject, updateProject } from "@/app/actions/projects";
 import Link from "next/link";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 
@@ -63,6 +63,7 @@ export default function YouTubeThumbnailPage() {
   const [loadedProjectJson, setLoadedProjectJson] = useState<string | null>(
     null,
   );
+  const [loadedProjectId, setLoadedProjectId] = useState<string | null>(null);
   const [canvasKey, setCanvasKey] = useState("default");
   const [loadingProject, setLoadingProject] = useState(false);
 
@@ -114,6 +115,8 @@ export default function YouTubeThumbnailPage() {
             if (savedTemplate) setTemplate(savedTemplate);
           }
           setLoadedProjectJson(data.canvas_json);
+          setLoadedProjectId(pid);
+          setSaveTitle(data.title ?? "");
           setCanvasKey(pid);
         } catch {}
       }
@@ -234,11 +237,21 @@ export default function YouTubeThumbnailPage() {
         platform_id: "youtube",
         template_id: template?.id ?? null,
       };
-      const result = await saveProject(
-        saveTitle.trim(),
-        JSON.stringify(withMeta),
-        previewUrl,
-      );
+      let result: { error?: string; id?: string; ok?: boolean };
+      if (loadedProjectId) {
+        result = await updateProject(
+          loadedProjectId,
+          saveTitle.trim(),
+          JSON.stringify(withMeta),
+          previewUrl,
+        );
+      } else {
+        result = await saveProject(
+          saveTitle.trim(),
+          JSON.stringify(withMeta),
+          previewUrl,
+        );
+      }
       if (result.error === "Not authenticated") {
         setSaveError("Sign in to save projects.");
       } else if (result.error === "limit_reached") {
@@ -250,6 +263,7 @@ export default function YouTubeThumbnailPage() {
       } else if (result.error) {
         setSaveError("Save failed. Please try again.");
       } else {
+        if ("id" in result && result.id) setLoadedProjectId(result.id);
         setSaveSaved(true);
         setShowSaveForm(false);
         setSaveTitle("");
@@ -260,7 +274,7 @@ export default function YouTubeThumbnailPage() {
     } finally {
       setSaving(false);
     }
-  }, [saveTitle, template?.id]);
+  }, [saveTitle, template?.id, loadedProjectId]);
 
   const saveUI = (
     <div className="mt-2 space-y-1.5">
