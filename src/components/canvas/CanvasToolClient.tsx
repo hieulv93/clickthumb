@@ -261,7 +261,7 @@ export default function CanvasToolClient({
     } finally {
       setSaving(false);
     }
-  }, [saveTitle, platform.id, template?.id]);
+  }, [saveTitle, platform.id, template?.id, loadedProjectId]);
 
   const handleExport = useCallback(async () => {
     if (!exportFnRef.current) return;
