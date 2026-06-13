@@ -260,9 +260,17 @@ export default function CanvasEditor({
               const cs = Math.max(displayW / natW, displayH / natH);
               obj.scaleX = cs;
               obj.scaleY = cs;
+              const scaledW = natW * cs;
+              const scaledH = natH * cs;
               obj.set({
-                left: (displayW - natW * cs) / 2 + dragLeft,
-                top: (displayH - natH * cs) / 2 + dragTop,
+                left: Math.max(
+                  displayW - scaledW,
+                  Math.min(0, (displayW - scaledW) / 2 + dragLeft),
+                ),
+                top: Math.max(
+                  displayH - scaledH,
+                  Math.min(0, (displayH - scaledH) / 2 + dragTop),
+                ),
               });
               obj.setCoords();
             });
