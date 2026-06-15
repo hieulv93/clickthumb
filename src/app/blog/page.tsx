@@ -2,6 +2,24 @@
 
 const posts = [
   {
+    slug: "how-to-make-league-of-legends-thumbnail",
+    title: "How to Make a League of Legends Thumbnail (Free, 2026)",
+    description:
+      "Step-by-step guide to making LoL thumbnails that get clicks — correct size, champion showcase strategy, rank climb design, Challenger emblem placement, LoL gold color palette, and text rules.",
+    date: "2026-06-15",
+    readTime: "8 min read",
+    category: "Guide",
+  },
+  {
+    slug: "how-to-make-call-of-duty-thumbnail",
+    title: "How to Make a Call of Duty Thumbnail (Free, 2026)",
+    description:
+      "Complete guide to CoD thumbnails that get clicks — nuke and killstreak design, weapon showcase strategy, Warzone dark cinematic palette vs MW military style, and text rules for every content type.",
+    date: "2026-06-15",
+    readTime: "8 min read",
+    category: "Guide",
+  },
+  {
     slug: "twitch-banner-size-guide",
     title: "Twitch Banner Size Guide 2026: Dimensions, Safe Zones & Tips",
     description:
