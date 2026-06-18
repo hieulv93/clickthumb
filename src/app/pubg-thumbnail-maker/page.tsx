@@ -7,12 +7,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "PUBG Thumbnail Maker — Free Chicken Dinner Templates (2026)",
+  title:
+    "Free PUBG Thumbnail Maker — Chicken Dinner Templates, No Sign-Up (2026)",
   description:
     "Make PUBG thumbnails at 1280×720px in 30 seconds. Chicken Dinner, Night Drop & Military Tan templates. No Photoshop, no account — customize and download free.",
   alternates: { canonical: "https://click-thumb.com/pubg-thumbnail-maker/" },
   openGraph: {
-    title: "PUBG Thumbnail Maker — Free Chicken Dinner Templates (2026)",
+    title:
+      "Free PUBG Thumbnail Maker — Chicken Dinner Templates, No Sign-Up (2026)",
     description:
       "Make PUBG thumbnails at 1280×720px in 30 seconds. Chicken Dinner, Night Drop & Military Tan templates. No Photoshop, no account — customize and download free.",
     url: "https://click-thumb.com/pubg-thumbnail-maker/",

@@ -5,14 +5,16 @@ const PAGE_URL = `${SITE_URL}/blog/social-media-image-sizes/`;
 const OG_IMAGE = `${SITE_URL}/og-image.png`;
 
 export const metadata: Metadata = {
-  title: "Social Media Image Sizes 2026: Every Platform (Cheat Sheet)",
+  title:
+    "Social Media Image Sizes 2026: Instagram, YouTube, TikTok & More [Cheat Sheet]",
   description:
-    "All social media image dimensions for 2026 — Instagram, YouTube, TikTok, Twitter, LinkedIn, Facebook. Free cheat sheet with exact pixel sizes for every post type.",
+    "Exact image dimensions for every platform in 2026 — Instagram (1080×1080), YouTube thumbnail (1280×720), TikTok, LinkedIn, Facebook, Twitter. Free cheat sheet.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Social Media Image Sizes 2026: Every Platform (Cheat Sheet)",
+    title:
+      "Social Media Image Sizes 2026: Instagram, YouTube, TikTok & More [Cheat Sheet]",
     description:
-      "All social media image dimensions for 2026 — Instagram, YouTube, TikTok, Twitter, LinkedIn, Facebook. Exact pixel sizes for every post type.",
+      "Exact image dimensions for every platform in 2026 — Instagram, YouTube, TikTok, LinkedIn, Facebook, Twitter. Pixel sizes for every post type.",
     url: PAGE_URL,
     siteName: "ClickThumb",
     images: [
@@ -28,9 +30,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Social Media Image Sizes 2026: Every Platform (Cheat Sheet)",
+    title:
+      "Social Media Image Sizes 2026: Instagram, YouTube, TikTok & More [Cheat Sheet]",
     description:
-      "All social media image dimensions for 2026 — Instagram, YouTube, TikTok, Twitter, LinkedIn, Facebook. Exact pixel sizes for every post type.",
+      "Exact image dimensions for every platform in 2026 — Instagram, YouTube, TikTok, LinkedIn, Facebook, Twitter. Pixel sizes for every post type.",
     images: [OG_IMAGE],
   },
 };
