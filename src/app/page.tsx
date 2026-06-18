@@ -1,125 +1,125 @@
 ﻿import Link from "next/link";
 
-const tools = [
+const toolGroups = [
   {
-    href: "/youtube-thumbnail-maker",
-    title: "YouTube Thumbnail Maker",
-    desc: "Create eye-catching thumbnails at 1280×720px. Bold text, templates, instant download.",
-    badge: "500K searches/mo",
+    heading: "YouTube Thumbnail Makers",
+    tools: [
+      {
+        href: "/youtube-thumbnail-maker",
+        title: "YouTube Thumbnail Maker",
+        desc: "Create eye-catching thumbnails at 1280×720px. Bold text, templates, instant download.",
+      },
+      {
+        href: "/youtube-banner-maker",
+        title: "YouTube Banner Maker",
+        desc: "Design a channel art banner at 2560×1440px. Looks great on TV, desktop, and mobile.",
+      },
+    ],
   },
   {
-    href: "/gaming-thumbnail-maker",
-    title: "Gaming Thumbnail Maker",
-    desc: "Neon, fire, and cyberpunk templates built for gaming content. 1280×720px.",
-    badge: "300K searches/mo",
+    heading: "Gaming Thumbnail Makers",
+    tools: [
+      {
+        href: "/gaming-thumbnail-maker",
+        title: "Gaming Thumbnail Maker",
+        desc: "Neon, fire, and cyberpunk templates built for gaming content. 1280×720px.",
+      },
+      {
+        href: "/roblox-thumbnail-maker",
+        title: "Roblox Thumbnail Maker",
+        desc: "Roblox Red, Neon Obby, and Rare Item templates for Roblox YouTube creators.",
+      },
+      {
+        href: "/minecraft-thumbnail-maker",
+        title: "Minecraft Thumbnail Maker",
+        desc: "Grass Block, Diamond Mine, and Nether Portal templates for Minecraft creators.",
+      },
+      {
+        href: "/fortnite-thumbnail-maker",
+        title: "Fortnite Thumbnail Maker",
+        desc: "Storm Eye, Zero Point, and Legendary Loot templates for Fortnite content creators.",
+      },
+      {
+        href: "/valorant-thumbnail-maker",
+        title: "Valorant Thumbnail Maker",
+        desc: "Agent Impact, ACE Gold, and Clutch Navy templates for Valorant YouTube creators.",
+      },
+      {
+        href: "/call-of-duty-thumbnail-maker",
+        title: "Call of Duty Thumbnail Maker",
+        desc: "Military Dark, Combat Orange, and Camo Green templates for COD Warzone & MW3 creators.",
+      },
+      {
+        href: "/apex-legends-thumbnail-maker",
+        title: "Apex Legends Thumbnail Maker",
+        desc: "Champion Orange, Legend Gold, and Dark Red templates for Apex Legends creators.",
+      },
+      {
+        href: "/gta-thumbnail-maker",
+        title: "GTA Thumbnail Maker",
+        desc: "GTA Gold, Night Purple, and Wanted Red templates for GTA 5 and GTA Online creators.",
+      },
+      {
+        href: "/cs2-thumbnail-maker",
+        title: "CS2 Thumbnail Maker",
+        desc: "CT Blue, T-Side Orange, and Pro Minimal templates for Counter-Strike 2 creators.",
+      },
+      {
+        href: "/pubg-thumbnail-maker",
+        title: "PUBG Thumbnail Maker",
+        desc: "Chicken Dinner, Military Tan, and Night Drop templates for PUBG Mobile and PC creators.",
+      },
+      {
+        href: "/among-us-thumbnail-maker",
+        title: "Among Us Thumbnail Maker",
+        desc: "Impostor Red, Crewmate Blue, and Emergency Meeting templates for Among Us content.",
+      },
+    ],
   },
   {
-    href: "/roblox-thumbnail-maker",
-    title: "Roblox Thumbnail Maker",
-    desc: "Roblox Red, Neon Obby, and Rare Item templates for Roblox YouTube creators.",
-    badge: "200K searches/mo",
+    heading: "Social Media Image Makers",
+    tools: [
+      {
+        href: "/instagram-post-maker",
+        title: "Instagram Post Maker",
+        desc: "Square 1080×1080 or Story 1080×1920. Perfect for Reels covers and feed posts.",
+      },
+      {
+        href: "/tiktok-thumbnail-maker",
+        title: "TikTok Thumbnail Maker",
+        desc: "Create TikTok cover images at 1080×1920px. Viral Pink, Dark Glow, Trending Yellow templates.",
+      },
+      {
+        href: "/twitter-header-maker",
+        title: "Twitter Header Maker",
+        desc: "Create a professional Twitter/X profile header at 1500×500px.",
+      },
+      {
+        href: "/linkedin-banner-maker",
+        title: "LinkedIn Banner Maker",
+        desc: "Stand out on LinkedIn with a custom 1584×396px profile banner.",
+      },
+      {
+        href: "/facebook-cover-maker",
+        title: "Facebook Cover Maker",
+        desc: "Design a Facebook cover photo at 851×315px. Free.",
+      },
+    ],
   },
   {
-    href: "/minecraft-thumbnail-maker",
-    title: "Minecraft Thumbnail Maker",
-    desc: "Grass Block, Diamond Mine, and Nether Portal templates for Minecraft creators.",
-    badge: "150K searches/mo",
-  },
-  {
-    href: "/fortnite-thumbnail-maker",
-    title: "Fortnite Thumbnail Maker",
-    desc: "Storm Eye, Zero Point, and Legendary Loot templates for Fortnite content creators.",
-    badge: "100K searches/mo",
-  },
-  {
-    href: "/valorant-thumbnail-maker",
-    title: "Valorant Thumbnail Maker",
-    desc: "Agent Impact, ACE Gold, and Clutch Navy templates for Valorant YouTube creators.",
-    badge: "80K searches/mo",
-  },
-  {
-    href: "/call-of-duty-thumbnail-maker",
-    title: "Call of Duty Thumbnail Maker",
-    desc: "Military Dark, Combat Orange, and Camo Green templates for COD Warzone & MW3 creators.",
-    badge: "200K searches/mo",
-  },
-  {
-    href: "/apex-legends-thumbnail-maker",
-    title: "Apex Legends Thumbnail Maker",
-    desc: "Champion Orange, Legend Gold, and Dark Red templates for Apex Legends creators.",
-    badge: "120K searches/mo",
-  },
-  {
-    href: "/gta-thumbnail-maker",
-    title: "GTA Thumbnail Maker",
-    desc: "GTA Gold, Night Purple, and Wanted Red templates for GTA 5 and GTA Online creators.",
-    badge: "150K searches/mo",
-  },
-  {
-    href: "/cs2-thumbnail-maker",
-    title: "CS2 Thumbnail Maker",
-    desc: "CT Blue, T-Side Orange, and Pro Minimal templates for Counter-Strike 2 creators.",
-    badge: "100K searches/mo",
-  },
-  {
-    href: "/pubg-thumbnail-maker",
-    title: "PUBG Thumbnail Maker",
-    desc: "Chicken Dinner, Military Tan, and Night Drop templates for PUBG Mobile and PC creators.",
-    badge: "80K searches/mo",
-  },
-  {
-    href: "/among-us-thumbnail-maker",
-    title: "Among Us Thumbnail Maker",
-    desc: "Impostor Red, Crewmate Blue, and Emergency Meeting templates for Among Us content.",
-    badge: "100K searches/mo",
-  },
-  {
-    href: "/instagram-post-maker",
-    title: "Instagram Post Maker",
-    desc: "Square 1080×1080 or Story 1080×1920. Perfect for Reels covers and feed posts.",
-    badge: "200K searches/mo",
-  },
-  {
-    href: "/tiktok-thumbnail-maker",
-    title: "TikTok Thumbnail Maker",
-    desc: "Create TikTok cover images at 1080×1920px. Viral Pink, Dark Glow, Trending Yellow templates.",
-    badge: "150K searches/mo",
-  },
-  {
-    href: "/youtube-banner-maker",
-    title: "YouTube Banner Maker",
-    desc: "Design a channel art banner at 2560×1440px. Looks great on TV, desktop, and mobile.",
-    badge: "200K searches/mo",
-  },
-  {
-    href: "/twitter-header-maker",
-    title: "Twitter Header Maker",
-    desc: "Create a professional Twitter/X profile header at 1500×500px.",
-    badge: "100K searches/mo",
-  },
-  {
-    href: "/linkedin-banner-maker",
-    title: "LinkedIn Banner Maker",
-    desc: "Stand out on LinkedIn with a custom 1584×396px profile banner.",
-    badge: "80K searches/mo",
-  },
-  {
-    href: "/facebook-cover-maker",
-    title: "Facebook Cover Maker",
-    desc: "Design a Facebook cover photo at 851×315px. Free.",
-    badge: "150K searches/mo",
-  },
-  {
-    href: "/og-image-generator",
-    title: "OG Image Generator",
-    desc: "Generate Open Graph preview images at 1200×630px for websites and blogs.",
-    badge: "50K searches/mo",
-  },
-  {
-    href: "/twitch-banner-maker",
-    title: "Twitch Banner Maker",
-    desc: "Create a Twitch offline screen at 1920×1080px. Gaming templates, instant download.",
-    badge: "100K searches/mo",
+    heading: "Streaming & Branding Tools",
+    tools: [
+      {
+        href: "/twitch-banner-maker",
+        title: "Twitch Banner Maker",
+        desc: "Create a Twitch offline screen at 1920×1080px. Gaming templates, instant download.",
+      },
+      {
+        href: "/og-image-generator",
+        title: "OG Image Generator",
+        desc: "Generate Open Graph preview images at 1200×630px for websites and blogs.",
+      },
+    ],
   },
 ];
 
@@ -151,21 +151,30 @@ export default function HomePage() {
           </Link>
         </div>
 
-        {/* Tool grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {tools.map((tool) => (
-            <Link
-              key={tool.href}
-              href={tool.href}
-              className="block rounded-2xl border border-border p-5 hover:border-primary hover:shadow-sm transition-all duration-150 group"
-            >
-              <p className="font-semibold text-text-main group-hover:text-primary transition-colors text-sm mb-2">
-                {tool.title}
-              </p>
-              <p className="text-xs text-text-muted leading-relaxed">
-                {tool.desc}
-              </p>
-            </Link>
+        {/* Tool groups */}
+        <div className="space-y-10">
+          {toolGroups.map((group) => (
+            <section key={group.heading}>
+              <h2 className="text-lg font-bold text-text-main mb-4">
+                {group.heading}
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {group.tools.map((tool) => (
+                  <Link
+                    key={tool.href}
+                    href={tool.href}
+                    className="block rounded-2xl border border-border p-5 hover:border-primary hover:shadow-sm transition-all duration-150 group"
+                  >
+                    <h3 className="font-semibold text-text-main group-hover:text-primary transition-colors text-sm mb-2">
+                      {tool.title}
+                    </h3>
+                    <p className="text-xs text-text-muted leading-relaxed">
+                      {tool.desc}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </section>
           ))}
         </div>
 

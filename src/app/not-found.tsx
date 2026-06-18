@@ -1,19 +1,20 @@
-import Link from 'next/link'
-import type { Metadata } from 'next'
+import Link from "next/link";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: '404 — Page Not Found | ClickThumb',
-  description: 'The page you are looking for does not exist. Browse free thumbnail and social image tools below.',
-}
+  title: { absolute: "404 — Page Not Found | ClickThumb" },
+  description:
+    "The page you are looking for does not exist. Browse free thumbnail and social image tools below.",
+};
 
 const quickLinks = [
-  { href: '/youtube-thumbnail-maker', label: 'YouTube Thumbnail Maker' },
-  { href: '/gaming-thumbnail-maker', label: 'Gaming Thumbnail Maker' },
-  { href: '/instagram-post-maker', label: 'Instagram Post Maker' },
-  { href: '/twitter-header-maker', label: 'Twitter Header Maker' },
-  { href: '/linkedin-banner-maker', label: 'LinkedIn Banner Maker' },
-  { href: '/youtube-banner-maker', label: 'YouTube Banner Maker' },
-]
+  { href: "/youtube-thumbnail-maker", label: "YouTube Thumbnail Maker" },
+  { href: "/gaming-thumbnail-maker", label: "Gaming Thumbnail Maker" },
+  { href: "/instagram-post-maker", label: "Instagram Post Maker" },
+  { href: "/twitter-header-maker", label: "Twitter Header Maker" },
+  { href: "/linkedin-banner-maker", label: "LinkedIn Banner Maker" },
+  { href: "/youtube-banner-maker", label: "YouTube Banner Maker" },
+];
 
 export default function NotFound() {
   return (
@@ -22,8 +23,8 @@ export default function NotFound() {
         <p className="text-6xl font-bold text-primary">404</p>
         <h1 className="text-2xl font-bold text-text-main">Page Not Found</h1>
         <p className="text-text-muted text-sm leading-relaxed">
-          The page you&apos;re looking for doesn&apos;t exist or has been moved. Try one of the
-          tools below or go back to the homepage.
+          The page you&apos;re looking for doesn&apos;t exist or has been moved.
+          Try one of the tools below or go back to the homepage.
         </p>
 
         <div className="grid grid-cols-2 gap-2 pt-2">
@@ -46,5 +47,5 @@ export default function NotFound() {
         </Link>
       </div>
     </main>
-  )
+  );
 }
