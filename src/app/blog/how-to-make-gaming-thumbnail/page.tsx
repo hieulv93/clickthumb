@@ -3,9 +3,9 @@ import AuthorBox from "@/components/blog/AuthorBox";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "How to Make a Gaming Thumbnail That Gets More Clicks (2026)",
+  title: "How to Make a Gaming Thumbnail That Gets Clicks (2026 Guide)",
   description:
-    "Step-by-step guide to making high-CTR gaming thumbnails. Colors, fonts, text rules, and design tips that top gaming channels use. Free tool included.",
+    "Make gaming thumbnails that get clicked — color strategy, font rules, text overlay tips, and face placement used by top channels. Free thumbnail maker included.",
   alternates: {
     canonical: "https://click-thumb.com/blog/how-to-make-gaming-thumbnail/",
   },
