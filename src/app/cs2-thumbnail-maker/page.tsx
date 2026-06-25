@@ -7,14 +7,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "CS2 Thumbnail Maker – Free Counter-Strike 2 YouTube Thumbnails",
+  title: "CS2 Thumbnail Maker — Free CS2 Thumbnails, No Sign-Up",
   description:
-    "Free CS2 thumbnail maker. Create 1280×720px Counter-Strike 2 YouTube thumbnails with CT Blue, T-Side Orange, and Pro Minimal templates. No signup.",
+    "Make free CS2 thumbnails at 1280×720px. CT Blue, T-Side Orange and Pro Minimal templates for Counter-Strike 2 YouTube creators — no account, instant download.",
   alternates: { canonical: "https://click-thumb.com/cs2-thumbnail-maker/" },
   openGraph: {
-    title: "CS2 Thumbnail Maker – Free Counter-Strike 2 YouTube Thumbnails",
+    title: "CS2 Thumbnail Maker — Free CS2 Thumbnails, No Sign-Up",
     description:
-      "Create 1280×720px CS2 thumbnails free. CT Blue, T-Side Orange, and Pro Minimal templates for Counter-Strike 2 YouTube creators.",
+      "Make free CS2 thumbnails at 1280×720px. CT Blue, T-Side Orange and Pro Minimal templates for Counter-Strike 2 YouTube creators — no account, instant download.",
     url: "https://click-thumb.com/cs2-thumbnail-maker/",
     siteName: "ClickThumb",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
@@ -28,13 +28,13 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebApplication",
-      name: "CS2 Thumbnail Maker",
+      name: "CS2 Thumbnail Maker — Free CS2 Thumbnails",
       url: "https://click-thumb.com/cs2-thumbnail-maker/",
       applicationCategory: "DesignApplication",
       operatingSystem: "Any",
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       description:
-        "Free online CS2 thumbnail maker. Create 1280×720px Counter-Strike 2 YouTube thumbnails with CT Blue, T-Side Orange, and Pro Minimal templates. No signup, instant download.",
+        "Free online CS2 thumbnail maker. Create CS2 thumbnails at 1280×720px with CT Blue, T-Side Orange, and Pro Minimal templates for Counter-Strike 2 YouTube creators. No account, instant download.",
     },
     {
       "@type": "FAQPage",
@@ -128,7 +128,7 @@ export default function CS2ThumbnailMakerPage() {
           />
           <div className="text-center space-y-2">
             <h1 className="text-2xl sm:text-3xl font-bold text-text-main">
-              CS2 Thumbnail Maker
+              CS2 Thumbnail Maker — Free CS2 Thumbnails
             </h1>
             <p className="text-text-muted text-sm sm:text-base">
               Free online — 1280×720px — no signup required
