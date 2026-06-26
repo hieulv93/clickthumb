@@ -363,9 +363,9 @@ export default function TwitchBannerMakerPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                   {[
                     {
-                      href: "/gaming-thumbnail-maker",
-                      title: "Gaming Thumbnail Maker",
-                      desc: "1280×720px YouTube thumbnails for gaming.",
+                      href: "/twitch-offline-banner-maker",
+                      title: "Twitch Offline Banner Maker",
+                      desc: "1920×1080px offline screen — shown when not streaming.",
                     },
                     {
                       href: "/youtube-banner-maker",
@@ -373,9 +373,9 @@ export default function TwitchBannerMakerPage() {
                       desc: "2560×1440px YouTube channel art.",
                     },
                     {
-                      href: "/youtube-thumbnail-maker",
-                      title: "YouTube Thumbnail Maker",
-                      desc: "1280×720px with bold gaming templates.",
+                      href: "/gaming-thumbnail-maker",
+                      title: "Gaming Thumbnail Maker",
+                      desc: "1280×720px YouTube thumbnails for gaming.",
                     },
                   ].map((item) => (
                     <Link
