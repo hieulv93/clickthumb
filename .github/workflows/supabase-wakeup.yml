@@ -1,0 +1,25 @@
+name: Wake Up Supabase
+
+on:
+  schedule:
+    # Chay luc 00:00 UTC moi 5 ngay
+    - cron: "0 0 */5 * *"
+  workflow_dispatch:
+
+jobs:
+  wakeup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wake Supabase
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/projects?select=id&limit=1" \
+            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}")
+          echo "HTTP Status: $STATUS"
+          if [ "$STATUS" -eq 200 ] || [ "$STATUS" -eq 401 ] || [ "$STATUS" -eq 404 ]; then
+            echo "Supabase responded."
+          else
+            echo "Unexpected response."
+            exit 1
+          fi
